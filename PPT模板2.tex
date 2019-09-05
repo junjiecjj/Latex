@@ -1,0 +1,843 @@
+% 使用 xelatex 编译
+\documentclass[8pt,compress,t,notheorems,noamsthm,notheorem,xcolor=x11names]{beamer}
+%\documentclass[8pt,compress,t,handout,table]{beamer}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+
+%========================== 演示主题================================================
+%◦ 没有导航条:default,AnnArbor,Bergen,Boadilla,CambridgeUS,EastLansing,Madrid,Pittsburgh,Rochester.
+%◦ 带树形导航条: Antibes, JuanLesPins, Montpellier
+%◦ 带侧边导航条: Berkeley, Goettingen, Hannover, Marburg, PaloAlto
+%◦ 带微型导航条: Berlin, Ilmenau, Darmstadt, Dresden, Frankfurt,Singapore, Szeged
+%◦ 带节小节标题: Copenhagen, Luebeck, Malmoe, Warsaw
+\usetheme{Boadilla}
+
+%========================== 颜色主题============================================
+%- Default Color Theme: default
+%- Special-Purpose Color Themes: structure, sidebartab
+%- Complete Color Themes:albatross,beetle,crane,dove,fly,seagull,wolverine,beaver,spruce
+%- Inner Color Themes: lily, orchid, rose
+%- Outer Color Themes: whale, seahorse, dolphin,
+
+\usecolortheme{seahorse}
+\usecolortheme[named=SpringGreen4]{structure}
+\usecolortheme{rose}
+\usecolortheme{beaver}
+%========================== 字体主题========================================
+%default,professionalfonts,serif,structurebold,structureitalicserif,structuresmallcapsserif
+
+\usefonttheme{structurebold}
+\usefonttheme[onlymath]{serif}
+
+%========================== 外部主题========================================
+%default, infolines, miniframes, smoothbars, sidebar, split, shadow, tree, smoothtree
+\useoutertheme[subsection=false]{smoothbars}
+%\useoutertheme[subsection=false]{miniframes}
+
+%========================== 内部主题=====================================
+%default, circles, rectangles, rounded, inmargin
+%\useinnertheme[shadow]{rounded} 
+\useinnertheme{circles}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamercolor{separation line}{use=structure,bg=structure.fg!50!bg}
+%\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
+\setbeamerfont{frametitle}{size=\normalsize}
+\definecolor{myfoot}{rgb}{0.5,0.2,0.5}
+
+%\setbeamerfont{frametitle}{size=\large,}
+%\setbeamerfont{headline}{size=\small,}
+%\setbeamerfont{footline}{size=\large,}
+
+
+
+\setbeamertemplate{title page}
+{
+	%  \vbox{}
+	\vfill
+	\begin{centering}
+		\vskip0.6em\par%
+		\includegraphics[height=2.0cm]{ustc_logo_fig_new.eps}
+		\vskip0.4em\par%
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}\inserttitle\par%
+			\ifx\insertsubtitle\@empty%
+			\else%
+			\vskip0.25em%
+			{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+			\fi%
+		\end{beamercolorbox}%
+		\vskip1em\par
+		\begin{beamercolorbox}[sep=8pt,center]{author}
+			\usebeamerfont{author}
+			%     \insertauthor
+			{
+				\begin{tabular}{cc}
+					报告人：& \insertauthor\\
+					导\quad 师：& \advisor
+				\end{tabular}
+			}
+		\end{beamercolorbox}
+		\begin{beamercolorbox}[sep=10pt,center]{institute}
+			\usebeamerfont{institute}\insertinstitute
+		\end{beamercolorbox}
+		\begin{beamercolorbox}[sep=10pt,center]{date}
+			\usebeamerfont{date}\insertdate
+		\end{beamercolorbox}\vskip1.5em
+		%  {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+	\end{centering}
+	\vfill
+}
+
+
+\setbeamertemplate{footline}% 自定义页脚
+{
+	\leavevmode\mbox{%
+    \begin{beamercolorbox}[wd=.75\paperwidth,ht=2.25ex,dp=1ex,left]{myfootline}%
+        \rule{2em}{0pt}\color{myfoot}\ttfamily\scriptsize
+        \insertshortauthor~(\insertshortinstitute)
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,right]{myfootline}%
+    	{
+       		\color{myfoot}\ttfamily\scriptsize\insertframenumber{}/%
+        	\inserttotalframenumber\hspace*{3ex}
+        }
+    	\end{beamercolorbox}
+    	}
+    	\vskip0pt
+}
+
+\setbeamercolor{frametitle}{fg=blue,bg=white}
+\setbeamertemplate{frametitle}
+{%
+	\leavevmode\linespread{1}\large{\insertframetitle}\par
+	\color{green!80}\rule[8pt]{\linewidth}{2pt}\par\vspace{-1.0em}
+}
+
+\setbeamersize{text margin left=0.05\textwidth, text margin right=1cm,}
+\setbeamercolor{bluebox}{fg=black,bg=blue!10}
+\setbeamercolor{redbox}{fg=black,bg=red!10}
+\newenvironment{Boxblue}[1][\textwidth]
+{\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{bluebox}}
+	{\end{beamercolorbox}}
+\newenvironment{Boxred}[1][\textwidth]
+{\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{redbox}}
+	{\end{beamercolorbox}}
+
+%%%%% ===== 中英文字体
+\usepackage[noindent]{ctex}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman} % 无衬线字体 sans serif \sffamily
+\setmonofont{WenQuanYi Micro Hei}   % 等宽字体 typewriter \ttfamily
+%% 中文字体
+\setCJKmainfont[BoldFont={SimSun}, ItalicFont={SimSun}]{SimSun}	%设置缺省中文字体，根据自己系统里的字体选择合适字体
+\setCJKsansfont{SimSun}
+\setCJKmonofont{WenQuanYi Micro Hei}
+
+%%%%% ===== 常用宏包 =======================================================
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{graphicx}
+  \graphicspath{{figures/}}
+  \definecolor{darkblue}{rgb}{0.1,0,0.85}
+  \hypersetup{pdfborder=001,colorlinks=true,linkcolor=darkblue,urlcolor=blue}
+\usepackage{bbding}
+
+
+\usepackage{multimedia}	%让文档支持多媒体
+\usepackage{graphics}	%让文档支持图片
+\usepackage{hyperref}	%让文档支持超链接
+\usepackage{booktabs}	%让文档支持三线表格
+\usepackage{amsmath}	%ams可以让文档支持数学公式
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{graphicx,psfrag}
+\usepackage{epsfig}
+
+%%%%% ===== 自加宏包 ========================================================
+
+%\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amstext}
+\usepackage{graphicx}
+\usepackage{setspace}
+
+\makeatletter
+\providecommand{\tabularnewline}{\\}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{verbatim}%多行注释
+\usepackage{fontspec}   %修改字体
+\setCJKmainfont{SimSun}     % 语义和语法同fontspec
+\setCJKsansfont{SimHei}
+\setCJKmonofont{SimSun}
+\setmainfont{Times New Roman}
+\usepackage{authblk}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amssymb}
+%\usepackage[numbers,sort&compress]{natbib}
+\usepackage{cite}%连续引用多个文献
+\usepackage{CJKpunct}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{stfloats} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+
+
+\usepackage[marginal]{footmisc}
+\renewcommand{\thefootnote}{}
+\usepackage{caption}
+\usepackage{lipsum}
+\usepackage{multicol}%分栏宏
+\usepackage{supertabular}
+\usepackage{setspace}
+
+%%%%% ===== 自加宏包 ========================================================
+
+%%%%% ===== 自定义列表 ======================================================
+\newcommand{\Bullet}{{\fontsize{6pt}{6pt}\selectfont\CircleSolid}}
+\newcommand{\Hand}{{\fontsize{8pt}{6pt}\selectfont\HandRight}}
+\newcommand{\zhu}{{\color{blue!40}\Bullet}}
+\newcommand{\zhuu}{{\color{red!80}\Hand}}
+\newcommand{\labeli}{\zhu}
+\newenvironment{myitem}
+{
+	\begin{list}
+		{{\hfill\raisebox{0pt}{\labeli}}}{%
+    	\setlength{\leftmargin}{1.2em}\labelwidth0.8em\labelsep.4em%
+    	\itemsep1ex\parsep2pt\itemindent0pt\topsep0pt}}
+	{\end{list}
+}
+\newenvironment{subitem}
+{
+	\begin{list}{{\hfill\raisebox{0pt}{\zhuu}}}{%
+    \setlength{\leftmargin}{1.2em}\labelwidth0.8em\labelsep.4em%
+    \itemsep0ex\parsep2pt\itemindent0pt\topsep0pt}}
+	{\end{list}
+}
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{algorithm,algpseudocode,caption}
+\usepackage[framemethod=tikz]{mdframed}
+\newmdenv[linecolor=green,middlelinewidth=1pt,%
+		  roundcorner=3pt,backgroundcolor=yellow!5,%
+		  innertopmargin=0.5em,innerbottommargin=0.5em,%
+		  innerleftmargin=3pt,innerrightmargin=3pt,%
+		  skipbelow=0.5em,skipabove=1em,%
+		  splittopskip=\topskip]{Block}
+\newmdenv[linecolor=green,middlelinewidth=0.5pt,%
+		  outerlinewidth=0.5pt,skipabove=0pt,
+		  roundcorner=3pt,backgroundcolor=white,%
+		  innerbottommargin=3pt,innerrightmargin=5pt,%
+		  innerleftmargin=5pt,leftmargin=0ex]{mathbox}
+\newmdenv[linecolor=blue!5!green,middlelinewidth=0.5pt,%
+		  roundcorner=3pt,backgroundcolor=yellow!5,%
+		  frametitle={Hello},frametitlebackgroundcolor=green!50,%
+		  skipabove=2pt,skipbelow=2pt,%
+		  innerleftmargin=3pt,leftmargin=0ex]{notebox}
+\newmdenv[linecolor=white,font={\scriptsize},%
+		  fontcolor=blue!85,backgroundcolor=yellow!5,%
+		  skipabove=1ex,skipbelow=0pt,innerbottommargin=0.5ex,%
+	      innerleftmargin=3pt,leftmargin=1em]{myref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thefootnote}{}% 不要编号
+\setbeamertemplate{footnote}{% 首行不缩进
+	\noindent\insertfootnotemark%
+	\scriptsize\color{blue!85!green!85}\insertfootnotetext\par\kern1ex}
+\renewcommand\footnoterule%    更改横线属性：长度，粗细，颜色
+  {\color{red}\kern-3pt\rule{0.4\linewidth}{0.5pt}\par\kern2.6pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%===== 定理环境 ===========================================
+\usepackage[amsmath,thref,thmmarks,hyperref]{ntheorem}
+\theorempreskipamount1.2em  % spacing before the environment
+\theorempostskipamount0em % spacing after the environment
+%\theorempostwork{\noindent}
+\theoremstyle{nonumberplain}%{nonumberbreak}
+\theoremheaderfont{\color{blue}\upshape}
+%\theorembodyfont{\kaishu\color{black}}
+\theoremindent0em
+\theoremseparator{:\hspace{0.2em}}
+%\theoremnumbering{arabic}
+\colorlet{thmcolor}{gray!40}
+\newmdtheoremenv[linecolor=thmcolor,middlelinewidth=1pt,
+    roundcorner=3pt,backgroundcolor=white,%
+    innertopmargin=0.5em,innerbottommargin=0.5em,%
+    innerleftmargin=3pt,innerrightmargin=3pt,%
+    skipbelow=0.5em,skipabove=1em,%
+    splittopskip=\topskip,ntheorem]{theorem}%
+    {定理}
+\newmdtheoremenv[linecolor=thmcolor,middlelinewidth=0.5pt,
+    roundcorner=3pt,backgroundcolor=white,%
+    innertopmargin=0.5em,innerbottommargin=0.5em,%
+    innerleftmargin=3pt,innerrightmargin=3pt,%
+    skipbelow=0.5em,skipabove=1em,%
+    splittopskip=\topskip,ntheorem]{corollary}%
+    {推论}
+\newmdtheoremenv[linecolor=thmcolor,middlelinewidth=0.5pt,
+    roundcorner=3pt,backgroundcolor=white,%
+    innertopmargin=0.5em,innerbottommargin=0.5em,%
+    innerleftmargin=3pt,innerrightmargin=3pt,%
+    skipbelow=0.5em,skipabove=1em,%
+    splittopskip=\topskip,ntheorem]{lemma}%
+    {引理}
+%\newmdtheoremenv[linecolor=thmcolor,middlelinewidth=0.5pt,
+%    roundcorner=3pt,backgroundcolor=white,%
+%    innertopmargin=0.5em,innerbottommargin=0.5em,%
+%    innerleftmargin=3pt,innerrightmargin=3pt,%
+%    skipbelow=0.5em,skipabove=1em,%
+%    splittopskip=\topskip,ntheorem]{definition}%
+%    {定义}
+\newmdenv[innertopmargin=0pt,roundcorner=5pt,linewidth=2pt,
+    linecolor=gray!40,
+    innertopmargin=1.2em,innerleftmargin=1ex,innerrightmargin=1ex,
+    singleextra={
+      \node[anchor=west,xshift=1em,fill=gray!20,rounded corners=4pt,%
+       draw=green!50,line width=1pt]%
+       at (P-|O) {\ \color{blue} 定\ 义\ \mbox{}};
+    }]{definition}
+
+\theoremstyle{plain}
+\newmdtheoremenv[linecolor=thmcolor,middlelinewidth=0.5pt,
+    roundcorner=3pt,backgroundcolor=white,%
+    innertopmargin=0.5em,innerbottommargin=0.5em,%
+    innerleftmargin=3pt,innerrightmargin=3pt,%
+    skipbelow=0.5em,skipabove=1em,%
+    splittopskip=\topskip,ntheorem]{example}%
+    {例}
+    
+\newenvironment{proof}[1][证明]%
+  {\par\noindent\normalfont{\hei\color{blue} #1.} \upshape}
+  {\mbox{}\hfill\scalebox{1.2}{\ensuremath{\Box}}\medskip}
+
+\usepackage[ntheorem]{empheq}
+\usepackage[many]{tcolorbox}
+\tcbset{highlight math %
+	style={enhanced, colframe=blue!40,colback=yellow!20,arc=4pt,boxrule=1pt}}
+\newtcbox{\tcbhighmathinner}[1][]{nobeforeafter,math upper,tcbox raise base,
+	enhanced,left=1ex,right=1ex,top=1ex,bottom=1ex,boxsep=0mm,
+	colframe=green,colback=blue!5!white,arc=4pt,boxrule=1pt,#1}
+
+\linespread{1.3}
+\setlength{\parskip}{1ex}
+
+%%%%% ===== 自定义命令 =====================================================
+\newcommand{\bbm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rn}{\mathbb{R}^{n\times n}}
+\newcommand{\IA}{\mathcal{A}}
+\newcommand{\IK}{\mathcal{K}}
+\newcommand{\IO}{\mathcal{O}}
+\newcommand{\lam}{\lambda}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\mycite}[1]{\textcolor{blue!50!white}{\upshape{#1}}}
+\newcommand{\Der}{\,\mathrm{D}}
+\newcommand{\der}{\,\mathrm{d}}
+%
+\newcommand{\myem}[1]{\textcolor{blue}{#1}}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rank}{rank}
+
+\begin{document}
+
+\title[短标题]{{\huge EAST密度极限破裂数据库的建立及其预测}}
+% \subtitle{也可以有个副标题}
+
+\author[陈俊杰]{\zihao{-5} 陈俊杰}
+
+\institute[中国科大]{\zihao{-5}中国科学技术大学 \quad 工程与应用物理系}
+\def\advisor{\zihao{-5} 秦宏}
+\date{2019.09.11}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}{内容提要}
+  %\frametitle{内容提要}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+
+% 在每节前插入目录
+\AtBeginSection[]
+{
+	\frame{\tableofcontents[currentsection,hideallsubsections]}
+}
+
+
+\section{背景介绍}
+
+\begin{frame}
+  \frametitle{背景介绍}
+\begin{myitem}
+\item 考虑问题
+    $$ a^2+b^2=c^2.$$
+
+%\bigskip
+\item 问题应用背景
+    \begin{subitem}
+        \item  xxxxx
+        \item  xxxx
+        \item  xxxxx
+        \item $\cdots\ \cdots$
+    \end{subitem}
+\end{myitem}
+\end{frame}
+
+
+%beamer 自动加载 amsthm 宏包, 并定义如下定理环境:theorem, lemma, corollary, definition, proof, ...
+
+	%theorem 定理环境
+	%lemma 引理环境
+	%proof 证明环境
+	%corollary 推论环境
+	%example 示例环境
+
+
+\section{定义与定理}
+\begin{frame}{定义与定理}
+
+  \begin{definition} 
+    这是连续的定义, 这是连续的定义, 这是连续的定义,
+    这是连续的定义, 这是连续的定义, 这是连续的定义,
+    这是连续的定义, 这是连续的定义, 这是连续的定义.sd少时诵诗书所所所所所所所所所所所所所所所所所所所少时诵诗书所所所所所所所所所所所所所所所所所所
+  \end{definition}
+\end{frame}
+
+\begin{frame}{定义与定理 (续)}
+  \begin{theorem}[中值定理]
+    这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+    这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+    这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+    这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理.
+  \end{theorem}
+\end{frame}
+
+
+\begin{frame}{定义与定理 (续)}
+\begin{corollary}[推论1]
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理.
+\end{corollary}
+\end{frame}
+
+\begin{frame}{定义与定理 (续)}
+\begin{lemma}[引理1]
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理.
+\end{lemma}
+\end{frame}
+
+\begin{frame}{定义与定理 (续)}
+\begin{example}[例一]
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理.
+\end{example}
+\end{frame}
+
+\begin{frame}{定义与定理 (续)}
+\begin{example}[例二]
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理.
+\end{example}
+\end{frame}
+
+
+\begin{frame}{定义与定理 (续)}
+\begin{lemma}
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理,
+	这是中值定理, 这是中值定理, 这是中值定理, 这是中值定理.
+\end{lemma}
+\end{frame}
+
+\section{算法描述}
+\begin{frame}{算法描述}
+\begin{myitem}
+  \item 基本思想
+  \begin{subitem}
+    \item xxxxxx
+    \item xxxxxx
+  \end{subitem}
+  \bigskip
+
+  \item 主要优点
+  \begin{subitem}
+    \item  xxxx
+    \item  xxxxx
+  \end{subitem}
+\end{myitem}
+\end{frame}
+
+
+\begin{frame}{算法 1}
+
+  算法 1
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
+
+\begin{mathbox}
+	$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
+	\begin{align*}
+	\text{(i)}\quad
+	& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
+	&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
+	\text{(ii)}\quad
+	& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
+	\ \text{with}\ \sigma=2
+	&\to&\ \textcolor{blue}{ill-conditioned}
+	\end{align*}
+\end{mathbox}
+
+Other parameters
+\begin{myitem}
+	\item[] - $\Xi$: positive diagonal random matrix with
+	$\kappa_2(\Xi)\approx 10^{3}$
+	\item[] - $\mu=0.001$
+	\item[] - stopping criterion:
+	$
+	\dfrac{\| c - Au\|_2}{\|c\|_2}<10^{-7}
+	$\medskip
+	\item[] -  Initial guess: zero vector
+	\item[] -  maximum iteration steps: $1000$
+\end{myitem}
+\end{frame}
+
+\begin{frame}
+\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
+
+\begin{Boxblue}
+	$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
+	\begin{align*}
+	\text{(i)}\quad
+	& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
+	&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
+	\text{(ii)}\quad
+	& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
+	\ \text{with}\ \sigma=2
+	&\to&\ \textcolor{blue}{ill-conditioned}
+	\end{align*}
+\end{Boxblue}
+
+Other parameters
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
+
+\begin{Boxred}
+$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
+\begin{align*}
+\text{(i)}\quad
+& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
+&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
+\text{(ii)}\quad
+& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
+\ \text{with}\ \sigma=2
+&\to&\ \textcolor{blue}{ill-conditioned}
+\end{align*}
+\end{Boxred}
+
+Other parameters
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{顶顶顶顶HSS  \mycite{BN06}}
+
+Rewrite the augmented system into nonsymmetrix form
+$$
+\bbm W & K \\ -K^T & \mu I \ebm \bbm y\\x\ebm = \bbm f\\ 0\ebm
+\quad\text{or}\quad
+Au=c
+$$
+
+\begin{myitem}
+	\item Hermitian and skew-Hermitian splitting \mycite{BGN03}
+	$$ A=H+S $$
+	where
+	$$
+	H = \bbm W & 0\\ 0 & \mu I\ebm \ \text{and}\
+	S = \bbm 0 & K\\ -K^T & 0 \ebm
+	$$
+	
+\end{myitem}
+
+\footnote{[BN06]
+	M. Benzi and M. K. Ng,
+	\emph{Preconditioned iterative methods for weighted toeplitz
+		least squares problems},
+	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
+\footnote{[BGN03]
+	Z.-Z. Bai, G. H. Golub and M. K. Ng,
+	\emph{Hermitian and skew-Hermitian splitting methods for
+		non-Hermitian positive definite linear systems},
+	SIAM J. Matrix Anal. Appl., 24 (2003), 603--626. }
+
+\end{frame}
+
+\section{数值实验}
+
+\begin{frame}{数值算例}
+
+\begin{center}
+{Numerical results for Example 1}\smallskip
+
+\begin{tabular}{ccccccccccc} \toprule
+    &&&\multicolumn{2}{c}{GMRES(C)}
+    &&\multicolumn{2}{c}{GMRES(L)}
+    &&\multicolumn{2}{c}{GMRES(P)} \\ \cmidrule{4-5}\cmidrule{7-8}\cmidrule{10-11}
+ $\theta$ & $N$ && Iter & CPU && Iter & CPU && Iter & CPU \\\hline
+  0.5
+ & $2^{11}$ &&  33&    0.04 &&  13&    0.02 &&  12&   0.01 \\
+ & $2^{12}$ &&  33&    0.12 &&  14&    0.04 &&  12&   0.03 \\
+ & $2^{13}$ &&  33&    0.26 &&  14&    0.09 &&  12&   0.08 \\
+ & $2^{14}$ &&  33&    0.53 &&  15&    0.19 &&  12&   0.15 \\ \midrule
+  0.8                                         
+ & $2^{11}$ &&  33&    0.04 &&  13&    0.02 &&  12&   0.01 \\
+ & $2^{12}$ &&  33&    0.11 &&  14&    0.04 &&  12&   0.03 \\
+ & $2^{13}$ &&  33&    0.25 &&  15&    0.10 &&  12&   0.08 \\
+ & $2^{14}$ &&  33&    0.53 &&  16&    0.21 &&  12&   0.15 \\ \bottomrule
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{数值算例 (续)}
+
+\begin{center}
+	{Numerical results for $\tcbhighmathinner{\beta=0.1}$}\smallskip
+	
+	\begin{tabular}{ccccccccccc} \toprule
+		&&\multicolumn{2}{c}{GMRES(C)}
+		&\multicolumn{2}{c}{GMRES(L)}
+		&\multicolumn{2}{c}{GMRES(P)} \\ \cline{3-8}
+		$\theta$ & $N$ & Iter & CPU & Iter & CPU & Iter & CPU \\\hline
+		0.5
+		& $2^{11}$ &  33&    0.04 &  13&    0.02 &  12&   0.01 \\
+		& $2^{12}$ &  33&    0.12 &  14&    0.04 &  12&   0.03 \\
+		& $2^{13}$ &  33&    0.26 &  14&    0.09 &  12&   0.08 \\
+		& $2^{14}$ &  33&    0.53 &  15&    0.19 &  12&   0.15 \\ \hline
+		0.8
+		& $2^{11}$ &  33&    0.04 &  13&    0.02 &  12&   0.01 \\
+		& $2^{12}$ &  33&    0.11 &  14&    0.04 &  12&   0.03 \\
+		& $2^{13}$ &  33&    0.25 &  15&    0.10 &  12&   0.08 \\
+		& $2^{14}$ &  33&    0.53 &  16&    0.21 &  12&   0.15 \\ \bottomrule
+	\end{tabular}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{表格}
+如表11所示\ref{tab11}
+\begin{center}
+	\begin{table}
+		\caption{Prediction results of MLP and LSTM  on the dataset.}
+		\centering{}%
+		\footnotesize{}
+		\begin{tabular}{p{1.0cm}<{\centering} p{1cm}<{\centering} p{2cm}<{\centering} p{1.5cm}<{\centering} p{1.5cm}<{\centering} p{1.5cm}<{\centering}}
+			%\hline
+			
+			\toprule 
+			&  & nondisruptive pulse  & \multicolumn{3}{c}{  disruptive pulse  }\\
+			\cmidrule{4-6}
+			%\cline{4-6}
+			& indicators & $f_{nd}(\%)$ & $s_{d}(\%)$ & $l_{d}(\%)$ & $f_{d}(\%)$ \\
+			%\hline
+			\midrule 
+			\multirow{4}{*}{MLP} & train set & 12/224 (5.35) & 223/327 (68.19) & 8/327 (2.44) & 96/327 (29.35)\\
+			\\
+			& validation & 8/224 (3.57) & 225/327 (68.81) & 11/327 (3.36) & 91/327 (27.83)\\
+			\\
+			& test & 8/224(3.57) & 220/326 (67.48) & 4/326 (1.23) & 102/326 (31.29)\\
+			\\
+			& total & 28/672 (4.16) & 668/980 (68.16) & 23/980 (2.35) & 289/980 (29.49) \\
+			\\
+			\\
+			\multirow{4}{*}{LSTM} & training & 9/224 (4.02) & 243/327 (74.31) & 1/327 (0.30) & 83/327 (25.38)\\
+			\\
+			& validation  & 7/224 (3.12)  & 252/327 (77.06) & 3/327 (0.92) & 72/327 (22.02)\\
+			\\
+			& test & 5/224 (2.23) & 239/326(73.31) & 3/326 (0.92) & 84/326 (25.77)\\
+			\\
+			& total & 21/672 (3.12) & 734/980 (74.89) & 7/980 (0.71) & 239/980 (24.39)\\
+			
+			\bottomrule
+			%\hline
+		\end{tabular}
+		\label{tab11}
+	\end{table}
+\end{center}
+\end{frame}
+
+\section{结论与展望}
+
+\begin{frame}{结论与展望}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[scale=0.1]{ustc_logo_fig_new}
+	\caption{Impact factor of diagnostics under four indicates by `leave one out ' method}
+	\label{fig1}
+\end{figure}
+这里是结论与展望 conclusion 和 remarks
+
+\end{frame}
+
+
+%块环境: block, exampleblock, alertblock → 与定理环境类似, 可自选标题
+%多栏显示:在我们做讲稿的时候,有时候为了使得幻灯片更加工整,充实,会在一旁插入图片、表格或者说明性的文字,这个时候可以使用 beamer 中的多栏环境(columns)或者 L A TEX 中的子页环境(minipage)。
+
+
+\begin{frame}{实验结果}
+\begin{columns}
+	\begin{column}{0.30\textwidth}
+		\epsfig{figure=67039.eps,width=\textwidth}
+		\epsfig{figure=67039.eps,width=\textwidth}
+		八号或或或或或或或
+	\end{column}
+	\begin{column}{0.30\textwidth}
+		\begin{Block}{结论}
+			\begin{itemize}
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+			\end{itemize}
+		\end{Block}
+	\end{column}
+	
+	\begin{column}{0.30\textwidth}
+		\begin{block}{结论}
+			\begin{itemize}
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+			\end{itemize}
+		\end{block}
+	\end{column}
+\end{columns}
+\end{frame}
+
+
+
+\begin{frame}{实验结果(续)}
+\begin{columns}[t,onlytextwidth]
+	
+	\begin{column}{0.30\textwidth}
+		\begin{exampleblock}{结论}
+			\begin{itemize}
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+			\end{itemize}
+		\end{exampleblock}
+	\end{column}
+	
+	\begin{column}{0.30\textwidth}
+		\begin{exampleblock}{结论}
+			\begin{description}
+			\item[11] 实验结果如左图所示
+			\item[2] 实验结果如左图所示
+			\item[3] 实验结果如左图所示
+
+			\end{description}
+		\end{exampleblock}
+	\end{column}
+	
+	\begin{column}{0.30\textwidth}
+		\begin{alertblock}{结论}
+			\begin{enumerate}
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+				\item 实验结果如左图所示
+			\end{enumerate}
+		\end{alertblock}
+	\end{column}
+\end{columns}
+\alert{这是由 \\alert 输出的....}
+
+\end{frame}
+
+%三类列表环境,包括无序列表(itemize)、有序列表(enumerate)、描述列表(description)。其中前两者非常常用,使用非常简单
+
+\begin{frame}{无序列表(itemize)}
+	\begin{itemize}
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{有序列表(enumerate)}
+\begin{enumerate}
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{描述列表(description)}
+\begin{description}
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+\end{description}
+\end{frame}
+
+\begin{frame}[c,plain]
+\begin{center}
+\Huge\color{red}\heiti\bfseries 谢\quad 谢!
+
+  Thank you!
+\end{center}
+\end{frame}
+
+\end{document} 
