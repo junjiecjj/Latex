@@ -45,12 +45,10 @@
 \setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
 \setbeamerfont{frametitle}{size=\normalsize}
 \definecolor{myfoot}{rgb}{0.5,0.2,0.5}
-
+\definecolor{darkblue}{rgb}{0.1,0,0.85}
 %\setbeamerfont{frametitle}{size=\large,}
-%\setbeamerfont{headline}{size=\small,}
+%\setbeamerfont{headline}{size=\footnotesize,}
 %\setbeamerfont{footline}{size=\large,}
-
-
 
 \setbeamertemplate{title page}
 {
@@ -125,22 +123,23 @@
 {\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{redbox}}
 	{\end{beamercolorbox}}
 
-%%%%% ===== 中英文字体
+%%%%% ===== 中英文字体=============================================
 \usepackage[noindent]{ctex}
 \setmainfont{Times New Roman}
 \setsansfont{Times New Roman} % 无衬线字体 sans serif \sffamily
 \setmonofont{WenQuanYi Micro Hei}   % 等宽字体 typewriter \ttfamily
 %% 中文字体
 \setCJKmainfont[BoldFont={SimSun}, ItalicFont={SimSun}]{SimSun}	%设置缺省中文字体，根据自己系统里的字体选择合适字体
-\setCJKsansfont{SimSun}
+\setCJKsansfont{WenQuanYi Micro Hei}%SimHei, WenQuanYi Micro Hei
 \setCJKmonofont{WenQuanYi Micro Hei}
 
 %%%%% ===== 常用宏包 =======================================================
 \usepackage{amsmath,amssymb,amsfonts,bm}
 \usepackage{graphicx}
   \graphicspath{{figures/}}
-  \definecolor{darkblue}{rgb}{0.1,0,0.85}
-  \hypersetup{pdfborder=001,colorlinks=true,linkcolor=darkblue,urlcolor=blue}
+\usepackage{xcolor}
+\usepackage{hyperref}
+  \hypersetup{pdfborder=001,colorlinks=true,linkcolor=darkblue,urlcolor=blue,citecolor=blue,bookmarksopen=true, breaklinks=true}
 \usepackage{bbding}
 
 
@@ -156,44 +155,24 @@
 \usepackage{epsfig}
 
 %%%%% ===== 自加宏包 ========================================================
-
-%\usepackage{array}
-\usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{amstext}
-\usepackage{graphicx}
-\usepackage{setspace}
-
-\makeatletter
-\providecommand{\tabularnewline}{\\}
-\makeatother
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{verbatim}%多行注释
 \usepackage{fontspec}   %修改字体
-\setCJKmainfont{SimSun}     % 语义和语法同fontspec
-\setCJKsansfont{SimHei}
-\setCJKmonofont{SimSun}
-\setmainfont{Times New Roman}
-\usepackage{authblk}
-\usepackage{amsmath}
-\usepackage{amstext}
-\usepackage{amssymb}
-%\usepackage[numbers,sort&compress]{natbib}
+
 \usepackage{cite}%连续引用多个文献
 \usepackage{CJKpunct}
-\usepackage{graphicx} %插入图片的宏包
+
 \usepackage{float} %设置图片浮动位置的宏包
 \usepackage{stfloats} %设置图片浮动位置的宏包
 \usepackage{subfigure} %插入多图时用子图显示的宏包
 
 
-\usepackage[marginal]{footmisc}
-\renewcommand{\thefootnote}{}
+
 \usepackage{caption}
 \usepackage{lipsum}
 \usepackage{multicol}%分栏宏
 \usepackage{supertabular}
-\usepackage{setspace}
 
 %%%%% ===== 自加宏包 ========================================================
 
@@ -512,7 +491,11 @@
 	&\to&\ \textcolor{blue}{ill-conditioned}
 	\end{align*}
 \end{mathbox}
-
+\footnote{[BN06]
+	M. Benzi and M. K. Ng,
+	\emph{Preconditioned iterative methods for weighted toeplitz
+		least squares problems},
+	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
 Other parameters
 \begin{myitem}
 	\item[] - $\Xi$: positive diagonal random matrix with
@@ -544,7 +527,11 @@ Other parameters
 \end{Boxblue}
 
 Other parameters
-
+\footnote{[BN06]
+	M. Benzi and M. K. Ng,
+	\emph{Preconditioned iterative methods for weighted toeplitz
+		least squares problems},
+	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
 \end{frame}
 
 \begin{frame}
@@ -564,9 +551,38 @@ $K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
 \end{Boxred}
 
 Other parameters
-
+\footnote{[BN06]
+	M. Benzi and M. K. Ng,
+	\emph{Preconditioned iterative methods for weighted toeplitz
+		least squares problems},
+	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
 \end{frame}
 
+\begin{frame}
+\frametitle{Equivalent Linear Systems -- Augmented System}
+\begin{myitem}
+	\item Augmented system associated with WTLS problem
+	$$
+	\bbm W & K \\ K^T & -\mu I \ebm \bbm y\\x\ebm = \bbm f\\ 0\ebm,
+	$$
+	where $W = (\Xi^T \Xi)^{-1}$ and $y = \Xi^T \Xi(f - Kx)$
+	
+	\item[] \zhuu\ This is a generalized saddle point problem
+	
+	\item[] \zhuu\ Many solution methods are available
+	\begin{myitem}
+		\item[] - Uzawa, HSS, GSOR, ...
+		\item[] - preconditioned Krylov subspace methods
+	\end{myitem}
+	\medskip
+	
+	\qquad
+	\begin{Boxred}[0.7\textwidth]
+		\textcolor{blue}{How to find a good preconditioner?}
+	\end{Boxred}
+	
+\end{myitem}
+\end{frame}
 
 \begin{frame}
 \frametitle{顶顶顶顶HSS  \mycite{BN06}}
@@ -604,7 +620,14 @@ $$
 
 \section{数值实验}
 
+
 \begin{frame}{数值算例}
+	\begin{example}
+		这是第一个例子。
+	\end{example}
+\end{frame}
+
+\begin{frame}{数值算例(续)}
 
 \begin{center}
 {Numerical results for Example 1}\smallskip
@@ -630,15 +653,20 @@ $$
 \end{frame}
 
 
+\newcolumntype{A}{>{\columncolor{yellow!10!white}}c}
+\newcolumntype{B}{>{\columncolor{blue!5!white}}c}
+\newcolumntype{C}{>{\columncolor{green!10!white}}c}
+
+
 \begin{frame}{数值算例 (续)}
 
 \begin{center}
 	{Numerical results for $\tcbhighmathinner{\beta=0.1}$}\smallskip
 	
-	\begin{tabular}{ccccccccccc} \toprule
-		&&\multicolumn{2}{c}{GMRES(C)}
-		&\multicolumn{2}{c}{GMRES(L)}
-		&\multicolumn{2}{c}{GMRES(P)} \\ \cline{3-8}
+	\begin{tabular}{AABBCCBB} \toprule
+		&&\multicolumn{2}{B}{GMRES(C)}
+		&\multicolumn{2}{C}{GMRES(L)}
+		&\multicolumn{2}{B}{GMRES(P)} \\ \cline{3-8}
 		$\theta$ & $N$ & Iter & CPU & Iter & CPU & Iter & CPU \\\hline
 		0.5
 		& $2^{11}$ &  33&    0.04 &  13&    0.02 &  12&   0.01 \\
@@ -836,7 +864,7 @@ $$
 \begin{center}
 \Huge\color{red}\heiti\bfseries 谢\quad 谢!
 
-  Thank you!
+  Thanks!
 \end{center}
 \end{frame}
 

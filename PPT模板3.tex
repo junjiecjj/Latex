@@ -1,9 +1,6 @@
 % 使用 xelatex 编译
 \documentclass[8pt,compress,t,noamsthm,notheorem,handout,table]{beamer}
 
-%Antibes Bergen Berkeley Berlin Boadilla Copenhagen Darmstadt Dresden Frankfurt Goettingen Hannover Ilmenau Juanlespins Madrid Malmoe Marburg Montpellier Paloalto Pittsburgh Rochester Singapore
-
-
 %◦ 没有导航条: default, AnnArbor, Bergen, Boadilla, CambridgeUS, . . .
 %◦ 带树形导航条: Antibes, JuanLesPins, Montpellier
 %◦ 带侧边导航条: Berkeley, Goettingen, Hannover, Marburg, PaloAlto
@@ -123,10 +120,10 @@
   \graphicspath{{figures/}}
 \usepackage{xcolor}
 \usepackage{hyperref}
-  \hypersetup{pdfborder=001,colorlinks=true,linkcolor=darkblue,urlcolor=blue,citecolor=blue,bookmarksopen=true,  breaklinks=true}
+  \hypersetup{pdfborder=001,colorlinks=true,linkcolor=darkblue,urlcolor=blue,citecolor=blue,bookmarksopen=true, breaklinks=true}
 \usepackage{bbding}
 
-\usepackage{multirow}
+
 \usepackage{multimedia}	%让文档支持多媒体
 \usepackage{graphics}	%让文档支持图片
 \usepackage{hyperref}	%让文档支持超链接
@@ -137,45 +134,28 @@
 \usepackage{color}
 \usepackage{graphicx,psfrag}
 \usepackage{epsfig}
-%%%%% ===== 自加宏包 ========================================================
 
-\usepackage{array}
-\usepackage{booktabs}
+%%%%% ===== 自加宏包 ========================================================
 \usepackage{multirow}
 \usepackage{amstext}
-\usepackage{graphicx}
-\usepackage{setspace}
-
-\makeatletter
-\providecommand{\tabularnewline}{\\}
-\makeatother
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{verbatim}%多行注释
 \usepackage{fontspec}   %修改字体
-\setCJKmainfont{SimSun}     % 语义和语法同fontspec
-\setCJKsansfont{SimHei}
-\setCJKmonofont{SimSun}
-\setmainfont{Times New Roman}
-\usepackage{authblk}
-\usepackage{amsmath}
-\usepackage{amstext}
-\usepackage{amssymb}
-%\usepackage[numbers,sort&compress]{natbib}
+
 \usepackage{cite}%连续引用多个文献
 \usepackage{CJKpunct}
-\usepackage{graphicx} %插入图片的宏包
+
 \usepackage{float} %设置图片浮动位置的宏包
 \usepackage{stfloats} %设置图片浮动位置的宏包
 \usepackage{subfigure} %插入多图时用子图显示的宏包
 
 
-\usepackage[marginal]{footmisc}
-\renewcommand{\thefootnote}{}
+
 \usepackage{caption}
 \usepackage{lipsum}
 \usepackage{multicol}%分栏宏
 \usepackage{supertabular}
-\usepackage{setspace}
+
+%%%%% ===== 自加宏包 ========================================================
 
 %%%%% ===== 自定义列表 ======================================================
 \newcommand{\Bullet}{{\fontsize{6pt}{6pt}\selectfont\CircleSolid}}
@@ -324,10 +304,8 @@
 \newcommand{\mycite}[1]{\textcolor{blue!50!white}{\upshape{#1}}}
 \newcommand{\Der}{\,\mathrm{D}}
 \newcommand{\der}{\,\mathrm{d}}
-%\renewcommand{\T}{\intercal}
 %
 \newcommand{\myem}[1]{\textcolor{blue}{#1}}
-%
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\rank}{rank}
 
@@ -458,6 +436,97 @@
 \end{frame}
 
 
+\begin{frame}{算法 1}
+
+算法 1
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
+
+\begin{mathbox}
+$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
+\begin{align*}
+\text{(i)}\quad
+& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
+&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
+\text{(ii)}\quad
+& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
+\ \text{with}\ \sigma=2
+&\to&\ \textcolor{blue}{ill-conditioned}
+\end{align*}
+\end{mathbox}
+
+Other parameters
+\begin{myitem}
+\item[] - $\Xi$: positive diagonal random matrix with
+$\kappa_2(\Xi)\approx 10^{3}$
+\item[] - $\mu=0.001$
+\item[] - stopping criterion:
+$
+\dfrac{\| c - Au\|_2}{\|c\|_2}<10^{-7}
+$\medskip
+\item[] -  Initial guess: zero vector
+\item[] -  maximum iteration steps: $1000$
+\end{myitem}
+\footnote{[BN06]
+	M. Benzi and M. K. Ng,
+	\emph{Preconditioned iterative methods for weighted toeplitz
+		least squares problems},
+	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
+\end{frame}
+
+\begin{frame}
+
+
+\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
+
+\begin{Boxblue}
+	$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
+	\begin{align*}
+	\text{(i)}\quad
+	& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
+	&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
+	\text{(ii)}\quad
+	& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
+	\ \text{with}\ \sigma=2
+	&\to&\ \textcolor{blue}{ill-conditioned}
+	\end{align*}
+\end{Boxblue}
+
+Other parameters
+\footnote{[BN06]
+	M. Benzi and M. K. Ng,
+	\emph{Preconditioned iterative methods for weighted toeplitz
+		least squares problems},
+	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
+\end{frame}
+
+\begin{frame}
+\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
+
+\begin{Boxred}
+$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
+\begin{align*}
+\text{(i)}\quad
+& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
+&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
+\text{(ii)}\quad
+& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
+\ \text{with}\ \sigma=2
+&\to&\ \textcolor{blue}{ill-conditioned}
+\end{align*}
+\end{Boxred}
+
+Other parameters
+\footnote{[BN06]
+	M. Benzi and M. K. Ng,
+	\emph{Preconditioned iterative methods for weighted toeplitz
+		least squares problems},
+	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
+\end{frame}
+
 \begin{frame}
 \frametitle{Equivalent Linear Systems -- Augmented System}
 \begin{myitem}
@@ -529,9 +598,37 @@ $$
 
 \end{frame}
 
+\begin{frame}{数值算例(续)}
+
+\begin{center}
+	{Numerical results for Example 1}\smallskip
+	
+	\begin{tabular}{ccccccccccc} \toprule
+		&&&\multicolumn{2}{c}{GMRES(C)}
+		&&\multicolumn{2}{c}{GMRES(L)}
+		&&\multicolumn{2}{c}{GMRES(P)} \\ \cmidrule{4-5}\cmidrule{7-8}\cmidrule{10-11}
+		$\theta$ & $N$ && Iter & CPU && Iter & CPU && Iter & CPU \\\hline
+		0.5
+		& $2^{11}$ &&  33&    0.04 &&  13&    0.02 &&  12&   0.01 \\
+		& $2^{12}$ &&  33&    0.12 &&  14&    0.04 &&  12&   0.03 \\
+		& $2^{13}$ &&  33&    0.26 &&  14&    0.09 &&  12&   0.08 \\
+		& $2^{14}$ &&  33&    0.53 &&  15&    0.19 &&  12&   0.15 \\ \midrule
+		0.8                                         
+		& $2^{11}$ &&  33&    0.04 &&  13&    0.02 &&  12&   0.01 \\
+		& $2^{12}$ &&  33&    0.11 &&  14&    0.04 &&  12&   0.03 \\
+		& $2^{13}$ &&  33&    0.25 &&  15&    0.10 &&  12&   0.08 \\
+		& $2^{14}$ &&  33&    0.53 &&  16&    0.21 &&  12&   0.15 \\ \bottomrule
+	\end{tabular}
+\end{center}
+
+\end{frame}
+
+
 \newcolumntype{A}{>{\columncolor{yellow!10!white}}c}
 \newcolumntype{B}{>{\columncolor{blue!5!white}}c}
 \newcolumntype{C}{>{\columncolor{green!10!white}}c}
+
+
 
 \begin{frame}{数值算例 (续)}
 
@@ -558,117 +655,48 @@ $$
 
 \end{frame}
 
+
+
 \begin{frame}{表格}
 如表11所示\ref{tab11}
 \begin{center}
-\begin{table}
-	\caption{Prediction results of MLP and LSTM  on the dataset.}
-	\centering{}%
-	\footnotesize{}
-	\begin{tabular}{p{1.0cm}<{\centering} p{1cm}<{\centering} p{1cm}<{\centering} p{1cm}<{\centering} p{1cm}<{\centering} p{1cm}<{\centering}}
-		%\hline
-		
-		\toprule 
-		&  & nondisruptive pulse  & \multicolumn{3}{c}{  disruptive pulse  }\\
-		\cmidrule{4-6}
-		%\cline{4-6}
-		& indicators & $f_{nd}(\%)$ & $s_{d}(\%)$ & $l_{d}(\%)$ & $f_{d}(\%)$ \\
-		%\hline
-		\midrule 
-		\multirow{4}{*}{MLP} & train set & 12/224 (5.35) & 223/327 (68.19) & 8/327 (2.44) & 96/327 (29.35)\\
-		\\
-		& validation & 8/224 (3.57) & 225/327 (68.81) & 11/327 (3.36) & 91/327 (27.83)\\
-		\\
-		& test & 8/224(3.57) & 220/326 (67.48) & 4/326 (1.23) & 102/326 (31.29)\\
-		\\
-		& total & 28/672 (4.16) & 668/980 (68.16) & 23/980 (2.35) & 289/980 (29.49) \\
-		\\
-		\\
-		\multirow{4}{*}{LSTM} & training & 9/224 (4.02) & 243/327 (74.31) & 1/327 (0.30) & 83/327 (25.38)\\
-		\\
-		& validation  & 7/224 (3.12)  & 252/327 (77.06) & 3/327 (0.92) & 72/327 (22.02)\\
-		\\
-		& test & 5/224 (2.23) & 239/326(73.31) & 3/326 (0.92) & 84/326 (25.77)\\
-		\\
-		& total & 21/672 (3.12) & 734/980 (74.89) & 7/980 (0.71) & 239/980 (24.39)\\
-		
-		\bottomrule
-		%\hline
-	\end{tabular}
-	\label{tab11}
-\end{table}
+	\begin{table}
+		\caption{Prediction results of MLP and LSTM  on the dataset.}
+		\centering{}%
+		\footnotesize{}
+		\begin{tabular}{p{1.0cm}<{\centering} p{1cm}<{\centering} p{2cm}<{\centering} p{1.5cm}<{\centering} p{1.5cm}<{\centering} p{1.5cm}<{\centering}}
+			%\hline
+			
+			\toprule 
+			&  & nondisruptive pulse  & \multicolumn{3}{c}{  disruptive pulse  }\\
+			\cmidrule{4-6}
+			%\cline{4-6}
+			& indicators & $f_{nd}(\%)$ & $s_{d}(\%)$ & $l_{d}(\%)$ & $f_{d}(\%)$ \\
+			%\hline
+			\midrule 
+			\multirow{4}{*}{MLP} & train set & 12/224 (5.35) & 223/327 (68.19) & 8/327 (2.44) & 96/327 (29.35)\\
+			\\
+			& validation & 8/224 (3.57) & 225/327 (68.81) & 11/327 (3.36) & 91/327 (27.83)\\
+			\\
+			& test & 8/224(3.57) & 220/326 (67.48) & 4/326 (1.23) & 102/326 (31.29)\\
+			\\
+			& total & 28/672 (4.16) & 668/980 (68.16) & 23/980 (2.35) & 289/980 (29.49) \\
+			\\
+			\\
+			\multirow{4}{*}{LSTM} & training & 9/224 (4.02) & 243/327 (74.31) & 1/327 (0.30) & 83/327 (25.38)\\
+			\\
+			& validation  & 7/224 (3.12)  & 252/327 (77.06) & 3/327 (0.92) & 72/327 (22.02)\\
+			\\
+			& test & 5/224 (2.23) & 239/326(73.31) & 3/326 (0.92) & 84/326 (25.77)\\
+			\\
+			& total & 21/672 (3.12) & 734/980 (74.89) & 7/980 (0.71) & 239/980 (24.39)\\
+			
+			\bottomrule
+			%\hline
+		\end{tabular}
+		\label{tab11}
+	\end{table}
 \end{center}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
-
-\begin{mathbox}
-	$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
-	\begin{align*}
-	\text{(i)}\quad
-	& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
-	&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
-	\text{(ii)}\quad
-	& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
-	\ \text{with}\ \sigma=2
-	&\to&\ \textcolor{blue}{ill-conditioned}
-	\end{align*}
-\end{mathbox}
-
-Other parameters
-\begin{myitem}
-	\item[] - $\Xi$: positive diagonal random matrix with
-	$\kappa_2(\Xi)\approx 10^{3}$
-	\item[] - $\mu=0.001$
-	\item[] - stopping criterion:
-	$
-	\dfrac{\| c - Au\|_2}{\|c\|_2}<10^{-7}
-	$\medskip
-	\item[] -  Initial guess: zero vector
-	\item[] -  maximum iteration steps: $1000$
-\end{myitem}
-\end{frame}
-
-\begin{frame}
-\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
-
-\begin{Boxblue}
-	$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
-	\begin{align*}
-	\text{(i)}\quad
-	& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
-	&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
-	\text{(ii)}\quad
-	& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
-	\ \text{with}\ \sigma=2
-	&\to&\ \textcolor{blue}{ill-conditioned}
-	\end{align*}
-\end{Boxblue}
-
-Other parameters
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
-
-\begin{Boxred}
-	$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
-	\begin{align*}
-	\text{(i)}\quad
-	& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
-	&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
-	\text{(ii)}\quad
-	& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
-	\ \text{with}\ \sigma=2
-	&\to&\ \textcolor{blue}{ill-conditioned}
-	\end{align*}
-\end{Boxred}
-
-Other parameters
-
 \end{frame}
 
 \section{结论与展望}
@@ -685,11 +713,11 @@ Other parameters
 \end{frame}
 
 \begin{frame}{实验结果}
-\begin{columns}[c]
+\begin{columns}[T]%t,c,b,T 
 	\begin{column}{0.30\textwidth}
 		\epsfig{figure=67039.eps,width=\textwidth}
 		\epsfig{figure=67039.eps,width=\textwidth}
-		八号或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或
+		八号或或或或或或或
 	\end{column}
 	\begin{column}{0.30\textwidth}
 		\begin{Block}{结论}
@@ -705,17 +733,17 @@ Other parameters
 	\end{column}
 
 	\begin{column}{0.30\textwidth}
-	\begin{block}{结论}
-		\begin{description}
-			\item[1] 实验结果如左图所示
-			\item[2] 实验结果如左图所示
-			\item[3] 实验结果如左图所示
-			\item[4] 实验结果如左图所示
-			\item[5] 实验结果如左图所示
-			\item[6] 实验结果如左图所示
-		\end{description}
-	\end{block}
-\end{column}
+		\begin{block}{结论}
+			\begin{description}
+				\item[1] 实验结果如左图所示
+				\item[2] 实验结果如左图所示
+				\item[3] 实验结果如左图所示
+				\item[4] 实验结果如左图所示
+				\item[5] 实验结果如左图所示
+				\item[6] 实验结果如左图所示
+			\end{description}
+		\end{block}
+	\end{column}
 \end{columns}
 \end{frame}
 %block, exampleblock, alertblock
@@ -734,7 +762,16 @@ Other parameters
 			\end{itemize}
 		\end{exampleblock}
 	\end{column}
-	
+	\begin{column}{0.30\textwidth}
+		\begin{exampleblock}{结论}
+			\begin{description}
+				\item[11] 实验结果如左图所示
+				\item[2] 实验结果如左图所示
+				\item[3] 实验结果如左图所示
+			
+			\end{description}
+		\end{exampleblock}
+	\end{column}
 	\begin{column}{0.30\textwidth}
 		\begin{alertblock}{结论}
 			\begin{enumerate}
@@ -751,6 +788,43 @@ Other parameters
 \alert{这是由 \\alert 输出的....}
 
 \end{frame}
+
+
+%三类列表环境,包括无序列表(itemize)、有序列表(enumerate)、描述列表(description)。其中前两者非常常用,使用非常简单
+
+\begin{frame}{无序列表(itemize)}
+\begin{itemize}
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+\end{itemize}
+\end{frame}
+
+\begin{frame}{有序列表(enumerate)}
+\begin{enumerate}
+\item 实验结果如左图所示
+\item 实验结果如左图所示
+\item 实验结果如左图所示
+\item 实验结果如左图所示
+\item 实验结果如左图所示
+\item 实验结果如左图所示
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{描述列表(description)}
+\begin{description}
+\item[First Item] 实验结果如左图所示
+\item[First Item] 实验结果如左图所示
+\item[First Item] 实验结果如左图所示
+\item[First Item] 实验结果如左图所示
+\item[First Item] 实验结果如左图所示
+\item[First Item] 实验结果如左图所示
+\end{description}
+\end{frame}
+
 
 \begin{frame}[c,plain]
 \begin{center}
