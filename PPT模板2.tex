@@ -46,6 +46,8 @@
 \setbeamerfont{frametitle}{size=\normalsize}
 \definecolor{myfoot}{rgb}{0.5,0.2,0.5}
 \definecolor{darkblue}{rgb}{0.1,0,0.85}
+
+
 %\setbeamerfont{frametitle}{size=\large,}
 %\setbeamerfont{headline}{size=\footnotesize,}
 %\setbeamerfont{footline}{size=\large,}
@@ -109,8 +111,8 @@
 \setbeamercolor{frametitle}{fg=blue,bg=white}
 \setbeamertemplate{frametitle}
 {%
-	\leavevmode\linespread{1}\large{\insertframetitle}\par
-	\color{green!80}\rule[8pt]{\linewidth}{2pt}\par\vspace{-1.0em}
+	\leavevmode\linespread{1}\normalsize{\insertframetitle}\par %控制字体大小
+	\color{green!80}\rule[8pt]{\linewidth}{1.5pt}\par\vspace{-1.0em}
 }
 
 \setbeamersize{text margin left=0.05\textwidth, text margin right=1cm,}
@@ -352,7 +354,10 @@
 % 在每节前插入目录
 \AtBeginSection[]
 {
-	\frame{\tableofcontents[currentsection,hideallsubsections]}
+	\begin{frame}<beamer>
+	\frametitle{报告提要}
+	\tableofcontents[currentsection,hideallsubsections]
+	\end{frame}
 }
 
 

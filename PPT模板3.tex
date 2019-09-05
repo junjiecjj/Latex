@@ -1,20 +1,19 @@
 % 使用 xelatex 编译
 \documentclass[8pt,compress,t,noamsthm,notheorem,handout,table]{beamer}
-
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
 %◦ 没有导航条: default, AnnArbor, Bergen, Boadilla, CambridgeUS, . . .
 %◦ 带树形导航条: Antibes, JuanLesPins, Montpellier
 %◦ 带侧边导航条: Berkeley, Goettingen, Hannover, Marburg, PaloAlto
 %◦ 带微型导航条: Berlin, Ilmenau, Darmstadt, Dresden, Frankfurt, . . .
 %◦ 带节小节标题: Copenhagen, Luebeck, Malmoe, Warsaw
 \usetheme{Warsaw}%Boadilla
-\usepackage{xeCJK}
-\setCJKmainfont{SimSun}
-
 \useinnertheme{circles}
 \useoutertheme{shadow}
 %color theme albatross crane beetle dove fly seagull wolverine beaver
 \usecolortheme{seahorse}
 \usefonttheme[onlymath]{serif}
+
 %取消导航图标
 %\setbeamertemplate{navigation symbols}{}
 \setbeamercolor{myfootline}{bg=white,fg=blue}
@@ -333,6 +332,16 @@
 \AtBeginSection[]
 {
 	\frame{\tableofcontents[currentsection,hideallsubsections]}
+}
+
+% 在每节前插入目录
+\AtBeginSection[]
+{
+	\frame
+	{
+		\frametitle{报告提要}
+		\tableofcontents[currentsection,hideallsubsections]
+	}
 }
 
 
