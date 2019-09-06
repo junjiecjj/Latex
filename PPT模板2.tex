@@ -90,7 +90,6 @@
 	\vfill
 }
 
-
 \setbeamertemplate{footline}% 自定义页脚
 {
 	\leavevmode\mbox{%
@@ -119,10 +118,10 @@
 \setbeamercolor{bluebox}{fg=black,bg=blue!10}
 \setbeamercolor{redbox}{fg=black,bg=red!10}
 \newenvironment{Boxblue}[1][\textwidth]
-{\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{bluebox}}
+	{\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{bluebox}}
 	{\end{beamercolorbox}}
 \newenvironment{Boxred}[1][\textwidth]
-{\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{redbox}}
+	{\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{redbox}}
 	{\end{beamercolorbox}}
 
 %%%%% ===== 中英文字体=============================================
@@ -496,11 +495,7 @@
 	&\to&\ \textcolor{blue}{ill-conditioned}
 	\end{align*}
 \end{mathbox}
-\footnote{[BN06]
-	M. Benzi and M. K. Ng,
-	\emph{Preconditioned iterative methods for weighted toeplitz
-		least squares problems},
-	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
+
 Other parameters
 \begin{myitem}
 	\item[] - $\Xi$: positive diagonal random matrix with
@@ -513,6 +508,12 @@ Other parameters
 	\item[] -  Initial guess: zero vector
 	\item[] -  maximum iteration steps: $1000$
 \end{myitem}
+
+\footnote{[BN06]
+	M. Benzi and M. K. Ng,
+	\emph{Preconditioned iterative methods for weighted toeplitz
+		least squares problems},
+	SIAM J. Matrix Anal. Appl., 27 (2006), 1106--1124. }
 \end{frame}
 
 \begin{frame}
@@ -625,7 +626,6 @@ $$
 
 \section{数值实验}
 
-
 \begin{frame}{数值算例}
 	\begin{example}
 		这是第一个例子。
@@ -635,24 +635,24 @@ $$
 \begin{frame}{数值算例(续)}
 
 \begin{center}
-{Numerical results for Example 1}\smallskip
+	{Numerical results for Example 1}\smallskip
 
-\begin{tabular}{ccccccccccc} \toprule
-    &&&\multicolumn{2}{c}{GMRES(C)}
-    &&\multicolumn{2}{c}{GMRES(L)}
-    &&\multicolumn{2}{c}{GMRES(P)} \\ \cmidrule{4-5}\cmidrule{7-8}\cmidrule{10-11}
- $\theta$ & $N$ && Iter & CPU && Iter & CPU && Iter & CPU \\\hline
-  0.5
- & $2^{11}$ &&  33&    0.04 &&  13&    0.02 &&  12&   0.01 \\
- & $2^{12}$ &&  33&    0.12 &&  14&    0.04 &&  12&   0.03 \\
- & $2^{13}$ &&  33&    0.26 &&  14&    0.09 &&  12&   0.08 \\
- & $2^{14}$ &&  33&    0.53 &&  15&    0.19 &&  12&   0.15 \\ \midrule
-  0.8                                         
- & $2^{11}$ &&  33&    0.04 &&  13&    0.02 &&  12&   0.01 \\
- & $2^{12}$ &&  33&    0.11 &&  14&    0.04 &&  12&   0.03 \\
- & $2^{13}$ &&  33&    0.25 &&  15&    0.10 &&  12&   0.08 \\
- & $2^{14}$ &&  33&    0.53 &&  16&    0.21 &&  12&   0.15 \\ \bottomrule
-\end{tabular}
+	\begin{tabular}{ccccccccccc} \toprule
+   	 	&&&\multicolumn{2}{c}{GMRES(C)}
+    	&&\multicolumn{2}{c}{GMRES(L)}
+    	&&\multicolumn{2}{c}{GMRES(P)} \\ \cmidrule{4-5}\cmidrule{7-8}\cmidrule{10-11}
+	 	$\theta$ & $N$ && Iter & CPU && Iter & CPU && Iter & CPU \\\hline
+ 	 	0.5
+	 	& $2^{11}$ &&  33&    0.04 &&  13&    0.02 &&  12&   0.01 \\
+	 	& $2^{12}$ &&  33&    0.12 &&  14&    0.04 &&  12&   0.03 \\
+	 	& $2^{13}$ &&  33&    0.26 &&  14&    0.09 &&  12&   0.08 \\
+     	& $2^{14}$ &&  33&    0.53 &&  15&    0.19 &&  12&   0.15 \\ \midrule
+ 	 	0.8                                         
+	 	& $2^{11}$ &&  33&    0.04 &&  13&    0.02 &&  12&   0.01 \\
+	 	& $2^{12}$ &&  33&    0.11 &&  14&    0.04 &&  12&   0.03 \\
+     	& $2^{13}$ &&  33&    0.25 &&  15&    0.10 &&  12&   0.08 \\
+     	& $2^{14}$ &&  33&    0.53 &&  16&    0.21 &&  12&   0.15 \\ \bottomrule
+	\end{tabular}
 \end{center}
 
 \end{frame}
@@ -734,23 +734,24 @@ $$
 \section{结论与展望}
 
 \begin{frame}{结论与展望}
-\begin{figure}[htbp]
+	\begin{figure}[htbp]
 	\centering
 	\includegraphics[scale=0.1]{ustc_logo_fig_new}
 	\caption{Impact factor of diagnostics under four indicates by `leave one out ' method}
 	\label{fig1}
-\end{figure}
-这里是结论与展望 conclusion 和 remarks
+	\end{figure}
+  这里是结论与展望 conclusion 和 remarks
 
 \end{frame}
 
 
 %块环境: block, exampleblock, alertblock → 与定理环境类似, 可自选标题
-%多栏显示:在我们做讲稿的时候,有时候为了使得幻灯片更加工整,充实,会在一旁插入图片、表格或者说明性的文字,这个时候可以使用 beamer 中的多栏环境(columns)或者 L A TEX 中的子页环境(minipage)。
 
+%多栏显示:在我们做讲稿的时候,有时候为了使得幻灯片更加工整,充实,会在一旁插入图片、表格或者说明性的文字,这个时候可以使用 beamer 中的多栏环境(columns)或者 L A TEX 中的子页环境(minipage)。
+%多栏的对齐方式- t,c,b,T 
 
 \begin{frame}{实验结果}
-\begin{columns}
+\begin{columns}[T]
 	\begin{column}{0.30\textwidth}
 		\epsfig{figure=67039.eps,width=\textwidth}
 		\epsfig{figure=67039.eps,width=\textwidth}
@@ -785,9 +786,9 @@ $$
 \end{frame}
 
 
-
+%block, exampleblock, alertblock
 \begin{frame}{实验结果(续)}
-\begin{columns}[t,onlytextwidth]
+\begin{columns}[T,onlytextwidth]
 	
 	\begin{column}{0.30\textwidth}
 		\begin{exampleblock}{结论}
@@ -805,9 +806,9 @@ $$
 	\begin{column}{0.30\textwidth}
 		\begin{exampleblock}{结论}
 			\begin{description}
-			\item[11] 实验结果如左图所示
-			\item[2] 实验结果如左图所示
-			\item[3] 实验结果如左图所示
+				\item[11] 实验结果如左图所示
+				\item[2] 实验结果如左图所示
+				\item[3] 实验结果如左图所示
 
 			\end{description}
 		\end{exampleblock}
@@ -844,25 +845,25 @@ $$
 \end{frame}
 
 \begin{frame}{有序列表(enumerate)}
-\begin{enumerate}
+	\begin{enumerate}
 	\item 实验结果如左图所示
 	\item 实验结果如左图所示
 	\item 实验结果如左图所示
 	\item 实验结果如左图所示
 	\item 实验结果如左图所示
 	\item 实验结果如左图所示
-\end{enumerate}
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}{描述列表(description)}
-\begin{description}
+	\begin{description}
 	\item[First Item] 实验结果如左图所示
 	\item[First Item] 实验结果如左图所示
 	\item[First Item] 实验结果如左图所示
 	\item[First Item] 实验结果如左图所示
 	\item[First Item] 实验结果如左图所示
 	\item[First Item] 实验结果如左图所示
-\end{description}
+	\end{description}
 \end{frame}
 
 \begin{frame}[c,plain]

@@ -2,6 +2,7 @@
 \documentclass[8pt,compress,t,noamsthm,notheorem,handout,table]{beamer}
 \usepackage{xeCJK}
 \setCJKmainfont{SimSun}
+
 %◦ 没有导航条: default, AnnArbor, Bergen, Boadilla, CambridgeUS, . . .
 %◦ 带树形导航条: Antibes, JuanLesPins, Montpellier
 %◦ 带侧边导航条: Berkeley, Goettingen, Hannover, Marburg, PaloAlto
@@ -42,7 +43,7 @@
 			%     \insertauthor
 			{
 				\begin{tabular}{cc}
-					报告人：&\insertauthor\\
+					报告人：& \insertauthor\\
 					导\quad 师：& \advisor
 				\end{tabular}
 			}
@@ -97,13 +98,13 @@
 \setbeamercolor{bluebox}{fg=black,bg=blue!10}
 \setbeamercolor{redbox}{fg=black,bg=red!10}
 \newenvironment{Boxblue}[1][\textwidth]
-  {\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{bluebox}}
-  {\end{beamercolorbox}}
+	{\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{bluebox}}
+	{\end{beamercolorbox}}
 \newenvironment{Boxred}[1][\textwidth]
-  {\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{redbox}}
-  {\end{beamercolorbox}}
+	{\begin{beamercolorbox}[sep=0.1em,shadow=true,wd=#1,rounded=true,center]{redbox}}
+	{\end{beamercolorbox}}
 
-%%%%% ===== 中英文字体
+%%%%% ===== 中英文字体=============================================
 \usepackage[noindent]{ctex}
 \setmainfont{Times New Roman}
 \setsansfont{Times New Roman} % 无衬线字体 sans serif \sffamily
@@ -447,7 +448,7 @@
 
 \begin{frame}{算法 1}
 
-算法 1
+	算法 1
 
 \end{frame}
 
@@ -455,30 +456,31 @@
 \frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
 
 \begin{mathbox}
-$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
-\begin{align*}
-\text{(i)}\quad
-& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
-&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
-\text{(ii)}\quad
-& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
-\ \text{with}\ \sigma=2
-&\to&\ \textcolor{blue}{ill-conditioned}
-\end{align*}
+	$K=[t_{ij}]\in\R^{n\times n}$ is a Toeplitz matrix defined by
+	\begin{align*}
+	\text{(i)}\quad
+	& t_{ij}=\frac{1}{\sqrt{|i-j|}+1}
+	&\to&\ \textcolor{blue}{\textit{well-conditioned}} \\
+	\text{(ii)}\quad
+	& t_{ij}=\dfrac{1}{\sqrt{2\pi}\sigma}e^{\frac{-|i-j|^2}{2\sigma^2}}
+	\ \text{with}\ \sigma=2
+	&\to&\ \textcolor{blue}{ill-conditioned}
+	\end{align*}
 \end{mathbox}
 
 Other parameters
 \begin{myitem}
-\item[] - $\Xi$: positive diagonal random matrix with
-$\kappa_2(\Xi)\approx 10^{3}$
-\item[] - $\mu=0.001$
-\item[] - stopping criterion:
-$
-\dfrac{\| c - Au\|_2}{\|c\|_2}<10^{-7}
-$\medskip
-\item[] -  Initial guess: zero vector
-\item[] -  maximum iteration steps: $1000$
+	\item[] - $\Xi$: positive diagonal random matrix with
+	$\kappa_2(\Xi)\approx 10^{3}$
+	\item[] - $\mu=0.001$
+	\item[] - stopping criterion:
+	$
+	\dfrac{\| c - Au\|_2}{\|c\|_2}<10^{-7}
+	$\medskip
+	\item[] -  Initial guess: zero vector
+	\item[] -  maximum iteration steps: $1000$
 \end{myitem}
+
 \footnote{[BN06]
 	M. Benzi and M. K. Ng,
 	\emph{Preconditioned iterative methods for weighted toeplitz
@@ -487,8 +489,6 @@ $\medskip
 \end{frame}
 
 \begin{frame}
-
-
 \frametitle{Examples: One-Dimensional Problem \mycite{BN06}}
 
 \begin{Boxblue}
@@ -562,7 +562,6 @@ Other parameters
 \end{myitem}
 \end{frame}
 
-
 \begin{frame}
 \frametitle{顶顶顶顶HSS  \mycite{BN06}}
 
@@ -600,11 +599,9 @@ $$
 \section{数值实验}
 
 \begin{frame}{数值算例}
-
-\begin{example}
-  这是第一个例子。
-\end{example}
-
+	\begin{example}
+	  这是第一个例子。
+	\end{example}
 \end{frame}
 
 \begin{frame}{数值算例(续)}
@@ -638,32 +635,30 @@ $$
 \newcolumntype{C}{>{\columncolor{green!10!white}}c}
 
 
-
 \begin{frame}{数值算例 (续)}
 
 \begin{center}
-{Numerical results for $\tcbhighmathinner{\beta=0.1}$}\smallskip
+	{Numerical results for $\tcbhighmathinner{\beta=0.1}$}\smallskip
 
-\begin{tabular}{AABBCCBB} \toprule
-    &&\multicolumn{2}{B}{GMRES(C)}
-    &\multicolumn{2}{C}{GMRES(L)}
-    &\multicolumn{2}{B}{GMRES(P)} \\ \cline{3-8}
- $\theta$ & $N$ & Iter & CPU & Iter & CPU & Iter & CPU \\\hline
-  0.5
- & $2^{11}$ &  33&    0.04 &  13&    0.02 &  12&   0.01 \\
- & $2^{12}$ &  33&    0.12 &  14&    0.04 &  12&   0.03 \\
- & $2^{13}$ &  33&    0.26 &  14&    0.09 &  12&   0.08 \\
- & $2^{14}$ &  33&    0.53 &  15&    0.19 &  12&   0.15 \\ \hline
-  0.8
- & $2^{11}$ &  33&    0.04 &  13&    0.02 &  12&   0.01 \\
- & $2^{12}$ &  33&    0.11 &  14&    0.04 &  12&   0.03 \\
- & $2^{13}$ &  33&    0.25 &  15&    0.10 &  12&   0.08 \\
- & $2^{14}$ &  33&    0.53 &  16&    0.21 &  12&   0.15 \\ \bottomrule
-\end{tabular}
+	\begin{tabular}{AABBCCBB} \toprule
+   		&&\multicolumn{2}{B}{GMRES(C)}
+    	&\multicolumn{2}{C}{GMRES(L)}
+    	&\multicolumn{2}{B}{GMRES(P)} \\ \cline{3-8}
+	 	$\theta$ & $N$ & Iter & CPU & Iter & CPU & Iter & CPU \\\hline
+  		0.5
+ 		& $2^{11}$ &  33&    0.04 &  13&    0.02 &  12&   0.01 \\
+ 		& $2^{12}$ &  33&    0.12 &  14&    0.04 &  12&   0.03 \\
+ 		& $2^{13}$ &  33&    0.26 &  14&    0.09 &  12&   0.08 \\
+ 		& $2^{14}$ &  33&    0.53 &  15&    0.19 &  12&   0.15 \\ \hline
+  		0.8
+ 		& $2^{11}$ &  33&    0.04 &  13&    0.02 &  12&   0.01 \\
+ 		& $2^{12}$ &  33&    0.11 &  14&    0.04 &  12&   0.03 \\
+ 		& $2^{13}$ &  33&    0.25 &  15&    0.10 &  12&   0.08 \\
+ 		& $2^{14}$ &  33&    0.53 &  16&    0.21 &  12&   0.15 \\ \bottomrule
+	\end{tabular}
 \end{center}
 
 \end{frame}
-
 
 
 \begin{frame}{表格}
@@ -721,6 +716,12 @@ $$
 
 \end{frame}
 
+
+%块环境: block, exampleblock, alertblock → 与定理环境类似, 可自选标题
+
+%多栏显示:在我们做讲稿的时候,有时候为了使得幻灯片更加工整,充实,会在一旁插入图片、表格或者说明性的文字,这个时候可以使用 beamer 中的多栏环境(columns)或者 L A TEX 中的子页环境(minipage)。
+%多栏的对齐方式- t,c,b,T 
+
 \begin{frame}{实验结果}
 \begin{columns}[T]%t,c,b,T 
 	\begin{column}{0.30\textwidth}
@@ -755,6 +756,8 @@ $$
 	\end{column}
 \end{columns}
 \end{frame}
+
+
 %block, exampleblock, alertblock
 \begin{frame}{实验结果(续)}
 \begin{columns}[t,onlytextwidth]
@@ -771,6 +774,7 @@ $$
 			\end{itemize}
 		\end{exampleblock}
 	\end{column}
+
 	\begin{column}{0.30\textwidth}
 		\begin{exampleblock}{结论}
 			\begin{description}
@@ -781,6 +785,7 @@ $$
 			\end{description}
 		\end{exampleblock}
 	\end{column}
+
 	\begin{column}{0.30\textwidth}
 		\begin{alertblock}{结论}
 			\begin{enumerate}
@@ -802,38 +807,37 @@ $$
 %三类列表环境,包括无序列表(itemize)、有序列表(enumerate)、描述列表(description)。其中前两者非常常用,使用非常简单
 
 \begin{frame}{无序列表(itemize)}
-\begin{itemize}
-	\item 实验结果如左图所示
-	\item 实验结果如左图所示
-	\item 实验结果如左图所示
-	\item 实验结果如左图所示
-	\item 实验结果如左图所示
-	\item 实验结果如左图所示
-\end{itemize}
+	\begin{itemize}
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+		\item 实验结果如左图所示
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{有序列表(enumerate)}
-\begin{enumerate}
-\item 实验结果如左图所示
-\item 实验结果如左图所示
-\item 实验结果如左图所示
-\item 实验结果如左图所示
-\item 实验结果如左图所示
-\item 实验结果如左图所示
-\end{enumerate}
+	\begin{enumerate}
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\item 实验结果如左图所示
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}{描述列表(description)}
-\begin{description}
-\item[First Item] 实验结果如左图所示
-\item[First Item] 实验结果如左图所示
-\item[First Item] 实验结果如左图所示
-\item[First Item] 实验结果如左图所示
-\item[First Item] 实验结果如左图所示
-\item[First Item] 实验结果如左图所示
-\end{description}
+	\begin{description}
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\item[First Item] 实验结果如左图所示
+	\end{description}
 \end{frame}
-
 
 \begin{frame}[c,plain]
 \begin{center}
