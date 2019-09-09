@@ -175,6 +175,9 @@
 \usepackage{multicol}%分栏宏
 \usepackage{supertabular}
 
+\vspace{0.0cm}  %调整图片与上文的垂直距离，调整表与上文的垂直距离
+\setlength{\abovecaptionskip}{0.1cm}  %调整图片标题与图距离，调整表标题与表距离
+\setlength{\belowcaptionskip}{0.0cm}   %调整图片标题与下文距离，调整表标题与下文距离
 %%%%% ===== 自加宏包 ========================================================
 
 %%%%% ===== 自定义列表 ======================================================
@@ -730,6 +733,19 @@ $$
 	\end{table}
 \end{center}
 \end{frame}
+
+\begin{frame}{图片}
+\begin{figure}[htbp]
+	\centering
+	\subfigure[第67118炮的预测结果]{
+		\includegraphics[scale=0.2]{./67039.eps}}
+	\subfigure[第70055炮的预测结果]{
+		\includegraphics[scale=0.2]{./67039.eps}}
+	\caption{同时被LSTM和MLP错误预测的第67118炮和第70055炮非破裂炮。(共21炮)}
+	\label{fig9}
+\end{figure}
+\end{frame}
+
 
 \section{结论与展望}
 
