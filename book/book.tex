@@ -1,0 +1,4548 @@
+\documentclass[utf8]{book}
+\usepackage{titletoc}
+\usepackage{titlesec}
+\usepackage{ctexcap}
+\usepackage{ctex}
+\usepackage{CJKutf8}
+\usepackage{setspace}
+\usepackage[b5paper,text={125mm,195mm},centering,left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{stfloats} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{caption}
+\usepackage{imakeidx}
+\usepackage{multicol}
+\usepackage[colorlinks = true,linkcolor= blue,citecolor=blue]{hyperref}
+\makeindex
+\bibliographystyle{unsrn}
+\usepackage{wrapfig}
+\usepackage{listings}%%插入代码
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{colortbl,booktabs}
+\usepackage{listings}%%代码
+\usepackage{xcolor}      %代码着色宏包
+\setCJKmainfont{SimSun} % 语义和语法同fontspec
+\renewcommand{\familydefault}{\rmdefault}
+\setsansfont{DejaVu Sans}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+	language=Octave,                % the language of the code
+	basicstyle=\footnotesize,           % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+	stepnumber=2,                   % the step between two line-numbers. If it's 1, each line  will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,                   % adds a frame around the code
+	rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+	tabsize=2,                      % sets default tabsize to 2 spaces
+	captionpos=b,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+	keywordstyle=\color{blue},          % keyword style
+	commentstyle=\color{dkgreen},       % comment style
+	stringstyle=\color{mauve},         % string literal style
+	escapeinside={\%*}{*)},            % if you want to add LaTeX within your code
+	morekeywords={*,...}               % if you want to add more keywords to the set
+}
+
+
+% 定义可能使用到的颜色
+\definecolor{CPPLight}  {HTML} {686868}
+\definecolor{CPPSteel}  {HTML} {888888}
+\definecolor{CPPDark}   {HTML} {262626}
+\definecolor{CPPBlue}   {HTML} {4172A3}
+\definecolor{CPPGreen}  {HTML} {487818}
+\definecolor{CPPBrown}  {HTML} {A07040}
+\definecolor{CPPRed}    {HTML} {AD4D3A}
+\definecolor{CPPViolet} {HTML} {7040A0}
+\definecolor{CPPGray}  {HTML} {B8B8B8}
+\lstset{
+	columns=fixed,  
+	frame=none,                                          % 不显示背景边框
+	backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+	keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+	numberstyle=\footnotesize\color{darkgray},           % 设定行号格式
+	commentstyle=\it\color[RGB]{96,96,96},                % 设置代码注释的格式
+	stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+	showstringspaces=false,                              % 不显示字符串中的空格
+	basicstyle=\tt,
+	%行号
+	numbers=left,
+	rulesepcolor=\color{red!20!green!20!blue!20},
+	escapeinside=``,
+	xleftmargin=0.2em,xrightmargin=0.2em, aboveskip=0.2em,
+	%背景框
+	framexleftmargin=0.2mm,
+	frame=shadowbox,
+	%样式
+	identifierstyle=\bf,
+	stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},
+	%显示空格
+    language=c,                                        % 设置语言
+	morekeywords={alignas,continute,friend,register,true,alignof,decltype,goto,
+	reinterpret_cast,try,asm,defult,if,return,typedef,auto,delete,inline,short,
+	typeid,bool,do,int,signed,typename,break,double,long,sizeof,union,case,
+	dynamic_cast,mutable,static,unsigned,catch,else,namespace,static_assert,using,
+	char,enum,new,static_cast,virtual,char16_t,char32_t,explict,noexcept,struct,
+	void,export,nullptr,switch,volatile,class,extern,operator,template,wchar_t,
+	const,false,private,this,while,constexpr,float,protected,thread_local,
+	const_cast,for,public,throw,std},
+	emph={map,set,multimap,multiset,unordered_map,unordered_set,
+	unordered_multiset,unordered_multimap,vector,string,list,deque,
+	array,stack,forwared_list,iostream,memory,shared_ptr,unique_ptr,
+	random,bitset,ostream,istream,cout,cin,endl,move,default_random_engine,
+	uniform_int_distribution,iterator,algorithm,functional,bing,numeric,},
+	emphstyle=\color{CPPViolet}
+}
+
+%%%%%%加入PPT模板的东西%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%\setmonofont{Consolas}
+\setlength{\parskip}{1.5em} %设置段落距离
+
+\title{\heiti {\LARGE 一}{\large 生}{\normalsize 只}{\Large 为}{\LARGE 寻}{\huge 欢}{\Huge 笑}}
+\author{\fangsong 陈俊杰 \quad 编著}
+\date{2019年6月}
+
+\begin{document}
+
+\large
+\frontmatter
+\maketitle
+
+
+\chapter*{作者序}
+
+\begin{wrapfigure}{l}{0.4\textwidth}
+	\includegraphics[width=1\linewidth]{fc} 
+	\caption{陈俊杰\\
+	Email:2716705056@qq.com\\
+	Adress:地球村\\}
+	\label{fig2}
+\end{wrapfigure}
+
+陈俊杰(1994-), 男, 江西景德镇浮梁县人。\\
+\indent 兴趣爱好: Linux内核、桌面管理系统、、C/C++, 高性能计算、机器学习、天文学、先进几何算法、计算机; 爬山、暴走、跑步、 阅读、电影、写作。\\
+
+
+目前失业状态中，要走农村包围城市的道路了....
+
+
+\chapter*{前~言}
+
+%\setlength{\parskip}{1.5em} %设置段落距离
+	写这些东西的初衷很简单，我最近用了一款很好的文本编辑器Latex, 之前用的Lyx和Texmacs都没这么难用, 但是Latex可定制性很强, 这么好用的东西怎么能不好好玩玩, 同时，此段时间我处于非常迷茫和缺乏自信的阶段，我想更清楚的认识自己了解自己，人是一种有灵性的动物，但是奇怪的是人可以相互了解，但在自以为很了解自己的时候其实对自己的认识是远远不够的，为了认清自己，于是就这么开始了和自己的对话...
+	
+	但是写什么呢, 小说、传记、专业读物、诗歌、科普书籍、散文, 以我的阅历和资历好像写哪个都不可行, 不瞒读者, 笔者除了专业书籍, 课外书只读过五本, 第一本是大学读的, 书名忘了, \href{https://book.douban.com/subject/1043815/}{$\ll$骆驼祥子$\gg$}, \href{https://book.douban.com/subject/1200840/}{$\ll$平凡的世界$\gg$}, \href{https://book.douban.com/subject/6798611/}{$\ll$史蒂夫·乔布斯传}
+	\href{https://book.douban.com/subject/25930025/}{$\gg$，$\ll$只是为了好玩：Linux之父林纳斯自传$\gg$}，客观原因是: 文学读物不比专业书籍, 如果想了解一个专业知识, 只需Goole一下哪本书在这方面讲得好, 这是没有争议的答案, 专业读物相对客观, 不带感情色彩, 是纯粹的在阐述事实. 但是文学著作不一样, 文学著作是有时代特色和作者个人感情色彩的, 有的小说, 虽然作者强调情节内容是虚构的, 但是这是不可能的, 作品内融入了作者的经历、成长环境、性格, 这是作者本人的全方位映射, 读书就是在读人. 所以, 看著作有讲究, 得找一本看得进去的, 对内容不反感的. 倒不是说作品的内容不好, 可能是自己没法理解或者读懂作者的品味. 所以, 看著作麻烦就在于读者得和作者产生某种互通, 在这基础上才能交流下去. 我就尝试过$\ll$围城$\gg$, 看到百来页实在看不下去了, 就没继续了. 主观原因是：时间都花在看电影去了， 科幻、动作、惊悚、恐怖、剧情、烧脑、有深度的、检验智商的等，电影属于快餐文化，从屏幕读取所有内容，短暂而又强烈，现在对于看电影的苦恼就是很难找到一部能一看开头就能让我静下心来好好观赏的电影。 那我能写什么呢, 好像只能写笔记, 好吧, 也可以叫笑话, 如果读者读了能产生笑感, 那也起作用了, 毕竟笑有益健康.
+	
+	
+	和其他同龄人一样，作为一个25岁的，内心充满不安、欲望、却又无奈，同时又对生活充满期待和希望的当代青年，本应该很忙的，但是忙什么，忙的事情是否符合内心却是未知的。“内心”是不会骗自己的。不知读者是否曾停下来仔细思考自己的人生和未来的路，并作出重大改变或者决定。我就曾尝试过仔细思考，大多数是晚上，结果就是恶性失眠，越想越失眠。很奇怪，为什么是晚上才思考，因为白天没时间，为啥白天没时间，因为白天有事，但是这都是冠冕堂皇，都没想清楚自己的路在何方，就随波逐流，假装白天很忙，结果是就是既没想清楚自己到底是谁、为什么在这、在这做什么，又把白天的时间浪费在所谓的“忙”上，这样恶性循环，直到无法承受，最终崩溃。做出改变和决定需要勇气，如果对一个8岁的小孩说做出改变需要勇气，那他大概很不理解或者很不认同，因为8岁小孩还有很多东西都没接触，很多事还没定型，他不懂什么是改变，或者说改变对他来说没什么顾虑。但是对于一个25岁的青年来说可不是，这时很多事都已经无法逆转，虽说大不了重头再来，永远年轻，永远热泪盈眶，但是真的需要勇气。勇气从何而来？有的人放弃改变，有的人咬牙迈出了这一步，虽说改变后最终结果也是未知的，有时候做出改变后会发现改变后的情况也很糟糕，或者说自己差距太大逐渐放弃，这都是有可能的。不敢说哪种好哪种坏，好吧，这样的问题谈到最后其实都没有结论，只会不欢而散。决定权全凭个人，笔者只能衷心祝愿。
+	
+	本书写的主要内容是我对一些事的所闻所想, 或者说活到目前的心理历程, 有社会、学习、娱乐、教育等, 很杂...
+	
+	本文的组织如下：第一部分是总论，主要阐述对于生命的意义的理解。第二部分为计算机科学，分三章，第一章介绍强烈推荐的编程语言；第二章介绍操作系统和CPU硬件，包括AMD和Inter处理器以及ARM指令集；第三章介绍高性能计算。第三部分是物理学，目前还没内容可写，暂时不写具体的。第四部分谈谈理想主义，分为两章：第四章为如果不考虑收入面子，最想从事的职业；第五章为在未来的某个时间点看现在和看未来。第六部分为教育，分为三章，前两章分别介绍中小学教育和大学教育的作用，最后一章为个人教育经历。第七部分为：我对朋友、亲人、家人、家族关系的理解。
+		
+	免责说明：本杂记中有很多地方直接或间接引用了网络资料和书籍，公开期刊媒体资料汇编，只为信息、科技、新闻、技术的传播，如有雷同, 纯属转载, 请告知, 笔者随即增添引用。
+    
+    
+    
+\tableofcontents
+\renewcommand\contentsname{目~录}
+
+
+\mainmatter
+
+\part{总论}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.14]{m7}
+		\captionsetup{font={small}}
+		%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+	\textcolor{blue}{如果一个人不热爱一件事, 他不可能把它做的真正的优秀, 也就不可能把这件事做到极致, 也就不可能把自己的价值最大化....}
+	\begin{quotation}
+		\textcolor{red}{曾在一次面试中面试官对我说:``我们知道很多求职者并不是热爱求职的职位或者行业, 是出于养家糊口和薪资的原因才面试我们公司, 我希望每位求职者都把他的人生价值做到最大化, 而做到这一点,他必须从事自己热爱的行业, 做自己热爱的事, 我希望你能问问自己的心, 自己想干什么...."}
+	
+		\textcolor{red}{在大学物理的课堂上, 物理老师在课间突然对我们说:``同学们, 我希望你们今后都从事自己热爱的行业, 做自己热爱的事, 一份工作工资高, 但是你不喜欢; 一份工作可能工资稍低, 但是你非常热爱, 那别犹豫,选择你热爱的那份工作...."}
+	\end{quotation}
+	这两位前辈的话至今在的耳边 回放..., 是的, 热爱才是一个人工作应有的态度, 也是一个人把他的价值最大化的动力所在, 我们每个人都在寻找``热爱''的道路上, 无论是否找到, 都应该不断的努力.
+
+	我的兴趣是物理科学和计算机科学, 我个人认为计算机科学和物理学在一定程度上很相似. 这里的计算机科学不是指对一门编程语言, 也不是对所谓的互联网BAT企业的各种架构师, 云计算, 各种因为有很多客户而发展起来的现代互联网技术, 我感兴趣的只是``一台小小的笔记本或者台式机", 我想了解的不过是计算机是怎么运作的, 从最基础的晶体管, 集成电路, 到机器语言, 汇编语言, 再到C语言, 操作系统等, 我想了解的只不过是最基本的计算机运作的方式, 我厌烦所谓的牛逼的"架构师", 就连基本的计算机是怎么运作的都不知道, 我不知道是谁允许它们给自己冠名``架构师".
+
+	之所以说物理学和计算机科学很相似, 我想从两方面解释. 
+
+	第一: 计算机离不开编程, 刚刚开始学编程会让人着迷, 觉得特别刺激, 这是因为: 你想让计算机干嘛它就干嘛, 没有丝毫的偏差, 没有任何的怨言, 永远的服从. 这本身就很有意思. 虽说一开始是计算机的盲从让你喜欢上编程, 但这绝不是让你真正喜欢编程的原因, 事实上, 计算机的盲从很快的会让你觉得编程很没意思, 因为随着编程的深入, 你会发现机器会骗人, 会有很多意想不到的事情发生,让你觉得懊恼. 编程真正让人欲罢不能的地方在于: 在你想让计算机成为你完美的``傀儡"之前, 你得十分的了解它, 这样你才能让它百分百的按照你的指令去做事, 也就是先得弄清楚怎么样才能让它这么干. 物理学也是这样, 但是物理学和计算机科学有一个根本的区别在于, 物理学是没有尽头的, 你只能在现有的体系内创作, 并不断的试图拓宽现有体系的边界, 但计算机不同, 一旦你掌握了所有的计算机的运作细节, 那你就是上帝, 因为所有的计算机的运作原理大同小异. 也可以理解为,计算机科学和物理科学不同的地方在于: 这个系统是上帝造的还是人造的, 在物理学上, 你得去了解的是这个已经存在的世界是如何运作的; 而计算机科学, 这个世界是可以由你自己从零开始逐步的创建出来的, 而且还得设法然它正常运转, 在计算机世界里, 你就是上帝, 你铸造了计算机, 你对这个世界发生的一切事情都有最终决定权, 如果折腾的好, 你就是这个世界的上帝, 当然, 这个上帝的地盘稍微有点小. 而物理科学, 这个上帝不会因为人类的不存在就不存在, 物理科学是亘古不变的道理, 这个上帝的管辖范围涵盖一切.
+	估计我这么说会得罪地球上一半以上的人...
+	
+	第二:计算机科学和物理学都是在一个非常基础的层面上, 探讨整个学科的运作原理, 这个学科是如此的完整和系统, 以至于有任何的纰漏都不行, 即使现在不出错, 但是我保证将来的某一天, 它会因为现在的不在意而出问题. 
+
+	我喜欢这两个学科, 这两个学科是人类生存的基石, 特别是物理学, 物理学是理工科的鼻祖, 可以说, 全部的理工科都是物理学的延伸或者说衍生学科. 估计这么说我把地球另一半的人也得罪了. 但是我喜欢它的原因不是它很厉害, 而是物理学客观, 逻辑性强. 而计算机是最不花钱的好玩的玩具.
+	
+	我是说喜欢, 但是远远不够格说热爱, 热爱可不是随便说的, 热爱一件事会为之起早贪黑, 乐此不疲, 排除万难. 不存在累的问题, 因为你做这件事本身就是快乐和满足的, 不去做它才痛苦. 
+	
+	在这里, 我还想说点对``方法论\footnote{方法论源于哲学,但这里不是指哲学上的方法论}"的看法, 之所以谈这个, 是因为方法论很模糊但又很重要. 第一次接触方法论是研究生入学后从师兄那里听到这个词， 当时是谈到应该怎么快速的进入科研的角色， 大家公认比较迅速和有效的方法是以点带面，循序渐进。但是，当大家都强调这一点时忽略了很多东西，以点带面是对于那些对知识量和知识面掌握全面且深入的学者提出的，因为知识量匮乏，加之研究生时间有限， 所以
+	
+	
+	好的, 我不想具体的阐述人生的意义, 生活的意义在于生活本身, 谁也解释不清楚生活的意义. 但是有三点是至关重要的, 那就是: 第一是生存, 第二是社会秩序, 第三是娱乐. 这三件事本身不会解释生活的意义, 但是它们会告诉我们生活的基本规律和动机. 生活中所有的事情都遵循着这个顺序. 所以在一定程度上说, 生活的意义就是你要达到第三个阶段, 一旦达到了第三个阶段, 这辈子就可以说成功了, 但是首先得超越前两个阶段. 天知道我有多想度过第一个阶段。
+
+	在物欲横流,纸醉金迷的现代, 迫于各种客观和主观的原因, 人们心中的快乐逐渐流失, 盲从, 浮夸; 放弃可以把握的或者放弃去寻找将来能把握的。我既置身事内又超乎其外，我对人生的变幻莫测既感陶醉又感厌恶\footnote{出自$\ll$了不起的盖茨比$\gg$}。 于是, 一切只为寻欢笑...
+	
+
+	
+	\begin{center}
+		
+		{\LARGE 最后引用一则鸡汤\footnote{鸡汤内容出自于微信公众号:越哥说电影}}
+		
+		即使人生走到尽头\\
+		也要勇于挑战新事物\\
+		永远保持对生命的满腔热枕、
+		爱世界爱他人
+		
+		但愿能越活越温暖\\
+		越活越柔软\\
+		不是那种愚蠢的情怀\\
+		而是一种从容不迫的优雅
+		
+		之所以有这种想法，还要源于\\
+		前段时间和一个年轻人的对话\\
+		他说自己现在什么目标也没有\\
+		过一天算一天
+		
+		他说自己也不清楚自己喜欢什么\\
+		好像做什么都可以\\
+		但又好像做什么都是两天的热度\\
+		很快就没了激情
+
+		他说自己已经达到\\
+		近乎无欲无求的境界\\
+		可他却还做着一份自己\\
+		都不清楚为何要去做的工作
+		
+		他不去想人生到底有何意义\\
+		也不想赋予它任何意义\\
+		他甚至不想去探寻爱情\\
+		更别提去追寻梦想
+		
+		其实这样的\\
+		“佛系”年轻人还真不少\\
+		其实他们并不是无所谓\\
+		他们只是无能为力
+		
+		因为对人生掌控力的缺失\\
+		所以陷入了自我麻痹之中\\
+		我也经常有这样短暂的迷茫
+		
+		觉得自己对一切都失去了兴趣\\
+		而那时我正处于人生的低谷
+		
+		希望 你能活出最精彩的自己 \\
+	    希望 你能见识到令你惊奇的事物\\ 
+		希望 你能体验从未有过的情感 
+		
+		希望 你能遇见一些想法不同的人 \\
+		希望 你为你自己的人生感到骄傲 \\
+		如果你发现自己还没有做到 \\
+		希望 你有勇气 \\
+		重头再来
+		
+		因为最终你会发现\\
+		人生最大的财富\\
+		就是永不熄灭的激情
+		
+		可能你现在的轨道是不正确的\\
+		但是生活会以这样或那样的方式把你推到\\
+		在这种程度或那种程度正确的轨迹上\\
+		\textit{anyway, one way or another}
+	\end{center}
+
+	上面这碗鸡汤的大概意思就是“存在便有道理，一切都是最好的安排”，这是惯用的鸡汤，也是“佛系”年轻人爱喝的鸡汤。我比较信奉的是那句“人生最大的财富，就是永不熄灭的激情”。这和经济增长是一样的，经济增长需要不断地寻找新的经济增长点以刺激经济持续增长，这样经济才有活力，否则将会停滞不前；人也一样，需要永葆信心和激情。但是这是有很多前提的。
+
+\part{计算机科学}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.16]{m2}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+    \end{figure}
+
+	{\huge 写在前面} 我第一次真正接触计算机科学是研究生, 由于上大学之前都没有接触过, 以至于我刚上大学那会非常畏惧计算机, 我打心底里认为计算机科学是我的克星. 在考完``C语言"这门课后, 我心想还好这辈子再也不用碰编程了. 但是读研后才知道什么是这辈子都不可能离开计算机. 计算机既是一门工程学科也是一门工具, 如今已经渗透到各行各业, 甚至渗透至每个人, 计算机很重要, 且目前国民的计算机水平远远不够, 不论是从书籍的丰富度、书籍内容、人才数量等各方面来看, 国内的情况都是不容可观的, 有时候根本别指望身边的人能更你讲清楚汇编语言、编译原理、或者说操作系统的一些细节, 课堂上也只是讲讲原理, 不用说可能, 是绝对的大部分老师自己对这些东西是什么都不是十分清楚, 只是知道字面的表述, 国内真正自己写过汇编、文件系统、编译器、操作系统的一只手可以数过来, 所以说国内的计算机教育水平是普遍落后的, 且是从根源落上落后, 因为连授课的老师都不明白, 师资力量不足, 师资水平不够, 还能指望教出的学生明白这些东西吗, 这些东西是根本上决定我国计算机领域水平高低的知识, 它往往决定了一个人能在这条路上走多远, 一个国家在这个平台上的话语权, 最近的中兴华为事件是最好的说明, 基础不牢, 浑身发毛. 笔者经常感到十分痛苦, 想透彻的了解这些东西, 但是又无从下手, 看过很多书籍, 但是计算机和数学物理不同的一点就是: 数学或者物理大不了就是从头推一遍公示, 然后慢慢琢磨, 细细思考, 物理数学公示可以详细的写在纸上, 这就是全部可以以文字的形式展示给读者的内容, 要深度有深度, 要广度有广度, 当然, 至于能不能理解以及理解的程度就只能靠读者了. 但是计算机不是, 纸上的文字是很小的部分, 真正的是代码, 那书上能把一个操作系统的几十万行代码都写下来并一行一行的解释意思吗, 最关键的东西却不能像数学公式那样从头到尾娓娓道来, 我想这是我觉得痛苦的部分原因. 同样是书, 虽然理解的广度和深度是取决于读者的, 但是不同学科能写在书上的内容的深度和形式是不一样的, 纸能给读者提供的知识的全貌完整度是不一样的, 纸尽的职责深度不一样. 因为学艺不精, 笔者常常半途而废.
+	
+	本部主要介绍的是我学习工作中了解到的一些东东, 当然也是那些非常基础和重要的, 那些能奠定基础的. 有时候, 在一个庞然大物面前, 一个对全貌的简单介绍能为后面的深入了解打下很好的基础, 以至于第一次接触不那么陌生. 当然, 我也是菜鸟, 写不出汇编、文件系统、编译器、操作系统. 这些事可能是我需要一辈子去学习和完成的. 但是本部的浅层知识是笔者在从零开始自学一些计算机科学过程中能隐约感觉到对读者打基础十分重要的, 能消除一些读者初学时的对一些看法误解, 能减少读者走一些不必要弯路. 虽说学习是个不断试错不断总结不断折腾的过程, 但是毕竟人生苦短, 光阴有限, 如果能少走弯路还是尽量少走, 这就涉及方法论了, 在这不过多啰嗦. 总之, 如果读者能通过笔者的眼睛看到自己想了解的东西, 那这部分内容的作用就达到了.
+	
+	本部分的内容分为三章：计算机程序设计语言、操作系统和CPU、CPU和GPU高性能计算，简单说:
+	\begin{itemize}
+	\item 掌握一门程序设计语言很重要，而掌握一门非常精悍的语言更是重中之重，C语言就是这样的语言。
+	\item{
+		  简单来说，运行复杂指令集的X86架构的PC设备，高功耗，高性能，主要有:AMD、Inter,所以养着强大巨人的Windows；运行精简令集的ARM架构的移动设备，低功耗，低性能，主要有：苹果、三星、高通、华为、小米、和联发科，所以养着灵活轻量的iOS和Android；而Linux太棒了，既可以跑在X86架构上，也可以跑在ARM上，只不过这时候的ARM更多的是指嵌入式设备。再复杂一点来说，\textit{Windows}是\textit{System on Disk}，系统在硬盘上；\textit{iOS}是\textit{System on Chip}，系统在芯片上。两个阵营的基础架构完全不同，一个侧重性能；一个侧重功耗。\\
+		  目前苹果、三星、高通、华为、小米、和联发科的处理器的公版架构都是基于arm授权指令集作为基础，arm授权相当于给你一个制造cpu的基础，至于企业产品能达到什么样的功能和性能以及设计，就取决于企业有多强的实力，主要就是自主设计架构, 交由台积电制造芯片, 台积电是全球最大的芯片制造商。芯片制造的基础大家都有，但是功能和性能却差别很大，不可同日而语，而苹果手机一直作为性能最好的处理器，快速的图形渲染，都是基于苹果自身持有的核心技术上构建的, 苹果、骁龙，麒麟，三星的猎户座、联发科等处理器都是基于ARM的底层架构研发，不同的是苹果、高通等是购买了ARM的专利技术然后进行二次开发，用上自研的架构，比如高通的Kryo这种自主架构，其性能自主架构要强于公版架构。苹果拥有ARM的架构许可证，可以从头设计自己的芯片。iPad是基于ARM架构的iOS的移动设备，天生具有性能缺陷，但是毕竟兼具了一定的笔记本的生产力.
+	  }
+  	\item 现代的计算机设备都是多核的，具备多用户多任务功能，这就需要程序开发者掌握一定的并行程序设计的技能，这也是将来程序设计的方向，从串行向并行进发。
+	\end{itemize}
+
+
+ 
+
+	\noindent 本部分所有的代码都在:{\normalsize \url{https://github.com/junjiecjj}}
+\chapter{计算机编程语言}
+	
+	笔者在刚上研的那会需要学习matlab或者python语言，说实话当时我是懵的，一个只学过C语言的突然去学Python这种“胶水语言”，python语法很简单，难的不是语言本身，而是得去学一些库(或者叫包，其实就是一些已经按功能模块写好的各种函数)的使用，当时以为什么库都要学，那真的是一头扎进傻逼式学习，加上除了语言本身，我还需要了解一些问题本身的相关知识，又没人指导(我其实不需要指导，全程自学，我唯一需要的指导可能就是当我接触一个全新的领域时需要前辈去推荐几本入门的书籍，我便能很快的入手，可惜当时这样的人没有，是我不断的试错不断地走弯路摸索出了其中的窍门)，当时每天起床的第一件事就是问自己还能坚持多久，需不需要退学。在后来，开学了，结合课堂上的一些课程设计，才慢慢了解到其实Python很简单，那些库即用即查，不需要提前掌握，掌握了也忘了，且随着版本的更新函数会变，最理想的学习方法就是用的时候去查官方文档，既准确又迅速。
+	
+	本章主要总结各种语言的特性. 业界都说语言不是关键, 思想才是关键, 但是对于初学者来说, 第一次接触的程序设计语言对塑造今后实践过程中的编程思想、 培养计算机的兴趣以及对计算机了解的深度来说是非常关键的. 本章主要介绍的就是笔者用过的一些语言的特性,不包括写网页的那些专用语言, 这里只介绍一些核心语言，单不打算具体的讲解某种语言。
+	
+\section{C/C++}
+
+	C语言是静态的、面向过程的编译型语言\footnote{静态的：数据类型在编译时检查；面向过程的：一步一步解决问题；编译型：一次把所有的代码转换成机器语言，然后写成可执行文件。编译型语言运行速度快}，是最"精悍"的语言,语法简洁,功能强大,计算速度快,系统交互性好,总之,不能更棒!!!
+
+	可以这样描述C语言:
+\begin{quotation}
+	\textcolor{red}{  
+			C语言迫使你提高计算机方面的能力,这可以从两方面来说.\\
+			\indent 
+			第一: C语言没有各种各样的库供调用(只有最基本的，几乎所有语言都有的那些，如math,stdlib等),它使得程序员必须动手去实现哪怕是那些功能非常简单的函数,而这一过程对加深所求解物理或者工程问题的理解是至关重要的，而这一过程对初学者去掌握和理解所学的学科来说是非常关键的.\\			
+			\indent 第二: 它迫使C语言使用者去深入的了解和理解计算机,因为C语言在高级程序设计语言里称得上"低级语言",用C语言基本靠指针等离硬件和系统比较低的操作,所以它强迫使用者去了解计算机，这能使读者在了解自己专业知识的同时把计算机也学得非常好，可以毫不夸张的说，如果是长期使用C语言进行生产和生活，它的计算机水平一定不会很差.}
+\end{quotation}
+
+	C语言要求程序员对一切都非常了解,所以在C语言中一切都很重要,从浮点数在计算机中的表示,到程序栈和堆的分配, 指针, 到网络, 到数值计算, 并行计算等. 当学完C语言的时候,会有一种去写操作系统的冲动. 可以说C语言和操作系统是相伴相生的一门语言,且操作系统的内核也是C语言写的. 更多的是, 很多语言都是基于C语言写出来的,或者是间接基于C语言写出来的,所以很多其他语言随着新版本的出现,很多新特性的出现也是与它们的底层语言有有关的. 且绝大部分工业软件, 商业软件的底层核心代码都时C语言完成的,更多的事，很多自然学科或者工程学科的模拟必须由C语言完成，比如计算物理、计算化学、计算生物学、核爆炸模拟、天气预测的计算、地震波的预测等，这些问题都具有计算量巨大、计算程度复杂、数值精度要求高、程序性能要求稳定的特点，交由其他语言根本无法保证这些特性，且一般都是交由大型服务器运算，而各大服务器厂商提供的软件支持首先支持的就是C, 且集群上一般都预装了C语言的编译器GCC/G++。所以, 不要担心学好了C语言没用. 同样是一个问题，如果用C语言和用python去完成程序设计所学到的和了解到的知识不是一个量级的，所以读者如果能用C去完成日常工作生活中所需解决的问题，那是吊炸天的。
+
+	强烈建议程序语言初学者学习C语言作为入门语言.推荐的C语言书籍有:\\
+	\href{https://book.douban.com/subject/26792521/}{$\ll$\textit{ C  Primer  Puls, Stephen Prata} $\gg $}\\ \href{https://book.douban.com/subject/26912767/}{$\ll$ 深入理解计算机系统,  Randal E.Bryant / David O'Hallaron $\gg$}\\
+	\href{https://book.douban.com/subject/25827246/}{$\ll$ 深入理解C指针, Richard Reese$\gg$}...  
+	
+	那什么时候适合用C语言呢，理论上说只要技术过硬任何时候都可以用，但是从时效上来说，必须考虑任务的紧急程度、日后和业界的接轨、任务最适合的语言。比如，画图，C语言画图是非常不便捷的，画出来的图基本和命令行的样子一样，一个黑框几个点，画图最常用MATLAB，python等；机器学习，众所众知，Python是机器学习的首选语言，但是Python的底层也是C写的。我们是站在巨人肩上的。
+
+
+\section{Python}
+
+	Python语言是一种动态的、面向对象的解释型语言\footnote{动态的：动态类型语言是指在运行期间才去做数据类型检查的语言；面向对象的：把问题定义为一个对象，然后在这个对象上添加数据类型和成员函数；解释型：一行一行的解释代码，运行一行解释一行，而程序每执行到源程序的某一条指令，则会有一个称之为解释程序的外壳程序将源代码转换成二进制代码以供执行，不断地解释、执行、解释、执行…。}，是非常人性化、友好的语言，
+
+\section{CUDA}
+
+要想用好GPU，则必须了解他和CPU体系结构的不同和联系，当然，用好CPU也必须了解CPU的体系结构，这样才能做到性能的最优化，在CPU出现这么多年的现在，我们只学会了用，但是没考虑过怎么用好这些计算单元，好像这一点都被大家忽略了，可能好奇的是我写完一个程序让他在CPU上跑就行了，还管那么多干嘛，可以不管，但是懂得怎么按照CPU的特性去编写代码会让你的代码效率高，这也是让你和普通程序员有本质区别的技能。
+
+\textcolor{blue}{谈谈GPU和CPU为何不同？}
+
+
+
+CPU和GPU之所以大不相同，是由于其设计目标的不同，它们分别针对了两种不同的应用场景。CPU需要很强的通用性来处理各种不同的数据类型，同时又要逻辑判断又会引入大量的分支跳转和中断的处理。
+
+这些都使得CPU的内部结构异常复杂。而GPU面对的则是类型高度统一的、相互无依赖的大规模数据和不需要被打断的纯净的计算环境。于是CPU和GPU就呈现出非常不同的架构（示意图）：
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{p59}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+GPU采用了数量众多的计算单元和超长的流水线，但只有非常简单的控制逻辑并省去了Cache。而CPU不仅被Cache占据了大量空间，而且还有有复杂的控制逻辑和诸多优化电路，相比之下计算能力只是CPU很小的一部分。
+
+CPU 基于低延时的设计，CPU有强大的ALU（算术运算单元）,它可以在很少的时钟周期内完成算术计算。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{p60}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+GPU是基于大的吞吐量设计：Cache比较小、控制单元简单，但GPU的核数很多，适合于并行高吞吐量运算。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{p61}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+
+总而言之，CPU和GPU因为最初用来处理的任务就不同，所以设计上有不小的区别。而某些任务和GPU最初用来解决的问题比较相似，所以用GPU来算了。
+
+GPU的运算速度取决于雇了多少小学生，CPU的运算速度取决于请了多么厉害的教授。教授处理复杂任务的能力是碾压小学生的，但是对于没那么复杂的任务，还是顶不住人多。当然现在的GPU也能做一些稍微复杂的工作了，相当于升级成初中生高中生的水平。
+
+但还需要CPU来把数据喂到嘴边才能开始干活，究竟还是靠CPU来管的。
+
+OpenCL与CUDA的关系是什么？
+
+虽然两者抱着相同的目标：通用并行计算。但是CUDA仅仅能够在NVIDIA的GPU硬件上运行，而OpenCL的目标是面向任何一种MassivelyParallel Processor，期望能够对不同种类的硬件给出一个相同的编程模型。
+跨平台性和通用性。这一点上OpenCL占有很大优势（这也是很多National Laboratory使用OpenCL进行科学计算的最主要原因）。OpenCL支持包括ATI,NVIDIA,Intel,ARM在内的多类处理器，并能支持运行在CPU的并行代码，同时还独有Task-Parallel Execution Mode，能够更好的支持Heterogeneous Computing。这一点是仅仅支持数据级并行并仅能在NVIDIA众核处理器上运行的CUDA无法做到的。
+CUDA和OpenCL的关系并不是冲突关系，而是包容关系。OpenCL是一个API，在第一个级别，CUDA架构是更高一个级别，在这个架构上不管是OpenCL还是DX11这样的API，还是像C语言、Fortran、DX11计算，都可以支持。
+关于OpenCL与CUDA之间的技术区别，主要体现在实现方法上。基于C语言的CUDA被包装成一种容易编写的代码，因此即使是不熟悉芯片构造的科研人员，也可能利用CUDA工具编写出实用的程序。而OpenCL虽然句法上与CUDA接近，但是它更加强调底层操作，因此难度较高，但正因为如此，OpenCL才能跨平台运行。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{p62}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+CUDA 软件堆栈由几层组成，如图所示：一个硬件驱动程序，一个应用程序编程接口(API)和它的Runtime，还有二个高级的通用数学库: CUFFT和CUBLAS。
+
+CUDA是一个并行计算的架构，包含有一个指令集架构和相应的硬件引擎。OpenCL是一个并行计算的应用程序编程接口（API），在NVIDIA CUDA架构上OpenCL是除了C for CUDA外新增的一个CUDA程序开发途径。
+
+
+\chapter{操作系统软件与CPU}
+
+	对于计算机这个大象，在了解了C语言这个强有力的工具之后，想了解它的全貌，那就是广读书；如果想深入了解和理解它的工作原理，那最好的就是自己去写一些内核级的代码，这样才能真正感受计算机是怎么样工作的。但是这需要很多基础作为铺垫。其中最重要的基础就是汇编语言、汇编原理、计算机组成原理与体系结构、编码、操作系统、单片机（微机原理）、数据结构与算法、计算机网络。这些专栏知识每个都很深，要学好是非常耗时的。笔者也曾经尝试过，但是最终都是以看完专栏知识后似懂非懂，迷迷糊糊的过去了，我觉得只有真正的自己实现了代码级的练习才能真正理解这些专栏知识是怎么回事。
+	
+	本章不打算具体的介绍这些东西，因为笔者也是一知半解，就不误人子弟了。这里只简要的介绍操作系统软件和CPU(Inter、AMD、ARM)的历史，这些历史不亚于一部金庸小说，历史很重要，历史是最好的教科书，了解历史才能掌握现在展望未来。关于这些专栏知识读者想学可以看这里推荐的几本笔者看过的书，不用特意的买纸质版的，直接Google下载PDF版，但是推荐看纸质书，看纸质书籍是慢思考的过程，我们很需要这种思考过程。
+	
+	\href{https://book.douban.com/subject/26960678/}{$\ll$计算机网络（第7版），谢希仁$\gg$}
+	
+	\href{https://book.douban.com/subject/26079463/}{$\ll$计算机操作系统，汤小丹$\gg$}
+	
+	\href{https://book.douban.com/subject/4822685/}{$\ll$编码：隐匿在计算机软硬件背后的语言，Charles Petzold$\gg$}
+	
+	\href{https://book.douban.com/subject/6398113/}{$\ll$计算机组成与体系结构：性能设计（原书第8版）$\gg$}
+	
+	\href{https://book.douban.com/subject/19952400/}{$\ll$算法(第四版)，Robert Sedgewick $\gg$}
+	
+	\href{https://book.douban.com/subject/25859528/}{$\ll$数据结构(C++语言版)(第3版)，邓俊辉$\gg$}\
+	
+	\href{https://book.douban.com/subject/26941639/}{$\ll$网络是怎样连接的，户根勤$\gg$}
+	
+	\href{https://book.douban.com/subject/26397183/}{$\ll$计算机是怎样跑起来的，矢泽久雄$\gg$}
+	
+	\href{https://book.douban.com/subject/26365491/}{$\ll$程序是怎样跑起来的，矢泽久雄$\gg$}
+	
+	{\normalsize  \href{https://book.douban.com/subject/26912767/}{$\ll$ 深入理解计算机系统， Randal E. Bryant、David R. O’Hallaron $\gg$}}
+	
+	\href{https://book.douban.com/subject/4889838/}{$\ll$鸟哥的linux私房菜$\gg$}
+	
+	\href{https://book.douban.com/subject/30259532/}{$\ll$Ubuntu Linux操作系统：张金石主编 $\gg$}
+	
+	\href{https://book.douban.com/subject/1187182/}{$\ll$并行算法实践,陈国良$\gg$}
+	
+	\href{https://book.douban.com/subject/20374756/}{$\ll$并行程序设计导论,作者: Peter Pacheco $\gg$}
+	
+	\href{https://book.douban.com/subject/1244566/}{$\ll$高级能计算并行编程技术--MPI并行程序设计,都志辉$\gg$}
+	
+	\href{https://book.douban.com/subject/4265432/}{$\ll$Programming Massively Parallel Processors, David B. Kirk, Wen-mei W. Hwu $\gg$}
+	
+	上面的书除了$\ll$计算机操作系统,汤小丹$\gg$这本书很烂，其他的都是很好的书，这也是初学者容易踩的坑，时间花了，看了一本烂书，东西没学到，这里不得不吐槽有些高校的老师，明明知道这个领域有很好的书，为了赚钱，自己出了一本烂书，然后以考试的名义让上课的学生都得去买它写的垃圾课本，你说大不了出个讲义，让学生打印上课用也行，非得出版然后去网上买，纯粹的制造学术垃圾、浪费地球资源、耽误学生生命。
+	
+	\section{\textit{Linux}}
+	\subsection{Linux起源}
+	
+	在大家熟悉的操作系统中Windows绝对是首位的, 其次是Mac, 但是, 我最想介绍的是Linux,  也是最迷人的一款操作系统, 大家平时可能接触不到, 所以有必要介绍. 好吧, 其实我是觉得在普通用户的印象中都没有这个玩意儿的存在, 这对Linux很不公平, 这么棒的东西, 应该大力推广, 真的, 我觉得它至少比Windows好用.
+
+	%\begin{wrapfigure}{l}{0.15\textwidth}
+	%	\includegraphics[width=0.6\linewidth]{torvals} 
+	%	\caption{林纳斯帅照，几分美队的忧伤}
+	%	\label{fig1}
+	%\end{wrapfigure}
+
+	\begin{quotation}
+	\textcolor{dkgreen}{\textbf{有的人生来就注定能领导上百万人,有的人生来就注定能写出天翻地覆的代码,只有一个人两样都能做到 : \textit{Linux Torvalds}}}.
+	\\
+	 开源说明一切.  \qquad \qquad \qquad \qquad \qquad \qquad  $\ll$ 时代周刊 $\gg$
+	\end{quotation}
+
+	\begin{figure}[H]
+	\centering
+	\subfigure[年轻]{
+		\includegraphics[scale=0.4]{beer}}
+	\subfigure[中年]{
+		\includegraphics[scale=0.4]{torvals}}
+	\captionsetup{font={small}}
+	\caption{\small{林纳斯帅照，几分美队微笑和忧伤;图片来源:Google}}
+	\label{fig1}
+	\end{figure}
+
+	
+	\textit{Linux}操作系统是最棒的操作系统, 没有之一. 较\textit{{\large windows}}简洁易用, 它的设计理念就是简洁实用. 但是背后付出的是更多的学习时间, 一旦入门, 开启的是一个新世界. 
+
+	这里不得不介绍\textit{Linux Torvalds}(林纳斯$\cdot$ 托沃兹, 1969.12.28-), 如图\ref{fig1}, 对于他, 我想说两件事: \textcolor{red}{他的\textit{Linux}操作系统、他倡导的自由软件运动和开放源代码协议.}
+	
+	{\Large \textcolor{red}{\textit{他的linux OS.}}}大家都知道\textit{window}和\textit{Mac os}操作系统, 在\textit{linux}操作系统问世之前统治了操作系统的江山, 但是这一切在林纳斯出现后被改变. 这个生于芬兰(能在冬天看到极光... 教育及其发达,发达到什么程度呢, 小学读到大学都免费, 不存在好学生差学生, 不放弃每一个学生, 真正的素质教育, 有人评价比美国的教育更发达)的大鼻子北欧男子写出了天翻地覆的操作系统, 而他是怎么样的一个人呢, 他从小就是书呆子, 在外公(赫尔辛基大学的一名统计学教授, 数学家)的影响下十岁开始接触编程, 从此一发不可收拾, 他的母亲描述他: ``把他放在一个黑咕隆咚的储藏柜里, 再配上一台电脑, 偶尔朝里扔一些意大利面条, 他就会感到格外高兴了." 他在很小的时候就建立了自己的理论领域: 数学, 物理, 逻辑, 计算机. 因为芬兰的冬天很长, 且极冷, 在其他孩子忙着滑雪溜冰的时候他却一刻不停的不分昼夜在磨炼自己的技艺, 在清晨的微光中练习算法, 在赫尔辛基的雪山上编译代码. 他在上大学之前的计算机水平可能是现在很多清北博士硕士科班的水平, 更不用说一般人, 这就是热爱的力量.
+	
+	他是芬兰那一代人里第一批接触到计算机的人, 并且他在大学的时候花了所有的零花钱甚至贷款买了一台黑溜溜的电脑外加当时火热的MINIX操作系统, 但是也就是出于对MINIX操作系统的不满, 他发现MINIX的诸多弊病, 比如性能问题, 内核文件, 最大的是终端仿真器. 一般人遇到这样的情况最多发会呆, 然后洗洗睡了, 反正梦里什么都有(我就是), 或者说你行你上啊. 但是林纳斯不是普通人, 他在大学的其中一个暑假只干了两件事,第一:看完那本改变他一生的书$\ll$ 操作系统: 设计与实现$\gg$, 这本书讲述的是\textit{unix}操作系统, 采用的是微内核, 但是微内核有很多林纳斯不喜欢的缺点, 林纳斯受启发, 自主设计宏内核完成了后来的\textit{linux OS}; 第二: 除了第一件什么也没干. 看完后他对操作系统的认识达到了一个全新的高度. 便开始从硬件层面写\textit{linux}操作系统, 这需要从BIOS, CPU等硬件层面开发出一套系统, 并把输入输出、磁盘驱动、文件系统全套解决. 这时候林纳斯之前学的那些汇编语言和C语言终于派上用场, 这都是单枪匹马、纯手工打造的、一行一行敲出来的代码. 之后他把他写出来的\textit{linux}内核挂在网上, 供世界范围内的极客交流和学习, 从此, \textit{linux OS}便成为了世界上最大的开源项目, 在开源, 独立,自由的模式下一路狂. \textit{linux}领导着世界上最优秀的程序员进行伟大的长征, 写出使全人类受益的、可免费使用的操作系统.
+	
+	为什么说全人类受益呢?  
+	\begin{enumerate}
+		\item {\normalsize Linux OS可以在AMD处理器上跑, 可以在inter处理器上跑, 可以在苹果的处理器上跑, 可以在嵌入式芯片(汽车, 手表, 航空, 智能家居)上跑, 在服务器上完爆其他系统, 这是一个多大的市场, 林纳斯却分文不要. 大家可能都用过windows系统, 如果不是学校或者单位买了正版的windows系统, 想必大家都是用的山寨的, 需要破解或者用一些极不安全的脚本去激活windows系统吧, 但是linux不是, 你可以直接从网上下载任意版本安装, 完全免费使用, 而且提供的服务也是免费的, 当微软不让我们用windows时, 当苹果不让我们用Mac时, 当谷歌不让我们用Android时, Linux丝毫不受影响,而且很多国产操作系统都是受启发于Linux. 总之, linux无处不在... 大家可能担心安全问题, 这么说吧, windows中毒无数次, linux一次都不会, 不是因为linux没病毒, 而是因为它不怕病毒, “linux免疫力很强”. 因为用linux的人都是穷人, linux本身免费使用, 那些机构不赚钱; 其次, 有这个星球上最顶级的程序员为你的操作系统把关, 谁敢轻易来犯; 以上是主观原因, 客观原因有: }
+		\begin{itemize}
+			\item {\small 首先, linux下权限的概念十分常用, 动不动就要输入密码, 装软件, 卸载软件, 拷贝文件, 建立文件夹, 删除文件等等都需要, 大家千万不要以为这是麻烦, 恰恰是这点给linux带来了无与伦比的安全性; }
+			\item {\small 其次, 微软的内核代码是封闭的，按说应该更安全，但是有些时候偏偏比较奇怪，Linux开发的源码更好的可以把病毒隐患消除在内核的层面. Linux经常暴内核漏洞，这是正常现象，不是缺点，这是优点，那是好多都是无数人在想在做这件事，为的是更加安全，不必大惊小怪，他们总是想：“这样写的内核，可能有什么安全问题呢？” 于是进行了修改，所以我们内核的升级和补丁不是被动的，而是很多时候主动的出现的，这种做法在Unix－like的系统中很常见，比如安全著称的OB就是通过这种检查方法从根本上减少安全问题，所以才有了问世6年时间无漏洞出现而10年时间只有2个轻微漏洞被发现的佳绩. 也就是说Unix-like类的系统一旦补上一个补丁，就消除了无数条隐患. 而windows思维的就相反，windows很少能够从内核级别打补丁，升级速度非常缓慢，所以很多补丁是治标的，不能治本，而且很多不是windows光补丁就能解决的，比如线程权限控制，不可能因为病毒的存在，windows的结构就因此改变了; }
+			\item {\small 最后, linux开源，他就接受大众的监督和统一管理，病毒代码很难藏身，而且现在Unix－like系统的软件大部分不是像windows那样随意下载传播，而是都有人维护和上传的，一旦发生问题，很快就能定位，找出病毒来源. 我很少见人不是从自己的源中安装软件，即使不是自己的源，也是sorceforge之类的网站，而二进制的安装需要编译，这就让病毒传播途径截断了，病毒在这里遇到的是一个悖论：病毒要起作用就要让形成可执行文件，而形成可执行文件病毒就失去作用.（ps：承认自己的无知，其实我不知道编译会使病毒消失，这个不是我的研究结论). 对于大部分源内的二进制包，一般Linux软件管理器都有强制的md5验证机制，所以如果有病毒篡改，很容易就发现了. 想散播病毒？Linux通过软件传播病毒的机会基本没有.}
+		\end{itemize}
+		
+		\item{\normalsize 当大家使用\textit{Goole}搜索、使用手机玩耍各种App、淘宝网购、QQ撩妹时, 很多人不清楚, 背后支持这些软件和服务的是成千上万的\textit{linux}服务器, 什么云计算、大数据、移动互联网、边缘计算、架构师, 如果没有\textit{linux}, 全都得歇菜.} 
+	\end{enumerate}
+	并不是微软和苹果的操作系统没有这样的能力, 只不过林纳斯的\textit{linux}做到了开源.
+	
+	简单介绍内核是啥。
+	在技术上来说，内核应该是连接硬件和应用程序的，说白了还是为应用服务，让应用程序更多的做自己的事情，所以说内核的时候，肯定是离不开驱动程序的，如果一个招聘的人说，我们需要一个内核开发工程师，如果一个不懂驱动开发，不懂电子硬件知识的人，怎么可能做得好内核开发呢？\\ \indent
+	我们使用计算机的时候，我们把手机或者电脑当座一个操作系统使用，打开QQ，打开微信，等等，但是对于应用程序来说，内核就是他的操作系统了，他可以通过系统调用来完成各种工作，比如我们获取一个文件的内容，我会调用 open ,read 来获取里面的信息。
+	\\ \indent
+	如果很多人使用一个电脑，这个时候用电脑来比喻可能不是很恰当，用服务器来比喻吧，我们小组的几个工程师都在编译自己的代码，内核其实就是一个多任务协调者，对进程进行资源协调，让他们假装认为就只有自己一个人在独享计算机资源。
+	\\ \indent
+	微内核和宏内核:
+	\\ \indent
+	这个就有点搞笑了，林纳斯和minix的发明者因为这个还吵了一架，minix 发明者说微内核才是先进的，当然被林纳斯啪啪啪打脸了，打脸的原因不是说了什么话，而是林纳斯在宏内核上做了优化升级，而且现在的 linux 地位，足以秒杀minix几条街了。
+	\\ \indent
+	微内核有点像中央集权的意思，就好像，一个打印机进程，你负责给中央CPU汇报就可以了，你不能跟其他藩王沟通，这样有可能你们会发生叛变，这个核心思想非常好，但是实践起来一团糟，当初BSD操作系统就想这么搞，结果搞了很多年，都没有做出一个稳定性良好的系统，思想先进不能落地也就只是空谈了。
+	\\ \indent
+	宏内核就跟上面的相反了，负责内核模块的子系统之间是可以打电话的，他们是可以通过内核符号表来互相调用的，这样看起来耦合性会非常高，但是可惜的是，我们的林纳斯大神让他变成了现实，我们的Linux 系统就是用这样的思想完成了代码编写。
+	
+	Unix和类Unix如Linux都是宏内核，Mac和windows都是微内核。Android是基于Linux的，所以是宏内核，iOS是基于Unix的，基于微内核。
+	
+	而林纳斯这个人除了技术一流, 他生活上对金钱什么态度呢, 这里有几件事能说明. 
+	实际上在林纳斯在拿到第一笔财富前日子一直处于紧巴巴的状态, 甚至他当初买的那台后来那台写出linux OS的电脑欠下的贷款都是网络上的好心极客(估计也是膜拜林纳斯)发起募捐帮他还的. 但是他个人对金钱真的视为粪土, 是真的那种粪土.
+	
+	\begin{itemize}
+		\item {\small 
+			第一件, 林纳斯和比尔盖茨. 
+			\\ \indent
+			在\textit{linux}流行起来之前, 桌面操作系统基本上是由乔帮主和下流比控制的, 虽然乔帮主控制得少一些. \textit{linux}出现后, 桌面操作系统的格局基本没变, 但是服务器市场的变化却是空前绝后的, 原本下流比希望通过\textit{Windows NT和Server}系列在服务器领域复制桌面操作系统的不朽辉煌, 从而千秋万载, 大统江湖, 谁知世界永远是多元的, 没有人能凭一己之力改变历史的多维性发展, 比尔盖茨也不行, 林纳斯凭借星星之火领导数百万程序员完成了\textit{linux}不朽杰作, 轻松的一举拿下了服务器领域的大半江山, 为什么说轻松呢, 这就与自由软件运动和开放源代码协议有关了, 但是分文没挣, 为什么呢? 这也与自由软件运动和开放源代码协议有关, 下面会讲到. 这样, 一方是商业公司和封闭的策略, 那个庞大邪恶的微软公司和那个缺德、贪得无厌缺又富得流油的下流比; 一方是自由软件运动和开放源码协议, 一个``出于大爱,是为了每个人都能免费用上好用的自由软件"组织. 这场竞争一开始就注定是一边倒的, 林纳斯在没怎么出面的情况下就把微软这个软件巨头搞得狼狈不堪, 这种事情对于普通老百姓来说绝对是喜闻乐见的, 林纳斯成为了自由软件世界里的领袖, 但与微软结下了世仇, 比尔和林纳斯许下了永不见面的誓言.
+			有些在微软工作的人告诉林纳斯, 他们曾见林纳斯的头像被定在了微软的飞镖靶心上, 林纳斯笑称: ``那一定是我的鼻子太大, 太好瞄准了."}
+		
+		\item  {\small 
+			第二件, 林纳斯和乔布斯.
+			\\ \indent
+			在林纳斯去美国硅谷后不久, 就收到乔布斯的碰面邀请. 林纳斯不知道他要干嘛, 只是出于对巨星的好奇, 毕竟林纳斯还在外公的腿上拨弄键盘的时候苹果的乔帮主就带着一帮人纯手工的打造出了第一代\textit{PC Apple}第一代了, 林纳斯决定去见一下他儿时的偶像. 当时乔布斯在被苹果赶出后回归苹果不久, 见面的大致内容是: 我乔布斯虽然不才, 重回苹果, 以待重振昔日之风, 我最近在研究我的\textit{Mach}内核以期打造新一代的\textit{OS X}, 我的Mach也是开源的, 目前桌面电脑市场只有两个玩家: 微软和苹果, 如果你林纳斯真的为\textit{linux}考虑的话就应该与我们合作, 我们珠联璧合, 那一切都将是最好的安排, 所有的开源爱好者都能用上优雅与极客并存的\textit{MaxLinux}了, 然后向林纳斯介绍了整个Mach和linux作为OS X混合内核的计划, 同时乔布斯同意基于Mach和linux的内核系统将采取开源的运作模式, 这样全世界的开源爱好者都可以为Mac和Linux开发程序了. 这几乎是一个完美的方案, 乔帮主都被自己描绘的蓝图所打动, 永远的年轻, 永远他妈的热泪盈眶, 谁能拒绝苹果公司和乔布斯如此完美的邀请呢, 谁能放下这么完美的暴富的机会呢? }
+			
+			\indent
+			{\small 林纳斯能!!!}
+			\\ \indent
+			{\small 乔布斯以为在自己的扭曲现实的力场加上苹果巨大的市场潜力的诱惑下林纳斯会怦然心动, 没想到林纳斯这个芬兰呆子在电脑面前坐久了, 浓汤列药全不进, 仅凭乔布斯口吐金花, 我林纳斯魏然不动. 其实, 林纳斯听完后就知道乔布斯打了什么小算盘. 首先, 林纳斯对Mach不屑, 他觉得Mach犯下了几乎所有的设计错误, 让系统变得复杂和效率低下, 说实话林纳斯心底觉得Mach就是垃圾, 其次, 乔布斯说Mach开源, 这不是欲盖弥彰吗, 如果Mach开源, 那基于Mach开发的Mac系统却不是开源的, 乔帮主想利用Mach的开源去招揽一大批免费的开源程序员为他写程序, 然后开发出的Mac被苹果用来赚钱, 这真是冠冕堂皇的笑话, 很显然, 即使Mach是开源的, 也不会有开源工作者去贡献力量, 事实上也是这样. 不然为什么Mac不能在inter处理器上跑. 乔布斯之所以让林纳斯合作的原因是想让林纳斯拉拢那些参加linux开源运动的顶尖极客到苹果会下, 去帮助苹果开发Mac OS X系统. 林纳斯心想: ``乔布斯以为它的话能打动我, 他一直强调, 我想进军台式机市场就应该与苹果联手, 但是我根本不在乎, 为什么我就应该对苹果的事情感兴趣? 我就是不感兴趣, 我就是觉得苹果没意思, 我的人生目标可不是为了抢占台式机的市场, 虽然这一天迟早会发生, 但是这从来不是我的目标, 我也从来没有设计这样的目标. 我的的世界和乔布斯的世界存在根本的分歧, 史蒂夫就是史蒂夫, 他对市场感兴趣, 但是我只对技术感兴趣. 当他知道我一点也不关心苹果的市场大小也不关心微软市场大小时非常惊讶.". 用林纳斯自己的话说就是: \textit{Just for fun !!!}.}
+			\\ \indent
+			{\small 十年后, 移动互联网降临, OS X上生出了iOS, Linux上长出了Android. 这两个手机端的双子星有一个公共的老祖宗, 那就是unix, 一次话不投机的会谈让OS X和linux分道扬镳, 但是十几年后他们又以另一种不同的方式相见, 世界永远是多元的, 谁也改变不了.}
+			
+			{\small 这里不得不说乔布斯非常善于聚集一流人才, 在苹果公司很多牛人都是这么被乔布斯收入麾下的. 但是林纳斯不care, 他就是喜欢自己的linux.}
+		
+		\item {\small 
+			第三: 伦敦的一位企业家希望林纳斯在他们羽翼未满的Linux公司做个董事会成员, 只要签个字, 屁都不用放一个, 报酬就是1千万美元, 同志们, 是每年一千万美元!!! 结果当然是被林纳斯狠狠的拒绝了, 企业家惊呆了. 当他缓过来的时候, 林纳斯已经默默走了. 林纳斯不是不爱财, 只是君子爱财, 取之有道.}
+		
+		\item {\small 
+			第四: Red Hat公司为了感谢林纳斯的卓越贡献, 为他提供了一些期权, 林纳斯回复: ``不用了, 我不会给你们独家的授权许可的, 你走吧.", Red hat的人吓得一身冷汗:``林爷息怒, 期权您就收着吧, 我什么都不要行了吧?", ``唔这样啊, 那就放这吧". 这就是林纳斯, 后来Red Hat在纳斯达克上市, 这期权从五十万美元, 到一百万美元, 再到五百万美元, 这时林纳斯才意识到自己的第一笔财富来了. ``我再也不用为生计发愁了, 我真幸运".}
+	\end{itemize}	
+	
+	比尔盖茨住在湖边的高科技别墅, 当林纳斯随随便便签个字就能获得一千美元的时候, 他依然和自己的妻女一家人挤在圣克拉拉一栋两层的公寓套房里, 过着普通程序员的生活, 同时不断地改进着已经遍布全球的Linux供大家免费使用, 这是真正的程序员, 这是专门利人的国际主义战士的精神. 这是开源工作者独有的精神: 开源运动如此神奇, 其中最为费解的一点是, 为什么这么多绝顶聪明的程序员愿意在完全没有报酬的情况下屈尊工作, 只能解释为: 在基本生存得到保障的情况下, 也就是温饱以上时, 金钱不是最大的动机, 而是找到一件有趣的事情去做, 当人们被热情所驱动时, 就能把工作做到最好, 而且能享受其中的乐趣, 开源运动不仅给他们提供了一个在生活中释放热情的机会, 而且还能在这过程中带来乐趣, 在开源世界里, 软件工程师不再是只与公司的雇佣的那几个人一起工作, 而是与世界上最优秀的程序员一起工作, 他们必须使出浑身解数才能赢得同行的尊重和认可, 这是最高效的激励模式.
+	
+	很多程序员创业成功或者跟随创业成功之后, 自以为大功告成、功德圆满、功成身退, 最先丢掉的就是代码和编译器, 然后购豪宅、当天使、满世界贴旅游照, 你们感受一下, 这个境界是完全不可同日而语的, 这时候就暴露出到底是不是热爱这件事。我这么说恐怕把我自己都得罪了, 即使我一穷二白...(如有误伤, 请勿对号入座, 必是队友所为)
+	
+
+	{\Large \textcolor{red}{\textit{自由软件和开放源码}}}是林纳斯做的第二件影响深远的事, 什么是自由软件和开放源码呢, 
+	
+	
+	林纳斯是“平民英雄”, 林纳斯单枪匹马的写出了Linux内核, 而且做出了开放源码的决定, 他把源码放在网上, 并且允许那些希望使用并改进的人依据开源协议修改和提交源代码, 这两点对互联网的影响及其深远, 为喜爱Liunx的人带来了美好的技术和应用. 可以说Linux几乎承载了现代互联网. 可以说, Linux改变了世界，但是Linux却和林纳斯一样的低调. 这位来自芬兰的北欧男子崇尚自由, 一生只为寻欢笑.
+		
+	
+	好了，牛逼吹完了，我们再简单的说说linux是什么，怎么用。
+	
+	Linux本质上只是一个操作系统中的内核。内核是什么？内核建立了计算机软件与硬件之间通讯的平台，内核提供系统服务，比如文件管理、虚拟内存、设备I/O等。 内核用起来可难受了，相信大多数我这个岁数的人都没有用过DOS系统，那是命令行的，就像一个黑色屏幕上，只有一个不断闪烁的光标，输入一个命令，返回一个结果，没有图形界面，这样的操作系统没有多少人想要。这不，微软公司后来才发展出带图像化的Windows系统。Linux就是个内核，最早不是给普通老百姓用的，所以没考虑到美观等问题，后来才由程序员们加上了图形化界面，比如有Gnome、KDE、Xwindows。加上图形化界面后，Linux成了介于内核linux和windows之间的一种操作系统，使得带图形界面化的Linux也可以点点图标来启动软件，也可以ctrl+c/ctrl+v来拷贝粘贴。这就大大的增加了linux的用户亲近力。Linux一般分作三个派系：
+	
+	\begin{table}[H]
+	\arrayrulecolor[HTML]{DB5800}
+	\captionsetup{font={small}}
+	\caption{\small{CISC和RISC对比}}
+	\centering
+	\begin{tabular}{ccc}
+		\hline
+		\rowcolor{lightgray}
+		\textbf{派系} & \textbf{阶段} & \textbf{代表} \\
+		\hline
+		Deb系 & 桌面版系统 &  Ubuntu、Debian、deepin、Mint、Kali、 等\\		
+		%\hline
+		Rpm系 & 服务器系统 & Redhat、CentOS、Fedora、OpenSUSE 等\\
+		
+		Arch系 & ...系统 & Arch、Manjayo 等\\
+		\hline
+	\end{tabular}
+	\end{table}
+	
+	Deb派系是桌面版，图形化界面做的比较好，但是相对服务器系统稳定性下降，其中最受欢迎的是Ubuntu，笔者用的就是Ubuntu；服务器系统一般是企业和大型服务器上用，稳定性很好，其中Redhat是收费的，但是Centos免费，这两个派系的主要区别就是包(软件仓库)管理器不同。
+	
+	Arcu和Manjayo据说非常棒非常强大，网上的评论是：Manjayo在软件丰富度、桌面丰富度、驱动安装、内核管理都是非常便捷和齐全的、据说其他Linux都无可比拟，连qq、WC都是一键安装。但是我还没来得及尝试，有空玩玩，会不会最后替代Ubuntu啊，想想都害怕。
+	
+	笔者打算尝试Ubuntu、centos、deepin、Manjayo这几个。其中Ubuntu和deepin都用过，deepin并不是那么好用，centos只在集群上接触过，连装软件都没试过，Manjayo才听到。
+
+	这里得提一下deepin这个中国区最成功的linux发行版本，深度操作系统桌面版是深度科技发行的美观易用、安全可靠的国产操作系统，该系统可支持x86、龙芯、申威、ARM等国产CPU平台，能够替代微软Windows操作系统，满足不同用户的办公、生活、娱乐需求。由“武汉深之度科技有限公司”创办。创始人王勇与2018年暂时退出deepin，deepin是国内做的最好的Linux，但是因为社区开发者比较少，所以deepin的质量还有待提高。但是deepin可以说是国内linux面向社区和桌面版研发的最高水平了，实现了龙芯、申威、ARM多平台，平台统一，体验一致，代码同源。而且deepin和国内很多软件公司合作推出了好用的软件，如下：
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{p64}
+		\captionsetup{font={small}}
+		%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+	
+	那为什么普通计算机用户为啥没听过也没用过Linux呢，我觉得是因为身边的人第一次接触都是windows，然后一传十十传百，最后大家都用windows，且觉得windows好用，就没人去探索Linux，然后这样的结果；其次，linux相对于windows真的不太友好，注意，linux是个内核，虽说加了图形界面后美观、实用性都大大增强了，但是linux终究是linux，这里说两点和windows的不同。第一点是安装软件的方式，windows一般都是下载完软件包，然后一直下一步；linux也可以这么装，linux安装软件有以下几种方式：
+	\begin{enumerate}
+		\item 软件中心
+		\item 	{sudo apt-get update , 更新软件源列表\\
+		sudo apt-get upgrade , 更新软件\\
+		sudo apt-get install xx , 安装软件xx\\
+		sudo apt-get purge xx , 删除软件xx\\
+		sudo apt-get autoremove xx ,斩尽杀绝xx\\}
+		\item {sudo dpkg -i xxx.deb
+		      sudo dpkg - r xxx}
+	    \item 源码编译安装，通过make等 \eqref{eq1}
+	\end{enumerate}
+
+	\begin{equation} \label{eq1}
+		E = mc^2
+	\end{equation}
+	
+	\begin{gather}
+		U1 = Q + W \\
+		pV = nRT
+	\end{gather}
+	
+	\begin{align}
+		U2 &= Q + W \\
+		(p + \frac{a}{{V_m}^2})(V_m + b) &= RT
+	\end{align}
+	
+	\begin{multline}
+		U3 = Q + W \\
+		pV = nRT
+	\end{multline}
+	
+	\[
+		\begin{aligned}
+		U4 = Q + W \\
+		pV = nRT
+		\end{aligned}
+	\]
+	
+	
+	\begin{equation}
+	f(x) = 
+		\begin{cases}
+			-x + 1, \quad x \leq 1\\
+			x - 1, \quad x > 1
+		\end{cases}
+	\end{equation}
+
+
+	安装方式还是比windows复杂的；
+	
+	第二点我说出来可能读者已经哭晕在厕所了，那就是linux办公很不方便+linux系统上没有游戏(很少的上个世纪的单机游戏，现代的大型游戏一个没有，是一个没有，不是大部分没有)。对于办公，不是不行，只不过没有windows方便，这里有很多替代方案。linux下没有Microsoft offfice，但是有linux版本的WPS，但是呢，这个WPS的功能很有限，我发现的一个比如WPS不能编辑数学公式，还有就是Linux下做好的word、ppt在windows下肯定会乱码，但是如果你的PPT没有数学公示只有文字和图片，那linux下的WPS还是可以胜任的，再者，如果不用WPS，那读者还可以学习LaTex、Lyx、TexMacs等宇宙最强文本+排版编辑器，而且这三个编辑器也可以做PPT，这三个编辑器的好处就是自动排版+编辑数学公式超简单，word的一个缺点就是写好的文档如果不转成PDF，在别的版本的word下或者换台电脑打开，里面的很多东西就乱套了，但是这三个绝对不会。但是这三款编辑器对比word就像linux对比windows那样的学习曲线陡峭，但是一旦学会，那效率是大大提高。
+	
+	至于游戏，只能说抱歉了，确实没有游戏也没有替代方案。戒毒吧。
+	
+	\textit{Linux}下对一些编程语言的支持度非常好，比如\textit{C/C++}的编译器\textit{GCC/g++}，java的\textit{IDE IntelliJ}，Python的anaconda，任何语言在linux下的编辑器和编译器都有很好的支持，最重要的是linux的编辑器vim，这个宇宙最强编辑器，什么sublime text、Atom、elicsp、Notepad++等等统统靠边。但是vim相对于其他编辑器的学习难度类似于Latex和word，一旦学会，开发效率大幅度提升。Linux下看电影，听音乐，画图都没有问题，但是Linux一般下是不能安装QQ、微信、迅雷、百度网盘的，但是国内有人通过wine把这些软件迁移到linux下了，所以可以安装。下面欣赏两张美图。
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.19]{p16}
+	\captionsetup{font={small}}
+	\caption{vim深度配置后的界面，实现了C/C++、JAVA、Python、CSS、JS、HTML等的自动跳格，语法检查,高亮文本，自动配色，自动添加头文件，F5,F6编译运行等功能，可以说是一个简易的通用IDE.颜色很好看}
+	\end{figure}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.19]{p17}
+	\captionsetup{font={small}}
+	\caption{ubuntu界面，很骚}
+	\end{figure}
+	
+	好吧，说了这么多，其实普通计算机用户没必要使用Linux，一般都是程序员和Linux爱好者用，或者说学业和工作上有需求的用户使用linux，但是记住啊，如果哪一天Windows没得用了，那就用Linux吧，在2019.5月，韩国举国迁移到Linux下，这是多么伟大的一步，用Linux就像C语言一样会迫使你了解和掌握计算机。没准通过使用Linux可以激发那些潜在的计算机爱好者。学Linux最先从装系统开始，如果你的电脑是单硬盘的还好，如果是双硬盘的，可能一开始的硬盘分区挂载就得把你搞晕。
+	
+	最后介绍基本笔者看过的Linux的书籍:$\ll$鸟哥的linux私房菜$\gg$、$\ll$Ubuntu Linux操作系统：张金石主编 $\gg$，基本够了，平时遇到的问题基本Google，查多了基本就都会了，且一旦用久了以后，很多问题遇到过，就不用查了，基本都在脑子里。这里还有两个很好的linux公众号:Linux中国、Linux公社、Linux爱好者，供茶余饭后看看。
+	
+	最后，在文章附录里总结了笔者在Ubuntu系统上的所有配置和软件。
+	
+	\begin{itemize}
+		\item Ubuntu安装及配置: 附录\ref{append1}
+		\item Centos安装及配置: 附录\ref{append2}
+		\item Manjayo安装及配置: 附录\ref{append3}
+	\end{itemize}
+	
+	关于Ubuntu上好用的软件也可以查看以下三个网址，总结了100个软件：
+	
+	\begin{itemize}
+		\item \url{https://mp.weixin.qq.com/s/O98Ywj2tFSApdLJqNLVGrA}
+		\item \url{https://mp.weixin.qq.com/s/FPB_7C3Lw640md03SlRzbQ}
+		\item \url{https://mp.weixin.qq.com/s/rXCamGREMMbsL3lRZ9fggg}
+	\end{itemize}
+	
+	\subsection{linux发行版}
+	对于很多刚使用Linux的人来说，选择使用哪个Linux发行版着实是一件头疼的事情，特别是对于有选择困难症的人们就更是如此了。其实对于那些著名的Linux发行版本，都有比较明显的个性，具体选择哪些，也只是由自己的需求而定，当然，如果你很熟悉Linux的话，那么版本的问题就不是问题了，因为在根本上它们都是相似的。
+
+	那么它们的个性是什么呢？这就要从几个方面去定义了。
+
+
+	\begin{center}
+	{\LARGE \textcolor{red}{包管理器}}
+	\end{center}
+
+	 或许这是各发行版之间最显著的不同了，Linux与Windows不同，各种已经编译好的软件包大部分可以通过软件源来下载，而且各种软件包之间都存在着复杂的依赖关系，这些依赖关系是很难手动去解决的，于是包管理器就诞生了。
+
+	对于包管理器，在Linux里面可以说是分派系的，现在主要分为以下三派：
+
+	\begin{itemize}
+	\item DPKG：这是Debian Linux家族的包管理器，使用它的发行版包括了Debian，Ubuntu，Linux mint，deepin等等，在其范围下有几个比较出名的工具，一个是在命令行使用的APT（高级打包工具），另一个是有图形界面的Synaptic包管理器，这两个东西的使用非常广泛，一般安装了Ubuntu等之后就直接可以使用了。
+	\item RPM: 由RedHat创建的包管理器（Red Hat Package Manager），顾名思义，这个包管理器就是RedHat系列Linux所使用的了，其中包括了RedHat，Fedora，CentOS等等。在其下也包括了几个著名工具，一个是YUM，另一个是DNF。
+	\item Pacman: 这又是一个流行的包管理器，简直是异军突起，pacman的包的丰富度是超乎想象的，基本上很多ubuntu上需要编译安装的软件在pacman里面都是一条命令。主要用于Arch Linux及其发行版之中，包括了Arch Linux和Manjaro等。
+
+	\end{itemize}	
+	当然，包管理器不止这么些，但主要的就是以上几个，其它的还有Gentoo上的Portage，openSUSE上的Zypper等。
+
+
+	\begin{center}
+	{\LARGE \textcolor{red}{桌面环境(DE)/窗口管理器(WM)}}
+	\end{center}
+
+    超强的自定义性可以说是图形化Linux的一大特点了，Linux的桌面环境（或窗口管理器）数不胜数，但这其实已经不属于选择发行版的范畴了，但是因为每个发行版有其偏好的桌面环境，所以也放进考虑范围。
+     
+    这里先说一下桌面环境和窗口管理器的区别：
+ 	
+ 	什么是窗口管理器（Windows manager）？
+
+	窗口管理器是一个管理窗口的软件，允许打开，关闭窗口re-sized并移动窗口。它也能够向用户呈现菜单和选项。它控制用户GUI的外观和感觉。使用Linux或BSD，您可以选择。您可以自由选择任意数量的窗口管理器，从简单的lean-and-mean(低内存和CPU消耗)到feature-packed大窗口管理器。大约有17个”mainstream”窗口管理器，至少有70个。
+	
+	窗口管理器管理你的窗口。它将窗口装饰放在包含按钮的内容周围以最小化或关闭。它允许调整大小并移动窗口，决定哪个窗口在顶部。 Metacity和Compiz是今天的两个例子，twm和fvwm可能会被老人记住。
+	
+	什么是桌面环境(desk environment)？
+	
+	桌面环境(DE)通常位于Window Manager之上，并添加了许多功能，包括面板，状态栏，drag-and-drop功能以及一套集成的应用程序和工具。事实上，用户对操作系统的意见通常基于一件事情：桌面环境。当然，DE只是操作系统的一小部分，在Linux和Unix系统中，Window Manager和/或DE可以替换或高度定制，而不会违反任何end-user许可协议。
+	
+	桌面环境为您提供全面的用户体验。它包含面板，系统菜单，启动器和状态小程序。当然，它需要一个窗口管理器来管理窗口。它可能提供一个默认的文件浏览器和查看器。为了简化，它甚至可能包含默认编辑器，终端程序，甚至包含e-mailer，所有这些都看起来相似并且一起工作。 Gnome，XFCE和KDE是目前最为人熟知的。
+	
+	Unix /Linux最流行的桌面环境是：
+	\begin{itemize}
+		\item GNOME
+		\item KDE
+		\item XFCE
+		\item ....
+	\end{itemize}
+
+     基本上有三层可以包含在Linux桌面中：
+     \begin{itemize}
+     	\item X Windows – 这是允许在显示器上绘制图形元素的基础。 X Windows构建允许移动窗口，与键盘和鼠标交互并绘制窗口的原始框架。这对于任何图形桌面都是必需的。
+     	
+     	\item 窗口管理器 – 窗口管理器是控制窗口放置和外观的难题。窗口管理器包括：Enlightenment，Afterstep，FVWM，Fluxbox，IceWM等。需要X Windows而不是桌面环境。
+     	\item 桌面环境 – 这是一些开始有点模糊的地方。一个桌面环境包括一个窗口管理器，但建立在它之上。桌面环境通常是一个比Window Manager更完全的集成系统。需要X Windows和一个窗口管理器。桌面环境的例子是GNOME，KDE，Cinnamon，Xfce等等
+     \end{itemize}
+
+
+
+ 	
+	桌面环境/窗口管理器可以按轻量级和重量级来分。
+	
+	\begin{itemize}
+	\item 超轻量级
+		\begin{itemize}
+
+		\item MATE: 作为另一个常用的桌面，虽然可能没有XFCE使用广泛，但还是有许多人喜欢的。
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.15]{p69}
+			\captionsetup{font={small}}
+			\caption{MATE桌面}
+		\end{figure}
+		\item i3(wm):   这是一个经典的平铺窗口管理器，常被一部分人奉为生产力环境，通过常用快捷键操作就基本不需要鼠标了，当然，是否有生产力就因人而异了。
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.4]{p70}
+			\captionsetup{font={small}}
+			\caption{i3桌面}
+		\end{figure}
+		\item awesome(wm):    又是一个平铺式的窗口管理器，与i3相似，由于平铺式的桌面并非适合每个人使用，受到的争议也比较多，所以似乎还没有发行版将其作为默认桌面环境。
+		\item dwm:
+		\item xmond
+		\end{itemize}
+	\item 轻量级
+		\begin{itemize}
+		\item FVWM
+		\item Blackbox
+		\item IceWM
+		\end{itemize}
+	\item 中量级
+	
+		\begin{itemize}
+			\item XFCE:    一个最常用的Linux桌面环境，由于其轻量化可配置型强的特点，几乎所有发行版可以简单地安装XFCE桌面，默认推荐使用XFCE的有Manjaro。
+		\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{p68}
+		\captionsetup{font={small}}
+		\caption{XFCE桌面}
+	\end{figure}
+
+	\item 重量级
+		\begin{itemize}
+			\item KDE plasma: 最出名的桌面环境之一，可定制性很强，同时流畅度也较高，由于其在KDE5版之前有着很多bug，所以曾经不被看好，但是现在是比较出色的桌面环境之一，桌面应用采用Qt进行开发。默认使用其作为桌面环境的有Kubuntu等。
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.4]{p71}
+				\captionsetup{font={small}}
+				\caption{KDE桌面}
+			\end{figure}
+			\item Gnome: 一直和KDE不分高下，以简洁高效著称，可定制性没有KDE那么高，但也是不错的。在早期版本中存在内存溢出和单线程的性能问题，所以流畅度有所欠缺，在最新的3.30版本中有所改善，桌面应用采用GTK进行开发。
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.4]{p72}
+				\captionsetup{font={small}}
+				\caption{Gnome桌面}
+			\end{figure}
+			\item Unity:   在ubuntu16及以前在Gnome基础上特别定制的桌面环境，从ubuntu17开始被Gnome取代，已经不推荐使用，但是在使用上似乎比Gnome流畅度要高。
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.4]{p73}
+				\captionsetup{font={small}}
+				\caption{unity桌面}
+			\end{figure}
+			\item Budgie:    最大的特点是简洁好看而优雅，对Gnome工具的兼容性高，特别之处不多，源于SoLus Linux。
+			\item DDE:      Deepin DE，这是一个应用在Deepin上的桌面环境，Manjaro也有DDE版本，是一个国产的优秀桌面环境，从外观上就胜过了不少对手。
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.4]{p74}
+				\captionsetup{font={small}}
+				\caption{KDE桌面}
+			\end{figure}
+			\item Cinnamon:     Linux mint的默认桌面环境，基于Gnome3，跟Gnome同源，因为我也不太熟悉，就不多介绍。
+			
+		\end{itemize}	
+	\item 当然，也还有不少其它的桌面环境，但以上的是最常见的。
+	\end{itemize}
+
+	\begin{center}
+	{\LARGE \textcolor{red}{稳定性/安全性}}
+	\end{center}
+	其实对于真正使用Linux作为服务器或者生产环境的人来说，以上两点无非是一点小习惯上的差异，因为无论是包管理器还是桌面环境，大家提供的功能并非是不可替代的，很多时候是顺不顺手的问题，所以在这时候产生主要影响的可能就是其稳定性了。
+	
+	\begin{itemize}
+		\item 更新方式:   要说到Linux的稳定性，就离不开它的软件更新机制，一般来说Linux的更新方式有两种，也即滚动更新和固定版本更新。
+		\begin{itemize}
+			\item  滚动更新就是说系统可以通过频繁的小更新来使它的软件时刻保持最新的状态，在这种方式下，很多时候就免除了需要手动更新软件版本的问题，软件的漏洞也能及时得到修复，安全性比较有保证，但与此同时，任何软件都保持最新状态意味着它们的依赖关系可能会出现问题，因为一个软件的开发者可能还没准备好匹配它的依赖软件，它的依赖软件却先行更新了。所以滚动更新有时又缺乏稳定性，造成所谓的“滚挂”的现象。默认使用滚动更新的有Arch Linux，Manjaro等。
+			\item         固定版本更新的发行版一般会处理好软件之间的依赖关系再进行软件的发布，使得其稳定性有一定的提升，但它也同样有着一些问题，这种更新方式使得如果你没有更新整个系统到最新版本，一些软件在官方渠道的更新方式上就永远无法获取到最新的版本，如果有安全漏洞有时也无法及时修复，必须要从第三方地址或者手动下载编译来更新。当然对应的发行版也有一定的解决办法，如使用Backports。默认使用固定版本更新的有Ubuntu，RHEL，SLES等。
+		\end{itemize}
+		\item 内核版本:        对于固定版本更新的发行版来说，它的内核(kernel)版本也像软件一样在升级上有一定的限制，一般来说其内核的版本更新较慢，且会保持在初次发行版本的附近，在大版本更新的时候才会进行内核的大幅升级，新的内核会有一些新的特性，可以兼容更新的硬件，但有时候会导致兼容性问题。而许多滚动更新版本的发行版对内核的限制要宽松一些。当然这两者都是可以自己手动更新甚至手动编译更换内核的，但是使用不推荐的内核版本有可能导致一些奇怪的问题。
+		\item Linux中的上下游关系:  Linux发行版中的上下游关系也就是各种软件包的上下游关系，从一定角度来看，上游就是软件包的开发者和与开发者关系密切的发行版，而下游就是验证软件包可用性和稳定性并提交反馈的发行版，上游项目的软件版本更新，而下游项目的稳定性更强，如Ubuntu就是一个下游发行版的典型。
+		\item 帮助文档和社区支持:   对于几乎所有的发行版来说，它们都有相应的帮助文档，也有相应的社区，但它们的内容却有很大的区别，有些发行版的帮助文档事无巨细，有些则是只教你如何使用。像Arch Linux的wiki页面就属于全面仔细的典型，具体可以查看Arch Wiki，而Ubuntu的社区则是活跃社区的典型，具体可以查看Ubuntu论坛。
+	\end{itemize}
+	
+	\begin{center}
+		{\LARGE \textcolor{red}{主要的Linux发行版}}
+	\end{center}
+	   寻找主要的Linux发行版，可以参考DistroWatch，其中页面点击次数的排名可以大概反映发行版的活跃程度。
+	   
+	 \begin{itemize}
+	   \item Manjaro:
+	    
+	    一个基于Arch Linux的Linux发行版，免去了Arch Linux配置的麻烦，但保留了其优点，基于滚动更新的机制，提供非常方便的内核更换软件，同时其支持Arch用户软件仓库（AUR）可能是最全的软件仓库之一，它提供了许多桌面环境的版本，包括KDE，Gnome，XFCE，MATE，DDE等等。
+	   	\begin{figure}[H]
+		   	\centering
+		   	\includegraphics[scale=0.5]{p75}
+		   	\captionsetup{font={small}}
+		   	\caption{manjaro桌面}
+	   \end{figure}
+	   \item Linux Mint:
+	   
+	   基于Ubuntu/Debian的系统，从17.0开始，Mint基于Ubuntu长期支持版，以稳定性和简单易用著称，但软件更新较慢，有时不能兼容最新硬件，提供Cinnamon，MATE，KDE和XFCE桌面环境的官方支持。
+	   
+	   \begin{figure}[H]
+	   	\centering
+	   	\includegraphics[scale=0.5]{p76}
+	   	\captionsetup{font={small}}
+	   	\caption{mint桌面}
+	   \end{figure}
+   
+	   \item Ubuntu
+	   
+	    著名的Linux发行版，由Canonical公司发布，同时也提供商业支持，在易用性和稳定性上都有不错的表现，Ubuntu从17以后将默认桌面环境从Unity改为Gnome，同时其有对应KDE桌面的第三方版本Kubuntu。其包括长期支持版和最新版，两者的维护支持周期不同。
+	    
+	    \begin{figure}[H]
+	    	\centering
+	    	\includegraphics[scale=0.5]{p77}
+	    	\captionsetup{font={small}}
+	    	\caption{ubuntu桌面}
+	    \end{figure}
+	   \item Fedora:
+	   
+	   Fedora是Red Hat在个人领域的版本，因为其被作为Rad Hat的测试平台，所以一般软件都很新，约半年一次的发布周期，引进新技术十分快速。
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{p78}
+			\captionsetup{font={small}}
+			\caption{Fedora桌面}
+		\end{figure}
+	
+	   \item openSUSE:
+	   
+	    德国工艺，特点是稳定，干净和漂亮，用户不算多，在服务器领域常用。
+	    
+	    \begin{figure}[H]
+	    	\centering
+	    	\includegraphics[scale=0.5]{p79}
+	    	\captionsetup{font={small}}
+	    	\caption{openSUSE桌面}
+	    \end{figure}
+	    \item Elementary OS
+	    
+	    从名字就可以知道，这是一个致力于外观的Linux发行版，它是基于Ubuntu加一套特定主题和应用程序发展而来的Linux，和Linux相似，但更加注重图形界面的应用。
+	    
+	    \begin{figure}[H]
+	    	\centering
+	    	\includegraphics[scale=0.5]{p80}
+	    	\captionsetup{font={small}}
+	    	\caption{KDE桌面}
+	    \end{figure}
+	    \item CentOS
+	    
+	    这个版本来自于Red Hat的公开源代码，由于这个特点，在一段时期内曾被人广为推崇，很多教科书也是以此为例，但是在现在来说，这是一个更加适合作为服务器系统的Linux。
+	    \begin{figure}[H]
+	    	\centering
+	    	\includegraphics[scale=0.5]{p81}
+	    	\captionsetup{font={small}}
+	    	\caption{CentOS桌面}
+	    \end{figure}
+	    \item Deepin
+	    
+	    深度科技发行的Linux，在某种程度上可以说是最简单易用的发行版，几乎不需要命令行就能完成大部分功能，其集成了大量自行开发的软件，以及接地气的软件商店，与CrossOver合作提供对Windows软件的支持，同时还支持原生模拟Android软件。
+	    
+	    \begin{figure}[H]
+	    	\centering
+	    	\includegraphics[scale=0.5]{p82}
+	    	\captionsetup{font={small}}
+	    	\caption{deepin桌面}
+	    \end{figure}
+	 \end{itemize}
+
+\section{ARM的前世今生}
+
+	简单来说，运行复杂指令集的X86架构的PC设备，高功耗，高性能，所以养着强大巨人的Windows；运行精简指令集的ARM架构的移动设备，低功耗，低性能，所以养着灵活轻量的iOS和Android。再复杂一点来说，Windows是System on Disk，系统在硬盘上；iOS是System on Chip，系统在芯片上。两个阵营的基础架构完全不同，一个侧重性能；一个侧重功耗。
+
+	iPad是基于ARM架构的iOS的移动设备，天生具有性能缺陷，但是毕竟兼具了一定的笔记本的生产力.
+
+	苹果处理器的公版架构基于arm授权指令集作为基础，目前三星高通，华为，小米，和联发科，都是基于这个架构框架来研发, arm授权相当于给你一个制造cpu的基础，至于企业有多强的实力，就看你的产品需要什么样的功能和性能, 然后自主设计架构, 交由台积电制造芯片, 台积电是全球最大的芯片制造商。芯片制造的基础大家都有，但是功能和性能却差别很大，不可同日而语，而苹果手机一直作为性能最好的处理器，快速的图形渲染，都是基于苹果自身持有的核心技术上构建的, 苹果、骁龙，麒麟，三星的猎户座、联发科等处理器都是基于ARM的底层架构研发，不同的是苹果、高通等是购买了ARM的专利技术然后进行二次开发，用上自研的架构，比如高通的Kryo这种自主架构，其性能自主架构要强于公版架构。苹果好像拥有ARM的架构许可证，可以从头设计自己的芯片。
+	\begin{center}
+		{\LARGE \textcolor{red}{芯片战争: ARM前世今生}}
+	\end{center}
+
+
+	1978年，一家名字叫CPU的公司，悄悄在英国剑桥诞生。不要惊讶，这个CPU，和我们经常所说的电脑里那个CPU(entral Processing Unit，中央处理器)是两回事。
+
+	CPU公司的全称，是Cambridge Processor Unit，字面意思是“剑桥处理器单元”。CPU公司的创始人，是一个名叫Hermann Hauser的奥地利籍物理学博士，还有他的朋友，一个名叫Chris Curry的英国工程师。
+
+
+	CPU公司成立之后，主要从事电子设备设计和制造的业务。他们接到的第一份订单，是制造赌博机的微控制器系统。这个微控制器系统被开发出来后，称之为Acorn System 1。
+
+
+	1979年，在经营逐渐进入轨道之后，这家公司给自己换了个名字，叫做Acorn Computer Ltd。Acorn是什么意思？橡子。对，就是冰河世纪里面，那只松鼠一直在追的那个东东。
+
+	\begin{figure}[H]
+		\centering
+		\subfigure[]{
+			\includegraphics[scale=0.2]{sos}}
+		\subfigure[]{
+			\includegraphics[scale=0.2]{acorn}}
+		\captionsetup{font={small}}
+	\end{figure}
+	Acorn Computer Ltd公司的商标，里面就有一个橡子。之所以叫Acorn，还有一个有趣的说法，就是因为他们想在电话黄页里排在Apple(苹果)公司的前面。在Acorn System 1之后，他们又陆续开发了System 2、3、4，还有面向消费者的盒式计算机Acorn Atom。
+
+	到了1981年，公司迎来了一个难得的机遇: 英国广播公司BBC打算在整个英国播放一套提高电脑普及水平的节目，他们希望Acorn能生产一款与之配套的电脑。这个计划非常宏大，英国政府也参与其中(购机费的一半将由政府资助)，电脑一旦采购，将进入英国的每一间教室。
+
+	接下这个任务之后，Acorn就开始干了起来。结果，很快他们就发现，自己产品的硬件设计并不能满足需求。当时，中央处理器的发展潮流，正在从8位变成16位。Acorn并没有合适的芯片可以用。
+
+	一开始，他们打算使用美国国家半导体和摩托罗拉公司的16位芯片。但是，经过评估后，他们发现了两个缺陷：
+
+	第一，芯片的执行速度有点慢，中断的响应时间太长。
+	第二，售价太贵，一台500英镑的电脑，处理器芯片就占到100英镑。
+
+	于是，他们打算去找当时如日中天的英特尔(Intel)，希望对方提供一些80286处理器的设计资料和样品。然而，英特尔冰冷地拒绝了他们。
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{inter}
+		\captionsetup{font={small}}
+	\end{figure}
+	备受打击的Acorn公司，一气之下决定自己干，自己造芯片。当时，Acorn公司的研发人员从美国加州大学伯克利分校找到了一个关于新型处理器的研究: 简化指令集，恰好可以满足他们的设计要求。
+
+	在此基础上，经过多年的艰苦奋斗，来自剑桥大学的计算机科学家Sophie Wilson和Steve Furber最终完成了微处理器的设计(前者负责指令集开发，后者负责芯片设计)。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{sw}
+		\captionsetup{font={small}}
+		\caption{Sophie Wilson和Steve Furber}
+	\end{figure}
+	对于这块芯片，Acorn给它命名为Acorn RISC Machine。嗯，这就是大名鼎鼎的“ARM”三个字母的由来。Acorn是公司名称，Machine是机器，那RISC是什么意思呢？
+
+	前面说过，他们是基于“简化指令集”技术做出的芯片。RISC的意思，就是简化指令集计算机，Reduced Instruction Set Computer。这里解释一下，到底“简化指令集”有什么意义。它是相对于“复杂指令集CISC(complex instruction set computer)”的一个概念。
+
+	早期的处理器都是CISC架构(包括英特尔的处理器)，随著时间推移，有越来越多的指令集加入。由于当时编译器的技术并不纯熟，程序都会直接以机器码或是组合语言写成，为了减少程序的设计时间，逐渐开发出单一指令，复杂操作的程序代码。设计师只需写下简单的指令，再交给CPU去执行。
+
+	但是后来有人发现，整个指令集中，只有约20％的指令常常会被使用到，大约占了整个程序的80％；剩余80％的指令，只占了整个程序的20％(典型的二八原则)。
+	于是，1979年美国加州大学伯克利分校的David Patterson教授提出了RISC的想法，主张硬件应该专心加速常用的指令，较为复杂的指令则利用常用的指令去组合。
+
+	简单来说，CISC任务处理能力强， 适合桌面电脑和服务器。RISC通过精简CISC指令种类，格式，简化寻址方式，达到省电高效的效果，适合手机、平板、数码相机等便携式电子产品。
+
+	\begin{table}[H]
+	\arrayrulecolor[HTML]{DB5800}
+	\captionsetup{font={small}}
+	\caption{\small{CISC和RISC对比}}
+	\centering
+	\begin{tabular}{ccccc}
+		\hline
+		\rowcolor{lightgray}
+		\textbf{{\small 指令集}} & \textbf{{\small 全称}} & \textbf{{\small 中文}} & \textbf{{\small 特点}} & \textbf{{\small 代表}} \\
+		\hline
+		{\small RISC} & {\small Reduced Instruction Set Computer} & {\small 简单指令集} & {\small 低功耗，低性能} & {\small ARM} \\
+		
+		{\small CISC} & {\small Complex Instruction Set Computer} & {\small 复杂指令集} & {\small 高功耗，高性能} & {\small Inter}\\
+		
+		\hline
+		\end{tabular}
+	\end{table}
+
+	当时研发出来的第一款处理器芯片的型号，被定为 ARM1。我们来对比一下ARM1和当时Intel的80286处理器(也就是常说的286)：
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.6]{p1}
+		\captionsetup{font={small}}
+		%\caption{Sophie Wilson和Steve Furber}
+	\end{figure}
+
+	可以看出来，ARM1和80286各有所长。但是，就在同一年，1985年10月，英特尔发布了80386。在80386面前，ARM1就只有被吊打的份了。
+
+
+	32位，27.5万个晶体管，频率为12.5MHz，后提高到33MHz。让ARM直接在性能上和x86系列硬杠，显然是不现实的。ARM有意无意地选择了与Intel不同的设计路线: Intel持续迈向x86高效能设计，ARM则专注于低成本、低功耗的研发方向。
+
+	扯远了，继续回来说BBC要的那款电脑。前面说了，BBC在1981年就提出需求，如果等到1985年ARM1出来，那岂不是黄花菜都凉了？所以，在ARM1问世之前，Acorn其实已经提供了解决方案给BBC。当时，Acorn的电脑，临时采用了MOS 6502处理器(由MOS科技研发的8位微处理器)。
+
+
+	到了1984 年，大约80\%的英国学校都配有这款电脑。Acorn公司彻底在大英帝国老百姓面前刷了一把存在感。后来，ARM处理器被研发出来之后，用在了BBC Micro的后续型号中。
+
+	在ARM1之后，Acorn陆续推出了好几个系列，例如ARM2，ARM3。时间又继续往前推移。1990年，Acorn为了和苹果合作，专门成立了一家公司，名叫ARM。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{arm}
+	\captionsetup{font={small}}
+	\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+	
+
+	注意，这里的ARM是公司名称，不是芯片名称。这个ARM的完全拼写也不一样，是Advanced RISC Machines。
+	\begin{itemize}
+		\item 前面的芯片名称：Acorn RISC Machine
+		\item 现在的公司名称：Advanced RISC Machines
+	\end{itemize}
+
+	ARM是一家合资公司，苹果投了150万英镑，芯片厂商VLSI投了25万英镑，Acorn本身则以150万英镑的知识产权和12名工程师入股。尽管如此，ARM的起步还是比较寒酸。他们最开始的办公地点，是一个谷仓。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{p2}
+		\captionsetup{font={small}}
+		%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+	不过，谷仓的内部环境还算不错。在成立后的那几年，ARM业绩平平，工程师们也人心惶惶，害怕随时都会失业。
+
+
+	在这个情况下，ARM决定改变他们的产品策略——他们不再生产芯片，转而以授权的方式，将芯片设计方案转让给其他公司，即“Partnership”开放模式。没想到正是这种模式，开创了属于ARM的全新时代。
+
+	{\large 注意，下面这段是重点！}
+
+	ARM所采取的是IP（Intellectual Property，知识产权）授权的商业模式，收取一次性技术授权费用和版税提成。具体来说，ARM有三种授权方式：处理器、POP以及架构授权。
+
+	处理器授权是指授权合作厂商使用ARM设计好的处理器，对方不能改变原有设计，但可以根据自己的需要调整产品的频率、功耗等。
+
+	POP(processor optimization pack处理器优化包)授权是处理器授权的高级形式， ARM出售优化后的处理器给授权合作厂商，方便其在特定工艺下设计、生产出性能有保证的处理器。
+
+	架构授权是ARM会授权合作厂商使用自己的架构，方便其根据自己的需要来设计处理器(例如后来高通的Krait架构和苹果的Swift架构，就是在取得ARM的授权后设计完成的)。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{p3}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+	所以，授权费和版税就成了ARM的主要收入来源。除此之外，就是软件工具和技术支持服务的收入。对于半导体公司来说，授权费和版税到底有多少呢？一次性技术授权费用在100万-1000万美元之间，版税提成比例一般在1%-2%之间。
+
+	正是ARM的这种授权模式，极大地降低了自身的研发成本和研发风险。它以风险共担、利益共享的模式，形成了一个以ARM为核心的生态圈，使得低成本创新成为可能。当ARM提出这种合作模式之后，开始了尝试: 
+
+	1991年，ARM将产品授权给英国GEC Plessey半导体公司。1993年，ARM将产品授权给Cirrus Logic和德州仪器(Texas Instruments-TI)。
+
+	与德州仪器的合作，给ARM公司带来了重要的突破。而且，也给ARM公司树立了声誉，证实了授权模式的可行性。此后，越来越多的公司参与到这种授权模式中，与ARM建立了合作关系。其中就包括三星、夏普等公司。在此基础上，ARM坚定了授权模式的决心，并着手设计更多性价比高的产品。
+	1993年，苹果公司推出了一款新型掌上电脑产品: Newton。ARM公司开发的ARM6芯片被用于该产品之中。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p11}
+	\captionsetup{font={small}}
+	\caption{Apple Newton Message Pad现在被认为是PDA和智能手机的鼻祖}
+	\end{figure}
+	
+
+	但是很遗憾，因为Newton技术过于超前，加上一些用户体验上的缺陷，所以未能被市场接受，后来以失败告终。但ARM积累了经验，继续改良技术。没过多久，ARM迎来了自己的黄金机遇——移动电话时代来临了。
+
+	ARM首先迎来了一个大客户: 诺基亚Nokia。
+
+	当时，诺基亚被建议在即将推出的GSM手机上使用德州仪器的系统设计，而这个设计是基于ARM芯片的。因为内存空间的问题，诺基亚一开始对ARM是拒绝的。为此，ARM专门开发出16位的定制指令集，缩减了占用的内存空间。
+
+	就这样，诺基亚6110成为了第一部采用ARM处理器的GSM手机，上市后获得了极大的成功。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p12}
+	\captionsetup{font={small}}
+	\caption{Nokia 6110: 相信有不少人用过或见过}
+	\end{figure}
+	
+
+	ARM后来又跟着推出了ARM7等一系列芯片，授权给超过165家公司。随着移动手机的井喷式普及，ARM赚得盆满钵满，不亦乐乎。1998年4月17日，业务飞速发展的ARM控股公司，同时在伦敦证交所和纳斯达克上市。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p13}
+	\captionsetup{font={small}}
+	\caption{ARM在纳斯达克上市}
+	\end{figure}
+	
+
+	在ARM公司上市之后，处于后乔布斯时代的苹果公司，逐步卖掉了所持有的ARM股票，把资金投入到ipod产品的开发上。鉴于苹果研究人员对ARM芯片架构非常熟悉，ipod也继续使用了ARM芯片。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p14}
+	\captionsetup{font={small}}
+	\caption{Apple ipod}
+	\end{figure}
+	
+
+	众所周知，在乔帮主的带领下，ipod取得了巨大的商业成功。这还没完，在2007年，真正的划时代产品出现了，那就是iPhone。苹果iPhone的出现，彻底颠覆了移动电话的设计，开启了全新的时代。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{p4}
+		\captionsetup{font={small}}
+		\caption{第一代iPhone，使用ARM设计、三星芯片}
+	\end{figure}
+	
+
+	Iphone的热销，App Store的迅速崛起，让全球移动应用彻底绑定在ARM指令集上。紧接着，2008年，谷歌推出了Android(安卓)系统，也是基于ARM指令集。至此，智能手机进入了飞速发展阶段，ARM也因此奠定了在智能手机市场的霸主地位。
+
+	同年，ARM芯片的出货量达到了一百亿颗。
+
+	2011年，就连传统Wintel联盟(windows +intel)的微软，也宣布Windows8平台将支援ARM架构。想必英特尔一定是连肠子都悔青了。
+
+
+
+	其实，正是英特尔一步一步将ARM送上了如今无法取代的位置。90年代，高通想和英特尔合作，英特尔认为手机市场太小，拒绝了合作。后来，苹果的第一代iPhone一开始也想和英特尔合作，英特尔还是以相同的理由拒绝了。结果，移动设备市场被英特尔拱手让人，现在想追也追不回来了。
+
+	2010年6月中，苹果公司向ARM董事会表示有意以85亿美元的价格收购ARM公司，但遭到ARM董事会的拒绝。
+
+	2016年7月18日，曾经投资阿里巴巴的孙正义和他的日本软银集团，以243亿英镑(约309亿美元)收购了ARM集团。
+
+
+	至此，ARM成为软银集团旗下的全资子公司。不过，软银集团表示，不会干预或影响ARM未来的商业计划和决策。
+
+	最后，小枣君觉得有必要和大家简单介绍一下ARM的产品体系。这一块确实有点乱，很多业内人士都容易混淆。ARM11芯片之前，每一个芯片对应的架构关系如下: 
+
+
+	实际的芯片型号并不止这些
+
+	ARM11芯片之后，也就是从ARMv7架构开始，ARM的命名方式有所改变。新的处理器家族，改以Cortex命名，并分为三个系列，分别是Cortex-A，Cortex-R，Cortex-M。呵呵，发现了没，三个字母又是A、R、M。
+
+	Cortex-A系列(A: Application)
+
+	针对日益增长的消费娱乐和无线产品设计，用于具有高计算要求、运行丰富操作系统及提供交互媒体和图形体验的应用领域，如智能手机、平板电脑、汽车娱乐系统、数字电视等。
+
+	Cortex-R系列 (R: Real-time)
+
+	针对需要运行实时操作的系统应用，面向如汽车制动系统、动力传动解决方案、大容量存储控制器等深层嵌入式实时应用。
+
+
+	Cortex-M系列(M: Microcontroller) 
+
+	该系列面向微控制器领域，主要针对成本和功耗敏感的应用，如智能测量、人机接口设备、汽车和工业控制系统、家用电器、消费性产品和医疗器械等。
+
+
+	其实，除了上述三大系列之外，还有一个主打安全的Cortex-SC系列(SC：SecurCore)，主要用于政府安全芯片。好啦，讲了那么多，来做个总结。
+
+	总之，ARM之所以能有今天的地位，既有外部的机遇因素，也有内部的战略因素。他们选择了一条和英特尔截然相反的道路。英特尔一直以来坚持的是重资产的、封闭的全产业链商业模式，而ARM是轻资产的、开放的合作共赢模式。
+
+	对ARM来说，合作伙伴的成功就意味着自己的成功。与ARM开展业务往来的每家公司均与ARM建立了“双赢”的共生关系。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{p15}
+	\captionsetup{font={small}}
+	\caption{ARM 合作社区包含 1200 多位伙伴}
+	\end{figure}
+	
+
+	ARM在低功耗方面的DNA，刚好赶上了移动设备爆发式发展的时代，最终造就了它的辉煌。在即将到来的万物互联时代，可以预见，ARM极有可能取得更大的成功。不知道大家从ARM的故事里学到了什么。我有几点体会如下：
+	\begin{enumerate}
+		\item 人被逼急了，什么都干得出来。
+		\item 你一直自以为的弱点，很可能是你的优点。
+		\item  如果你干不过你的对手，就想办法团结更多的朋友。
+	\end{enumerate}
+
+\section{Inter和AMD}
+
+	\begin{center}
+		{\LARGE \textcolor{red}{细说Intel和AMD CPU的那些事}}
+	\end{center}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{p7}
+	\captionsetup{font={small}}
+	\caption{Inter和AMD}
+	\end{figure}
+	最近，有关Intel和AMD文章和报道又充斥着我们的眼球和朋友圈，今天跟大家分享一篇有关Intel和AMD CPU历史的长篇文章，文章转自互联网，由于文章发布时间比较久，已经很难确认原创作者了，但是作者对两家厂商的精辟独到的分析和见解，也帮助我们对Intel和AMD有个深入的认知，看到如此经典文章，唯有对原作者表示由衷的致敬，以下是全文转载，仅限用于技术交流和分享。
+
+	\begin{flushleft}
+		{\Large \textcolor{blue}{“史前年代”，AMD与Intel是一家}}
+	\end{flushleft}
+
+	【前言】Intel与AMD，这对“欢喜冤家”，从第一台PC诞生之日起就一直斗争不断，尽管这是一场“不公平的较量”——无论是技术实力还是资金储备两者都差距悬殊。但不可否认，正因为有竞争对手的存在，我们才能享受到今天这丰富多彩的数字生活。回味历史，Intel在大多数时间里占据着统治地位；AMD则从“代工厂”起家，一次又一次向Intel发起冲锋，推动着历史车轮的前进。
+
+	\begin{flushleft}
+	{\large \textcolor{blue}{	1、AMD与Intel：本是同根生}}
+	\end{flushleft}
+
+	AMD CPU兼容Intel主板，一块CPU同时出现AMD与Intel的Logo……这些事情在今天看来简直是天方夜谭，但他们却切切实实地发生过。Intel与AMD两家本是同根生，有着很深的渊源，他们的创始人都来自同一家企业——仙童半导体公司，甚至还有过密切合作。
+
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{	AMD与Intel本是同根生}}
+	\end{flushleft}
+
+	两家公司成立仅相差一年，但无论从技术储备、资金实力来看，AMD都比不上Intel，这也是无可奈何的事——Intel的两位创业者，诺伊斯是集成电路发明人之一，摩尔则是著名的“摩尔定律”提出者，他们在创办Intel之前就已经是业界威望很高的名流，这些先天性优势是它在短时间内就能吸引到大量的优秀技术人才，在微处理器的研制上一开始就处于领先地位。反观AMD，其创始人桑德斯只是销售出身，创业之路举步维艰。
+
+	\begin{flushleft}
+	{\large \textcolor{blue}{在那个技术至上的年代，销售出身的AMD很好募集到人才和风险投资生}}
+	\end{flushleft}
+
+ 	正因为如此，AMD初期的定位很明确，以市场为导向，凭借质优价廉的产品努力成为各类产品的第二供应商。作为第二供应商要求的不是技术领先与创新能力，而是学习模仿以及生产制造能力，显然这与AMD当时的自身条件是匹配的。而Intel则以技术发展为导向，是典型的技术领先与创新者；
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{	当年的“蓝色巨人”IBM，促成了Intel与AMD的合作}}
+	\end{flushleft}
+
+	IBM，当时的“蓝色巨人”，扮演着促成Intel与AMD合作的关键角色。上世纪80年代初，微型计算机迅猛发展，作为PC市场的后进入者，为了快速推出产品，重新树立技术领先形象，IBM破天荒使用了开放式的体系架构，并对PC机两大核心部件——操作系统与微处理器采取外包策略。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{IBM的这张订单是Intel与AMD的第一桶金}}
+	\end{flushleft}
+	在1982年，IBM迫使Intel与AMD签署协议，使后者成为8086和8088处理器的第二供应商（因为身经百战的IBM知道，如果将微处理器完全放给一家供应商，很有可能造成其坐大难控）Intel开放技术，全面授权AMD生产x86系列处理器，而AMD则放弃了自己的竞争产品，成为Intel后备供应商。双方联手合作，终于拿下了IBM的订单，也由此锁定了个人电脑技术发展路径。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{第一台PC面世，里面搭载着AMD代工的Intel处理器}}
+	\end{flushleft}
+	
+	可能连IBM也想象不到，当初的一个商业行为，成就了现在的AMD。在这个阶段，AMD一直是以生存为目的，追随Intel的脚步，也可以说是依附于Intel，他没有对抗的资本。
+	
+	\begin{flushleft}
+		{\Large \textcolor{blue}{1985-1996：Intel统领CPU市场十余年}}
+	\end{flushleft}
+	
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{2、Intel霸主地位的形成\\}}
+	\end{flushleft}
+
+	IBM-PC造就了微软，也造就了Intel。此时此刻，Intel已经研制出新80286处理器，名噪一时。随后，80386、80486、奔腾系列诞生。Intel事业如火中天，一跃成为与微软齐名的PC巨人。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{早期AMD拥有Intel授权，所以处理器上同时出现AMD与Intel字样\\}}
+	\end{flushleft}
+	
+	在此期间发生了一些插曲，使得原本合作无间的Intel、AMD走向对抗。在AMD拿到286的授权并生产自家的286芯片之后，Intel意识到AMD正逐渐对自己的地位构成威胁。1985年，Intel突然发难，中止了5年前签订的技术合作协议，独家生产386处理器。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{80386处理器，是Intel霸业的开始\\}}
+	\end{flushleft}
+	这一招打得AMD措手无策，只能诉诸法律。此后不久就演化成为IT业界最惨烈的一场诉讼，历时三年，涉及近百名证人、几千件证物、几万页各类文书，双方都为此损失了几千万美元……尽管最后AMD胜诉，Intel又以各种各样的理由拖延，一直到1994年才发给AMD有关生产386的许可，此时此刻386早就是“过气明星”了，AMD就此失去了CPU发展的黄金时期。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{此时的AMD还很弱小，只能依附于Intel，不断去兼容Intel PC\\}}
+	\end{flushleft}
+	
+	还好，AMD也不至于一败涂地，1989年（这时候还在打官司）AMD生产了兼容386 PC接口的AM386处理器，性能与Intel的386芯片接近，却是由AMD自行研制。在接下来的几年时间，AMD就像国内的仿制工厂，不断生产兼容Intel PC的处理器，以低廉的价格打入市场，顽强地生存在Intel巨大身影之下。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{当年的Intel一家独大，众多厂商只能生活在Intel的身影之下\\}}
+	\end{flushleft}
+
+	1993年，全面超越486的新一代586处理器问世，为了摆脱486时代处理器名称混乱的困扰，避免其他厂商使用同样的名字来“山寨”，Intel将新一代产品命名为Pentium并进行商标注册，以区别AMD和Cyrix等公司的产品，AMD和Cyrix只能分别推出了K5和6x86处理器来应对，并开始反思未来出路。
+
+	\begin{flushleft}
+		{\Large \textcolor{blue}{1997-1998：Intel策略失误引发的斗争}}
+	\end{flushleft}
+	
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{3、转折，AMD崛起\\}}
+	\end{flushleft}
+	
+	1997年对于所有Wintel体系的兼容CPU生产厂家而言，可算是悲喜交加的一年了。在这一年里的大部分时间里，Intel不但凭借其Pentium MMX（P55C）系列CPU仗剑天下，打得AMD K6和Cyrix MII等芯片毫无还手之力，更推出了具有专利保护的Slot1主板。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{当初的奔腾MMX红极一时\\}}
+	\end{flushleft}
+	
+	一直以来，这些兼容CPU厂家都是依靠开放的Socket接口才得以生存，假如不能在接口上与Intel保持一致，他们将会被逼上绝路。正当业界一致认为Intel将一统江湖之时，Intel做出了一个惊人的决定——退出Socket7市场。为什么Intel会在Slot1市场还未完全成熟，而Socket7又正当壮年之时宣布退出呢？
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{	Intel推出Socket7市场，转战Slot1\\}}
+	\end{flushleft}
+
+	原来，它也有其难言之隐。从386以来，AMD和Cyrix便一直跟跑在后，哪一次技术革新不是Intel出钱出力，最后又让他们来兼容，争夺市场。与其这样不如干脆给他来个连根拔起，断了你兼容的念头。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{AMD：既然无法再兼容，那就走自己的道路\\}}
+	\end{flushleft}
+	
+	AMD抓住了这个百年不遇的机会，坚决地在Socket7架构上推出高频K6，并提出了Super7架构，大有与Intel生死一战之势。本来是由Intel提出的100外频的概念，成为AMD反击Intel的最有力武器。AMD这一理念得到了众多芯片开发商的鼎立相助。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{Socket7市场正值壮年，如果被迫改动接口对主板芯片厂商来说弊大于利\\}}
+	\end{flushleft}
+	
+	最终，AMD 100MHz外频处理器在Super7架构上比Intel Slot1的440BX芯片组早进入市场。且其综合性能比在66MHz下要高出6.8\%~15\%左右（这主要归功于100MHz主频对前置总线的2级缓存的影响），反观Slot1架构却只有2\%~5\%的提升。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{Intel策略的失误给了AMD反击机会\\}}
+	\end{flushleft}
+	
+	100MHz外频这柄双刃剑终于砍伤了Intel自己。而AMD也因此声名大震。 另一方面，Cyrix高估了Intel的实力，不敢与之正面对抗，正一步步走向衰落。
+
+	\begin{flushleft}
+		{\Large \textcolor{blue}{1999-2003：AMD与Intel展开角逐较量}}
+	\end{flushleft}
+
+		\begin{flushleft}
+		{\large \textcolor{blue}{4、激战，两家的较量\\}}
+	\end{flushleft}
+	1999年，AMD基于K7微架构的Athlon处理器诞生，综合性能超越同频的奔腾III（代号Katamai），让所有的DIY用户为止震惊，后来又抢先发布了1GHz CPU，改变了AMD在世人心中“Intel代工厂”的形象，与Intel同台竞技。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{AMD抢先发布1GHz处理器，改变“Intel代工厂”的形象\\}}
+	\end{flushleft}
+	不久，Intel新奔腾III（代号Coppermine，铜矿）发布,凭借内置全速256KB二级缓存，重新夺回性能宝座。尽管回归Socket接口，但通过各样山寨转接卡，可以用在老的Slot 1主板上，给予AMD一下狠狠的回击。但是AMD也准备好应对的产品了，那就代号Thunderbird（雷鸟）的Athlon。
+
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{速龙“雷鸟”，AMD辉煌的开始\\}}
+	\end{flushleft}
+	“雷鸟”与“奔3”，两者频率相近时旗鼓相当，不过往往雷鸟的主频更高。更重要的是，其价格只有奔腾3的2/3，主板也更便宜，主打性价比受到DIY用户的青睐，AMD以及Athlon被更多用户所认识。此外，为了争夺入门市场，AMD推出了Druon（俗称“毒龙”）品牌，与Intel赛扬直接竞争。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{主打入门市场，超频潜力巨大，AMD Duron成为性价比之王\\}}
+	\end{flushleft}
+
+	时间来到2001年下半年，Intel高端向Pentium 4切换，虽然第一代P4性能平平，同频甚至比不过P3与Athlon，但那时P4频率已经达到2.0G，相比只有1.4G的Athlon还是有优势的。入门级Intel也把Celeron的外频拉到100MHz，提高竞争力。
+
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{Intel的奔腾4算是Intel最“长寿”的处理器了\\}}
+	\end{flushleft}
+
+	面对这样的状况，AMD知道“雷鸟”不能再和P4玩频率战了，Duron不支持SSE指令很快也要吃亏，于是发布了Athlon XP和新的Duron。Athlon XP相比Athlon主要加入了SSE指令支持，并引入PR值来命名自己的产品型号。
+	
+	--------------------------------------------------------------------------
+	
+	\begin{flushleft}
+		{\large Athlon XP采用PR值命名的原因}
+	\end{flushleft}
+
+	那时Pentium 4提升频率太容易了，当时主频决定性能的概念已深入民心，面对提升频率较容易的P4，Athlon是追不上的。于是，因此AMD引入PR值方式，AMD的解释是以Athlon 1G为标准来标PR值的，但实际无疑是针对P4的，例如Athlon XP 1700+，寓意性能大于1.7G的P4，而实际上Athlon XP相比第一代P4确实有优势。
+	
+	--------------------------------------------------------------------------
+
+	Athlon XP的性能高于第一代P4，性价比突出，但存在发热量大、超频潜力一般等问题，在DIY用户中口碑一般。等到2002年第二代P4和赛扬4发布之后，AMD又处于被压制的境地。
+	既然硬拼打不过，那就谈性价比。2003年初，AMD继续升级Athlon XP，代号为Barton（巴顿，经典出场了！），搭配当时NVIDIA的nForce 2 Ultra主板，性能得到进一步增强，更加接近第二代P4。仍是主打性价比，最超值的型号就是老一辈DIY用户再熟悉不过的Athlon XP 2500+。
+
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{“巴顿将军”，超频神器\\}}
+	\end{flushleft}
+
+	“巴顿CPU”+“DDR-400双通道内存”+“NVIDIA nForce 2 Ultra主板”，这一套装备买回去，价格与Intel的“赛扬4”平台差不多，性能却强得多了。另外，对DIY用户更重要的是，在BIOS把外频设置成200MHz，就变成了Athlon XP 3200+，这是K7平台最强的代表！媲美P4 3.0G，而基本上2500+都可以超频到这样的频率！
+	编辑点评：1999-2003年初，AMD与Intel展开争锋相对的拉锯战，也是DIY市场的黄金岁月，在那个年代，超频是提升整机性能最直接的方式，AMD因此积累了大批量的忠实用户，成为Intel霸业上强有力的竞争对手。
+
+	\begin{flushleft}
+		{\Large \textcolor{blue}{2004-2006：AMD逆转，最辉煌的时期}}
+	\end{flushleft}
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{5、逆转，AMD最辉煌的两年\\}}
+	\end{flushleft}
+
+	虽然K7最终版Athlon XP口碑很好，但始终屈居在Pentium 4之下，那时雄心勃勃的AMD当然不甘落后，早在2001年便宣布了K8（代号Hammer）计划，2003年8月，AMD终于发布了K8的Athlon 64，x86-64技术在AMD在长达30多年的技术竞争史上首次领先对手，打破了以往技术跟随与模仿者的形象，用64位处理器证明了自己的实力，一场全面的反击战打响了。
+
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{Athlon 64发布，K8时代来临\\}}
+	\end{flushleft}
+
+	第一批Athlon 64分为Athlon 64和Athlon 64 FX两个版本，接口分别为Socket 754和Socket 940，代表型号是Athlon 64 3200+和Athlon 64 FX-51，最大区别是前者仅支持单通道内存，后者则支持双通道，并且需要不同的主板支持，分别面向主流和高端发烧市场。由于产品定位、性能、配套主板和超频潜力等原因，面对如日中天的Intel P4C，最初的Athlon 64在DIY用户中没有太大反响。
+
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{最初Athlon 64的一个败笔，两种过渡性接口\\}}
+	\end{flushleft}
+
+	后来AMD吸取教训，在2004年对Athlon 64系列采用新的市场策略，推出Socket 939统一940和754接口，支持双通道内存，同时降低售价，推出更多的型号完善产品市场，搭配当时NVIDIA的nForce 4主板发起进攻，刚好那时Intel第三代P4设计失败，性能没进步、发热量巨大，AMD取得领先优势。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{玩游戏、选AMD，Athlon 64 3000+/3200+又成经典\\}}
+	\end{flushleft}
+	
+	而在高端处理器上，Athlon 64 FX历经FX-53、FX-55、FX-57、FX-60(双核）等进化，在游戏性能、日常应用等超越Intel P4EE，后者仅能在媒体处理、3D渲染部分应用上保持优势，因此AMD稳坐性能宝座两年多，不过，其售价也不断刷新高，高达999美元。
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{FX，曾经是AMD荣耀、辉煌、最强性能的标识}}
+	\end{flushleft}
+	
+
+	在完成中高端市场布局之后，2005年下半年，基于K8微架构的“闪龙”（代号Sempron）取代K7成为入门平台的主力，最初是754平台，到06年下半年升级为AM2平台。闪龙处理器拥有出色的能耗比与强大的超频潜力，不少产品外频能超上300MHz以上，以最经典的2500+为例，从1.4GHz超频到2.1GHz是相当轻松的，产品价格便宜，很符合DIY用户的要求。因此带动了此也带动了内存市场，海力士D43、三星UCCC、英飞凌BE5/CE5等都是著名的超频内存。
+
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{K8 Sempron（754）曾经红极一时\\}}
+	\end{flushleft}
+
+	AMD曾率先发布1GHz CPU、率先推出X86-64位家用CPU，美名记录在CPU发展史册，对于双核CPU，AMD能否再下一城呢？可惜，Intel在2005年5月26日，抢先AMD发布了桌面上第一款双核CPU，Pentium D，虽然内部是由两颗Pentium 4共享FSB组成、后来还被证实为“高发热、低性能”，但也是历史上第一款双核了。约1周后，AMD拿出了自家的双核Athlon 64 X2。（在这段时间AMD还挑起了著名的“真假双核”的言论）
+	
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{AMD挑起的“真假双核”的言论（上图是“真假四核”时期的）\\}}
+	\end{flushleft}
+	
+	Athlon 64 X2可以说是AMD历史上最成功的CPU，凭借K8微架构的优势，功耗控制、双核性能，都领先Intel的Pentium D。当年，Athlon 64 X2是多少DIY用户梦寐以求的CPU啊。不过，它们也成为AMD历史上除了A64 FX外最昂贵的CPU，最便宜的X2 3800+也要2500多元、最强的X2 4800+高达8000元......当然，Athlon 64 FX系列也升级到双核，就是最著名的Athlon 64 FX-60，继续稳坐性能宝座。而带动Athlon 64 X2普及的，是2006年的Athlon 64 X2 3600+。
+	
+	编辑点评：2004-2006年是AMD最辉煌的两年，在这两年时间里，AMD赚足了世人的眼球，也赚足了钞票（旗舰产品是何等之贵)，64位、“真双核”、高性能/低功耗等等，业界的风向标都趋向AMD；对应的，这两年就Intel最难熬的两年，奔腾4、奔腾D的过长的流水线带来超高的能耗，Intel迫切需要改变“频率至上”的思维，摆脱“高发热/低性能”的形象。
+	
+	\begin{flushleft}
+		{\Large \textcolor{blue}{2006-2008：酷睿诞生，Intel全面反击}}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{6、反击，Intel毫不留情\\}}
+	\end{flushleft}
+
+	从05年开始，Intel就制定了一套“钟摆计划”（Tick-Tock战略）。Tick-Tock就是时钟的“嘀嗒”的意思，一个嘀嗒代表着一秒，而在Intel的处理器发展战略上，每一个嘀嗒代表着2年一次的工艺制程进步。正是这套计划，让Intel在06年之后逆转了局面，并把AMD一步步逼退。
+	
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{Tick-Tock模型，是Intel胜利的关键\\}}
+	\end{flushleft}
+
+	2006年7月，Intel新一代处理器Core 2横空出世（酷睿2，俗称扣肉），使用65纳米制程工艺，英特尔声称它会有40\%的效能增长，同时减少40\%的功耗。这一重磅产品的发布，让AMD的Athlon 64 X2瞬间优势全无，性能宝座重新落入Intel手上（直到今天），高端双核市场由Intel重新主导，新的产品定价，让Athlon 64 X2一夜暴降千元以上... AMD沿用了3年、最成功、最耀眼的FX品牌，开始淡出人们的视野。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{2006年，Intel开始反击\\}}
+	\end{flushleft}
+
+	打败了AMD的Athlon 64 X2之后，Intel年底又发布了首款四核CPU，Core 2 Quad，趁胜追击。后来AMD跟进发布了其四核Phenom（羿龙），可惜性能还是比不过前置，功耗也更高，还爆出了TLB BUG。Intel由此重新树立在技术层面的绝对领先位置。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{天价四核诞生，Intel重塑高端技术形象\\}}
+	\end{flushleft}
+
+	在高端市场无法占据优势，AMD只能再次打起性价比的旗号，重新定位Athlon 64 X2，与Intel的Core 2和Pentium D进行竞争。刚好此时的双核开始普及，Athlon 64 X2 3600+就成了普及先锋。2007年，AMD又针对主流市场发布了“黑盒”系列CPU，最大卖点是不锁倍频、轻松超频，造就了Athlon 64 X2 5000+/黑盒这样的经典产品。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{面对强敌，Athlon 64 X2转攻性价比路线\\}}
+	\end{flushleft}
+
+	TICK-TOCK路线一年一更新，打得AMD节节败退，面对Intel Core 2双核的强势，Athlon 64 X2不是对手，Phenom X4对付有点自贬身价。于是AMD就想出一招奇兵——Phenom三核。以“三打二”，类似田忌赛马的策略，多线程性能更强，而让消费者也会认为三核更好。可惜由于65nm工艺限制，Phenom X3频率太低了，那时支持三核以上的软件、游戏甚少，加上Intel的市场策略，Core 2 E7系列始终更受青睐。
+	
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{AMD独家三核现身，新的对敌策略\\}}
+	\end{flushleft}
+
+	编辑点评：风水轮流转，2006-2008年，是AMD一段不堪回首的艰难时期：被Intel的Core 2狂攻，Phenom出师不利，显卡方面收购ATI之后又被NVIDIA压着，那个曾经辉煌的AMD失去了光芒。不过，这段时间AMD主打性价比的策略还是成功的，独有的三核、APU计划等对今后影响深远。
+	
+	--------------------------------------------------------------------------
+	
+	2006年，AMD收购ATI之后的故事\\
+	2006年7月，AMD宣布以54亿美元收购当时全球第二大图形核心巨头ATI，意味着一个全新的AMD到来。收购ATI后，AMD在2007年进入最低迷的时期，CPU不给力，还要帮ATI收拾HD 2000系列显卡的残局。不过AMD挺过来了，后来主板芯片、独立显卡都是自己的产品线，口碑很好，780G主板、HD4850显卡等等。之后还宣布了3A平台和APU计划。假如AMD没有收购ATI，那绝对是另一番景象，当然，没有如果的。
+	
+	--------------------------------------------------------------------------
+	
+	\begin{flushleft}
+		{\Large \textcolor{blue}{2009年至今：避重就轻，AMD改变路线}}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{7、分歧？差异化路线显现\\}}
+	\end{flushleft}
+
+	自从酷睿2上市之后，Intel在高端市场一扫千军，无所匹敌，并严格依照Tick-Tock路线实现工艺架构更新，不给对手喘息的机会。如此一来，AMD只能调整战略，以多核心、性价比、整合平台等优势闯出一片天地。
+	
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{收购ATI后，AMD有了整合平台的优势\\}}
+	\end{flushleft}
+
+	2009年，AMD终于走过重重磨难，进入45nm时代，发布新一代的Phenom II和Athlon II，利用多核优势与Intel的奔腾Dual-Core系列周旋，期间诞生了像Phenom II X4 955这样的经典之作，通过不断的调价，至今依然活跃在DIY市场。
+	
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{Phenom II X4，主打高性能、性价比与超频\\}}
+	\end{flushleft}
+
+	AMD的这种“多核策略”，衍生出一个新名词——“开核”。从Phenom II X3开始，人们发现某些产品可以强制打开被屏蔽的物理核心，免费获得一个甚至几个档次的性能提升。之后两年，陆续出现了很多经典“开核”CPU，包括：Athlon X2 5000、Athlon II X3 440、Athlon II X2 220、Athlon II X4 640等等，无疑又大大提高了这些产品的性价比。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{昙花一现的Phenom II X3/X2，不过却成为“开核”先驱\\}}
+	\end{flushleft}
+
+	虽然Intel在的CPU技术上遥遥领先，相比之下，其GPU技术却差强人意。或许是AMD察觉到了这一点，收购ATI之后，AMD整合平台开始发力，780G/785G/880G主板组建的整合平台红极一时，稳住了AMD在入门市场的份额。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{高端比不上，先稳住低端市场，伺机而动\\}}
+	\end{flushleft}
+
+	2010年，桌面CPU迈进六核心时代，Intel首先发布六核Core i7，继续稳坐他的性能王座，所以价格自然也是天价。一个月后，AMD也发布了自家的六核Phenom II X6，相比当时的一代Core i7/i5，在多任务、多线程性能上有一定优势，定价在1000-2000元间，价格亲民得多，其中千元出头的X6 1055T成为六核的普及先锋。
+	
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{Phenom II X6，价格亲民、六核普及先锋\\}}
+	\end{flushleft}
+
+	2011年，AMD酝酿多年的APU与“推土机”终于登场。APU虽然CPU性能没有太多亮点，核显部分却是异常的强大，正好击中了Intel的软肋——GPU技术较弱，这些年，NVIDIA不做集显了，VIA早就消失得无影无踪，整合市场AMD优势明显，自此，AMD走上了与Intel截然不同的道路——把重点放在GPU部分，强调异构运算。有人说，AMD耍无赖，和Intel比GPU，但是，面对强大的Intel，说不定这正是最合适的出路呢？
+	
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{APU的到来，意味着AMD开始走差异化路线\\}}
+	\end{flushleft}
+
+	编辑点评：至于推土机的性能，所谓希望越大失望也越大，模块化的设计使得单核性能反而后退了，但现在全盘否定还为之过早，想当初同样是全新架构，Intel第一代奔腾四上市的时候也是效能不理想，但第二代P4就造就了这一金漆招牌，谁说推土机就不能东山再起呢？在时机来临之前，AMD以APU为矛，性价比为盾，稳稳守住中低端市场，才得以与Intel继续周旋。
+	
+	\begin{flushleft}
+		{\Large \textcolor{blue}{总结：Intel往多元化发展，AMD还需努力}}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		{\LARGE \textcolor{blue}{8、总结\\}}
+	\end{flushleft}
+
+	Intel与AMD的恩恩怨怨，贯穿了整个CPU发展史。Intel是一家伟大的公司，引领着CPU市场乃至IT界的前进方向；而AMD更像是一名斗士，市值不到Intel的十分之一，却一次又一次向竞争对手发起冲锋。用AMD创始者桑德斯的话说：“英特尔只花了5分钟就筹集了500万美元，而我花了500万分钟只筹集了5万美元。这简直是残忍，但我坚持不懈。”
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{$\bullet$ 未来的路，AMD会怎样去走？}}
+	\end{flushleft}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{p5}
+		\captionsetup{font={small}}
+		%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+	\begin{flushleft}
+		{\large \textcolor{blue}{GPU/CPU，向左走/向右走?}}
+	\end{flushleft}
+
+	现在桌面市场依旧是AMD的销售主力，很明显AMD正把资源往APU系列倾斜。如今，“打桩机”率先应用在二代APU的CPU部分，并抢先出现在笔记本移动市场。我们不妨大胆地猜测，AMD也在瞄准这笔记本移动市场这块大蛋糕。其最终目的，是为了实现异构运算。
+	
+
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{p6}
+		\captionsetup{font={small}}
+		%\caption{LOGO可以说是相当简洁了}
+		\end{figure}
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{“融聚”的目的是为了实现异构运算}}
+	\end{flushleft}
+	
+	当初AMD提出“融聚”概念，目的就是为了实现异构运算，带来更理想的运算性能。AMD认为，GPU拥有CPU无法比拟的通用并行计算能力，通过异构运算能将CPU性能提升到另一个台阶。但要实现这个理想，需要有系统、软件等生态环境的支持。Win8对异构运算的完善支持为其带来了生存的土壤，这是一条漫长的道路，要真正普及异构运算，AMD的“融聚”理念还有很长的路要走。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{$\bullet$ 新兴领域，Intel开始多元化发展}}
+	\end{flushleft}
+
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{超极本/平板/手机，Intel开始多元化发展}}
+	\end{flushleft}
+
+	相比之下，桌面市场Intel已经领先AMD太多，他有足够的资金和精力去抢占移动/笔记本市场，低功耗高核显处理器的研发，超极本概念的提出，X86手机的面世… Intel正把触爪伸向这些新兴的科技领域，以谋求更大的市场空间。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{$\bullet$ 市场经济，有竞争才会有动力}}
+	\end{flushleft}
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{Intel/AMD数十年的竞争史，推动着整个行业的发展}}
+	\end{flushleft}
+
+	如果不是当初Intel撕毁了技术协议，早期市场不会是Intel独大；如果不是竞争的存在，我们不会有这么多高性价比的产品可用。市场经济，有竞争才会有动力，不然的话，就像当初一样，一套奔四机器两三万，一颗速龙FX 999美金。所以，我们还是希望AMD有东山再起的一天，至少，先把i3/i5的价格拉下来吧！
+	
+	\section{Inter和ARM}
+	
+	\begin{center}
+		{\normalsize \textcolor{red}{[深度] Intel和ARM双雄争霸: 读懂芯片前世今生}}
+	\end{center}
+	
+	
+	我尽量写得轻松一些，因为其实这个话题很有趣，仔细探究起来，很多看似爆炸性的新闻，其实草蛇灰线伏脉千里，在很早之前就发端了，这其中的故事，真的像演义小说一样好玩。
+	
+	本文会罗列很多的往事和参考资料，保证有诚意。一些地方没忍住加上了一些三脚猫的分析，欢迎拍砖打脸。
+	
+	\begin{flushleft}
+		{\Large \textcolor{blue}{x86生态系统}}
+	\end{flushleft}
+	
+	如今Intel在服务器市场占有率近乎100\%，在桌面市场也大于80\%，再加上Intel一贯重视宣传，在普通大众的心目中，Intel就是芯片的代称，甚至是高科技的代称。但Intel并非生而如此，它的牛X千真万确是熬出来的，是在列强环伺的竞争环境中杀出来的。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{称王}}
+	\end{flushleft}
+	
+	
+	七十年代，在搭上IBM PC这趟快车之前，Intel的8位处理器已经很成功，但也有很多竞争者，Zilog是其中翘楚，它研发的Z80系列产品和Intel的8080兼容，性价比高。一直到90年代，中国很多大学的微机实验课，还在用Zilog的板子。当时还有一款处理器风头不逊于8080系列，即MOS公司的6502。后来MOS把6502的ISA(指令集架构)授权给了众多厂商，流传甚广。70年代苹果创立之初的Apple-I和Apple-II，80年代任天堂的红白机，90年代初的小霸王学习机，90年代末的文曲星，都使用了6502系列的CPU。
+	
+	IBM PC给了Intel和微软大发展的机会。但它俩必须面对竞争。IBM PC是IBM主导下的一个开放标准，各个零部件都是可以替换的。所以才有了“兼容机”的概念，和延续至今的装机市场。当时IBM要求Intel必须把x86指令集授权给其它厂商，避免CPU供应商一家独大。IBM自己也有生成x86兼容CPU的权力。同时，为了限制微软的MS-DOS，IBM自己也做DOS操作系统，名为PC-DOS。
+	
+	在IBM PC阵营内部，Intel面对其它CPU供应商的竞争，在阵营外部，还要和苹果的Macintosh电脑竞争。当时苹果已经换用Motorola 68000系列CPU，性能强劲，图形界面诱人。当时用Mac的人，逼格要高于用IBM PC的人。
+	
+	Intel顶着阵营内外的竞争压力，苦心孤诣地发展壮大。这时候潜在的威胁在慢慢酝酿。从1981年的RISC-I开始，精简指令集(RISC)逐步流行起来，诞生了一系列RISC风格的CPU：1985年MIPS公司推出第一款商用的RISC芯片，HP公司在1986年推出PA-RISC，SUN公司在1987年推出SPARC，Motorola在1988年推出MC88000。当时大家普遍认为RISC优于以x86为代表的CISC风格CPU，就连Intel和AMD也害怕在RISC潮流中落伍，AMD在1987年推出了AM29000，Intel在1988年推出了i860/i960。
+	
+	
+	开始时RISC似乎并没有威胁到桌面市场，MIPS、PA-RISC、SPARC全是用来做服务器和工作站的。被苹果流放的乔布斯用MC88000系列CPU做NeXT桌面电脑，铩羽而归。1986年，英国的Acorn公司推出了一款名为ARM的RISC处理器，次年，它还配了个操作系统叫RISC OS，强攻桌面市场，可惜最终只在英国掀起来了一些波澜。
+	
+	1991年，RISC阵营实实在在地杀入桌面市场。这一年，IBM看到在PC阵营里，Intel和微软这两个小弟坐大，慢慢不受自己的控制，索性拉拢Apple和在RISC市场不得志的Motorola，推出了PowerPC架构，由IBM和Motorola生产芯片，Apple做操作系统和整机，推出全新的Power Macintosh电脑。这三家组成了AIM(Apple-IBM-Motorola)联盟，气势汹汹地向Wintel联盟发起攻击。
+	
+	结果是Wintel赢了，个中原因众说纷纭。有人说Wintel保持对已有软件的向下兼容，而Apple频繁更换底层的CPU，导致的不兼容气走了用户，然后由此强调软件生态的重要。我则以为，历史的发展有一定的偶然性，如果当时Wintel不是比尔盖茨和格鲁夫在掌舵，而Apple是乔布斯在掌舵，可能结局完全不同。2005年，乔布斯掌舵下的苹果，把Mac里面的CPU由PowerPC换成Intel的芯片，就完成得干脆利落，没怎么受到软件生态的牵绊。
+	
+	总之，在80年代，大家就已经深深懂得CPU的ISA是软件生态系统的根基，不愿让这个“生态之根”被别人控制。整机和系统的制造商，通过强制CPU厂商给其它厂商授权自己的ISA，来保证有第二家甚至更多的供应商。如果不慎“生态之根”被别人控制了，例如IBM被Wintel篡了权，甚至不惜另起炉灶来竞争。
+	
+	同样是把自己的指令集授权给其它厂商，Intel把几乎所有的其它供应商都挤死了，只省下AMD苟延残喘;MOS则销声匿迹了，完全靠其它生产商把6502系列延续到了二十一世纪。造成这一差异的原因纵有千万条，我想“打铁还需自身硬”是最根本的。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{霸业}}
+	\end{flushleft}
+
+	在桌面市场上，Windows 95和Windows 98这两款操作系统，让Wintel联盟登上了霸业的顶端。从1995年到2003年，Intel看起来简直是不可战胜的。
+	
+	与此同时，Intel还把几乎所有的RISC架构的CPU都干趴下了，占领了服务器市场。原因大概有这么几点。
+	
+	第一，从技术角度讲，RISC是一种设计CPU的理念，而不是具体的某一种ISA。像x86这样的复杂指令集，其实在实现过程中，也能借重RISC的理念。1989年的80486，已经隐隐地可以看到RISC风格的流水线，1995年的Pentium Pro，其核心已经是一个乱序执行的RISC了，只不过多了一个复杂的译码逻辑，把x86指令拆分成RISC风格的微操作。因此从技术角度讲，RISC指令集未必比x86有优势。
+	
+	第二，RISC成也UNIX，败也UNIX。UNIX和C语言树立了很好的软件开发传统，确保同一套代码可以很方便地在不同CPU之间移植。80年代，一大堆RISC架构的CPU，都可以很快配上自己的UNIX，很快把已有的C语言编写的应用跑在CPU上，然后就可以卖了。SUN公司的SPARC配有Solaris，HP公司的PA-RISC配有HP-UX，IBM公司的PowerPC配有AIX。
+	
+	这些林林总总的UNIX变体，反过来又进一步促使UNIX生态系统中软件开发人员重视代码的可移植性，大家都很小心地围绕POSIX标准来编程，避免过分依赖于某个操作系统独有的功能。这样，一旦Intel芯片携Linux(一种开源的UNIX变体)来和RISC架构的工作站竞争，软件应用就纷纷以很小的移植难度，离开了昂贵的专有UNIX工作站。
+	
+	第三，当时PC市场比服务器市场大得多，Intel在PC市场的盈利帮助它研发更好的服务器芯片，巨大的出货量降低了芯片的制造成本。研发优势和成本优势，奠定了Intel最终胜利的基础。
+	
+	这段时间，Intel还几次面临挑战，每次都成功保卫了自己对于生态系统的掌控权。
+	
+	第一个挑战，来自Internet浏览器。Netscape Navigator诞生后，对微软和Intel都是挑战。虽然当时的动态网页还非常初级，但是已经有人喊出“Web is the computer”的概念。等到Java Applet出现之后，大家更是觉得可以在网页上实现桌面应用的效果，未来只需一个浏览器，就能取代桌面。Netscape的Marc Andreessen在1995年，就着手把Netscape浏览器打造成一个Internet OS。以那个时代的软硬件水平，毫无疑问地，这些尝试失败了。
+	
+	用一个高层次的软件API，兜住所有的上层应用，然后让底层的硬件，都来支持这个API——这个主意不单单在技术上看起来很炫，从商业上，这是上层应用厂商消解底层平台厂商生态霸权的终极武器。因此，在那之后的二十年里，商业上的尝试一直在持续，包括：
+	
+	1. 腾讯开发的WebQQ和Q+，在网页里面提供一个类似Windows桌面的应用场景，后来失败了，回退到功能单一的SmartQQ。个中原因，我个人认为还是那个时代的PC性能不够。
+	
+	2. 腾讯开发的微信小程序，在微信里面通过HTML5和Javascript实现手机App的功能，可以横跨iOS和Android。
+	
+	3. 谷歌推出ChromeOS和ChromeBook笔记本，里面跑的应用，全都是基于HTML5和Javascript的。
+	
+	我个人认为，微信小程序几乎一定会成功，它一旦成功，腾讯必然会重燃在PC平台上做Q+的野心。Intel在桌面的霸权，最大的威胁不是AMD，也不是ARM，而很可能是HTML5+Javascript，熟悉“降维打击”的人，对此不会感到意外吧。
+	
+	第二个挑战，来自虚拟机(Virtual Machine)和JIT(Just-in-time)编译器。先锋是Java的虚拟机JVM，后来微软也推出了DotNet虚拟机，支持C\#等语言。虚拟机有一套虚拟的指令集，源代码先被编译到这个虚拟的指令集上，在程序运行时，JIT编译器再把这套虚拟指令集编译为CPU的原生指令集。面向虚拟机开发的程序，例如Java Applet，可以在不同的CPU和操作系统平台上运行。
+	
+	如果有某个虚拟机，它的指令集可以无缝支持所有的编程语言，还能保证高效率，那么所有CPU的都将被OTT(over-the-top)了，就像短信被微信OTT一样。可惜还没有一个虚拟机可以实现此目标。现在大家熟知的虚拟机，都是和语言绑定的，例如JVM只支持Java、scala、kotlin等;DotNet虚拟机只支持C\#、VB.net等;V8只支持Javascript、typescript等;HHVM只支持PHP。
+	同一个VM上跑的语言相互调用很容易，跨VM很难互操作。由于虚拟机实在太多了，它们反而成了新的CPU架构的拦路虎：80年代只需要搞定C语言编译器就能卖Unix工作站，如今ARM服务器要想挑战Intel，必须把所有这些基于VM的编程语言都支持得很好，JIT编译器的效率都要做得比较高才行。
+	第三个挑战，来自Transmeta公司对x86指令集的Emulation(Emulation这个词很难翻译，索性不翻了)。简单地说，Emulation就是把x86指令集看成一个虚拟机的指令集，然后用类似JIT编译器的技术，在非x86的CPU上跑x86的程序。未经许可用别人的ISA做CPU是违法的，但用Emulation的方式实现ISA则不违法(Intel和Transmeta只打过专利的官司没打过ISA的官司，Intel还输了)。
+	如今最广为人知的Emulator是Qemu，上文提到的x86、MIPS、PowerPC、Sparc、MC68000它都可以支持。一般而言，Emulation会导致性能下降一个甚至若干个数量级，根本不足为虑。
+	1995年，Transmeta公司成立，经过艰苦的秘密研发，于2000年推出了Crusoe处理器，用Emulation的方式，在一款VLIW(超长指令字)风格的CPU上执行x86的程序，这样就规避了没有x86指令集授权的问题。Transmeta的牛X在于，虽然是Emulation，但实现了接近Intel处理器的性能，同时功耗低很多。2000年年底Transmeta的IPO大获成功，其风光程度，直到后来谷歌IPO的时候才被超过。
+	Transmeta最后还是失败了，Intel在渠道上打压它是次要原因，性能不足是主要原因。虽然VLIW在90年代中后期被广为推崇，但事实证明，它的性能比起乱序执行的超标量架构，还是差一截。另外Transmeta的芯片是在台积电制造的，那个时候不比现在，台积电的工艺水平比起Intel还差很多。2000年的时候，PC还远没有性能过剩，性能还是比功耗重要。等到2010年，Intel的Atom处理器慢得一塌糊涂，依然靠着低功耗，点燃了上网本的大火。
+	Transmeta虽然失败了，Emulation技术仍然在发展。NVidia在2008年购买了Transmeta的低功耗技术的授权。2014年，NVidia推出了Tegra K1芯片，其中的Denver处理器，利用Emulation技术，在底层的7路超标量架构上，实现了ARM64指令集。值得注意的是，NVidia拥有ARM64的指令集的授权，它不是用Emulation技术来规避什么，而是用Emulation来提升性能，实现比硬件直接执行还要高的性能。根据评测结果，Denver超过了当时苹果最好的手机CPU。近期推出的Denver2处理器的，性能更是秒杀苹果的A9X和华为的麒麟950。
+	Emulation技术如果真的发展到了比直接执行还要快，Intel的麻烦才刚刚开始。微软联合高通，推出基于SnapDragon835处理器的笔记本，运行Windows 10操作系统，上面可以安装x86的软件。Intel虽然很不爽，但Emulation并不需要指令集授权，所以他只能警告说，在实现Emulator时，不许侵犯Intel的专利，而这一点，微软和高通肯定早已考虑到了。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{挫折}}
+	\end{flushleft}
+	
+	x86生态系统曾经面对过一次最严重的、近乎灭顶之灾的挑战。这次挑战来自于谁?就来自于它的缔造者Intel。
+	Intel心不甘情不愿地把自己的x86指令级授权给了AMD等一众供应商，眼睁睁看着他们分享自己的利润，很不爽，于是想在x86之外另起炉灶，建设自己独享的生态系统。正巧在90年代初期，升级64位计算成为一个风潮，1991年有MIPS R4000，1992年有DEC Alpha，1995年有SUN SPARC64。1994年开始，Intel联合HP，准备趁32位升级64位的时机，抛弃原有的x86架构，新推出一个EPIC(Explicitly Parallel Instruction Computing)架构，名为IA64(Intel Architecture 64-bit)。
+	
+	x86架构兼容老旧应用程序的能力是出了名的。8086把8位的8080升级为16位的时候，80386升级到32位的时候，都完全兼容旧有的程序。直到今天，Intel的处理器依然支持虚拟8086模式，在此模式下，可以运行30多年前的8086程序。升级到64bit的时候，Intel居然要放弃所有之前的8位、16位、32位应用了!可想而知当时在业界会引起怎样的轩然大波。Linux的缔造者Linus Torvalds公开对此表示反对。
+	
+	IA64进展得并不顺利，EPIC本质上就是一种VLIW，如前所述，VLIW的性能比乱序超标量要差。而且EPIC的编译器非常难以开发。原定1997年就会推出产品，但直到1999年才发布IA64指令集，2001年才推出产品。另外Intel也不敢完全放弃之前的32位x86应用，它给出的解决方案是Emulation，但EPIC不像Transmeta为Emulation做了很多专门优化，跑32位x86应用的性能很差。
+	
+	这个时候，千年老二AMD站了出来，为x86续命。2000年，它推出了AMD64指令集，延续了x86架构兼容老旧应用程序的优良传统，可以原生执行8位、16位、32位的老程序。2003年，AMD推出Opteron服务器CPU和Athlon64桌面CPU。
+	
+	AMD64从技术上和生态上都压了IA64一头，Opteron在服务器市场上为AMD赢得了前所未有的成功。2004年，Intel推出了代号为Nocona的至强服务器CPU，它支持一种称为EM64T的技术，EM64T就是AMD64的马甲。江湖有传言说，Intel曾想提出另外一套不同于AMD64的x86升级64位的方案，但微软为了避免x86生态的分裂，极力阻止了。2012年，Intel推出了最后一代IA64的CPU，关闭了这个不赚钱的产品线。
+	
+	回顾这段历史，有几点特别令人感慨。
+	
+	首先，即使是看似无比强大不可战胜的Intel，不顾生态系统中其它伙伴的利益，一意孤行也是会撞南墙的。
+	
+	其次，幸好由于历史的原因，x86生态中，AMD和Intel是交叉授权的关系，AMD有权加入3DNow这种多媒体扩展指令，也有权加入64位指令，如果是像如今ARM的架构级授权方式，被授权的企业不能自行加以扩展，那可能还真没有办法阻止Intel了。
+	
+	最后，Intel的执行力还真是超强，掉头极快，EM64T的CPU只比AMD64的CPU晚出了一年(当然不能排除Intel早就有备份方案)。
+	
+	虽然在IA64上栽了跟头，但Intel靠着自己的技术实力，持续不断地推出性能和功耗表现更好的产品，AMD在64位战役中所取得的优势，慢慢也被消磨掉了。
+	
+	岁月如梭。进入移动互联网和云计算时代之后，服务器的需求量上升。这时RISC架构的服务器CPU几乎快被消灭干净了，只剩下IBM Power奄奄一息。于是Intel几乎独享了服务器市场扩大所带来的红利。但它却高兴不起来，因为移动市场形成了ARM一家独大的局面，移动终端CPU这个市场，Intel怎么也挤不进去。
+	
+	正巧Intel在刚刚火过一把的上网本市场里设计了一种低功耗的x86核心，即Atom。Intel以Atom为武器，杀入了手机芯片市场。2012年，Intel的老伙计联想，推出了第一款Intel芯片的手机K800。紧接着还有Motorola的XT890。2013年，中兴、华硕也有产品问世。但三星、小米、华为、OPPO、VIVO等出货量大的厂商，都没有采用Intel的芯片。这些手机大厂，看看x86生态中做整机的联想如何艰难度日，估计心里也是一万个不乐意让Intel到移动领域来继续称王。
+	
+	到2014年，Intel芯的手机还是没有打开局面，市场唱衰之声一片。但Intel并不想放弃。手机攻不下，那就攻平板!大厂攻不下，那就攻白牌!嫌我的芯片贵，我就给补贴!又过了两年，平板也没有攻下来。在移动市场赔了上百亿美金的Intel，黯然离场。
+	
+	Intel失利的原因众说纷纭，我觉得根本原因还是竞争力不足：
+	
+	首先，这个时候的台积电已经不是Transmeta家Crusoe芯片诞生时的吴下阿蒙，它生产的手机芯片的功耗和性能并不输给Intel;
+	
+	其次，这次Intel并无生态系统的优势，要靠名为houdini的Emulator来执行ARM指令集的程序，性能打了折扣。试想，Intel芯的手机如果性能和待机时间都是iPhone的两倍，谁能抵挡得住这种诱惑?
+	几乎在进攻移动市场的同时，Intel也在推出产品试水物联网市场，只不过没有大举宣传。2013年10月，Intel推出一款叫做伽利略的Arduino开发板，上面的CPU叫做Quark(夸克)。Quark是比Atom(原子)还小的基本粒子，这个名字暗含着轻巧、低功耗的意思。接着，Intel在2014年的CES大会和2016年的IDF大会上，先后推出了升级的爱迪生和焦耳开发板。
+	
+	Intel的大名和Arduino联系在一起多少有些奇怪。Arduino是一套可以跑在低端MCU上的C语言函数库，是电子创客们的最爱。淘宝上Arduino开发板才几十块钱。焦耳开发板上的处理器是4核心、1.5GHz，跑Arduino太浪费了。和它参数近似的Raspberry PI 3 Model B+开发板，四核64位ARM Cortex A53跑1.2GHz，淘宝价不到200块。焦耳开发板要369美元。谁会当这个冤大头?
+	物联网市场极度分散，有无数应用但规模都不大，Intel赚大钱习惯了，在这个微利又需要贴近客户做服务的市场里，百般不适。2017年，Intel悄悄停产了针对物联网市场的开发板。
+	
+	Intel接下来所可能面对的挫折，是ARM侵入服务器和桌面领域。这个话题下文还会有简单分析。
+	
+	
+	\begin{flushleft}
+		{\Large \textcolor{red}{ARM生态系统}}
+	\end{flushleft}
+
+	近几年ARM风光无限，抢新闻头条的能力不逊于Intel。
+	
+	在很多圈外人看来，这家高科技公司好像是在移动互联网时代新冒出来的，但其实它的历史和几乎和80286一样古老。而且它自诞生以来，就以移动(portable)设备为自己首要的目标市场。它等待一飞冲天的风口，等待了二十年。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{发端}}
+	\end{flushleft}
+	
+	前文提到，ARM是Acorn电脑公司创造的。
+	Acorn电脑公司创立于1978年，在80年代初，它用6502系列CPU制造的BBC Micro电脑在英国大获成功。6502的性能慢慢跟不上时代了，Acorn想基于80286开发新的电脑，但是Intel连样片都不给——要是Intel大方些，ARM或许根本就不会诞生。
+	Acorn一气之下开发了ARM(Acorn RISC Machine)，这是世界上第一款定位中低端(而非服务器)RISC处理器。1985年，ARM1诞生(但从未被商用)，后来Acorn在1986年和1990年分别推出了ARM2和ARM3，1987年推出了RISC OS和桌面电脑Archimedes。它在英国的教育市场获得了一定的成功，但1990年之后，很快被Wintel的生态击败了。
+	1990年前后，研发掌上电脑成为一股风潮。当时有家叫做Active Book的公司，拿ARM2处理器开发一个叫做Personal Communicator的产品。可惜产品上市前，Active Book被AT\&T收购了，AT\&T把ARM2换成了自家的Hobbit处理器。
+	幸好东方不亮西方亮，当时的苹果公司看好ARM，把自己研发的Newton平台中的处理器，由AT\&T的Hobbit，换成了ARM。这个“彼此互换”的故事听起来让人头大，大家只需要记住，ARM的第一颗商用处理器ARM2，就曾被尝试拿来做手持的电脑。
+	ARM的东家是Acorn，和苹果在电脑市场上有竞争。苹果公司花了6周时间说服Acorn把ARM独立出来运营。1990年11月27日，合资公司ARM正式成立，苹果、Acorn和VLSI分别出资150万、150万、25万英镑，Acorn把ARM处理器相关的知识产权和12名员工放在了新成立的公司里。此后，ARM的缩写被转而解释为Advanced RISC Machine。
+	为了节省成本，新公司在剑桥附近租了一间谷仓作为办公室，全力为苹果的Newton研发ARM6处理器(4和5这两个编号被跳过去了)。
+	Newton(牛顿)是苹果花大力气研发的触屏移动技术平台，Newton OS是不同于Mac OS的操作系统(如同后来的iOS)。如果你听过苹果、牛顿和万有引力的故事，应该能体会苹果公司对Newton平台有多么高的期望。
+	Newton平台的第一款产品MessagePad于1993年8月上市了，采用32位ARM610处理器，频率为20MHz，屏幕大小为336×240，重量410克，采用4节7号电池供电，售价699美元(相当于今天的1129美元)。可惜的是，它销量很差，上市头四个月的销量不过5万台。
+	1998年，中国的恒基伟业公司推出了一款叫做 “商务通”的产品，像极了Newton Messagepad。它采用Dragonball处理器，主频仅16MHz，屏幕大小10汉字x10汉字，重量105克，采用2节5号电池供电，售价人民币1988元。靠着“呼机手机商务通，一个也不能少”的广告，商务通在1999年大卖100万台。虽然2001年后商务通及类似产品很快就被越来越强大的手机挤出了市场，但让人好奇的是，背靠营销能力更加强大的苹果，Newton为何没能一炮而红?
+	其中一个重要的原因是，Newton重点宣传的手写识别功能表现很糟糕。而商务通对手写汉字的识别率——根据我个人的体验——还真是不错，考虑到它仅仅16MHz的CPU主频，能做到这么好简直是奇迹。当时商务通部分型号的卖点就是“连笔王”，对潦草的汉字识别得相当好。
+	软件对于一款产品的重要性，真的是生死攸关啊!
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{深耕}}
+	\end{flushleft}
+	
+	扯远了，让我们回到ARM的故事上来。
+	
+	1990年ARM创立之初，给自己定下的使命是“设计有竞争力的、低功耗、高性能、低成本的处理器，并且使它们成为目标市场中广为接受的标准”，目标市场包括：手持设备(Portable)，嵌入式(Embedded Control)和汽车电子(Automotive)。跨越近三十年，这个使命和市场定位始终未变，直到今天。
+	
+	而且，根据我了解到的知识，ARM是处理器的源代码授权这一商业模式的开创者。如今，芯片设计从Verilog等源代码出发，经过一系列自动化或半自动化的优化步骤，最终形成工厂制造芯片所需要的版图文件;整个过程类似软件从源代码被编译为CPU的机器码。但在80年代，芯片的设计自动化非常原始。七八十年代的处理器授权，都是指令集的授权。Synopsys公司于1986年成立，1987年推出把Verilog编译为门级网表的DesignCompiler，之后基于源代码的芯片自动化设计流程才慢慢地被建立起来。于是源代码授权才成为技术上可行的模式。
+	
+	ARM从未自己生产过商用的芯片。它只是将自己研发的处理器的源代码的知识产权(IP)授权给芯片厂商，由它们推出最终芯片。受益于这一商业模式，尽管在1993年，Apple的Newton失败了，但ARM并未因为设备卖不出去而亏钱，还幸运地拿到了TI的订单，于是成功盈利了。员工数量也由12人增长到了42人。次年ARM又拿到了三星的订单，员工增长到70多人，搬出了谷仓。
+	
+	除了源代码授权的模式之外，ARM也做指令集授权，1995年，ARM把指令集授权给DEC，DEC很快设计出了性能更好的StrongARM处理器。1997年，StrongARM产品线被卖给Intel，更名为XScale。
+	
+	1995年，Motorola在香港的研发团队基于MC68000指令集开发出了针对手持设备的DragonBall处理器，在这之后的十年，DragonBall处理器一直都是ARM强大的竞争对手。不但Moto自己的手机用它，Palm、三星、Sony的手机也用它。当然还有前文提到的商务通。ARM相对于Dragonball处理器有什么优势?我认为最大的优势是从客户需求出发的、持续的创新;其次是ARM的开放的商业模式。
+	
+	RISC指令集一般都采用32位定长指令，代码密度比起x86之类的CISC来要差一些，但手机的存储空间有限，对代码密度的要求高。1994年，ARM为此专门研发了16位的指令集Thumb，以及支持这一指令集的ARM7TDMI。
+	
+	开放授权的商业模式，使得整机厂在选择芯片时，可以找到支持同一指令集的多种芯片产品，不容易被绑架。Nokia作为和Motolora旗鼓相当的手机制造商，肯定不会选择竞争对手的Dragonball，而ARM的技术实力和商业模式，正好符合Nokia的需求。
+	
+	1997年，Nokia推出了一代经典6110，它采用TI的芯片，处理器核心是ARM7TDMI。6110是Nokia第一款带红外接口的手机，第一次内置了经典的贪吃蛇游戏，它的界面成为了之后Nokia手机的标准。从此，Nokia和ARM成为了好基友，Nokia的Symbian操作系统，一直都建立在ARM架构的基础上。
+	1998年，趁着6110大红大紫的东风，ARM在Nasdaq上市了。同一年，SGI公司看到处理器IP授权生意有利可图，把MIPS部门拆分出来，次年MIPS推出了它第一款可授权的处理器设计M4K。此后的十年里，MIPS一直都是ARM有力的竞争对手。
+	
+	商务通在中国流行的那几年，国际市场上流行性能更高的掌上电脑和智能手机，操作系统包括Palm OS、微软的WinCE、Nokia的Symbian、RIM的Blackberry OS，Motorola的Wisdom OS。在这个领域里，ARM阵营中负责高性能的XScale大放异彩，暴击Dragonball。当Dragonball的频率还停留在33MHz/66MHz时，Xscale已经飙到了200～400MHz。MC68000指令集在手持设备领域败走。Palm OS的1.0～4.0都是基于MC68000指令集的，5.0就换成了ARM。后来Motorola的半导体部门Freescale干脆推出了基于ARM核的iMX系列产品，替代Dragonball产品线。
+	
+	苹果作为掌上电脑的先行者，却在这次浪潮里无所作为，在Wintel的挤压下，它的桌面业务都已经濒临绝境，无暇顾及其它市场了。1997年，不温不火的Newton从苹果公司独立了出来。当乔布斯回归苹果之后，又火速把Newton收编了回来，并且干净利落地停掉了Newton产品线——乔帮主只想要Newton手里的ARM股份。1998年到2003年，苹果通过出售ARM的股票获利11亿美元。这笔钱，是乔布斯复兴战略的重要燃料，可以说是苹果的救命钱。
+	
+	\begin{flushleft}
+		{\LARGE \textcolor{blue}{绽放}}
+	\end{flushleft}
+
+	
+	经过多年的深耕，ARM在新世纪开始时，已经是手机领域里的王者，依然在为客户的需求做着持续的创新，Java加速技术就是一个典型的例子。
+	
+	从2000年开始，功能手机的性能提升到了足够高的水平，人们希望在手机上玩比较复杂的游戏，而不仅仅是贪吃蛇。但是手机的处理器和操作系统实在是太分散了，为了方便游戏跑在不同手机上，J2ME平台应运而生。从原理上讲，J2ME和Applet并无不同，都是基于JVM的。Java在并不分散的桌面领域没有获得成功，但在分散的手机领域获得了成功。
+	
+	J2ME的游戏越做越复杂，但手机的处理能力毕竟有限，桌面和服务器上的JIT编译器在手机上跑得太吃力了。于是ARM在2001年推出了ARM926EJ-S处理器，它支持Jazelle DBX技术，可以直接解码和执行Java的字节码，省掉了JIT编译器的负担。这一功能大受欢迎，帮助ARM9系列成为了迄今最受欢迎的ARM处理器，总共有250多个授权厂家，其中100多个授权的是ARM926EJ-S。
+	
+	在MTK助推山寨功能机火遍神州的那几年，主控芯片所使用的核全部都是ARM9。在iOS和安卓的应用商店诞生之前，功能手机全靠J2ME开发的应用来实现各种炫酷的功能。从某种意义上讲，在低端市场上，Jazelle是助力山寨机火爆的最大幕后功臣。
+	
+	然而高性能ARM芯片的扛把子XScale，却被Intel于2006年6月卖给了Marvell。这是Intel实施x86-everywhere战略的一个步骤。Intel希望x86的生态也能进入到低功耗的移动领域，而不是用自己先进的工艺制程和设计能力帮ARM建设高端应用的生态。22个月之后，2008年4月，低功耗的Atom芯片诞生了。
+	
+	高性能ARM芯片的扛把子换成了苹果。2004年，在卖光ARM股票的一年之后，乔布斯决定研发iPhone。2007年1月，在Intel放弃ARM之后仅半年，iPhone诞生了。苹果可不会采用低端市场上死守ARM9那种玩法，iPhone一代就采用了400MHz的ARM11;2009年的iPhone 3GS，升级为600MHz的Cortex A8;2010年的iPhone4，苹果自研的A4芯片升级为1GHz的Cortex A8。接下来苹果自研芯片性能一路狂飙的历程，大家都很熟悉了。
+	
+	从ARM6到ARM11，这些IP核都是按照兼顾移动设备、汽车电子和嵌入式这三个市场的思路来设计的。从2003年起，ARM把产品线有针对性地划分为A、R、M三个系列，分别对应上述三个市场，而且IP核的名字都统一加上了Cortex的前缀。Cortex A8就是A系列的第一个作品。iPhone 3GS和iPhone4令Cortex A8大火，但让ARM一飞冲天的推手，却是iPhone的竞争对手——安卓(Android)。
+	
+	有很多文章介绍安卓如何诞生，如何在移动设备领域干掉了除iOS之外的全部对手，毋须赘述。这里只想强调一个被普遍忽略的事实：安卓从诞生之初，就要求应用程序采用Java编写，并且跑在Dalvik虚拟机上;但iPhone上的应用，都是原生的ARM程序。要知道Android手机的处理器性能相对iPhone并无优势。
+	
+	山寨之王MTK于2009年2月推出的首款智能手机芯片MT6516，采用406MHz的ARM9;2008年～2010年间由HTC推出的那几款卖得很好的Android手机，也无非是ARM11和Cortex A8的核，几百兆的频率，这种级别的处理器跑虚拟机还是蛮吃力的。另外虚拟机占用内存大的缺点，也不利于用户体验和降低成本。
+	
+	谷歌宁可冒着让安卓出师不利的风险，也要推广Dalvik虚拟机。这是为什么?谷歌内部的决策过程我们无从得知。一个合理的猜测是，谷歌不愿看到手机领域里ARM一家独大，它希望给MIPS、x86等其它CPU一个机会。J2ME的成功，让谷歌看到完全建立在虚拟机上的手机应用生态，是完全可能的。
+	
+	Dalvik虚拟机可以跑Java，但并不采用JVM那种基于堆栈的字节码，而是改用一种基于寄存器的方案。这么做当然是为了规避SUN公司(后被Oracle收购)的专利，同时也让无法直接运行JVM字节码的MIPS、x86能够实现轻量级的JIT编译器，无须Jazelle这样的技术。从另外一个角度讲，MIPS在电视、机顶盒、游戏机市场上占优，x86在桌面市场近乎垄断，支持它们，也意味着安卓有可能进军电视和桌面。
+	
+	安卓对所有CPU而言，都是巨大的机会，谁抓住了这个机会，就可以一举改变竞争格局，实现霸业。
+	只可惜MIPS公司太不给力，一直也没有搞定靠谱的MIPS版Android。等到2011年1月，Synopsys公司给自家的ARC处理器移植好Dalvik虚拟机和浏览器用的V8虚拟机、Android环境已完备的时候，MIPS都还没动静。顺便说一句，Intel曾经的南桥芯片里都有ARC处理器，它是Active Management Technology(AMT)的重要基石。
+	
+	这个时候，北京的君正公司坐不住了。君正靠做低成本的MP4播放器起家，2011年5月在创业板上市。君正拥有MIPS的架构级授权，对自己研发的XBurst处理器非常自信，准备靠它进攻手机和平板市场。2011年7月，基于君正JZ4760的MIPS智能手机通过Android兼容性测试。2011年12月，基于君正JZ4770平台的平板电脑，被谷歌选为Android4.0的首发产品，一时风光无限。
+	
+	ARM的强大软件生态此时起到了护城河的作用。基于君正的平板，软件兼容性出了问题。原因在于谷歌没有强求所有的应用都跑在Dalvik虚拟机上，对于部分对性能有苛刻要求的app，例如游戏，谷歌允许用CPU的原生指令集来开发，为此还提供了NDK(Native Development Kit)。对于那些包含了ARM原生指令的游戏，君正的平板要么不支持，要么用emulator支持，总之用户体验都不好。
+	
+	ARM生态圈里，在2011年，正好有两家芯片厂商异军突起：全志和瑞芯微，它们分别推出了采用Cortex A8处理器的A10芯片和RK2918芯片，成本极低，主打平板和安卓电视盒子。君正的平板梦被它们粉碎了，之后只好转战安卓手表，消沉了很多年。对于MIPS而言，还有一个坏消息是，在它们的强力助推下，电视盒子市场也成了ARM的天下。经营不善的MIPS于2012年卖给了Imagination，Imagination不但没能依靠MIPS在CPU市场中有所作为，反而在GPU市场里也败给了ARM，在2017年被迫整体卖身，MIPS业务卖回给了硅谷公司。
+	
+	2012～2016年，Intel在安卓市场上挑战ARM，也失败了。于是安卓给CPU带来的红利，全部被ARM吃掉了。随着手机越来越重要，ARM也越来越重要，它所推出的最新的Cortex A系列处理器，被手机芯片争相采用。ARM生态也越来越强大，它的触角，慢慢伸出了手机领域。
+	
+	\begin{flushleft}
+		{\LARGE  \textcolor{blue}{渗透}}
+	\end{flushleft}
+	
+	2011年1月，微软在CES宣布要为ARM架构开发Windows 8 RT操作系统。在2012年年底，几乎和Intel芯手机上市的同时，包括微软自家的Surface RT在内的一大批二合一平板设备上市了。Windows 8 RT不支持所有之前为x86平台开发的应用程序，这成为它最大的软肋，相关的产品慢慢销声匿迹了。ARM渗透桌面市场的第一次尝试失败了。
+	
+	最近微软和高通所推出的ARM芯的Windows 10，吸取了教训，用Eumlation的机制来支持旧有的x86桌面程序。这次尝试能否成功，我们拭目以待。
+	
+	2009年，ARM推出了Cortex A9处理器，并且用40nm的工艺制造了双核的样片，跑到了2GHz。这是ARM第一次推出乱序超标量的处理器核，而乱序超标量是Intel实现高性能的关键技术，这是非常振奋人心的消息。2010年，Marvell推出了1.6GHz的4核A9的服务器芯片Armada
+	 XP。2013年，这款芯片被部署在百度的存储服务器上，这是ARM服务器第一次大规模商用。但Marvell并未继续推出新的服务器芯片。2011年，一家创业公司Calxeda采用Cortex A9，推出了共有480个CPU核的ARM服务器。但它的成就还不如Armada XP，2013年公司就倒闭了。
+	 
+	2012年，AMD收购了一家做高密度服务器的厂商SeaMicro，准备把它所采用的CPU核由Intel的Atom换成ARM架构的CPU。但直到2014年AMD才推出8核Cortex A57的服务器芯片Opteron A1100，之后从来也没有认真卖过它。2015年AMD就放弃了SeaMicro这个子品牌，不再做高密度服务器了。
+	
+	ARM进攻服务器市场的第一次尝试失败了。Marvell和Calxeda都采用的是32位的ARM核，先天不足;AMD则三心二意，毕竟自己还有x86 Server的生意。另外服务器市场对于单核单线程的运算能力也有很高的要求，仅仅有低功耗和高通量(high throughput)是不够的。
+	
+	在ARMv8这一64位指令集发布之后，Cavium和AppliedMicro这两家老牌网络芯片厂商不约而同地将自己原先芯片中的架构换成了ARMv8。因为产品的需要，Cavium和AppliedMicro都有自行设计处理器微架构的能力，前者做MIPS处理器，后者做PowerPC处理器。它们两家做ARMv8处理器时，也都采用了只授权指令集，微架构自研的模式。Cavium共推出过两代基于ARM的产品(2014、2016年)，AppliedMicro推出过三代(2013、2015、2017年)。随着产品性能逐渐接近Intel的Xeon E5，它们渐渐不再满足于原先的网络领域，开始觊觎服务器市场。
+	
+	最让人期待的还是高通的Centriq芯片，2015年年底量产24核版本，2016年年底量产升级48核版本，还得到了微软的强力支持。考虑到高通还和贵州成立了合资公司华芯通，Centriq很可能成为在国内大规模商用的第一款ARM服务器芯片。
+	
+	另外具有国防背景的天津飞腾公司，也有ARM服务器芯片的产品，只是不知道这些产品何时能在通用市场上铺货。
+	
+	其他确定在研发ARM Server芯片的大厂还包括Broadcom和华为，进度上要略慢一些。
+	ARM阵营对服务器发起的第二波冲击，阵容要强大得多豪华得多。因此ARM才敢于宣称，在2021年拿下25\%的服务器市场份额。
+	
+	要做好Server CPU，ARM架构还有些功课要一点一点补。多Socket服务器所需要的一致性协议，业界刚刚取得共识准备采用CCIX，但还没有具体的产品出来。做云端虚拟机所必备的虚拟化支持，ARM还有些性能问题。x86处理器提升Throughput的利器超线程技术，ARM阵营尚不能支持。Intel芯片近年来陆续增加的安全特性，也够ARM追赶一阵子的。但目前看来，ARM已经没有致命的短板，蚕食掉Intel的服务器市场份额是板上钉钉的事情，唯一的悬念是究竟多少份额?
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{未来ISA将不那么重要}}
+	\end{flushleft}
+	
+	从长远看，半导体厂商对建立于ISA之上的生态系统的掌控力会变弱，而ISA本身，会变得越来越不重要。这是软件技术发展的趋势决定的，如前所述，这些技术在90年代末就已经初有小成了。
+	
+	第一是Web技术。网页开发领域，有一个大家视若无睹的奇迹：最后居然只有Javascript一种开发语言屹立至今。要知道在服务器端和移动App领域，开发语言多如过江之卿。其中原因我也分析不出。反正js的挑战者(微软的VBScript和谷歌的Dart)都失败了。网页开发领域面临的主要问题是浏览器差异大，API不太兼容。这个问题慢慢在缓解中，一来浏览器战争大局已定，Android和PC上的Chrome，以及iPhone和Mac上的safari是胜者;二来很多网页应用是跑在App里面的，例如微信和支付宝里，这种场景下Javascript的API已经被特定厂商规范过了。
+	
+	由于开发语言和API的高度统一，H5(HTML5+Javascript)已经成了兼容所有硬件的最通用的软件开发平台。曾经有人鼓吹H5会赶走移动端和PC端的原生程序，后来被打脸了。但是移动端和PC端的原生App中，越来越多的界面是用H5生成的了，微信、支付宝、京东、淘宝、爱奇艺、有道词典……统统都是这样。
+	
+	Javascript吞噬一切的进程还在持续。2007年，Stack Overflow的联合创始人Jeff Atwood曾经提出过一条Atwood定律：任何能够用JavaScript实现的应用系统，最终都必将用JavaScript实现。十年过去了，此定律基本奏效。把Javascript的一个子集当作汇编语言的asm.js及其后续的WebAssembly，更加使得网页应用有媲美原生应用的潜力，在浏览器里跑Unity3D的游戏都不是问题。
+	独立的应用程序仍然会是移动和桌面端的主流，因为没有独立程序，不方便做弹窗广告，不方便启动后台进程收集用户信息，不方便引诱用户安装其它独立程序。但Web的能力的确在快速提升，Web Component技术实现了类似GUI库的Widget复用，如今在浏览器里实现Office和IDE的功能都毫无问题(office365.com、docs.google.com、editor. construct.net、腾讯文档);而WebGL已经能支持Unity3D这种大型游戏框架。
+	
+	照此趋势发展下去，独立应用程序仅仅会作为一个包装而存在，开发者写一套H5，加上不同的包装，就成了PC、Mac、Android、iOS上的独立应用程序，不加包装，就是网站。微软去年开源的ReactXP，就是为了实现这一目标。
+	
+	这意味着什么?不但底层的CPU被OTT了，操作系统也被OTT了。因为移植一个应用程序到各个平台上，几乎没有什么难度。谁将是生态系统的掌控者?若干个超级App，像微信、QQ、支付宝这样的。它们不但包装自家的应用，其它开发者也可以把自己的应用放在这个包装里面，借重超级App的广泛覆盖度，抵达最终用户。前文提到了，如果微信小程序获得成功，腾讯必然会重拾Q+的野心，把QQ变成桌面上各种H5应用的App Store。
+	
+	如果真的会这样，微软岂不是会比Intel还着急?拜托，微软已经不是二十年前主要靠卖Windows和Office的光盘赚钱的那家公司了，未来它会专注于云计算。但Intel还和二十年前一样在卖芯片。
+	第二是编译技术尤其是虚拟机的发展。如今的编程语言太多了，80年代那种搞定C语言编译器就OK的好日子早已过去。任何一个新CPU架构要想在移动、桌面、服务器市场站稳脚跟，都得搞定无数的编译器(包括虚拟机用的JIT编译器)，这是个坏消息。但好消息是，搞定这些编译器基本就差不多了，不用劝说开发者重写汇编代码。
+	
+	老一代程序员对x86处理器架构和汇编都非常熟悉。求伯君当年开发WPS时，手写几十万行汇编;雷军读本科时，是系里20多年来拿过《汇编语言程序设计》满分成绩的两个学生之一;梁肇新开发超级解霸时，把MMX汇编玩得出神入化。感兴趣的读者可以看看梁的《编程高手箴言》，那里面，描绘了一个对现在的程序员而言，完全陌生的世界。在那个世界里，你开发的PC应用程序想要移植到Mac平台上，几乎要完全重写。
+	
+	如今高层次的编程语言接管了一切，汇编语言从很多学校的本科课程里消失了，入门教材也从C改成了Java，甚至是Javascript或Python。程序员完全不熟悉底层的CPU。即使是真的需要拼性能的场合，编译器也在很大程度上代替了手写汇编。ARM的工程师告诉我说，ARM在开发开源的Compute Library过程中，主要依靠在C源码中加入标注来指导编译器生成SIMD指令，而不是像梁肇新那样手写。
+	在这种情况下，软件平台厂商就变得非常强势，因为他们知道，应用开发商只需付出重新编译一遍的代价。比如苹果，就要求所有的App都改为64位的。这样，未来苹果在手机CPU里放弃对32位应用的支持时，甚至都不会有人感觉得到。这对于x86生态系统而言，简直是天方夜谭，显然微软对此非常眼馋，并且尝试在Windows 10 S中复制这种掌控力。
+	
+	至于谷歌，Android把所有应用都跑在虚拟机上的尝试虽然失败了，但如果未来它再针对AR/VR、AI或机器人发布一个什么软件平台的话，就很有可能完全禁止原生程序。
+	而Oracle，正在努力开发可以支持所有编程语言、能把所有CPU给OTT掉的全新VM：GraalVM。我们拭目以待。
+	
+	第三是Emulation技术的发展。虽然眼下ARM阵营中靠Emulation进攻Intel的先锋是高通，但最可怕的选手其实是NVidia。NVidia拥有最厉害的Emulation技术，而且江湖传言Denver处理器的初衷就是针对x86的。当初NVidia的Tegra处理器曾被拿来做Windows 8 RT的二合一平板。如今Denver处理器跑Windows 10绝不会让人意外，那么它会怎么跑呢?肯定是直接在底层硬件上做x86的Emulation，而不是在Emulate出来的ARM指令集上再做一层Eumulation。
+	
+	Denver处理器前些年没有跳出来抢Intel的饭碗，很大程度上是因为NVidia还在做Intel平台的主板芯片组，另外NVidia还没有那么强大。如今NVidia也不做芯片组生意了，还借AI的东风，股价扶摇直上。说不定哪天，NVidia就会放出Denver处理器的x86 Emulator，做到单线程性能不输Xeon，强攻服务器市场。想想看，在单芯片上集成GPU和x86版的Denver，云计算厂商能不动心?
+	
+	如果未来Emulation技术进一步发展并且被越来越多的厂商掌握，很可能会出现这种情况：CPU本身是某种外界不了解的指令集，官方发布时，只能Emulate某种开放的指令集，例如RISCV;但是用户可以给它安装不同的Emulator，让它变成x86-64处理器，或者ARM64处理器。在软件定义一切的时代，这并不是多么疯狂的想象。
+	
+	总之，CPU依然不可或缺，但CPU用谁家的，是什么指令集，会越来越不重要。软件的发展，会在用户和底层的CPU之间加入足够大的缓冲带，CPU的差异，越来越难以被用户察觉到。
+	
+	\begin{flushleft}
+		{\large \textcolor{blue}{展望：让CPU不再难}}
+	\end{flushleft}
+
+	
+	此文在最后修改之时，看到了梁宁的文章《一段关于国产芯片和操作系统的往事》，里面写到：
+	就像10多年前一样，只要搞定知识产权问题，选择技术路线，找会干的人，投入干，CPU/芯片就能够做出来。搞不定的依然是操作系统。差距大的依然是生态。
+	
+	当年，绕得过Intel，跨不过微软。如今，绕得过Arm，做不出安卓。
+	
+	生态之难体会颇深，真的，只是烧钱做芯片，无论烧多少都无法挑战Intel和ARM，何况过去二十年真的没烧多少。
+	
+	Intel和ARM如此强大而且极少犯错，我们如此弱小就算它们犯错也无法利用——但我们可以欺负它们的“老”。
+
+\section{微内核和宏内核}
+
+{\Large \textcolor{red}{背景庞大的UNIX家族}}
+
+计算机技术在二战后快速发展，构成计算机的主要基本单元从电子管发展到分立晶体管，再到后来的大规模集成电路。随着计算机技术发展，计算机性能越来越强劲，硬件越来越复杂，人们发现很难去直接管理计算机了，于是人们开始设计软件用于管理越来越复杂的计算机系统，这些软件称作系统级软件。从最开始的批处理系统，多道程序系统，分时系统到上世纪60年代开始出现通用操作系统，计算机系统层出不穷，直到上世纪70年代才出现被大家广泛接受广泛使用的通用操作系统。其中最经典的当然就是UNIX系统了。
+
+UNIX系统，1971年诞生于大名鼎鼎的贝尔实验室的一台PDP-11/24机器上，其后经过不断发展与传播，在80年代取得了巨大成功，UNIX被移植到众多的处理器架构，并在众多行业得到广泛使用，甚至成为行业标准影响至今。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p45.jpg}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+UNIX以及类UNIX系统如Linux都是典型的宏内核设计，也就是把所有系统服务都放到内核里，因为系统服务代码之间存在大量数据交换和大量的服务请求，而在同一个代码段内进行函数调用(C语言)或跳转(汇编或者机器码时代)是最直接、最高效的方法，在同一片地址空间也方便数据交换，所以这样的宏内核设计是很自然的。
+
+但是随着UNIX内核功能的拓展(文件系统、TCP/IP网络协议栈、进程管理、内存管理、驱动程序等)，UNIX内核代码也相应增加了很多，进而在可维护性.稳定性，安全性方面面临一些挑战。为了试图解决这些挑战，人们开始尝试使用微内核的思想来设计系统内核。
+
+{\Large \textcolor{red}{什么是微内核?}}
+
+微内核设计的基本思想是简化内核功能，在内核之外的用户态尽可能多地实现系统服务，同时加入相互之间的安全保护。内核只提供最基础的服务，比如多进程调度、多进程通信（IPC)等。其中进程通信是作为连接应用与用户态系统服务的桥梁。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p47.jpg}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+宏内核系统相关的服务基本都是放于内核态内核中，例如文件系统、设备驱动、虚拟内存管理、网络协议栈等；而微内核则把更多的系统服务（例如文件系统、POSIX服务、网络协议栈甚至外设驱动）放到用户态应用，形成一个个服务，等待其他应用的请求。而后来，为了在宏内核与微内核之间扬长避短，也发展出了中间的混合内核的形态，部分服务也会放置于内核中。
+
+宏内核系统相关的服务基本都是放于内核态内核中，例如文件系统、设备驱动、虚拟内存管理、网络协议栈等；而微内核则把更多的系统服务（例如文件系统、POSIX服务、网络协议栈甚至外设驱动）放到用户态应用，形成一个个服务，等待其他应用的请求。而后来，为了在宏内核与微内核之间扬长避短，也发展出了中间的混合内核的形态，部分服务也会放置于内核中。
+
+{\Large \textcolor{red}{微内核的发展历史}}
+
+微内核这个概念从提出开始就在不断地发展、完善进步之中，到目前为止可以分为三代。
+
+{\large 第一代微内核：从无到有}
+
+第一代微内核的主要代表是Mach，该系统由卡内基-梅隆大学的Avie Tevanian和Richard Rashid主导开发。在Mach刚刚开始设计时，UNIX的发展正如日中天，所以Mach在设计时的一大目标就是兼容UNIX，但是与UNIX不同的是Mach尝试使用微内核架构去设计。Mach以IPC是作为所有系统服务与内核交换数据的基础机制，充分运用IPC、虚拟内存、多进程等特性将冗余的系统服务移出内核作为进程运行。
+
+1986年，经过两年的开发，第一版的Mach发布后的第二年，Mach就发布了第2版，不过由于时间仓促，加之没有足够的人手与资金，所以此时Mach内核并不提供完全的系统服务。为了支撑系统上层运行，这一版的内核包含了大量4.3版本的BSD系统(UNIX的一个分支)代码提供系统服务，并且BSD系统服务运行在内核状态，这导致Mach内核的代码体积甚至大于常规UNIX内核。第一版和第二版的Mach主要做了如下工作：1. 验证了微内核的可行性；2. 在多处理器计算机上进行移植验证了微内核在多处理器计算机上的运行；3. 最后为了提高IPC的效率，Mach使用共享内存机制来完成IPC。而Mach的共享内存机制是在虚拟内存技术的支持下实现的，只有需要对内存进行写入时才进行复制。这么一处理比每次都复制一遍内存节省了内存使用同时又加快了IPC机制的处理时间，这个改进称为写时复制，并且在如今的通用操作系统如Linux中常常用到。
+
+经过测试，Mach 2.5的效率最多比UNIX少25\%，但是考虑到Mach带来的可靠性、可拓展性、安全性，这个效率损失尚可以接受。当然此时Mach内核还不算完全的微内核。而考虑到微内核可以更高效地利用多处理器计算机的处理器核心资源，人们期待着等Mach把系统服务都搬到内核之外后可以把运行效率损失降下来。同时Mach在微内核方面小小的尝试迅速吸引了大批公司与组织的注意，开放软件基金会(Open Software Foundation， OSF)宣布下一代系统OSF/1将基于Mach的内核， NeXTSTEP也将使用Mach2.5， 甚至IBM也打算利用Mach构建Workplace OS。苹果公司这个时候也出手了，苹果公司也从此基于Mach2.5打造其操作系统内核XNU，XNU的构成如下图所示，Mach作为内核的内环，外环右侧是苹果的驱动框架（I/O Kit），外环左侧是BSD的系统服务代码提供UNIX兼容的服务层，这三者共同协作向上层提供完整的系统服务。XNU广泛地使用在苹果公司的OSX，IOS等系统中。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p49.jpg}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+这个时候由于UNIX系统广泛使用带来的商业利益，此时BSD系统开发者与UNIX的拥有者AT\&T陷入了法律大战，Mach使用的BSD相关代码有了法律风险。提升性能的期望和规避法律风险的需求推动着Mach 3.0的开发，Mach 3.0的开发目标主要是为了替换BSD系统服务，同时尽量多地将系统服务放到内核之外去运行，成为名副其实的微内核设计。经过众多开发者3年的努力，Mach 3.0于1990年发布，但是由于在系统服务之间完全使用IPC通信，而不是向宏内核那样直接进行函数调用，即便是多处理器机器上运行也性能损失惨重，Mach 3.0最多比UNIX损失 67\% 运行效率，这导致Mach 3.0以及其所代表的第一代微内核设计被看衰。此后断断续续有在Mach的基础上对性能进行提升的尝试，但是均不太理想，至此Mach成为了微内核第一代先驱者。
+
+{\large 第二代微内核：解决性能问题}
+
+第二代微内核的主要代表是L3和L4，以及QNX系统使用的Neutrino内核。前面第一代的微内核Mach由于效率问题虽然失败了，但是微内核的理念并没有被放弃，德国的计算机科学家Jochen Liedtke认为Mach的IPC效率低下的原因就是因为IPC部分不够精简，于是他开发了L3和L4微内核，对IPC部分进行了很彻底的精简：1. 内核的IPC机制只是单纯地传递信息，诸如安全权限检查这类的代码都省略掉，省略掉的功能全部由用户进程自己处理。
+
+如此一来IPC功能部分的代码执行时间大大缩短；2. IPC不使用内存传递消息，而使用寄存器传递消息，同时限制IPC每次传递的信息长度，这样省去了对内存的访问时间。L4微内核的IPC速度经过测试要比Mach快20倍，这个令人惊讶的优化效果吸引了众多的目光，使微内核的研究重新火热起来。后面L4内核又发展出了很多相关系统，比如Pistachio，L4/MIPS，与Fiasco等等，这些内核组成了L4的大家族。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p50}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+第二代微内核的代表除了有L4内核，也还有其他微内核比如Exokernel、Rambler等，不过商业上最成功的则是目前黑莓公司旗下的QNX系统所使用的Neutrino内核（QNX，1980年诞生，最初以QUICK UNIX为名，后改为QNX；2004年QNX被Harman国际收购；2010年Harman国际下被黑莓收购，QNX成为黑莓旗下的资产），QNX主要为高可靠领域提供解决方案，比如交通、能源、医疗、航天航空等。
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p51}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+{\large 第三代微内核：主要重视安全问题等}
+
+在前面两代的基础上，第三代微内核蓬勃发展，许许多多微内核都被开发出来，主要代表有：seL4、Fiasco.OC、NOVA等。本来第一代微内核的设计隔离了使内核安全性降低的系统服务，让系统服务漏洞不会影响内核，进而提高了内核安全性，可以说是关上了破坏系统的门， 但是第二代系统却又给攻击者开了个窗户；由于第二代微内核在内核中省去了关于安全性检查等步骤，把所有关于安全检查功能的实现都交给系统服务自己去实现，这导致系统服务的通信接口直接暴露给用户态，任何进程都可能无限制地请求系统服务，系统服务不得不花费额外的代价来区分请求是否合法，容易造成拒绝服务攻击。比如正常的文件服务应该是从虚拟文件系统服务->文件系统服务->磁盘驱动服务这个流程来完成的，但是如果攻击者如果绕过虚拟文件系统服务，直接无限制地请求攻击者本身没有权限访问的文件系统服务，使文件系统服务长期处于满载状态，让其他进程无法通过正常的虚拟文件系统得到文件系统服务。为了增强安全性，且不过分影响性能，人们开始研发第三代微内核。
+
+seL4是在第二代内核L4的基础上发展而来的。seL4不仅仅继承了L4内核家族的高性能特性，还具备基于端点(enndpoint)的IPC机制。这种IPC机制最大的特点是使用了能力空间的概念，进程在使用IPC请求系统服务时必须具备相对应的能力，进程持有不可伪造的令牌来表示拥有请求某种服务的能力。令牌可以被复制，可以被转移，还可以通过IPC进行传输。令牌其实是一个指向存在于内核空间内核对象的指针，所以普通进程并不能修改自身以及其他进程的权限分配，但是内核可以对令牌指定的权限进行控制，从而保证了用户态不能绕过能力空间这个机制对系统服务造成滥用。
+
+seL4还是第一个完全通过形式化验证的内核，通俗说形式化验证就是在数学软件的帮助下使用数学语言自动化地推导检查系统的每一个运行状态。
+
+{\large 其他的微内核系统：Fuchsia，Minix}
+
+Fuchsia是Google开发的一款全新操作系统，试图覆盖手机、平板甚至笔记本等一系列领域。Google为该系统配备了Vulkan图形接口、3D桌面渲染Scenic、Flutter应用开发框架，还有一个称为zircon的微内核。zircon内核是从高通平台的一个Bootloader项目：Little Kernel发展而来。zircon内核属于微内核设计，只提供IPC，进程管理，地址空间管理功能。zircon区别于以进程或者以文件为核心的设计，zircon是以内存为核心来设计的，内存在zircon中是以对象的方式存在，可以通过channel通信机制传递虚拟内存对象（Virtual memory object）的句柄，进程拿到句柄后可以把这块内存映射到自己的空间。
+
+Minix系统则由荷兰阿姆斯特丹的Vrije大学的Andrew S.Tanenbaum教授所开发。该系统最大的特点是可以故障隔离，自动重启失败的服务。Minix使用分层设计，最底层的微内核提供中断处理、进程管理、进程通信等服务，这一层运行在内核态；中间层提供轮回服务(Reincarnation Server)、文件服务、进程管理、X图形服务以及驱动等，这一层运行在用户态；最上层为用户进程。其中轮回服务负责在中间层的服务出现崩溃时重启这些服务，从而保证服务的自我修复。Minix由于其自我修复特性被英特尔管理引擎（ME）所选用，该管理引擎主要负责管理英特尔芯片的内部模块。
+
+{\Large \textcolor{red}{微内核的优缺点}}
+
+{\large 微内核的优点}
+\begin{enumerate}
+	\item 系统服务模块化，可移植性高；
+	\item 内核安全性提高(模块内部的bug不影响内核稳定，将黑客利用软件漏洞造成的破坏限制在单个模块内部)；
+	\item 可以多套系统服务共存，相当于同时运行多种操作系统；
+	\item 稳定统一的接口(可以独立维护私有驱动以及服务，不需要跟内核源码绑定)；
+	\item 在商业上，微内核可以避免代码受到一些开源协议的影响，比如GPL协议；
+	\item 内核精简，可以进行形式化验证，利用数学证明内核的安全性；
+	\item 数学可证明的实时性；
+	\item 非常适合多处理器系统设计，在多处理器核心计算机上，互相依赖的系统服务可以同时运行；
+\end{enumerate}
+
+{\large 微内核存在的缺点}
+\begin{enumerate}
+	\item 通过进程通信的方式交换数据或者调用系统服务，而不是使用系统调用，造成额外的操作系统开销；
+	\item 使用一些频繁使用的系统服务时，比如网络收发数据，造成的进程上下文切换对操作系统来说也是一个负担；
+	\item 由于系统服务高度模块化，系统服务之间存在大量的内存复制；
+	\item 对互相之间存在复杂调用关系的系统服务，难以设计通信接口；
+	\item 系统服务与内核在地址空间上分离，造成代码局部性差，降低了cache命中率。
+\end{enumerate}
+
+
+{\Large \textcolor{red}{1、内核分类}}
+\begin{itemize}
+	\item 单内核（宏内核）；
+	\item 微内核；
+	\item 混合内核；
+	\item 外内核。
+\end{itemize}
+
+{\large 宏内核}
+
+宏内核（Monolithic kernel），是个很大的进程。它的内部又能够被分为若干模块（或是层次或其他）。但是在运行的时候，它是个单独的二进制大映象。其模块间的通讯是通过直接调用其他模块中的函数实现的，而不是消息传递。　
+宏内核结构在硬件之上定义了一个高阶的抽象界面，应用一组原语(或者叫系统调用)来实现操作系统的功能，例如进程管理，文件系统，和存储管理等等，这些功能由多个运行在核心态的模块来完成。
+尽管每一个模块都是单独地服务这些操作，内核代码是高度集成的，而且难以编写正确。因为所有的模块都在同一个内核空间上运行，一个很小的bug都会使整个系统崩溃。然而，如果开发顺利，宏内核结构就可以从运行效率上得到好处。
+很多现代的宏内核结构内核，如Linux和FreeBSD内核，能够在运行时将模块调入执行，这就可以使扩充内核的功能变得更简单，也可以使内核的核心部分变得更简洁。
+宏内核结构是非常有吸引力的一种设计，由于在同一个地址空间上实现所有低级操作的系统控制代码的复杂性的效率会比在不同地址空间上实现更高些。 宏核结构正趋向于容易被正确设计，所以它的发展会比微内核结构更迅速些。
+单内核结构的例子：传统的UNIX内核----例如伯克利大学发行的版本，Linux内核。
+
+{\large 微内核}
+
+微内核（Microkernelkernel）结构由一个非常简单的硬件抽象层和一组比较关键的原语或系统调用组成，这些原语仅仅包括了建立一个系统必需的几个部分，如线程管理，地址空间和进程间通信等。
+微核的目标是将系统服务的实现和系统的基本操作规则分离开来。例如，进程的输入/输出锁定服务可以由运行在微核之外的一个服务组件来提供。这些非常模块化的用户态服务器用于完成操作系统中比较高级的操作，这样的设计使内核中最核心的部分的设计更简单。一个服务组件的失效并不会导致整个系统的崩溃，内核需要做的，仅仅是重新启动这个组件，而不必影响其它的部分微内核将许多OS服务放入分离的进程，如文件系统,设备驱动程序,而进程通过消息传递调用OS服务。微内核结构必然是多线程的,第一代微内核,在核心提供了较多的服务,因此被称为'胖微内核',它的典型代表是MACH。它既是GNU HURD也是APPLE SERVER OS的核心，可以说,蒸蒸日上.第二代为微内核只提供最基本的OS服务,典型的OS是QNX,QNX在理论界很有名,被认为是一种先进的OS。
+微内核只提供了很小一部分的硬件抽象，大部分功能由一种特殊的用户态程序：服务器来完成。微核经常被用于机器人和医疗器械的嵌入式设计中，因为它的系统的关键部分都处在相互分开的，被保护的存储空间中。这对于单核设计来说是不可能的，就算它采用了运行时加载模块的方式。
+微内核的例子：AIX，BeOS，L4微内核系列，.Mach中用于GNU Hurd和Mac OS X，Minix，MorphOS，QNX，RadiOS，VSTa。
+
+{\large 混合内核}
+
+混合内核它很像微内核结构，只不过它的的组件更多的在核心态中运行，以获得更快的执行速度。
+混合内核实质上是微内核，只不过它让一些微核结构运行在用户空间的代码运行在内核空间，这样让内核的运行效率更高些。这是一种妥协做法，设计者参考了微内核结构的系统运行速度不佳的理论。然而后来的实验证明，纯微内核的系统实际上也可以是高效率的。大多数现代操作系统遵循这种设计范畴，微软公司开发的Windows操作系统就是一个很好的例子。另外还有XNU，运行在苹果Mac OS X上的内核，也是一个混合内核。
+混合内核的例子： BeOS 内核 ，DragonFly BSD，ReactOS 内核，Windows NT、Windows 2000、Windows XP、Windows Server 2003以及Windows Vista等基于NT技术的操作系统。
+
+{\large 外内核}
+
+外内核系统，也被称为纵向结构操作系统，是一种比较极端的设计方法。 
+外内核这种内核不提供任何硬件抽象操作，但是允许为内核增加额外的运行库，通过这些运行库应用程序可以直接地或者接近直接地对硬件进行操作。
+它的设计理念是让用户程序的设计者来决定硬件接口的设计。外内核本身非常的小，它通常只负责系统保护和系统资源复用相关的服务。
+传统的内核设计(包括单核和微核)都对硬件作了抽象，把硬件资源或设备驱动程序都隐藏在硬件抽象层下。比方说，在这些系统中，如果分配一段物理存储，应用程序并不知道它的实际位置。
+而外核的目标就是让应用程序直接请求一块特定的物理空间，一块特定的磁盘块等等。系统本身只保证被请求的资源当前是空闲的，应用程序就允许直接存取它。既然外核系统只提供了比较低级的硬件操作，而没有像其他系统一样提供高级的硬件抽象，那么就需要增加额外的运行库支持。这些运行库运行在外核之上，给用户程序提供了完整的功能。
+理论上，这种设计可以让各种操作系统运行在一个外核之上，如Windows和Unix。并且设计人员可以根据运行效率调整系统的各部分功能。
+外核设计还停留在研究阶段，没有任何一个商业系统采用了这种设计。几种概念上的操作系统正在被开发，如剑桥大学的Nemesis，格拉斯哥大学的Citrix系统和瑞士计算机科学院的一套系统。麻省理工学院也在进行着这类研究。
+
+{\Large \textcolor{red}{2、宏内核和微内核的著名的争论}}
+
+混合内核实质上也是微内核，而外内核是一种比较极端的设计方法，目前还处于研究阶段，所以我们就着重讨论宏内核与微内核两种内核。
+这两种派系的代表人分别是Tanenbaum和Linus。 Tanenbaum的一段话比较通俗易懂的说明了什么叫微内核什么叫宏内核。 “老一点的操作系统都是宏内核的，也就是说，整个操作系统是一个运行在核心态的单独的a.out文件， 这个二进制文件包含进程管理，内存管理，文件系统以及其他。具体实例包括UNIX,MS-DOS,VMS,MVS, OS/360,MULTICS等等。 另一种便是微内核，在这种系统中，操作系统的大部分都运行在单独的进程，而且多数在内核之外。它们 之间通过消息传递来通信。内核的任务是处理消息传递，中断处理，底层的进程管理，以及可能的I/O。
+关于宏内核和微内核，Linux的发明人linus Torvalds 和Minix的发明人人Andrew S. Tanenbaum从1992年开始就有一个争论，一直延续到今天，详细的可以到wiki上看事情的原委：\href{https://en.wikipedia.org/wiki/Tanenbaum–Torvalds\_debate}{https://en.wikipedia.org/wiki/Tanenbaum–Torvalds\_debate}
+
+{\Large \textcolor{red}{3、宏内核和微内核的本质区别}}
+
+简单的介绍，宏内核(Monolithickernel)是将内核从整体上作为一个大过程来实现，所有的内核服务都在一个地址空间运行，相互之间直接调用函数，简单高效。微内核(Microkernel)功能被划分成独立的过程，过程间通过IPC进行通信，模块化程度高，一个服务失效不会影响另外一个服务。
+两种设计各具特点，较早的一些操作系统都是用宏内核写成的，这样的内核通常以单个静态二进制文件的形式存放于磁盘，而后来随着模块化、分层思想的产生，人们开始对微内核感兴趣并持赞扬态度，认为微内核将成为内核的发展趋势。微内核的功能被划分为独立的过程，每个过程叫做一个服务器，各种服务器之间通过IPC机制互通消息，服务器的各自独立有效地避免了一个服务器的失效祸及另一个，而且这种独立机制更利于操作系统在不同硬件上的移植。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p52}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+当然，微内核的这所有的优点都建立在因为消息传递开销而引起效率损失的前提下（IPC机制的开销比函数调用多，还会涉及到内核空间到用户空间的上下文切换），这些损失有一部分是靠着现在硬件效率的飞速提升而抵消着的，但这很明显是追不上宏内核的效率的。所以，有些使用微内核的操作系统（如新近版本的WindowsNT和MacOSX）让大部分或全部的服务器位于内核，这样就可以直接调用函数，消除频繁的上下文切换，但这已经违背了微内核设计的初衷。
+而相反的，宏内核在通信上比较高效，因为大家都运行在内核态，并身处同一地址空间，内核可以直接调用函数，Linux和大多数的UNIX都为宏内核。对应的，宏内核不具有微内核的优点，宏内核的灵活性和可维护性不及微内核，而且移植起来并不简单（不过有些宏内核支持者认为这样的移植比微内核更能够有效地利用底层硬件）。
+历史告诉我们，两种看似矛盾又各有长处的观点或解决方案总能找到结合点的。Cache的直接映射与关联映射结合产生了组关联映射；RISC和CISC也是各具优点，现代的好的CPU包括了这两种技术，将它们结合了起来。所以我相信宏内核与微内核也会最终找到结合点的。
+Linux虽是宏内核，但已吸收了微内核的部分精华。Linux是模块化的、多线程的、内核本身可调度的系统，既吸收了微内核的精华，又保留了宏内核的优点，无需消息传递，避免性能损失。
+此前所提到的微内核实现时让大部分服务器位于内核空间，也算是微内核朝宏内核靠拢的一个例子。
+系统服务运行在内核空间的微内核
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p53}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+这两个例子都可以看到宏内核与微内核有结合的趋势，但还没有完全真正的结合成功，不过它们都已经同时具备了模块化和内核空间运行等的特征。
+
+\begin{itemize}
+	\item 微内核就是内核只做一些基本的服务（比如操作CPU，进程调度，内存管理、设备管理等）。然后将其它功能独立为除内核之外的多个进程。微内核最大的诟病就是其它进程和内核之间的交互属于进程间通信，开销比较大。
+	\item 宏内核就是把上图中的所有东西都塞到内核里。这样大家都运行在一个进程里（主要是指共享同一个内存空间——内核地址空间），如此可极大减少模块间交互的开销，但问题就是一旦有一个模块出问题，整个kernel都可能挂掉。
+\end{itemize}
+
+
+\section{开源指令集RISC-V}
+
+芯片战争: 开源架构RISC-V前世今生
+
+不久前，特斯拉加入RISC-V基金会，并考虑在新款芯片中使用免费的 RISC-V 设计。至此，已有IBM、NXP、西部数据、英伟达、高通、三星、谷歌、华为等100多家科技公司加入RISC-V阵营。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{p55}
+	\captionsetup{font={small}}
+	\caption{联盟}
+	\end{figure}
+
+出现这种现象的原因一方面是因为 ARM 的授权费用实在太贵了，另一方面也是因为 RISC-V 提供指令集彻底开放，非常有希望成为CPU领域的Linux。正是因为看好RISC-V 的未来，不少科技巨头在 RISC-V 还是潜力股的时候趁早下注。
+
+{\LARGE RISC-V的诞生}
+
+在2010 年，加州大学伯克利分校的一个研究团队正在准备启动一个新项目，而要设计CPU，必然要选择一种指令集，然而，X86 指令集被英特尔控制的死死的，ARM 的指令集授权费又非常贵，MIPS、SPARC、PowerPC也存在知识产权问题。
+
+在这种情况下，伯克利的研究团队决定从零开始设计一套全新的指令集。且这款新指令集要能满足从微控制器到超级计算机等各种尺寸的处理器。正如行业内常说的，设计一套指令集并非黑科技，用这套指令集去实现CPU 才是真正具有含金量的工作。伯克利的研究团队直用了3个月就完成了RISC-V 的指令集开发，并公开发布了第一版指令集。
+
+该指令集的第一个版本只包含了不到50条指令，可以用于实现一个具备定点运算和特权模式等基本功能的处理器。如果用户需要的话，也可以根据自己的需求自定义新指令。
+
+这样一来，这套指令集兼具精简和灵活两大特点。随后，伯克利的研究团队将这个新指令集命名为RISC-V，RISC指的是精简指令集的意思，V是罗马字母，代表第五代的意思。因为伯克利分校的David Patterson教授在此之前已经研制了四代处理器芯片。
+更关键的是，伯克利研究团队将RISC-V 指令集彻底开放，使用BSD License开源协议，这就使 RISC-V不像ARM、PowerPC 等指令集那样需要付费授权才能使用。而且 BSD 开源协议给予使用者很大自由，允许使用者修改和重新发布开源代码，也允许基于开源代码开发商业软件发布和销售。怎么说呢，像Linux 的GPL协议，就限制了商业公司的行为。而BSD开源协议则不同，苹果的iOS就基于BSD内核，但使用开源软件之后，因为BSD开源协议给了苹果很大的自由度，苹果依旧可以将iOS闭源并在商业市场赚钱。
+
+对于大学和科研院所等学术机构来说，RISC-V 也是非常有价值的。中科院计算所包云岗研究员团队在做一个项目时，最初选择了SUN的Open Sparc T1，然而这款处理器的社区活跃度和软件支持都不行，而且独立性比较差。然后又选择了Micro Blaze，然而这款处理器却不开源。最后把目光转向了RISC-V并完成了科研项目。相关技术成果被华为用在海思的ARM服务器CPU上。
+
+正是因为RISC-V选择了对商业公司非常友好的BSD开源协议，以及RISC-V 兼具精简和灵活等优点，众多商业公司纷纷关注 RISC-V。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{p56}
+	\captionsetup{font={small}}
+	\caption{联盟}
+	\end{figure}
+
+{\LARGE RV12 RISC-V 处理器}
+
+RISC-V有望复制Linux 的成功。目前，在CPU上，X86和ARM是两大霸主。然而这两位霸主都非常霸道，英特尔根本不允许除AMD和VIA之外的任何一家公司使用 X86 指令集，而且一旦AMD被收购，X86 指令集授权都要重新谈判。即便是全美达想通过翻译打插边球，结果也被英特尔用专利诉讼拖死了。
+
+类似的，ARM虽然比英特尔好一些，但也仅仅是好一些而已。在指令集授权上也非常吝啬，获得ARM32授权的公司一只手都能数的过来，ARM64授权虽然多一些，但授权费却异常昂贵，法国芯片创业公司Greenwave 表示，他们如果使用ARM架构，要花掉1500万美元的授权费。而且授权到期后，是否继续授权和授权费用都要重新谈判。
+
+正是因为X86和ARM在授权上异常苛刻，很多大公司都对英特尔和ARM非常不满，而这恰恰给了RISC-V 这样的后起之秀机会。包括谷歌、华为、IBM、镁光、英伟达、高通、三星、西部数据等商业公司，以及加州大学伯克利分校、麻省理工学院、普林斯顿大学、ETH Zurich、印度理工学院、洛伦兹国家实验室、新加坡南洋理工大学以及中科院计算所等学术机构纷纷加盟 RISC-V。在 2017年11月召开的第7届 RISC-V Workshop 上，全球共有138个公司、35所大学与研究机构参会。
+
+除了商业公司和学术机构之外，印度政府更是对RISC-V情有独钟。在2011 年，印度开始实施处理器战略计划，在全国范围资助2-3个研制处理器的项目。印度理工学院马德拉斯分校的G. S.Madhusudan与V. Kamakoti教授在该计划支持下启动了SHAKTI 处理器项目。SHAKTI 项目就选择了RISC-V，并获得印度政府超过9000万美元的经费支持。
+
+在2016年，印度先进计算发展中心获得印度电子信息技术部4500万美元的资助，目标研制一款基于RISC-V指令集的 2GHz 四核处理器。
+
+在过去数年中，印度政府资助的处理器相关项目都开始向RISC-V 靠拢，RISC-V 成为了印度的事实国家指令集。
+目前，伯克利研究团队已经完成了基于RISC-V指令集的顺序执行的64位处理器核心(代号为 Rocket)，并前后基于45nm与28nm工艺进行了12 次流片。Rocket 芯片主频大于1GHz，与ARM Cortex-A5相比，实测性能较之高10%，面积效率高49%，单位频率动态功耗仅为Cortex-A5的43%。在嵌入式领域，Rocket已经可以和 ARM 争市场了。
+
+正是因此，西部数据声明，每年将使用10亿个RISC-V 核；英伟达也宣布，将把RISC-V用于GPU 内部的控制器。美国DARPA也资助一些公司基于RISC-V 设计航天器的宇航芯片；还有众多商业公司计划基于RISC-V开发面向IoT的智能芯片，面向安全的芯片，以及服务器上的主板管理控制器等。在软件生态方面，也逐步在完善，比如调试工具链、中断控制器、JVM、LLVM、Python等开发者常用的软件工具都在完善之中。
+
+正是依靠开源和免费，全世界的商业公司、学术机构都可以开发兼容 RISC-V指令集的处理器，而且不需要支付一分钱的费用。这使 RISC-V 有望被全球的开发者广泛应用，并复制Linux 的奇迹。何况 RISC-V的 BSD 开源协议，比 GPL协议对商业公司更加友好，使商业公司有很强的动力去推动这件事。
+
+{\LARGE 结语}
+
+诚然，依靠开源和免费，RISC-V非常受大学和科研院所青睐，并有望在教学领域大展拳脚，而这又会给 RISC-V 培养源源不断的后备军。对于商业公司来说，由于 ARM 的授权费实在是太贵了，也有较强的动力去做 RISC-V，给自己留一个备份，避免被绑死在 ARM 上。
+
+不过，RISC-V也存在一个隐忧，那就是缺乏强有力的主导者，进而导致破碎化的问题。当年的MIPS其实也非常学院派，MIPS阵营的商业公司可以自由添加指令，比如龙芯就以MIPS为基础添加了1000 多条新指令，进而形成了自己的指令集LoongISA。这又使开发软件的时候，即便同样属于MIPS，也必须分为龙芯版和MIPS版。
+
+由于RISC-V也允许用户自己加新指令，这就有可能使RISC-V破碎化，也许未来华为、高通、谷歌开发出的RISC-V处理器虽然都属于RISC-V，但却不能跑同样一套软件。
+
+毕竟完全开放与有力的领导是一对矛盾，如果无法解决这个问题，恐怕 RISC-V很难成长到能与X86和ARM争雄的水平。
+
+\section{MIPS走上开源道路}
+\begin{center}
+{\LARGE 芯片之争: MIPS走上开源道路！}
+\end{center}
+
+
+
+毫无疑问，2018年是RISC-V真正开始在渴望开源指令集的芯片架构师当中迅猛发展起来的一年。不过那是当时。
+
+到2019年，RISC-V不会是唯一的玩家。
+
+Wave Computing公司12月17日宣布开源MIPS，MIPS指令集架构(ISA)和MIPS的最新核心R6将于2019年第一季度公开发布。
+
+本月Wave请来担任MIPS许可业务总裁Art Swift称，此举对于加快MIPS在生态系统中的采用而言至关重要。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{p57}
+	\captionsetup{font={small}}
+	\caption{德里克•迈耶（Derek Meyer）}
+	\end{figure}
+
+
+斯威夫特解释道，走开源道路是Wave首席执行官德里克•迈耶(Derek Meyer，MIPS界的资深人士)自Wave于6月份收购MIPS科技公司以来一直悄然酝酿的“大计划”。斯威夫特本人是MIPS科技公司的前成员，他在这家公司担任了四年的市场营销和业务开发副总裁。
+
+Wave本身是一家技术初创公司，致力于让“AI和深度学习从数据中心进入到边缘”，它将MIPS视作是推动Wave的AI进入到大量应用领域的关键。
+
+MIPS指令集包括SIMD(单指令多数据)和DSP之类的扩展。斯威夫特承诺，MIPS将为开源社区带来“商业就绪”的指令集，拥有“非常牢固”的架构。斯威夫特说：“芯片设计师们将有机会基于经过验证且充分测试的指令集来设计自己的核心，可用于任何用途。”
+
+据斯威夫特声称，自2000年以来，基于MIPS核心的芯片出货量多达85亿片。一大批客户都在坚持使用MIPS，包括Microchip、Mobileye(现在隶属英特尔)、MediaTek和日本领先的一线供应商日本电装(Denso)。
+
+虽然归属权根本不稳定的MIPS在工程师当中一贯备受推崇，但很难建立生态系统，并获得发展势头。今天MIPS远远落后于Arm。长期以来，MIPS面临如同螺旋式下降的趋势，Wave的目标就是要扭转这个趋势。
+
+\textcolor{blue}{精明的举措}
+
+被问及目前的MIPS合作伙伴对于Wave开源MIPS的计划有何反应时，斯威夫特说：“惊讶得下巴都掉了”。外界这样评论：要是两三年前出现这个举措，RISC-V永远不会问世了。
+
+被问及MIPS拥抱开源社区是否为时太晚时，业内意见似乎莫衷一是。
+
+Linley Group的首席分析师林利Linley Gwennap告诉IT外媒EE Times，“MIPS在开源社区的吸引力占有率方面肯定不如RISC-V”，他特别指出，由于归属权多次易手，MIPS“无法更早做出这一举措”。
+
+不过，格温纳普补充道：“鉴于它MIPS具有的诸多优势，我认为它仍有时间赢得设计大战。”
+
+UltraSoC的首席执行官Rupert Baines告诉EE Times，“考虑到RISC-V的发展势头，MIPS走开源道路是一个值得关注的、精明的举措。”他说：“MIPS已经拥有大量优质工具和软件环境。这是放大MIPS自身优势又不损失太多的一个精明手段”。
+
+他表示，对于一些片上系统(SoC)设计师来说，“MIPS是采用RISC-V之外的一种选择”。
+
+UltraSoC是一家总部位于剑桥的英国公司，它为嵌入式系统提供先进的调试和分析技术，是RISC-V的积极支持者。然而，贝恩斯始终认为选择处理器核心“不应该是一场信仰大战。”他表示，对于负责交付含有不同处理器的异构系统的芯片架构师和设计师来说，ISA只是一个小小的考量因素。一个重要得多的问题是应对“整个系统”中的复杂性这个问题。
+
+业内观察人士一致认为MIPS已很成熟。
+
+格温纳普说，“MIPS ISA比RISC-V更完整。比如说，它包括DSP和SIMD扩展，这些扩展仍在由RISC-V委员会审议。”
+
+格温纳普表示，此外，MIPS是一种经过商业验证的ISA，二十多年来出货量已多达数十亿。“MIPS软件开发工具更加成熟。”他特别指出，此外，“MIPS还提供专利保护和中心机构以避免ISA碎片化现象，这两点都是RISC-V所缺乏的。这些因素使MIPS在商业实施方面具有优势，尤其是面向客户的核心。”
+
+\textcolor{blue}{MIPS面临的挑战}
+
+据MIPS声称，MIPS开放计划的参与者可以随意访问32位和64位MIPS ISA的最新版本，无需支付许可费或使用费。
+
+MIPS未来的成功在很大程度上取决于社区的努力。斯威夫特承认：我们能建立一个充满活力、蓬勃发展的社区是关键。走“开源”道路不仅仅是一句空头话。斯威夫特补充认为：“必须全力支持和妥善管理全力以赴的开源工作。社区必须能够支持自身的发展”。
+
+\textcolor{blue}{那么，谁将管理MIPS开放计划？}
+
+斯威夫特表示，指导委员会内部仍在讨论当中。适当的管理对于向MIPS客户保证 MIPS开放生态系统提供的一系列开发工具、应用软件及其他增值功能和服务将适合新的实施至关重要。
+
+正如UltraSoC的首席执行官贝恩斯指出的那样，“就像RISC-V基金会必须为其指令保持标准以避免碎片化那样，MIPS也必须维护好环境。”
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{p57}
+	\captionsetup{font={small}}
+	\caption{阿特•斯威夫特（Art Swift）}
+	\end{figure}
+
+
+斯威夫特敏锐地意识到建立开源社区所面临的重重挑战。斯威夫特担任过RISC-V基金会营销委员会副主任，现在他仍是prpl基金会主席。
+
+被问及谁将运作MIPS开放计划时，斯威夫特建议设立一个新的基金会，或将其移到已经设立的现有开源组织，比如prpl基金会。
+
+prpl基金会成立于2015年，是一个社区驱动的开源联盟。据斯威夫特声称，该基金会专注于为嵌入式设备确保安全性和互操作性，比如客户端设备、物联网和家庭网关系统。其成员包括Arris科技、英特尔、沃达丰、高通、博通及其他公司。
+
+贝恩斯同意这一说法，特别指出“prpl基金会可能不赖”。但斯威夫特明确表示还没有做出这方面的决定。
+
+据Wave的新闻稿声称，目前，MIPS开放计划将由Wave Computing和一个咨询委员会主持，该委员会将包括行业领先的OEM厂商、合作伙伴、大学和技术界名人，他们将帮助指导社区驱动的MIPS创新。此外，“MIPS开放计划还将包括经过认证的验证合作伙伴，他们将帮助确保实施兼容性，并防止架构碎片化，”Wave特别指出。
+
+\textcolor{blue}{许可收入怎么样？}
+
+通过走开源道路，Wave也许能够在RISC-V日盛的时代挽救MIPS的江湖地位。然而，正如格温纳普所说，“这个做法使得MIPS更难获得许可收入。”他说：“难就难在找到一种能够兼顾开放可用性和创收的商业模式”。
+
+Wave在大力推行“AI for All”，计划授权其他公司使用Wave在AI方面的知识产权(IP)，MIPS被认为是加速其AI进入市场的关键。Wave的高级副总裁兼首席商务官Lee Flanagin在一份声明中说：
+
+按照MIPS开放计划开发的基于MIPS的解决方案将补充我们现有和未来的MIPS知识产权核(IP Core)，Wave会继续开发这些知识产权核，并在全球范围内授予许可，作为我们包括系统、解决方案和IP的整个产品组合的一部分。这将确保新老MIPS客户拥有广泛的解决方案，可以针对其SoC设计从中选择，还可以访问充满活力的MIPS开发社区和生态系统。
+
+斯威夫特在之前的采访中表示，MIPS的策略就是使用其“多线程架构、缓存一致性和异构集群方面的优势，用于AI”。
+
+\textcolor{blue}{MIPS专利在哪里？}
+
+长期以来，行业分析师们觉得MIPS架构太旧，MIPS因此饱受之苦、深受其害。除了可能已过期的一些MIPS专利外，MIPS科技在2012年卖给了Imagination科技公司后，MIPS的声誉在过去十年因出售专利而进一步下滑。
+
+在卖给Imagination的同时，MIPS还签订了一份向Bridge Crossing出售专利的单独协议。 Bridge Crossing获得了MIPS的580项专利资产中的498项，总共卖出所得3.5亿美元。与此同时，MIPS保留了与MIPS架构直接有关的剩余82项专利资产，还获得了出售给Bridge Crossing的所有专利的免使用费永久许可。
+
+Wave向EE Times解释，不过在所有权归属Imagination的期间，许多MIPS专利回过头来从Bridge Crossing获得许可。尽管MIPS专利的所有权发生了这样的种种变故，但Wave宣布“MIPS开放计划的参与者可授权使用MIPS的数百项现有全球专利”。
+
+\textcolor{blue}{中国因素考虑}
+
+对MIPS未来所作的任何预测都还必须考虑中国因素。在中国的中方行业组织纷纷支持RISC-V之前很长一段时间，中国对MIPS极为重视，视之为心头好。总部位于北京的计算技术研究所(ICT)领导开发了几代基于MIPS的龙芯(Godson)芯片。中国政府通过其基于龙芯的超级计算项目继续热衷于MIPS。
+
+虽然目前中国大多数无圆晶厂的芯片公司专注于属于Arm阵营的智能手机，但神州龙芯集成电路设计有限公司、珠海炬力(Action)和君正集成电路(Ingenic)仍在使用MIPS。斯威夫特对中国的大多数MIPS玩家非常熟悉，“因为我与他们合作过，”他告诉我们。考虑到中国对RISC-V的兴趣，斯威夫特表示MIPS走开源道路“在中国可谓顺应形势。”
+
+MIPS开源后，一个更大的问题是ARM的下一步行动。
+
+然而，甚至很难摸透ARM会如何亦步亦趋。贝恩斯说，与MIPS相比，“ARM走开源道路将会是特大新闻。但是ARM的损失会大得多”。
+
+
+\section{浅谈四大主流CPU体系架构}
+
+{\LARGE \textcolor{red}{浅谈四大主流CPU体系架构}}
+
+
+RISC（精简指令集计算机）是一种执行较少类型计算机指令的微处理器，起源于80年代的MIPS主机（即RISC机），RISC机中采用的微处理器统称RISC处理器。这样一来，它能够以更快的速度执行操作（每秒执行更多百万条指令，即MIPS）。因为计算机执行每个指令类型都需要额外的晶体管和电路元件，计算机指令集越大就会使微处理器更复杂，执行操作也会更慢。　
+
+性能特点一：由于指令集简化后，流水线以及常用指令均可用硬件执行； 
+性能特点二：采用大量的寄存器，使大部分指令操作都在寄存器之间进行，提高了处理速度； 
+性能特点三：采用缓存—主机—外存三级存储结构，使取数与存数指令分开执行，使处理器可以完成尽可能多的工作，且不因从存储器存取信息而放慢处理速度。
+
+其中ARM/MIPS/PowerPC均是基于精简指令集机器处理器的架构；
+X86则是基于复杂指令集的架构，Atom是x86或者是x86指令集的精简版。
+根据各种新闻，Android在支持各种处理器的现状：
+
+ARM+Android 最早发展、完善的支持，主要在手机市场、上网本、智能等市场；
+X86+Android 有比较完善的发展。有atom+Android的上网本，且支
+Atom+Android 和 Atom+Window7双系统；
+MIPS+Android 目前在移植、完善过程中；
+Powpc+Android 目前在移植、完善过程中。
+
+{\Large \textcolor{blue}{ARM系列处理器}}
+
+ARM架构，过去称作进阶精简指令集机器（Advanced RISC Machine，更早称作：Acorn RISC Machine），是一个32位精简指令集（RISC）处理器架构，其广泛地使用在许多嵌入式系统设计。由于节能的特点，ARM处理器非常适用于行动通讯领域，符合其主要设计目标为低耗电的特性。
+在今日，ARM家族占了所有32位嵌入式处理器75\%的比例，使它成为占全世界最多数的32位架构之一。ARM处理器可以在很多消费性电子产品上看到，从可携式装置（PDA、移动电话、多媒体播放器、掌上型电子游戏，和计算机）到电脑外设（硬盘、桌上型路由器）甚至在导弹的弹载计算机等军用设施中都有他的存在。在此还有一些基于ARM设计的派生产品，重要产品还包括Marvell的XScale架构和德州仪器的OMAP系列。
+
+优势：价格低；能耗低；
+ARM 授权方式：ARM 公司本身并不靠自有的设计来制造或出售 CPU ，而是将处理器架构授权给有兴趣的厂家。
+生产厂商：TI （德州仪器）/Samsung（三星）/Freescale（飞思卡尔）/Marvell（马维尔）/Nvidia（英伟达）
+
+ARM 提供了多样的授权条款，包括售价与散播性等项目。对于授权方来说，ARM 提供了 ARM 内核的整合硬件叙述，包含完整的软件开发工具（编译器、debugger、SDK），以及针对内含 ARM CPU 硅芯片的销售权。对于无晶圆厂的授权方来说，其希望能将 ARM 内核整合到他们自行研发的芯片设计中，通常就仅针对取得一份生产就绪的智财核心技术（IP Core）认证。对这些客户来说，ARM 会释出所选的 ARM 核心的闸极电路图，连同抽象模拟模型和测试程式，以协助设计整合和验证。需求更多的客户，包括整合元件制造商（IDM）和晶圆厂家，就选择可合成的RTL（暂存器转移层级，如 Verilog）形式来取得处理器的智财权（IP）。
+
+借着可整合的 RTL，客户就有能力能进行架构上的最佳化与加强。这个方式能让设计者完成额外的设计目标（如高震荡频率、低能量耗损、指令集延伸等）而不会受限于无法更动的电路图。虽然 ARM 并不授予授权方再次出售 ARM 架构本身，但授权方可以任意地出售制品（如芯片元件、评估板、完整系统等）。商用晶圆厂是特殊例子，因为他们不仅授予能出售包含 ARM 内核的硅晶成品，对其它客户来讲，他们通常也保留重制 ARM 内核的权利。
+
+{\Large \textcolor{blue}{x86系列/Atom处理器}}
+
+xx86或80x86是英代尔Intel首先开发制造的一种微处理器体系结构的泛称。
+x86架构是重要地可变指令长度的CISC（复杂指令集电脑，Complex Instruction Set Computer）。
+
+Intel Atom（中文：凌动，开发代号：Silverthorne）是Intel的一个超低电压处理器系列。处理器采用45纳米工艺制造，集成4700万个晶体管。L2缓存为512KB，支持SSE3指令集，和VT虚拟化技术（部份型号）。
+
+现时，Atom处理器系列有6个型号，全部都是属于Z500系列。它们分别是Z500、Z510、Z520、Z530、Z540和Z550。最低端的Z500内核频率是800MHz，FSB则是400MHz。而最高速的Z550，内核频率则有2.0GHz，FSB则是533MHz。从Z520开始，所有的处理器都支持超线程技术，但只增加了不到10\%的耗电。双内核版本为N系列，依然采用945GC芯片组。双内核版本仍会支持超线程技术，所以系统会显示出有4个逻辑处理器。这个版本的两个内核并非采用本地设计，只是简单的将两个单内核封装起来。
+
+{\Large \textcolor{blue}{MIPS系列处理器}}
+
+MIPS是世界上很流行的一种RISC处理器。MIPS的意思是“无内部互锁流水级的微处理器”(Microprocessor without interlocked piped stages)，其机制是尽量利用软件办法避免流水线中的数据相关问题。它最早是在80年代初期由斯坦福(Stanford)大学Hennessy教授领导的研究小组研制出来的。MIPS公司的R系列就是在此基础上开发的RISC工业产品的微处理器。这些系列产品为很多计算机公司采用构成各种工作站和计算机系统。
+
+MIPS技术公司是美国著名的芯片设计公司，它采用精简指令系统计算结构(RISC)来设计芯片。和英特尔采用的复杂指令系统计算结构(CISC)相比，RISC具有设计更简单、设计周期更短等优点，并可以应用更多先进的技术，开发更快的下一代处理器。MIPS是出现最早的商业RISC架构芯片之一，新的架构集成了所有原来MIPS指令集，并增加了许多更强大的功能。MIPS自己只进行CPU的设计，之后把设计方案授权给客户，使得客户能够制造出高性能的CPU。
+
+1984年，MIPS计算机公司成立，开始设计RISC处理器；
+1986年推出R2000处理器。
+1992年，SGI收购了MIPS计算机公司。
+1988年推R3000处理器。
+1991年推出第一款64位商用微处器R4000；之后又陆续推出R8000（于1994年）、R10000（于1996年）和R12000（于1997年）等型号。
+1998年，MIPS脱离SGI，成为MIPS技术公司；随后，MIPS公司的战略发生变化，把重点放在嵌入式系统；1998年－MIPS科技股票在美国纳斯达克股票交易所公开上市。
+1999年，MIPS公司发布MIPS32和MIPS64架构标准，为未来MIPS处理器的开发奠定了基础。新的架构集成了所有原来NIPS指令集，并且增加了许多更强大的功能。MIPS公司陆续开发了高性能、低功耗的32位处理器内核（core）MIPS324Kc与高性能64位处理器内核MIPS64 5Kc。
+2000年，MIPS公司发布了针对MIPS32 4Kc的版本以及64位MIPS 64 20Kc处理器内核。 
+2007年8月16日－MIPS科技宣布，中科院计算机研究所的龙芯中央处理器获得其处理器IP的全部专利和总线、指令集授权。
+2007年12月20日－MIPS科技宣布，扬智科技已取得其针对先进多媒体所设计的可定制化系统单芯片（SoC）核心“MIPS32 24KEc Pro”授权。
+
+{\Large \textcolor{blue}{PowerPC系列处理器}}
+PowerPC 是一种精简指令集（RISC）架构的中央处理器（CPU），其基本的设计源自IBM（国际商用机器公司）的IBM PowerPC 601 微处理器POWER（Performance Optimized With Enhanced RISC；《IBM Connect 电子报》2007年8月号译为“增强RISC性能优化”）架构。二十世纪九十年代，IBM(国际商用机器公司)、Apple（苹果公司）和Motorola（摩托罗拉）公司开发PowerPC芯片成功，并制造出基于PowerPC的多处理器计算机。PowerPC架构的特点是可伸缩性好、方便灵活。
+
+PowerPC 处理器有广泛的实现范围，包括从诸如 Power4 那样的高端服务器 CPU 到嵌入式 CPU 市场（任天堂 Gamecube 使用了 PowerPC）。PowerPC 处理器有非常强的嵌入式表现，因为它具有优异的性能、较低的能量损耗以及较低的散热量。除了象串行和以太网控制器那样的集成 I/O，该嵌入式处理器与“台式机”CPU 存在非常显著的区别。
+
+{\Large \textcolor{blue}{实时性(Real Time)DSP架构}}
+
+DSP是微处理器的一种,这种微处理器具有极高的处理速度.因为应用这类处理器的场合要求具有很高的实时性(Real Time)。比如通过移动电话进行通话,如果处理速度不快就只能等待对方停止说话，这一方才能通话。如果双方同时通话，因为数字信号处理速度不够,就只能关闭信号连接.在DSP出现之前数字信号处理只能依靠MPU(微处理器)来完成。但MPU较低的处理速度无法满足高速实时的要求。
+
+因此，直到70年代，有人才提出了DSP的理论和算法基础。那时的DSP仅仅停留在教科书上，即便是研制出来的DSP系统也是由分立元件组成的，其应用领域仅局限於军事、航空航天部门。90年代DSP发展最快，相继出现了第四代和第五代DSP器件。现在的DSP属於第五代产品，它与第四代相比，系统集成度更高，将DSP芯核及外围元件综合集成在单一芯片上。这种集成度极高的DSP芯片不仅在通信、计算机领域大显身手，而且逐渐渗透到人们日常消费领域。
+
+
+
+\section{中国芯}
+
+
+\begin{center}
+	{\LARGE \textcolor{red}{中国芯片的差距}}
+\end{center}
+
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{p8}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+	在半导体这个领域，中国需要挑战的是，西方上百年积累起来的工业体系。中国半导体一直是在冒着敌人的炮火匍匐前进，如今，敌人的炮火越来越凶猛。围追堵截中，谁让我“芯”痛？
+
+	\begin{flushleft}
+		{\Large 1 美国的惊人统治力}
+	\end{flushleft}
+
+	1957年，晶体管之父肖克利的八个门徒，在硅谷创立仙童半导体公司，并开发出人类历史上第一块集成电路，硅谷因此成为全世界半导体技术的发源地，一直延续至今。
+
+	期间，尽管发生过几次产业转移，七八十年代，半导体制造大量转移至日本；90年代后，转移至韩国和中国台湾。但美国至今依旧保留着在诸多核心领域的统治力。
+
+	以生产设备为例，全球三大巨头应用材料、泛林和ASML，美国独占前两席，而且应用材料在除光刻机以外的几乎所有领域都领先，包括蚀刻、薄膜沉积等。
+
+	更恐怖的是，全球三大EDA软件（用于芯片设计）巨头铿腾、明导和新思，均为美国企业，全世界几乎所有芯片设计和制造企业都离不开它们。
+
+	高端芯片方面，中兴事件暴露出来的众多短板，包括ADC/DAC（数模转换）、FPGA、高速光通信接口等芯片，目前也都依赖美国厂商，包括德州仪器、赛灵思、亚德诺等。
+
+	美国的惊人统治力还体现在生态系统上。
+
+	目前，三种主流的芯片架构X86、MIPS和ARM，前两种都是美国血统。其中，英特尔的X86架构，与微软的Windows系统结盟，称霸台式机市场。ARM架构虽然是英国血统，却离不开安卓和iOS系统的支持，两者合计占有全球95%以上的手机市场。
+
+	而且，ARM其实诞生于苹果的一款失败产品。
+
+	如今，在全球20大半导体公司中，美国依旧独占八席，处于绝对的霸主地位，并且基本都是卡住核心的关键性公司。
+
+	\begin{flushleft}
+		{\Large 2 中国VS整个产业链}
+	\end{flushleft}
+
+
+
+	半导体是一个庞大的产业，从大类上讲，包括集成电路（IC）、光电子、分离器和传感器等，其中IC的规模占80\%以上。
+
+	所谓芯片，就是内含集成电路的硅片，它分为几十个大类，上千个小类。制造一块小小的芯片，涉及50多个学科、数千道工序，包括设计、制造和封装三大环节。
+
+	在这个产业链上，国内企业的差距是全方位的。
+
+	首先看设计，华为海思和紫光展锐分列国内前两名。目前，两家公司在不少领域已是世界领先水平，但一个巨大的问题是，其架构授权的核心都被外人掌握。
+
+	目前，国内仅有中科院的龙芯和总参谋部的申威拥有自主架构，前者用于北斗导航，后者用于神威超级计算机，民用领域基本是空白。
+
+	设备和材料是又一大短板。制造芯片的三大设备光刻机、蚀刻机和薄膜沉积，国内仅中微半导体的介质蚀刻机能跟上行业节奏，其7纳米设备已入围台积电名单。
+
+	此外，北方华创在氧化炉和薄膜沉积设备上成绩不俗，但基本还处于28纳米级别。其他设备，如离子注入机、抛光机和清洗机，也差不多。
+
+	差距最大的是光刻机。光刻机用于将设计好的电路图曝光在硅片上，蚀刻机则负责微观雕刻，刻出沟槽或接触孔。目前ASML最先进的EUV光刻机，即将投入三星、台积电的7纳米工艺，而国内上海微电子的光刻机，仍停留在90纳米量产的水平。
+
+	材料方面，日本是全球领先者。
+
+	在制造芯片的19种主要材料中，日本有14种位居全球第一，总份额超过60\%。全球近七成的硅晶圆产自日本，那是芯片制造的根基。
+
+	反观中国，硅晶圆几乎是空白，8英寸国产率不足10\%，12英寸依赖进口，打破垄断的希望还在张汝京创办的新昇半导体，今年即将量产。他也是中芯国际的创始人。
+
+	除了硅晶圆，国内企业还在溅射靶材、研磨液等材料上有所突破，并实现了国产化。前者用于制作金属导线，后者用于芯片研磨抛光。
+
+	以上均为单点突破，距离整个行业的崛起还比较远。
+
+	芯片制造，国内最先进的是中芯国际和厦门联芯，目前能做到28纳米量产。而它们的竞争对手，三星、台积电等巨头即将在今年量产7纳米，相差两三代。
+
+	最后是封测。这是目前大陆最接近国际水平的领域，长电科技收购新加坡星科金朋后，跻身全球第三。但全球封测中心在中国台湾，以日月光为首的台湾企业，拥有50%以上的市场份额。
+
+	在这样一个超长的产业链中，全球通力合作必不可少。以光刻机为例，荷兰ASML一骑绝尘，但它的成功得益于各国的鼎力合作，镜头来自德国蔡司、光源来自美国，这几乎是西方近百年工业的技术结晶。
+
+	但中国在这个产业链上处于不利地位，经常面对不友好的产业环境。这次的中兴事件只不过是浮上台面的斗争与封锁，而台面下的争斗几十年来则是一直没有消停。
+
+	\begin{flushleft}
+		{\Large 3 巨头封锁与追杀}
+	\end{flushleft}
+
+
+	芯片制造是人类历史上最复杂的工艺，加工精度为头发丝的几千分之一，需要上千个步骤才能完成。其难度，堪比两弹一星。
+
+	如此复杂的工艺，需要巨额的投资。例如，建一个芯片工厂，就动辄需要上百亿美元。这样的投资规模，只有跨国巨头乃至国家才能完成。
+
+	这让巨头企业在产业中更具优势，也直接导致了行业的不断集中。
+
+	过去40年，半导体行业呈现加速垄断趋势。1995年，全球七大半导体企业投资占比24\%，如今这个数字已飙升至80\%以上。40年前，全球有几十家主要的设备制造商，如今只剩下三四家。
+
+	不仅如此，巨头们不但自身可以使出很多种手段惩戒后来者，甚至还组建产业联盟扼杀后来者。
+
+	手段之一是低价倾销。这里面都是套路：一开始你没有，它通过垄断积累暴利；等你做出来，它马上降价倾销，让你越做越亏，暗无天日，最终断了产业化的念想。
+
+	当年液晶大战的惨痛就这样。三星、夏普等液晶巨头，一开始不愿在华建厂，而等深圳市政府组织国内彩电巨头，以及京东方要展开反攻时，他们却又主动跳出来求合作。结果导致长虹动摇并撤出，京东方则被晾在一边，国产计划泡汤。
+
+	享受这一“待遇”的，还有MOCVD设备商。MOCVD是制造LED芯片的设备，在国产化之前，美、德两家巨头凭借垄断，每台设备卖2000万。而等国内厂商开始介入时，售价立刻暴跌至600万。结果，数十个国内玩家，如今只剩下中微、中晟光电等少数几家。
+
+	去年，高通在华推出重磅计划，与大唐电信旗下的联芯科技成立领盛科技，联手进军中低端芯片市场。关心国内芯片产业的很多人士都一致认为，这是高通要“借刀杀人”，要以领盛科技用价格战的方式绞杀正在向中高端芯片市场进军的紫光展讯。而5月4日的最新消息显示，这家合资企业已正式获批。
+
+	手段之二是发动专利战，拖住对手，打击下游客户信心。
+
+	2000年，张汝京出走台湾，在上海创建中芯国际。之后，他从台积电四处挖人，使得中芯短时间内迅速崛起。但厄运随之而来，老冤家张忠谋很快就发起了专利战。这场持续近七年的战争，最终的结果是中芯割地赔款，张汝京黯然出局。
+
+	台积电通过此举，成功拖住了中芯。而当初引进张汝京的江上舟，也在两年后辞世，死前一直惦记着中芯的未来。
+
+	同样的一幕发生在中微身上。2007年，尹志尧领衔的中微刚推出自己的蚀刻机，就被老东家美国应用材料告上法庭。紧接着，另一巨头泛林火上浇油。好在中微从一开始就小心规避专利陷阱，最终赢得了诉讼。
+
+	但结果却不甚理想，中微不但赔上巨额的诉讼费，还赔上了下游客户的信心。再加上适逢经济危机，不得不暂时砍掉MOCVD业务。
+
+	\begin{flushleft}
+		{\Large 4 很不友好的环境}
+	\end{flushleft}
+
+
+	事实上，中国很早就重视了半导体的大战。最早可追溯至上世纪60年代。但在后来的发展中，由于自身路径，国内产研环境，以及不友好的产业环境等多种原因，逐渐掉队。
+
+	中国半导体一直是在冒着敌人的炮火匍匐地前进。而今，敌人的炮火更是越来越凶猛，越来越密集。
+
+	西方一直有一个针对出口管制的制度安排，最早是1949年成立的巴黎统筹委员会，之后在1996年演变为瓦森纳协定。该协定包含军用、民用两份控制清单，目的是限制向相关国家出口敏感产品和技术，中国就属于被限制的对象。
+
+	过去几十年，国家一直在努力突破这种封锁。90年代，先后批复908/909工程，时任领导人表态：砸锅卖铁也要把半导体搞上去。国务院则用财政赤字拨款。
+
+	然而，作为两项工程的产物，华晶、华虹等企业到国际上采购设备却遭到抵制，最终发展受限，一直未有大的突破。
+
+	2006年以后，国家又搞了01和02专项。前者剑指核心电子器件、高端通用芯片和基础软件，俗称核高基；后者剑指IC制造和成套工艺。
+
+	近年来，两个专项相继开花结果，例如中微的蚀刻机已看齐世界水平，中芯国际的工艺已挺进到28纳米，但受限于不友好的产业环境，水平还是差强人意。
+
+	以光刻机为例，ASML的EUV光刻机即将投入7纳米工艺，而国内最先进的量产水平是90纳米。之所以差距惊人，原因之一是买不到高水平的镜头和光源，这是光刻机的核心部件，而国内缺乏相关的技术。
+
+	坊间一直传说，瓦森纳协定禁止向中国出口高端光刻机。这种说法后来遭到ASML公司的否认，该公司声称，最快将于2019年在中国晶圆厂见到EUV光刻机。
+
+	但业内人士透露，在瓦森纳协定中，确实是有光刻机限售条款的，只不过每隔几年，条款就会作相应的调整。之所以调的原因也是，国产水平在不断提高，所谓的调整，顶多也就是“敌人”不断地根据我方的进展调整炮火的轻重与射程。
+
+	一个有意思的细节是，国内研究机构在相关技术上取得突破不久，ASML公司就否认了禁售的传闻。
+
+	产业环境并不是唯一的障碍，来自国家层面的干预更加要命。
+
+	美国政府曾多次否决中国企业针对美企的收购行为，包括著名的紫光并购美光计划。最近更是制裁了中兴通讯，断供其芯片。
+
+	2016年，国内某基金收购德国爱思强时，连FBI都跳出来施压，最终迫使德方放弃了交易。而据中兴员工透露，在中兴断芯事件前，FBI就入驻了公司内部。
+
+
+
+	\begin{flushleft}
+		{\Large 5 为钱一把辛酸泪}
+	\end{flushleft}
+
+	半导体是一个烧钱的行业。上世纪90年代，中央在财政非常拮据的情况下，特批了40亿元搞半导体。但这点钱只是杯水车薪。
+
+	向民间要投资，更遭到冷遇。
+
+	这个行业不但烧钱，而且周期长，技术更新快，你刚研发出来，别人已经开始打价格战。这意味着，前期要不断砸钱，还见不到水花。对民营资本而言，这是无法承受之痛。
+
+	中微董事长尹志尧2004年满腔热血回国创业，就遇到了这个难题。
+
+	为造蚀刻机，中微在短时间内，烧光了地方政府和自筹资金，只好四处筹钱续命。当时民间资本对这个行业缺乏了解，也缺乏意愿，尹的一腔热血只能碰一鼻子灰。
+
+	万般无奈之下，只好赴硅谷融资。两周内，十几家风投踏破门槛，愿意提供5000万美元。此情此景，令报国心切的尹志尧百感交集：难道只有美国造得出蚀刻机？
+
+	苦心积虑，只为国产化，绝不能大权旁落。在拿回几笔续命钱后，尹志尧继续寻找国内投资人。后来，在江上舟的引荐下，终于有国开行为中微背书。
+
+	跟中微有类似遭遇的，还有京东方。
+
+	做液晶面板20年，京东方一直伴随各种非议。尤其是它越亏越投的做法，更是被人质疑为绑架政府，因为其大部分资金来自银行和地方政府。
+
+	在资本市场上，由于不断增发，京东方背上了圈钱的骂名。但这些钱，大部分来自国资背景。其间，京东方曾多次拉私募基金入股，均被拒绝，理由是投资大，短期难见利。
+
+	幸运的是，苦熬多年后，京东方靓丽崛起，勇夺五个全球第一，让当初的坚持者赚得盆满钵满。
+
+	近年来，国家加大了对半导体行业的投入。大基金一期投入1300亿，已收尾；二期预计超过2000亿。乍一看，钱不少，但需要投资的项目也很多，涵盖芯片设计、制造、封测、设备等诸多领域。以一期为例，累计投资62个项目，涉及23家上市公司。
+
+	这样平均下来，每家获得的投资额并不多，跟撒胡椒面一样。
+
+	而纯靠市场手段去募集资金的难度同样非常大。以紫光为例，真正的大规模投资还没开始，市场就已不乏圈钱的质疑声，跟京东方当年恶战面板产业时所遭遇的挑战几乎没有两样。
+
+	显然，这样的投资强度是不够的。再看一组数据，就更能看出差距。
+
+	全球芯片三巨头，三星、英特尔、台积电，每年的投资都在百亿美元级别，而中芯国际不到对方的十分之一。
+
+	设备三巨头，应用材料、泛林、东京电子，每年在研发上投入5—10亿美元不等，而中微半导体直到去年，收入才破10亿，还是人民币。
+
+
+	\begin{flushleft}
+		{\Large 6 人才的切肤之痛}
+	\end{flushleft}
+
+
+	搞好半导体，主要靠三件事：一个是钱，一个是人，外加一个政策。钱的事好说，毕竟这些年国家不差钱；人的事很难搞，因为非一朝一夕之功。
+	
+	数据显示，我国未来需要70万半导体人才，目前只有不到30万，缺口40万。
+	
+	我们尤其缺行业的领军人物。这些年，01/02专项取得的重大突破，很多都是海归创造的，他们长期任职于欧美半导体公司，拥有丰富的行业经验。
+	
+	张汝京，德州仪器工作20年，在全球盖过20座芯片工厂。回国后，创办了中芯国际，以及国内第一家12寸硅晶圆厂，被誉为中国半导体之父。
+	
+	尹志尧，闯荡硅谷20年，先后任职于英特尔、泛林和应用材料。回国后，创办中微半导体，几乎以一己之力，将国内介质蚀刻机带到了世界水平。
+	
+	此外，曾任职于霍尼韦尔的姚力军，回国后做出了高纯度溅射靶材；美国留学归来的王淑敏，研发出国内第一款研磨液，打破了国外垄断。
+	
+	日本、韩国和中国台湾地区，也是半导体人才的重要来源。大陆两大代工厂，中芯国际和厦门联芯，都有台湾背景，很多技术人员也来自台湾。
+	
+	这几年，国内存储器的跨越式发展，也离不开日本、韩国、中国台湾技术人员的贡献。日本厂商尔必达破产后，大批日本人赴中国寻找机会，包括前社长坂本幸雄。
+	
+	以紫光为例，外界看到其董事长赵伟国在资本和产业上动作频频，而事实上，他用心同样多的也是找人。其总投资预计1000亿美元左右的长江储存的执行董事长高启全，便是他费尽心思从台湾争抢过来的世界级半导体产业猛人。
+	
+	目前，长江存储的3D NAND闪存已经获得第一笔订单，总计10776颗芯片，将用于8GB USD存储卡产品。今年10月，我国首批拥有完全自主知识产权的32层三维NAND闪存芯片将在这里实现量产，这也是中国集成电路闪存芯片产业规模化发展“零”的突破。
+	
+	然而，引进人才毕竟不是长久之计。国内半导体行业要想大发展，必须立足于培养本土人才。
+	
+	一方面，外来人才和本土人才，在利益、观念等方面是有冲突的。中芯国际在江上舟离世后，就陷入外来人员和本土人员的派系之争，一度影响到公司的发展。
+	
+	另一方面，半导体是微加工行业，工艺很关键。很多外国技术人员之所以牛，是他们一辈子只干一件事积累起来的。
+	
+	2002年，上海微电子总经理赴德国考察，有工程师告诉他：“给你们全套图纸，也做不出来。”开始他不服，后来明白了。那里的抛光工人，祖孙三代干着同样一件事，“同样一个镜片，不同工人去磨，光洁度相差十倍。”
+	
+	这恰是中国半导体行业的一个切肤之痛。
+	
+	我们不缺设计人员，但缺工艺工程师，而这类人才很难靠引进来满足。
+	
+	中芯国际之所以在制程上落后2-3代，除了光刻机等设备受限外，工艺上的经验欠缺才是更重要的原因。
+	
+	遗憾的是，目前国内不少高校的人才培养，与现实脱节。大多数学生跑去做软件，做应用，却不愿搞更基础的计算机系统和底层结构。
+	
+	
+	
+	\begin{flushleft}
+		{\Large 7 不容乐观的生态链}
+	\end{flushleft}
+	
+	
+	在自然界，动植物要生存，必须融入生物链。
+	
+	做企业也一样。只不过，在企业这个生态链中，先行者有成本优势，再加上稳定可靠的供应链，使得他们能够持续盈利，进而支撑着技术的不断进步。
+	
+	这对后来者而言，如同一道不可逾越的壁垒。
+	
+	这些年，中国半导体产业面临的一大难题，就是如何融入这个生态链。
+	
+	龙芯是一个很好的例子。这款中科院计算所自主研发的芯片，尽管性能不俗，但一直游离在民用市场外。原因很简单，市场上有更成熟、性价比更高的处理器。
+	
+	龙芯的遭遇并非个案。大部分芯片制造厂，在采购装备时，一定考虑的是进口设备，因为国产设备刚起步，质量不稳定、一致性差。
+	
+	当年，LED芯片刚在国内兴起时，各大芯片厂均只认美、德设备，而地方政府的补贴也只给进口设备。
+	
+	内忧外患，将国内MOCVD设备商逼到了绝境，“客户不太愿意用……因为不信任，需要重新验证，这又要花钱。”中晟光电负责人陈爱华说。
+	
+	直到后来，工信部为每台国产设备提供2000万补贴，形势才开始好转。
+	
+	新产品研制出来，没有人用，就不可能盈利；没有盈利，就没钱搞研发。结果只能是恶性循环，胎死腹中。
+	
+	这个时候，需要来自生态链的支持。国内半导体行业近年来的进步，尤其是设备和材料领域，很大程度上得益于中芯国际、厦门联芯等晶圆制造厂的带动。
+	
+	但这种机会，不是国外厂商所能提供的。那种一切交给市场的想法，不能说幼稚，至少也是罔顾事实的。
+	
+	几年前，韩国SK海力士曾采购过中微半导体的蚀刻机，后来放弃了。表面上是因为性能不及预期，实际是担心泄露核心工艺的秘密。
+	
+	一个有意思的细节是，尽管中国民用芯片九成依赖进口，但军用芯片却基本能自给自足，甚至还有出口。比如，龙芯就稳定运行在北斗导航系统上。
+	
+	另一款自主芯片，来自总参56所的申威，则撑起了我们的太湖之光超级计算机。
+	
+	军用很出彩，民用却卖不出去？问题就在生态链上。
+	
+	军用市场是一个封闭的小圈子，产品追求稳定性和抗干扰，对性能并不敏感。龙芯和申威在这里能找到自己的位置。
+	
+	反观民用市场，性能为王，技术迭代快，龙芯和申威很难融入这样的生态链。
+	
+	\begin{center}
+			{\LARGE \textcolor{red}{国产芯片失落的10年}}
+	\end{center}
+	
+	“现在一定是国产芯片最好的时候，”孙超这样强调，“会有很多人跟你说，国产芯片产业有各种各样的问题，但我要告诉你，国产芯片被低估了。”
+	
+	从2002年进入中芯国际做品质管理至今，孙超历经中芯、外资芯片企业、电子产业投资，已是一名有17年从业经验的“芯片”老兵。
+	
+	在他从业的前半段时期，正值国产芯片的“低落期”，在他和许多芯片研发人员的回忆中，彼时，行业弥漫着一种对外资芯片的崇拜情绪，“觉得能用海外的、能用更好的，就用人家的，干嘛自己花精力搞芯片”。在这一时期，高端芯片被外资把控，国内企业只能在低端市场中厮杀，不仅工作更为繁忙，而且利润更低。
+	
+	但最近几年，孙超明显感到，中国的芯片行业在回暖。
+	
+	这是事实。自2014年千亿级的政府芯片产业扶持基金成立以来，各地对芯片的优惠政策层出不穷，芯片企业数量应声上涨。到2016年，芯片设计企业数量相较2014年翻番，达1300多家。
+	
+	尽管迄今为止，在芯片行业过去十多年的发展中留存下的人才短缺、利润率低、产业多环节缺口明显等问题仍然存在，但在孙超等多位芯片从业者看来，随着资金进入，市场对国产芯片认可度提高，这些问题都将有机会被解决。
+	
+	“如果有足够的资金，花力气去发展，我相信，国产芯片可以在未来十年达到国际一流水平。”他给出了这样的判断。
+	
+	\begin{flushleft}
+		{\Large 1 “失落”10年，人才出走}
+	\end{flushleft}
+	
+	
+	
+	2000年，中国首家现代化芯片制造公司中芯国际成立。不久后，孙超从复旦大学毕业，成为其中的一名研发人员。
+	
+	当时正值芯片企业创立高峰期，如今在国产芯片中排名前列的中芯国际、华为海思、展讯通信、中兴微成、珠海炬力等十余家企业，均创立于2000年到2004年期间。
+	
+	十几年之后，当孙超再次回忆起这段过往时，他印象最深的是当时公司里同事们埋头苦干的场景，“公司整体环境有冲劲，觉得我们要赶超台积电，就算做不到全球最顶尖的芯片制造公司，也要成为国产芯片的支柱，有这样一种信念。”
+	
+	然而时运不济，2003年，台积电在美国加州起诉中芯国际侵犯专利权及窃取商业机密，起因是中芯国际创始人张汝京在创立公司时，从台积电挖走了大量工程师。由此，中芯国际与台积电开始了持续6年的芯片界人尽皆知的“对战”。
+	
+	这场对战最终以中芯国际的败诉逐渐落幕。6年内，中芯国际在美国2次败诉于台积电，甚至在北京高院反诉台积电后，仍然败诉，累计赔偿台积电3.75亿美元，以及10%的股份。
+	
+	败诉后的中芯国际也遭遇业绩危机，2009年公司净利润创成立以来最大年度亏损，净亏损达到9.6亿美元。
+	
+	“如果事情发生在今天，舆论应该会给予中芯支持，即使不是全面力挺，也不会使中芯失败得那样惨烈。”孙超感慨说，在当时的环境下，国产芯片并不被看好，中芯孤立无援。
+	
+	他称，在这场官司之前，中芯在芯片制程上大概比台积电落后1代左右，而且有望赶上他们，“此后至今，已经落后2、3代了。”
+	
+	不仅中芯国际元气大伤，这对于国产芯片行业也是当头一棒。随后，包括孙超在内的许多工程师逐渐离开了国产芯片行业，其中他们班上就有超过三分之二的人流入了外企。
+	
+	此后，国产芯片遭遇了“失落十年”；而与之相对的，移动互联网迎来了飞速发展的“黄金十年”。
+	
+	2008年，伴随着苹果推出App store，移动互联网行业迎来风口。中国互联网络信息中心统计，2008年-2018年的10年内，中国移动网民规模从1亿增长至近8亿。而CNNIC数据显示，在2014年至2018年期间，有超过70家移动互联网企业上市。
+	
+	伴随着移动互联网一同崛起的还有程序员职业。在8、9年前，腾讯、阿里等头部互联网企业开出的应届生月薪水平已过万，近几年，更是以年薪20万、30万起步居多。
+	
+	“同样是技术人员，做软件工资高、出路好；做硬件就不行，不仅辛苦，工资还低。”吴子豪这样感慨，他是一位芯片相关领域的重点高校教授。
+	
+	根据多位芯片从业人员介绍，应届生从事芯片研发，工资普遍仅为互联网行业的5到7成。“以最近一两年为例，硕士生进入一家不错的芯片公司，大概每月能拿1.2到1.5万元”。研发工程师林滨分析说，芯片研发工程师的成长速度比程序员慢，应届生开始工作后，平均要经历4、5个芯片项目周期，每个周期6个月到两年，才能“开始独当一面”，想要走到下一个技术层次，则又需数年时间，“成长速度慢，工资涨幅也就比较慢，和程序员没法比”。
+	
+	在吴子豪任职院系的实验室，发生过数起学生“叛逃”事件。一位资质不错的学生，进入实验室不久就和导师表态：“这行太辛苦了，我要转去学软件。”而另一位研究生边做实验边自学编程，毕业后直接应聘了程序员岗位。“研究生、博士生毕业从事本专业的占比不到20%，”吴子豪感慨，“大部分人去了互联网公司。”
+	
+	伴随芯片行业对人才吸引力走低，人才缺口逐渐浮现。据《中国集成电路产业人才白皮书（2017-2018）》预测，在2020年前后，我国集成电路行业人才需求规模约72万人，但现有人才存量约40万，人才缺口将达到32万。
+	
+	\begin{flushleft}
+		{\Large 2 低端市场的红海厮杀}
+	\end{flushleft}
+	
+	
+	
+	“芯片技术人才的要求其实是很高，既需要物理、数学、化学等基础学科的沉淀，也需要很多行业经验积累。”蓝宝王是一家拥有7年经验的外资芯片企业工程师，他认为当下芯片人才素质与薪水的不匹配，是“受市场条件所限的不得已情况”。
+	
+	在电子制造业中，芯片属于上游产业，本身利润不算高。芯片行业顶尖水平的毛利率可以达到40%到60%，但在中低端水平的利润则进一步被压缩。
+	
+	在国产芯片偏离关注焦点中心的十年里，也迎来过一些“窗口期”。“芯片本质上是和电子产品绑在一起的。”蓝宝王记得，大约在2012、2013年，随着iPad带火了平板电脑市场，国内由此迎来一波“白牌”平板电脑热潮，鉴于这类产品对芯片性能要求不高，不少芯片设计厂商扎堆入局。
+	
+	第一个抓住这次“机遇”的，是珠海的全志科技。2011年下半年，看到机会的全志科技抢先推出了一款基于ARM架构的平板电脑处理器芯片A10，主频提升至1G。简单来说，这款芯片的出现，将低端平板电脑从之前的“MP4大号版”提升至一个基本可用的工具。
+	
+	凭借A10和随后推出的A13，全志科技成为芯片领域的一匹黑马，在低端市场出货量跃升至全国首位，占据国产芯片总量约三分之一，并在2012年实现营收增长超400%。彼时，全志科技的毛利率达到56%。
+	
+	创始和管理团队赚的盆满钵满。一位自称是全志科技员工的匿名用户在知乎上透露说，全志科技的早期员工多半分有股票，上市后又逢股市高点，许多人实现了财富自由。
+	
+	然而，全志科技也由此掀开了随后数年的国产处理器芯片价格战。
+	
+	在推出A13时，为了抢占更多市场份额，全志将这款芯片定位于市场总量最大、也最低端的7寸平板市场，并一次性将其定价为每片5美元，不足市场平均价格的一半。“2011年，一颗平板电脑芯片还可以卖十几美金，但是价格战一打，没过两年，芯片已经下滑到3、5美元了。”一位电子厂商总经理回忆说。
+	
+	多位芯片从业者介绍，尽管芯片听起来“高端”，事实上，在中低端芯片设计领域，技术、资金门槛不高，同级别芯片性能水平相近，无法形成绝对竞争壁垒。随着参与者逐渐增多，技术门槛较低的山寨机手机芯片、LED芯片等市场，最终走向了价格战。
+	
+	全志科技的价格战最终烧回了自己。随着A13的走红，凌阳，扬智，君正，安凯，瑞芯微等大量芯片厂商加入这一市场，竞争迅速进入白热化。根据全志科技2015年申请上市时披露的招股书显示，56\%高毛利率的优势仅仅维持了一年，2013年，公司营收达到史上最高峰16.5亿元，但毛利率则下滑至41\%。此后至今，全志的营收、毛利率再未回到过高点。
+	
+	此前，《投资者报》曾披露芯片行业的毛利率平均值为40\%以上。而根据全志、晶辰半导体、瑞芯微等国产芯片财报，在2015到2018年，毛利率均略高于30\%。作为对比，同一时期，博通、高通、英特尔的毛利率区间为40\%-60\%。
+	
+	“在美国，高通、英特尔的工程师工资不会低于谷歌、亚马逊，”吴子豪这样感慨，“但在国内，由于整体利润率比较低，概念也不火，芯片工程师比程序员的薪水真的低太多。”
+	
+	在国产手机刚刚崛起时，曾有观点认为，这是国产芯片进入高端市场的契机。但最终事实表明，这一领域仍是高通的天下，即使是中低端机，也多为联发科所占。
+	
+	“在平板电脑热潮退后，国产芯片逐渐向电视盒子、智能音箱、车载娱乐系统几个方向转换。”蓝宝王分析说，以上几类产品使用场景相对简单，但是因为市场迎来过风口，已成为国产芯片近年来的主要出货方向。
+	
+	
+	\begin{flushleft}
+		{\Large 3 产业回春，扎堆设计}
+	\end{flushleft}
+	
+	2014年，在关注边缘游荡数年的芯片产业，迎来了春天。
+	
+	这一年9月，中国成立千亿级芯片产业扶持基金，目标在10年内将芯片内需市场自制率提升至70\%，在2030年时，从技术上赶超世界领先企业。作为对照，根据摩根士丹利估算，在1990年代后半期，政府对芯片产业的投入不足10亿美元。
+	
+	芯片行业重新热闹起来，芯片设计企业数量突飞猛进。在中国半导体行业协会集成电路设计分会的统计中，2015年，国内芯片设计企业尚为736家，仅仅一年后，即翻倍增加至1362家。
+	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.6]{p9}
+		\captionsetup{font={small}}
+		%\caption{LOGO可以说是相当简洁了}
+		\end{figure}
+	
+	不仅是数量上爆发，同一时期，芯片产业也迎来一批并购潮。紫光在2013年7月至2015年6月，完成展讯通信、锐迪科微电子两起并购，并收购了惠普旗下新华三集团的51\%股权；同时，长电科技、国有企业建广资产管理公司也陆续发起了芯片相关收并购。
+	
+	不过芯片产业的快速增长，逐渐形成“偏科”现象。“很多资源都扎堆到一起了，”林滨感慨，“市场比较大、投入产出比高的领域，企业非常多，相反，一些冷门领域还是空白。”
+	
+	从完整产业链看，芯片从上游到下游，包括设备、原材料、研发设计、制造、封装测试五个环节。其中研发设计最“轻资产”，海外高通、联发科、博通，国内海思、展讯等企业，均为“无晶圆设计企业，” 即只负责设计环节，制造、封测则交由其他企业。2016年以来，翻倍增长的芯片企业，也多属于设计领域。
+	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{p10}
+		\captionsetup{font={small}}
+		\caption{芯片产业链示意图 全天候科技制图}
+		\end{figure}
+	
+	
+	
+	然而，自中芯国际与台积电纠纷之后，在芯片制造上，中国企业却迟迟难以推进。“建立一条先进制程的芯片产线需要大量资金投入，”一位芯片销售人员分析称，“维持产线运营，又要保证充足订单、又要领先制程、还需要大量研发经费，很多厂商根本都玩不起。”
+	
+	在当时的芯片热潮下，各地纷纷投入建设芯片工厂，可惜时隔不久，包括成都格芯、福建晋华等项目，却陆续传出“暂停”消息。2年之后，格芯宣布项目停摆。
+	
+	如今，中芯国际仍然是中国市场上规模最大、制程最先进的芯片制造厂商，不过，如果以中芯近期传出将于2019年下半年量产14nm工艺制程的消息看，这仍比台积电正在试产5nm制程的水平落后2代。
+	
+	换句话说，目前在智能手机中最常见的高通骁龙855、华为海思980两枚芯片所需的7nm制程，中芯国际尚无法生产。
+	
+	此外，在芯片产业链中的设备和原材料两个环节，国内企业更是严重缺失。
+	
+	以被称为“集成电路最关键领域”的光刻机为例，早在20年前，即不断传出中国自主研发光刻机的各类消息，但迄今为止，仍未能生产出拥有先进制程的光刻机。“这是最容易被‘卡脖子’的环节之一，”林滨这样分析，“没有制造设备，芯片制造就无从谈起。”
+	
+	对于光刻机的渴望，甚至引起过一起动静颇大的“乌龙事件”。在2018年12月，一篇《国产超分辨光刻设备通过验收，可加工22纳米芯片》文章引爆整个市场，在这篇文章中，这台机器最高可用于10nm制程，与顶尖水平仅差1、2代，一时间，不少媒体纷纷以“中国光刻机终于出现”、“芯片最关键领域终于突破”等主题撰稿报道。
+	
+	可惜的是，第二天该消息即被澄清：这台由中科院研制的光刻机并非用于制造芯片，仅适用于其他领域。如今，上海微电子装备研制生产的光刻机，是中国本土市场制程最先进的一款机器，该光刻机能够量产的最高水平为90nm。
+	
+	
+	\begin{flushleft}
+		{\Large 4 最好的时代？}
+	\end{flushleft}
+	
+	
+	
+	尽管存仍在着种种问题，在孙超、林滨等人眼中，当下，就是国产芯片“最好的时代”。
+	
+	“我就说芯片现在是火了，”坐在中国芯片产业聚集地上海张江的一家咖啡馆内，林滨笑道，“放在以前，很少有媒体来关注我们这个行业，”他称，最近一两年，接到的猎头电话都多了许多，“芯片人才更值钱了。”
+	
+	芯片产业的利好消息蜂拥而至，近两年来，北京、浙江、河南、广东、上海、深圳等地，均已出台促进集成电路发展的实施意见及规划。其中浙江省明确提出，到2020年，全省集成电路及相关产业业务将突破1000亿元。
+	
+	自2017年来，对于芯片产业的减税政策每年颁布一次。最近一次是在今年5月22日，财政部、税务总局发布了最新关于集成电路设计和软件产业企业所得税政策公告，其中写道：符合条件的集成电路设计企业和软件企业，自2018年12月31日前自获利年度起计算优惠期，第一年至第二年免征企业所得税，第三年至第五年按25\%的法定税率减半征收企业所得税，享受至期满为止。
+	
+	除了外部环境的利好，根据多位芯片从业者的介绍，对于芯片这一科技产品本身，也正在迎来一轮新的生命周期。
+	
+	“在PC时代，英特尔占据了处理器芯片的主流位置；智能手机时代，高通成为主力，”林滨分析说，“每一个时代开始时，也是芯片公司重新洗牌的时候，现在行业正在迎来AI芯片时代，在这个产品上，还没有哪个公司占有绝对优势。”
+	
+	国产芯片发展的“偏科”，虽然造成了产业链多环节缺口，但另一方面，也使国产芯片在设计领域进步迅速。多为从业者认为，目前在手机Soc芯片上，华为海思已经与高通旗鼓相当；而在最新的AI芯片领域，海思、寒武纪等企业，也均具有高竞争力的设计水平。
+	
+	“英伟达在AI芯片上有先发优势，但还没有形成绝对的护城河，现在是个交替时期，对于国产芯片，这是个机会。”林滨说。
+	
+	AI芯片已经形成了新的风口，仅仅在2017年一年，就有包括云知声、寒武纪、地平线等数十家初创公司宣布进入AI芯片领域。有数据显示，2016年全球AI芯片规模为23.88亿元，到2020年则会增长至146.16亿元。“很多钱涌进来，的确会出现一些骗局，”林滨耸耸肩，“不过，这其中的确有些水平很不错的企业。”
+	
+	在调研机构Compass Intellingence给出的全球AI芯片公司排行榜上，中国公司占据了24个企业中的7个席位，其中华为位列12，居中国厂商之首。
+	
+	设计领域之外，在那些缺口较为明显的制造、设备等领域，以蓝宝王的看法，虽然目前有可能会出现被“卡脖子”的状态，但也并非毫无希望，“一旦真的出现极端状况，如果有大企业、大力量来做这个事情，也是有实力做的出来的”。
+	
+	在关于“你认为国产芯片能否有机会达到一流水平”的这个问题上，每位工程师的回答都是“可以的”；在他们给出的年限中，最短的认为是3年，最长则是10年。
+	
+	
+	\begin{center}
+		{\Large  \textcolor{red}{结束语}}
+	\end{center}
+	
+	
+	通过以上梳理，我们看到，国内造不好高端芯片，有外部因素，也有自身原因。
+	
+	形势看似悲观，前景却很光明。
+	
+	一方面，半导体行业向中国转移的大趋势不会改变。另一方面，摩尔定律在工艺上逐渐趋近极限，客观上给了国内企业追赶的机会，而国家也正进一步加大支持和投入。
+	
+	最近，我国国家领导人在武汉考察时，就特别到长江存储作了考察与指示。受此鼓舞的赵伟国则表示，公司将尽快在全球集成电路产业占据重要地位，用5到10年时间成为全球三维闪存主要供应商之一。
+	
+	在国家的支持和企业的自身努力下，国内半导体产业链正在出现由点到面的突破，而在三大历史性机遇的支持下，我们也必须迎头赶上。
+	
+	否则，后面的仗将会越来越难打，因为半导体产业不光是现代高科技产业的基础，更是支撑和保障国家安全的战略性、基础性和先导性产业，而且重要性会越来越大。
+	\section{CPU架构和生产全过程}
+	
+	图解剖析CPU架构和生产全过程
+	
+	科学Sciences导读：图解CPU生产全过程——以intel CORE i7为例，展望CPU架构。本文简介英特尔Intel x86架构、生产制造CPU的原料和准备、CPU生产制造过程，并展望CPU的x86架构和RISC架构。其中，重新整理《图解intel Core i7 CPU生产全过程》，增加生产步骤中纳米级别的数据说明。
+	
+	关键词：CPU，x86，RISC-V，图灵奖，帕特森，清华-伯克利国际实验室。
+	
+	目录
+	图解CPU生产全过程——以intel CORE i7为例，展望CPU架构 \\
+	\begin{itemize}
+		\item 一、英特尔Intelx86架构
+		\item 二、制造CPU的基本原料
+		\item 三、CPU制造的准备阶段
+		\item 四、intelCore i7生产全过程图解
+		\item 五、英特尔X86展望
+		\item 六、清华-伯克利深圳学院RISC-V国际开源实验室
+		
+	\end{itemize}
+	
+	图解CPU生产全过程——以intel CORE i7为例，展望CPU架构
+	
+	中央处理单元——CPU是现代计算机的核心部件，又称为“微处理器”。衡量计算机性能，要看CPU的生产制造规格与运行控制频率。而生产制造计算机，要先设计计算机系统架构，再生产出来。硬件制造完成后，还要有操作系统和应用程序，人类才可以使用计算机——史上最强大的信息处理工具。领域外，要严格确定保护相关知识产权，否则无以为继。本文简介CPU架构和生产知识。
+	
+	一、英特尔Intel x86架构
+	
+	Intel从8086开始，到286、386、486、586、P1、P2、P3、P4、i3、i5、i7、i9都用的同一种CPU架构，统称X86。(INTEL和AMD目前的处理器基本都是X86架构。IBM的POWER系列和ARM公司的产品不是X86架构。)从1978年6月8日，美国英特尔(Intel)公司发布新款16位微处理器“8086”，开创x86架构时代算起，Intel x86架构已经四十多年了，是世界上设计、生产、制造最多的CPU体系之一。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p18}
+		\captionsetup{font={small}}
+		\caption{Intel 8086处理器}
+	\end{figure}
+	
+	X86架构(The X86 architecture)是微处理器执行的计算机语言指令集，指一个intel通用计算机系列的标准编号缩写，也标识一套通用的计算机指令集合。x86指的是特定微处理器执行的一些计算机语言指令集，定义了芯片的基本使用规则，一如今天的x64、IA64等。
+	
+	虽然8086处理器发布之初没有获得太多关注，也没有被大范围采用，但它在PC业界带来的x86体系，成就了Intel如日中天的地位，也成为一种业界标准，即使是在当今强大的多核心处理器上也能看到x86的身影。在40年发展史中，x86家族不断壮大，从桌面转战笔记本、服务器、超级计算机、编写设备，期间还挫败或者限制了很多竞争对手的发展，让不少处理器厂商及其架构技术成为历史名字，即使有些封闭发展的也难以为继，比如苹果就已经放弃PowerPC了。
+	
+	当然，不能忘了x86-64和EM64T的斗争。2003年，AMD推出了业界首款64位处理器Athlon 64，也带来了x86-64，即x86指令集的64位扩展超集，具备向下兼容的特点。当时Intel也在推行64位技术，但其IA64架构并不兼容x86，只是用在服务器处理器Itanium上。为了和AMD展开竞争，Intel也在2004年推出了自己的64位版x86，也就是EM64T。
+	
+	对此，AMD和Intel互相指责对方，但无论如何至少推广了64位技术的发展和普及，也让x86技术得以继续发扬光大。加州大学伯克利分校计算机科学教授、RISC发明人之一大卫·帕特森(David Patterson)表示：“这证明，x86指令集的弹性完全可以拿来对付Intel，所以即使Intel统治了整个市场，其他公司依然可以改变x86的发展方向。”
+	
+	x86是一个intel通用计算机系列的标准编号缩写，也标识一套通用的计算机指令集合，X与处理器没有任何关系，它是一个对所有*86系统的简单的通配符定义，例如：i386,586,奔腾(pentium)。由于早期intel的CPU都是如8086,80286来编号，整个系列的CPU都是指令兼容的，所以都用X86来标识所使用的指令集合如今的奔腾,P2,P4,赛扬系列都是支持X86指令系统的，所以都属于X86家族。
+	
+	X86指令集是美国Intel公司为其第一块16位CPU(i8086)专门开发的，美国IBM公司1981年推出的世界第一台PC机中的CPU--i8088(i8086简化版)使用的也是X86指令，同时电脑中为提高浮点数据处理能力而增加的X87芯片系列数学协处理器则另外使用X87指令，以后就将X86指令集和X87指令集统称为X86指令集。虽然随着CPU技术的不断发展，Intel陆续研制出更新型的i80386、i80486直到今天的Pentium 4(以下简为P4)系列，但为了保证电脑能继续运行以往开发的各类应用程序以保护和继承丰富的软件资源，所以Intel公司所生产的所有CPU仍然继续使用X86指令集，所以它的CPU仍属于X86系列。
+	
+	另外除Intel公司之外，AMD和Cyrix等厂家也相继生产出能使用X86指令集的CPU，由于这些CPU能运行所有的为Intel CPU所开发的各种软件，所以电脑业内人士就将这些CPU列为Intel的CPU兼容产品。由于Intel X86系列及其兼容CPU都使用X86指令集，所以就形成了今天庞大的X86系列及兼容CPU阵容。当然在台式(便携式)电脑中并不都是使用X86系列CPU，部分服务器和苹果(Macintosh)机中还使用美国DIGITAL(数字)公司的Alpha 61164和PowerPC 604e系列CPU。
+	
+	x86架构的CPU对我们大多数人的工作、生活影响颇为深远。许多对电脑知识略知一二的朋友大多会知道CPU里面最重要的东西就是晶体管了，提高CPU的速度，最重要的一点说白了就是如何在相同的CPU面积里面放进去更加多的晶体管，由于CPU实在太小，太精密，里面组成了数目相当多的晶体管，所以人手是绝对不可能完成的，只能够通过光刻工艺来进行加工的。
+	
+	这就是为什么一块CPU里面为什么可以数量如此之多的晶体管。晶体管其实就是一个双位的开关：即开和关。如果您回忆起基本计算的时代，那就是一台计算机需要进行工作的全部。两种选择，开和关，对于机器来说即0和1。那么您将如何制作一个CPU呢?下面，一步步讲述中央处理器从一堆沙子到一个功能强大的集成电路芯片的全过程。
+	
+	二、制造CPU的基本原料
+	
+	如果问及CPU的原料是什么，大家都会轻而易举的给出答案—是硅。这是不假，但硅又来自哪里呢?其实就是那些最不起眼的沙子。难以想象吧，价格昂贵，结构复杂，功能强大，充满着神秘感的CPU竟然来自那根本一文不值的沙子。当然这中间必然要经历一个复杂的制造过程才行。不过不是随便抓一把沙子就可以做原料的，一定要精挑细选，从中提取出最最纯净的硅原料才行。试想一下，如果用那最最廉价而又储量充足的原料做成CPU，那么成品的质量会怎样，你还能用上像现在这样高性能的处理器吗?
+	
+	除去硅之外，制造CPU还需要一种重要的材料就是金属。目前为止，铝已经成为制作处理器内部配件的主要金属材料，而铜则逐渐被淘汰，这是有一些原因的，在目前的CPU工作电压下，铝的电迁移特性要明显好于铜。所谓电迁移问题，就是指当大量电子流过一段导体时，导体物质原子受电子撞击而离开原有位置，留下空位，空位过多则会导致导体连线断开，而离开原位的原子停留在其它位置，会造成其它地方的短路从而影响芯片的逻辑功能，进而导致芯片无法使用。
+	
+	除了这两样主要的材料之外，在芯片的设计过程中还需要一些种类的化学原料，它们起着不同的作用，这里不再赘述。
+	
+	三、CPU制造的准备阶段
+	
+	在必备原材料的采集工作完毕之后，这些原材料中的一部分需要进行一些预处理工作。而作为最主要的原料，硅的处理工作至关重要。首先，硅原料要进行化学提纯，这一步骤使其达到可供半导体工业使用的原料级别。而为了使这些硅原料能够满足集成电路制造的加工需要，还必须将其整形，这一步是通过溶化硅原料，然后将液态硅注入大型高温石英容器而完成的。
+	
+	而后，将原料进行高温溶化。中学化学课上我们学到过，许多固体内部原子是晶体结构，硅也是如此。为了达到高性能处理器的要求，整块硅原料必须高度纯净，及单晶硅。然后从高温容器中采用旋转拉伸的方式将硅原料取出，此时一个圆柱体的硅锭就产生了。从目前所使用的工艺来看，硅锭圆形横截面的直径为200毫米。
+	
+	不过现在intel和其它一些公司已经开始使用300毫米直径的硅锭了。在保留硅锭的各种特性不变的情况下增加横截面的面积是具有相当的难度的，不过只要企业肯投入大批资金来研究，还是可以实现的。intel为研制和生产300毫米硅锭而建立的工厂耗费了大约35亿美元，新技术的成功使得intel可以制造复杂程度更高，功能更强大的集成电路芯片。而200毫米硅锭的工厂也耗费了15亿美元。
+	
+	制成硅锭并确保其是一个绝对的圆柱体之后，下一个步骤就是将这个圆柱体硅锭切片，切片越薄，用料越省，自然可以生产的处理器芯片就更多。切片还要镜面精加工的处理来确保表面绝对光滑，之后检查是否有扭曲或其它问题。这一步质量检验尤为重要，它直接决定了成品CPU的质量。
+	
+	新的切片中要掺入一些物质而使之成为真正的半导体材料，而后在其上刻划代表着各种逻辑功能的晶体管电路。掺入的物质原子进入硅原子之间的空隙，彼此之间发生原子力的作用，从而使得硅原料具有半导体的特性。今天的半导体制造多选择CMOS工艺(互补型金属氧化物半导体)。
+	
+	其中互补一词表示半导体中N型MOS管和P型MOS管之间的交互作用。而N和P在电子工艺中分别代表负极和正极。多数情况下，切片被掺入化学物质而形成P型衬底，在其上刻划的逻辑电路要遵循nMOS电路的特性来设计，这种类型的晶体管空间利用率更高也更加节能。同时在多数情况下，必须尽量限制pMOS型晶体管的出现，因为在制造过程的后期，需要将N型材料植入P型衬底当中，而这一过程会导致pMOS管的形成。
+	
+	在掺入化学物质的工作完成之后，标准的切片就完成了。然后将每一个切片放入高温炉中加热，通过控制加温时间而使得切片表面生成一层二氧化硅膜。通过密切监测温度，空气成分和加温时间，该二氧化硅层的厚度是可以控制的。
+	
+	在intel的90纳米制造工艺中，门氧化物的宽度小到了惊人的5个原子厚度。这一层门电路也是晶体管门电路的一部分，晶体管门电路的作用是控制其间电子的流动，通过对门电压的控制，电子的流动被严格控制，而不论输入输出端口电压的大小。
+	
+	准备工作的最后一道工序是在二氧化硅层上覆盖一个感光层。这一层物质用于同一层中的其它控制应用。这层物质在干燥时具有很好的感光效果，而且在光刻蚀过程结束之后，能够通过化学方法将其溶解并除去。
+	
+	3.1光刻蚀
+	
+	这是目前的CPU制造过程当中工艺非常复杂的一个步骤，为什么这么说呢?光刻蚀过程就是使用一定波长的光在感光层中刻出相应的刻痕，由此改变该处材料的化学特性。这项技术对于所用光的波长要求极为严格，需要使用短波长的紫外线和大曲率的透镜。刻蚀过程还会受到晶圆上的污点的影响。每一步刻蚀都是一个复杂而精细的过程。
+	
+	设计每一步过程的所需要的数据量都可以用10GB的单位来计量，而且制造每块处理器所需要的刻蚀步骤都超过20步(每一步进行一层刻蚀)。而且每一层刻蚀的图纸如果放大许多倍的话，可以和整个纽约市外加郊区范围的地图相比，甚至还要复杂，试想一下，把整个纽约地图缩小到实际面积大小只有100个平方毫米的芯片上，那么这个芯片的结构有多么复杂，可想而知了吧。
+	
+	当这些刻蚀工作全部完成之后，晶圆被翻转过来。短波长光线透过石英模板上镂空的刻痕照射到晶圆的感光层上，然后撤掉光线和模板。通过化学方法除去暴露在外边的感光层物质，而二氧化硅马上在陋空位置的下方生成。
+	
+	3.2掺杂
+	
+	在残留的感光层物质被去除之后，剩下的就是充满的沟壑的二氧化硅层以及暴露出来的在该层下方的硅层。这一步之后，另一个二氧化硅层制作完成。然后，加入另一个带有感光层的多晶硅层。多晶硅是门电路的另一种类型。由于此处使用到了金属原料(因此称作金属氧化物半导体)，多晶硅允许在晶体管队列端口电压起作用之前建立门电路。感光层同时还要被短波长光线透过掩模刻蚀。再经过一部刻蚀，所需的全部门电路就已经基本成型了。然后，要对暴露在外的硅层通过化学方式进行离子轰击，此处的目的是生成N沟道或P沟道。这个掺杂过程创建了全部的晶体管及彼此间的电路连接，没个晶体管都有输入端和输出端，两端之间被称作端口。
+	
+	3.3重复这一过程
+	
+	从这一步起，你将持续添加层级，加入一个二氧化硅层，然后光刻一次。重复这些步骤，然后就出现了一个多层立体架构，这就是你目前使用的处理器的萌芽状态了。在每层之间采用金属涂膜的技术进行层间的导电连接。今天的P4处理器采用了7层金属连接，而Athlon64使用了9层，所使用的层数取决于最初的版图设计，并不直接代表着最终产品的性能差异。
+	
+	3.4测试封装测试过程
+	
+	接下来的几个星期就需要对晶圆进行一关接一关的测试，包括检测晶圆的电学特性，看是否有逻辑错误，如果有，是在哪一层出现的等等。而后，晶圆上每一个出现问题的芯片单元将被单独测试来确定该芯片有否特殊加工需要。
+	
+	而后，整片的晶圆被切割成一个个独立的处理器芯片单元。在最初测试中，那些检测不合格的单元将被遗弃。这些被切割下来的芯片单元将被采用某种方式进行封装，这样它就可以顺利的插入某种接口规格的主板了。大多数intel和AMD的处理器都会被覆盖一个散热层。
+	
+	在处理器成品完成之后，还要进行全方位的芯片功能检测。这一部会产生不同等级的产品，一些芯片的运行频率相对较高，于是打上高频率产品的名称和编号，而那些运行频率相对较低的芯片则加以改造，打上其它的低频率型号。这就是不同市场定位的处理器。而还有一些处理器可能在芯片功能上有一些不足之处。比如它在缓存功能上有缺陷(这种缺陷足以导致绝大多数的CPU瘫痪)，那么它们就会被屏蔽掉一些缓存容量，降低了性能，当然也就降低了产品的售价，这就是Celeron和Sempron的由来。
+	
+	当CPU被放进包装盒之前，一般还要进行最后一次测试，以确保之前的工作准确无误。根据前面确定的最高运行频率不同，它们被放进不同的包装，销往世界各地。
+	
+	读到这，相信你已经对CPU制造流程有了一些比较深入的认识。CPU的制造，可以说是集多方面尖端科学技术之大成，CPU本身也就那么点大，如果把里面的材料分开拿出来卖，恐怕卖不了几个钱。然而CPU的制造成本是非常惊人的，从这里或许我们可以理解，为什么这东西卖这么贵了。
+	
+	在测试这个环节很重要，比如你的处理器是6300还是6400就会在这个环节被划分，而 6300天生并不是6300，而是在测试之后，发现处理器不能稳定的在6400标准下工作，只能在6300标准下稳定工作，于是对处理器定义，锁频，定义 ID，封装，印上6300。
+	
+	我们用AMD的来举例：同样核心的处理器都是一个生产线下来的，如果稳定工作在2.8GHz，1M*2的缓存下，就被定义为5600+，如果缓存有瑕疵，切割有问题的那一半，成为5400+，如果缓存没问题而频率只能在2.6G通过测试，那么就是5200+，如果缓存有瑕疵，就切割成为5000+…………一直把它测到3800+，如果还不稳定，要么想办法变成速龙64单核或者单核闪龙，或者就是出现过的ES版的双核闪龙。
+	
+	如果出现批量不能工作在3800+条件下，而工作在3600+条件下，那么3600+就上市了，如果出现批量能工作在3G，1M*2条件下，那么6000+就上市了，这就是为什么处理器总是中等型号的先上市，高端和底端的后上市，当然后期工厂可能会节约成本专门开出底端的流水线，专门生产底端处理器，赛扬，闪龙的各种型号就相继上市，而高端的流水线因为个别处理器不稳定转变为底端处理器，例如将速龙64缓存切割就变为闪龙64。
+	
+	四、intel Core i7生产全过程图解
+	
+	沙子：硅是地壳内第二丰富的元素，而脱氧后的沙子(尤其是石英)最多包含25\%的硅元素，以二氧化硅(SiO2)的形式存在，这也是半导体制造产业的基础。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.6]{p19}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	
+	
+	4.1硅熔炼：
+	
+	12英寸/300毫米晶圆级，下同。通过多步净化得到可用于半导体制造质量的硅，学名电子级硅(EGS)，平均每一百万个硅原子中最多只有一个杂质原子。此图展示了是如何通过硅净化熔炼得到大晶体的，最后得到的就是硅锭(Ingot)。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{p20}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	
+	4.2单晶硅锭：
+	
+	整体基本呈圆柱形，重约100千克，硅纯度 99.9999\%。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p21}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	
+	4.3硅锭切割：
+	
+	横向切割成圆形的单个硅片，也就是我们常说的晶圆 (Wafer)。顺便说，这下知道为什么晶圆都是圆形的了吧?
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p22}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	
+	4.4晶圆：
+	
+	切割出的晶圆经过抛光后变得几乎完美无瑕，表面甚至可以当镜子。事实上，Intel自己并不生产这种晶圆，而是从第三方半导体企业那里直接购买成品，然后利用自己的生产线进一步加工，比如现在主流的45nm HKMG(高K金属栅极)。值得一提的是，Intel公司创立之初使用的晶圆尺寸只有2英寸/50毫米
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p23}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.5光刻胶(PhotoResist)：
+	
+	图中蓝色部分就是在晶圆旋转过程中浇上去的光刻胶液体，类似制作传统胶片的那种。晶圆旋转可以让光刻胶铺的非常薄、非常平。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p24}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+
+	
+	4.6光刻：
+	
+	光刻胶层随后透过掩模(Mask)被曝光在紫外线(UV)之下，变得可溶，期间发生的化学反应类似按下机械相机快门那一刻胶片的变化。掩模上印着预先设计好的电路图案，紫外线透过它照在光刻胶层上，就会形成微处理器的每一层电路图案。一般来说，在晶圆上得到的电路图案是掩模上图案的四分之一。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p25}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.7光刻：
+	
+	由此进入50-200纳米尺寸的晶体管级别。一块晶圆上可以切割出数百个处理器，不过从这里开始把视野缩小到其中一个上，展示如何制作晶体管等部件。晶体管相当于开关，控制着电流的方向。现在的晶体管已经如此之小，一个针头上就能放下大约3000万个。
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p26}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	
+	4.8溶解光刻胶：
+	
+	光刻过程中曝光在紫外线下的光刻胶被溶解掉，清除后留下的图案和掩模上的一致
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p27}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.9蚀刻：
+	
+	使用化学物质溶解掉暴露出来的晶圆部分，而剩下的光刻胶保护着不应该蚀刻的部分。
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p28}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	
+	4.10清除光刻胶：
+	
+	蚀刻完成后，光刻胶的使命宣告完成，全部清除后就可以看到设计好的电路图案。
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{p29}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.11光刻胶：
+	
+	再次浇上光刻胶(蓝色部分)，然后光刻，并洗掉曝光的部分，剩下的光刻胶还是用来保护不会离子注入的那部分材料。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p30}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	离子注入(Ion Implantation)：在真空系统中，用经过加速的、要掺杂的原子的离子照射(注入)固体材料，从而在被注入的区域形成特殊的注入层，并改变这些区域的硅的导电性。经过电场加速后，注入的离子流的速度可以超过30万千米每小时。
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.9]{p31}
+	\captionsetup{font={small}}
+	%\caption{Intel 8086处理器}
+\end{figure}
+	
+	4.12清除光刻胶：
+	
+	离子注入完成后，光刻胶也被清除，而注入区域(绿色部分)也已掺杂，注入了不同的原子。注意这时候的绿色和之前已经有所不同。
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p32}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.13晶体管就绪：
+	
+	至此，晶体管已经基本完成。在绝缘材(品红色)上蚀刻出三个孔洞，并填充铜，以便和其它晶体管互连。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p33}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.14电镀：
+	
+	在晶圆上电镀一层硫酸铜，将铜离子沉淀到晶体管上。铜离子会从正极(阳极)走向负极(阴极)。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p34}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	
+	4.15铜层：
+	
+	电镀完成后，铜离子沉积在晶圆表面，形成一个薄薄的铜层。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p35}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.16抛光：
+	
+	将多余的铜抛光掉，也就是磨光晶圆表面。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p36}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	晶体管级别，六个晶体管的组合，大约500纳米。在不同晶体管之间形成复合互连金属层，具体布局取决于相应处理器所需要的不同功能性。芯片表面看起来异常平滑，但事实上可能包含20多层复杂的电路，放大之后可以看到极其复杂的电路网络，形如未来派的多层高速公路系统。
+
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{p37}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.17晶圆测试：
+	
+	内核级别，大约10毫米/0.5英寸。图中是晶圆的局部，正在接受第一次功能性测试，使用参考电路图案和每一块芯片进行对比。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.7]{p38}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.18晶圆切片(Slicing)：
+	
+	晶圆级别，300毫米/12英寸。将晶圆切割成块，每一块就是一个处理器的内核(Die)。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p39}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	晶圆级别。测试过程中发现的有瑕疵的内核被抛弃，留下完好的准备进入下一步。
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.9]{p40}
+	\captionsetup{font={small}}
+	%\caption{Intel 8086处理器}
+	\end{figure}
+	4.19单个内核：
+	
+	内核级别。从晶圆上切割下来的单个内核，这里展示的是Core i7的核心。
+	封装：
+	封装级别，20毫米/1英寸。衬底(基片)、内核、散热片堆叠在一起，就形成了我们看到的处理器的样子。衬底(绿色)相当于一个底座，并为处理器内核提供电气与机械界面，便于与PC系统的其它部分交互。散热片(银色)就是负责内核散热的了。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p41}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.20等级测试：
+	
+	最后一次测试，可以鉴别出每一颗处理器的关键特性，比如最高频率、功耗、发热量等，并决定处理器的等级，比如适合做成最高端的Core i7-975 Extreme，还是低端型号Core i7-920。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.9]{p42}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	4.21装箱：
+	
+	
+	制造、测试完毕的处理器要么批量交付给OEM厂商，要么放在包装盒里进入零售市场。
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{p43}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	五、英特尔X86展望
+	
+	英特尔推出X86架构已满40年了，同486相比，Pentium向前迈进了一大步，而PⅡ的前进步伐则没有这么大了，X86 CPU的发展似乎已到了尽头。英特尔非常清楚，是X86指令集限制了CPU性能的进一步提高，因此，他们正同惠普共同努力开发下一代指令集架构(Instruction Set Architecture，ISA)： EPIC (Explicitly ParallelInstruction Computing，显性并行指令计算)。对英特尔而言，IA-64(英特尔的64位架构)是下一个10到15年的架构。新的ISA将使英特尔摆脱X86架构的限制，从而设计出超越所有现有RISC CPU和X86 CPU的新型处理器。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{p44}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+	那么EPIC的先进之处在什么地方呢？为什么英特尔会放弃使它成为芯片巨人的X86架构呢？
+	
+	IA－32的问题：工程师可以通过提高每个时钟的指令执行数来提高性能，英特尔新的指令集的首要目的在于，让指令更容易解码，更容易并行执行。这样就可以不受限制地开发新型处理器。但是，对工程师而言，兼容8086的X86指令集一直是必须完成的任务。毕竟，兼容前代产品是使英特尔成长壮大起来的关键因素，而且还可以保护用户原先的投资和使用数以百万计应用软件。
+	
+	既然如此，为什么又要放弃整个X86指令集重新开始呢？X86的不足在什么地方？
+	
+	(1)可变的指令长度 X86指令的长度是不定的，而且有几种不同的格式，结果造成X86 CPU的解码工作非常复杂，为了提高CPU的工作频率，不得不延长CPU中的流水线，而过长的流水线在分支预测出错的情况下，又会带来CPU工作停滞时间较长的弊端。
+	
+	(2)寄存器的贫乏 X86指令集架构只有8个通用寄存器，而且实际只能使用6个。这种情况同现代的超标量CPU极不适应，虽然工程师们采用寄存器重命名的技术来弥补这个缺陷，但造成了CPU过于复杂，流水线过长的局面。
+	
+	(3)内存访问 X86指令可访问内存地址，而现代RISC CPU则使用LOAD/STORE模式，只有LOAD和STORE指令才能从内存中读取数据到寄存器，所有其他指令只对寄存器中的操作数计算。在CPU的速度是内存速度的5倍或5倍以上的情况下，后一种工作模式才是正途。
+	
+	(4)浮点堆栈 X87 FPU是目前最慢的FPU，主要的原因之一就在于X87指令使用一个操作数堆栈。如果没有足够多的寄存器进行计算，你就不得不使用堆栈来存放数据，这会浪费大量的时间来使用FXCH指令(即把正确的数据放到堆栈的顶部)。
+	
+	(5)4GB限制这似乎不是问题，但是，在2000年前，主流PC只有4MB内存，现在绝大部分PC装备了2G以上的内存，是以前的512倍，所以，PC内存突破16GB绝对不会令人惊讶，大型服务器已经使用了32GB以上的内存，突破64GB内存的情况已经出现。
+	
+	(6)芯片变大所有用于提高X86 CPU性能的方法，如寄存器重命名、巨大的缓冲器、乱序执行、分支预测、X86指令转化等等，都使CPU的芯片面积变得更大，也限制了工作频率的进一步提高，而额外集成的这些晶体管都只是为了解决X86指令的问题。
+	
+	六、清华-伯克利深圳学院RISC-V国际开源实验室
+	
+	2019年6月12日，图灵奖得主、计算机体系结构领域享誉世界的顶级科学家大卫·帕特森(David Patterson)在瑞士宣布，将依托清华-伯克利深圳学院(TBSI)，建设RISC-V国际开源实验室(RISC-V  International Open SourceLaboratory)，又称大卫·帕特森RIOS图灵奖实验室(以下简称RIOS实验室)。
+	
+	
+	大卫·帕特森为2017年图灵奖得主，美国科学院、工程院、艺术与科学学院三院院士，伯克利加州大学电子工程与计算机科学学院Pardee荣誉教授。他与清华有多年深厚的友谊和密切的合作，并于2018年获颁清华大学名誉博士学位。
+	
+	作为计算机体系结构领域享誉世界的顶级科学家，大卫·帕特森最早提出“精简指令集”(RISC)体系。第五代精简指令集(RISC-V)是目前最新一代伯克利RISC处理器指令集，由帕特森教授带领的伯克利加州大学团队于2011年首次发布。RISC-V的硬件和软件技术发展吸引了世界各国的关注。
+	
+	特别值得一提的是，该指令集完全开源并免费。大卫·帕特森院士一直坚持原创知识成果开源，希望以非商业性的开源运动带动RISC-V全球化，形成新的开源CPU生态体系。
+	
+	RIOS实验室将瞄准世界CPU产业战略发展新方向和粤港澳大湾区产业创新需求，聚焦于RISC-V开源指令集CPU研究领域开展研究，建设以深圳为根节点的RISC-V全球创新网络。研究将极大地推动全球RISC-V技术的工业化进程和软硬件生态建设。RIOS实验室由大卫·帕特森院士担任实验室主任，将依托清华-伯克利深圳学院开展工作。
+
+	
+	RIOS在西班牙语中意为河流，代表着汇聚资源，形成聚力。将实验室命名为RIOS，也传达了大卫·帕特森院士对开源的支持与对合作前景的美好祝福。未来依托该实验室将开展硕士、博士培养项目，并以此作为清华大学深圳国际研究生院核心学科建设的一部分，在教师和研究人员的选聘方面建立配套措施。
+	
+	清华与伯克利加州大学的合作基础深厚。早在1979年，两校便签署了改革开放以来清华大学与国外大学的第一个学术交流协议。40年来，两校共同致力于解决全球面临的重大挑战，在能源、环境、健康、经济、社会发展等众多领域开展了合作研究。基于多年的合作互信关系，2014年，清华大学与伯克利加州大学在深圳市政府的支持下联合建立清华-伯克利深圳学院，凭借两校的综合学科优势和雄厚工科基础，吸引世界一流的生源与顶尖的教授和研究者，致力于培养产业科学家、解决中国的世界级问题。是秦陇纪向往的研究场所之一。
+	
+	RIOS实验室在深圳的建设也有着深远的意义，其研究方向契合深圳市战略性新兴产业布局，将极大推动RISC-V的工业化进程和在全球的广泛产业应用，进一步建立与全球各大公司的联系与合作。RIOS实验室落户深圳，还将为深圳聚集和培养面向处理器和开源硬件设计的高端急需人才，有助于深圳国际化科技生态圈建设及智能硬件产业链布局，提升粤港澳大湾区在RISC-V开源处理器全球生态圈中的话语权与影响力。
+	
+	来源：科学Sciences
+
+	\section{网络}
+	\section{数据结构与算法}
+	
+	这部分的内容相对比较“软”，但软不代表不重要，数据结构和算法主要是设计程序的思想。但是这里得强调一点：互联网公司笔试和面试过程中考的试题实在是闲的蛋疼，不能说考试的题目没用，这些小题目在实际工作中用的不是很多，但是他们的思想是很重要的，有时候一个大工程项目中很多小地方会用到这些小的数据结构和小算法去优化项目的整体框架，这确实是很有意义的。这也就对求职者的编码能力要求很高。这些练习的题目在实际工作中用的不多，但是用到时自己得知道有这么回事。这才是练习的目的，所以适当的练习还是必要的，当喜欢上写代码时，是很享受写这些代码的。
+	
+	好的，数据结构和算法，这一块内容充斥在计算机的方方面面，是计算机的软文化。
+	
+	在解决一个问题的过程中算法其实可以分为两部分：第一部分就是首先别管时间和空间效率，先把问题解决了，这部分主要考察的是对问题的理解、对问题的分解、以及最基本和粗糙的编程能力，问题解决了(也就拿到了计算结果，计算没出错)接下来再是用到计算机里面的数据结构和算法去优化之前的代码，这是第二部。
+
+
+	\chapter{linux C 网络}	
+	\section{linux C socket函数介绍和使用实例}	
+	
+	Socket是应用层与协议族通信的中间软件抽象层，它是一组接口。
+
+	先附图一张，虽然是讲解TCP的socket，但是道理相通
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{p72.png}
+	\captionsetup{font={small}}
+	%\caption{Intel 8086处理器}
+	\end{figure}	
+
+	\large \textcolor{blue}{一、基本socket函数}
+	
+	Linux系统是通过提供套接字(socket)来进行网络编程的。网络的socket数据传输是一种特殊的I/O,socket也是一种文件描述符。socket也有一个类似于打
+	开文件的函数：socket(),调用socket(),该函数返回一个整型的socket的描述符，随后的连接建立、数据传输等操作也都是通过该socket实现。
+	\begin{enumerate}
+		\item socket函数
+		
+		语法:\\
+		int socket(int domain, int type, int protocol);\\
+		功能说明：\\
+		调用成功，返回socket文件描述符；失败，返回－1，并设置errno\\
+		参数说明：\\
+		domain指明所使用的协议族，通常为PF\_INET，表示TCP/IP协议；\\
+		type参数指定socket的类型，基本上有三种：数据流套接字、数据报套接字、原始套接字;\\
+		protocol通常赋值"0"。\\
+		两个网络程序之间的一个网络连接包括五种信息：通信协议、本地协议地址、本地主机端口、远端主机地址和远端协议端口。socket数据结构中包含这五种信息。
+		
+		\item bind函数
+		
+		语法:\\ 
+		 
+		int bind(int sock\_fd,struct sockaddr\_in *my\_addr, int addrlen);\\
+		功能说明：\\
+		将套接字和指定的端口相连。成功返回0，否则，返回－1，并置errno；\\
+		参数说明：\\
+		sock\_fd是调用socket函数返回值,\\
+		my\_addr是一个指向包含有本机IP地址及端口号等信息的sockaddr类型的指针；\\
+		struct sockaddr\_in结构类型是用来保存socket信息的：\\
+		struct sockaddr\_in \{\\
+			short int sin\_family;\\
+			unsigned short int sin\_port;\\
+			struct in\_addr sin\_addr;\\
+			unsigned char sin\_zero[8];\\
+		\};\\
+		addrlen为sockaddr的长度。\\
+		
+		\item connect函数
+		
+		syntax:  \\
+		int connect(int sock\_fd, struct sockaddr *serv\_addr,int addrlen);\\
+		功能说明：\\
+		客户端发送服务请求。成功返回0，否则返回－1，并置errno。\\
+		参数说明：\\
+		sock\_fd\\ 是socket函数返回的socket描述符；serv\_addr是包含远端主机IP地址和端口号的指针；addrlen是结构sockaddr\_in的长度。\\
+		
+		\item listen函数\\
+		syntax:\\
+		int listen(int sock\_fd， int backlog);\\
+		功能说明：\\
+		等待指定的端口的出现客户端连接。调用成功返回0，否则，返回－1，并置errno.\\
+		参数说明：\\
+		sock\_fd 是socket()函数返回值；\\
+		backlog指定在请求队列中允许的最大请求数	\\
+		
+		
+		\item accecpt函数\\
+		
+		syntax:  \\
+		int accept(int sock\_fd, struct sockadd\_in* addr, int addrlen);\\
+		功能说明：\\
+		用于接受客户端的服务请求，成功返回新的套接字描述符，失败返回－1，并置errno。\\
+		参数说明：\\
+		sock\_fd是被监听的socket描述符，
+		addr通常是一个指向sockaddr\_in变量的指针，
+		addrlen是结构sockaddr\_in的长度。\\
+		
+		
+		\item write函数\\
+		
+		syntax:\\
+		ssize\_t write(int fd,const void *buf,size\_t nbytes)\\
+		功能说明：\\
+		write函数将buf中的nbytes字节内容写入文件描述符fd.成功时返回写的字节数.失败时返回-1. 并设置errno变量.\\
+		在网络程序中,当我们向套接字文件描述符写时有俩种可能：\\
+		1)write的返回值大于0,表示写了部分或者是全部的数据.\\
+		2)返回的值小于0,此时出现了错误.需要根据错误类型来处理.\\
+		如果错误为EINTR表示在写的时候出现了中断错误.\\
+		如果错误为EPIPE表示网络连接出现了问题.\\
+		
+		
+		\item read函数
+		
+		syntax:\\
+		ssize\_t read(int fd,void *buf,size\_t nbyte)\\
+		函数说明：\\
+		read函数是负责从fd中读取内容.当读成功时,read返回实际所读的字节数,如果返回的值是0 表示已经读到文件的结束了,小于0表示出现了错误.
+		如果错误为EINTR说明读是由中断引起的,
+		如果错误是ECONNREST表示网络连接出了问题.
+		
+		note:write和read可以用\\
+		
+		ssize\_t send(int sockfd, const void *buf, size\_t len, int flags);\\
+		ssize\_t recv(int sockfd, void *buf, size\_t len, int flags);
+		替代\\
+		
+		\item close函数\\
+		syntax:\\
+		int close(sock\_fd);\\
+		说明:\\
+		当所有的数据操作结束以后，你可以调用close()函数来释放该socket，从而停止在该socket上的任何数据操作：\\
+		函数运行成功返回0，否则返回-1	\\	
+
+	\end{enumerate}
+	
+\lstset{language=C}
+{\setmainfont{Courier New Bold}   
+\begin{lstlisting}        %插入要显示的代码
+		
+// service代码		
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+
+#define MYPORT  8887
+#define BUFFER_SIZE 1024
+
+int main()
+{
+	///定义sockfd
+	int sock_cli = socket(AF_INET,SOCK_STREAM, 0);
+	///定义sockaddr_in
+	struct sockaddr_in servaddr;
+	memset(&servaddr, 0, sizeof(servaddr));
+	servaddr.sin_family = AF_INET;
+	servaddr.sin_port = htons(MYPORT);  ///服务器端口
+	servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");  ///服务器ip
+	///连接服务器，成功返回0，错误返回-1
+	if (connect(sock_cli, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
+	{
+		perror("connect");
+		exit(1);
+	}
+	char sendbuf[BUFFER_SIZE];
+	char recvbuf[BUFFER_SIZE];
+	while (fgets(sendbuf, sizeof(sendbuf), stdin) != NULL)
+	{
+		send(sock_cli, sendbuf, strlen(sendbuf),0); ///发送
+		if(strcmp(sendbuf,"exit\n")==0)
+			break;
+		recv(sock_cli, recvbuf, sizeof(recvbuf),0); ///接收
+		fputs(recvbuf, stdout);
+
+		memset(sendbuf, 0, sizeof(sendbuf));
+		memset(recvbuf, 0, sizeof(recvbuf));
+	}
+	close(sock_cli);
+	return 0;
+	}
+		
+\end{lstlisting}}
+
+\lstset{language=C}
+{\setmainfont{Courier New Bold}   
+	\begin{lstlisting}        %插入要显示的代码
+	
+// client代码		
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <sys/shm.h>
+
+#define MYPORT  8887
+#define BUFFER_SIZE 1024
+
+int main()
+{
+	///定义sockfd
+	int sock_cli = socket(AF_INET,SOCK_STREAM, 0);
+
+	///定义sockaddr_in
+	struct sockaddr_in servaddr;
+	memset(&servaddr, 0, sizeof(servaddr));
+	servaddr.sin_family = AF_INET;
+	servaddr.sin_port = htons(MYPORT);  ///服务器端口
+	servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");  ///服务器ip
+	
+	///连接服务器，成功返回0，错误返回-1
+	if (connect(sock_cli, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
+	{
+		perror("connect");
+		exit(1);
+	}
+	
+	char sendbuf[BUFFER_SIZE];
+	char recvbuf[BUFFER_SIZE];
+	while (fgets(sendbuf, sizeof(sendbuf), stdin) != NULL)
+	{
+		send(sock_cli, sendbuf, strlen(sendbuf),0); ///发送
+		if(strcmp(sendbuf,"exit\n")==0)
+		break;
+		recv(sock_cli, recvbuf, sizeof(recvbuf),0); ///接收
+		fputs(recvbuf, stdout);
+		
+		memset(sendbuf, 0, sizeof(sendbuf));
+		memset(recvbuf, 0, sizeof(recvbuf));
+	}
+	close(sock_cli);
+	return 0;
+}
+
+	
+	\end{lstlisting}}
+
+	\chapter{Linux/C进程与线程}
+	
+	\section{什么是系统调用?}
+	
+	进程可以通过系统调用向操作系统发起请求，希望操作系统替自己去完成某项操作，但是操作系统怎么完成取决于自己而且不受进程控制，进程也不知道操作系统是如何完成请求的，这是现代操作系统实现进程、多任务、虚拟内存等重要功能一个基本前提。
+	
+	因为操作系统是整个计算机系统的控制者 (操作系统能访问整个内存地址空间，能够决定 CPU 分配给哪个进程，可以控制各种设备，比如磁盘，网卡，键盘，鼠标，等等)，如果某个进程能控制操作系统的话，那么这个进程就绕过了操作系统进而控制了整个计算机系统，这显然是不合理的 (比如该进程一直使用 CPU 而不分配给其它进程)。
+	
+	因此操作系统必须通过某种方法来限制进程。该怎么做到呢？
+	
+	\textcolor{blue}{操作系统如何限制用户程序？}
+	
+	我们知道操作系统其实也是一个大的 C 程序，本质上和我们写的 C 程序没有任何区别。操作系统和用户程序都需要被编译成机器指令才能被 CPU 执行。因此当 CPU 执行的是来自操作系统的机器指令时，计算机表现出来的就是操作系统正在运行 (比如操作系统收发网络数据)。当 CPU 执行的是来自用户程序的机器指令时，计算机表现出来的就是用户程序正在运行 (比如浏览器正在加载页面)。
+	
+	从这里我们可以看出，单纯的依靠软件是没有办法来区分操作系统和用户程序的，因为这二者本质上都是机器指令，因此要想限制进程必须还要依靠硬件的帮助。
+	
+	
+	\textcolor{blue}{软件不够硬件来凑}
+	
+	原来 CPU 在执行机器指令时是有各个工作状态的，比如当 CPU 工作在 A 模式时会受到限制，不能执行所有的机器指令 (比如 I/O 操作类指令，这类指令被称为特权指令)，只能访问部分的内存空间，但当切换到 B 工作模式下 CPU 满血复活，在该工作状态下，CPU 可以执行所有指令类型包括特权指令，可以访问所有的内存地址空间，在这种工作状态下 CPU 可以解锁全部功能。CPU 在 A 工作模式下被称为用户模式 (User mode)，在 B 工作模式下被称为内核模式 (Kernel mode)，CPU 中有专门的寄存器用来记录当前 CPU 的工作状态。
+	
+	操作系统正是利用了 CPU 区分工作模式的功能来达到限制进程的目的的。当 CPU 在执行用户程序的指令时，操作系统把 CPU 的工作模式设置为用户模式，在这种模式下，用户程序不能直接控制外部设备，不能直接发起 I/O 请求，不能访问超过自己范围的内存空间 (被关在监牢中) 等等。当用户程序需要进行 I/O 操作需要向操作系统发起请求时 (监狱上的窗口) 会进行系统调用，此时 CPU 开始执行一种特殊的机器指令，这种特殊指令是专门为实现系统调用而设计的。
+	
+	在一般的 CPU 中有一种被称为 trap 的指令，执行 trap 指令后，CPU 开始切换到内核模式执行操作系统指令。CPU 会跳转到提前定义好的内存地址中，这里保存的是操作系统的代码，专门用来处理 trap 指令。接下来的过程就不受用户程序控制了，操作系统开始接管计算机，当操作系统接管计算机后，操作系统是信任自己的，因此操作系统可以控制所有计算机中的硬件 (CPU、内存、磁盘、网卡等外设)，可以访问整个内存的地址空间，可以决定是否继续让某个进程使用 CPU (控制进程)，可以向外部设备发起 I/O 命令。通过检查 trap 指令中请求类型，操作系统首先判断进程请求是否合法，如果请求合法，那么操作系统就替用户进程完成请求，把执行结果返回给进程，之后 CPU 再次切换回用户模式，在得到操作系统的返回结果后用户进程继续运行。
+	
+	\textcolor{blue}{系统调用是如何实现的}
+	
+	在上一节中我们已经知道了，操作系统利用 CPU 不同的工作模式来限制用户进程。
+	
+	在这种机制，用户进程完全无法控制操作系统如何来完成进程的请求。进程知道自己的代码段在哪里，自己的数据段在哪里，自己的函数调用栈在哪里，但是进程不知道操作系统的代码段在哪里，不知道操作系统的函数调用栈在哪里。进程也不能访问超出自己范围的内存空间 (32 位系统是用户进程可用的内存空间是 3G)，而且一旦进程访问了超出自己范围的内存空间，CPU 就能检测出来进程在用户模式下试图访问超过自己权限的内存地址（好比越狱），这有可能是程序员的 bug 也有可能是恶意病毒，CPU 检测到进程切图越权后就会开始执行提前准备好的一段操作系统代码，这段代码专门用来处理进程越界访问，操作系统开始接管计算机，不管进程出于什么样的原因越界，操作系统都会无情的终结掉当前进程，这就是著名的 segmentation fault。所以下次你再看到这个错误就应该明白，是你的程序企图越狱而被操作系统 kill 掉了。
+	
+	以 trap 指令为交界点，CPU 执行该指令前处于用户模式，CPU 执行该指令后处于内核模式。
+	
+	有了这些基础，系统调用就很简单啦，作为用户程序向操作系统发起请求的窗口，系统调用在程序员眼里就一个普通的 C 语言函数，只不过系统调用被编译成的机器指令时和普通函数的机器指令不太一样。系统调用被编译出来的机器指令中包含 trap 指令，CPU 在执行到 trap 指令时就知道这是用户进程在向操作系统发起请求。
+	
+	\textcolor{blue}{API 与系统调用}
+	
+	
+	一般情况下，程序员不会直接使用系统调用进行编程，而是使用对系统调用进行了封装的 API 来编程，这个 API 在 Unix/Linux 下是 libc 来提供的，也就是我们熟悉的 C 标准库；在 Windows 下这个 API 叫做 Win32 API，相信在 Windows 下编程的同学对此不会陌生。
+	
+	实际上作为程序员我们使用的基本上是使用 C 标准库或 Win32 API 进行编程，而这些 API 又封装了系统调用 (所谓封装，也就是这些 API 最终会调用到系统调用)，这也是为什么很多程序员根本没有意识到自己的程序在进行系统调用的原因。
+	
+	你可能会想，为什么我们要使用 C 标准库或者 Win32 API (以下统称 API) 而不直接使用系统调用来进行编程呢？
+	
+	一方面是因为这些系统调用的接口不是很易用；另一方面比较重要的是，API 的使用对程序员屏蔽了系统调用，也就是说我们的程序并不直接依赖系统调用，这一点是极为重要，因此这些 API 可以选择使用某个系统调用或者使用多个系统调用或者不使用系统调用。这就给 API 的设计带了了极大的灵活性。同时只要 API 的接口是不变的，那么如果两个不同的操作系统提供了同样的 API，我们的程序就可以不加修改的在另一种操作系统上运行了，这是非常棒的一种设计。比如，如果 Windows 上实现了 C 标准库，那么我们在 Unix/Linux 上基于 C 标准库的程序就可以不加修改的在 Windows 上运行。
+	
+	通常来说一个系统调用会对应一个 API，但是反过来不一定正确，也就是说一个 API 中不一定会调用系统调用，比如我们使用的 memcpy，这里面就没有调用任何系统调用。而且多个 API 可能会调用同一个系统调用，比如在 Linux 下我们进行内存分配释放常用的几个函数 malloc ()，calloc ()，free ()，这些函数实际上都是调用的一个叫做 brk () 的系统调用来完成的。
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{p70}
+		\captionsetup{font={small}}
+		%\caption{Intel 8086处理器}
+	\end{figure}
+
+由于 Windows 是闭源的商业操作系统，因此 Win32 API 有很好的兼容性，很古老的 Windows 程序放到现在的 Win10 上依然可以运行的好好的。
+
+但是对于 Unix 来说情况就不一样了，由于历史原因，现存有很多基于 Unix 的操作系统，但是又包含了自己的实现。因此为了方便在这些系统是进行软件开发，提出了 POSIX 标准，POSIX 标准主要是用来统一各个 Unix 平台上的 API 而不是这些平台上的系统调用，这些 Unix 系统可以有不同的系统调用，但是对外的 API 要提供一个大家都认可的统一的格式，POSIX 就是来规定这些格式的。有了 POSIX 标准，基于该标准的编写的程序就可以运行在不同的 Unix 平台上了。顺便说一下，虽然我们经常把 Unix 和 Linux 放在一起阐述，但是 Linux 是和 Unix 完全不同的一个操作系统，仅仅是 Linux 在设计哲学上借鉴了 Unix，Linux 上已经提供了符合 POSIX 规范的 API。
+
+一般来说这些 API (Unix/Linux 下的 C 标准库或者 Windows 下的 Win32 API) 已经足够大部分程序员使用了，因此作为程序员很少会遇到需要直接使用系统调用的情况。
+
+接下来我们就来看看一个系统调用的完整过程。
+
+
+	
+	\textcolor{blue}{系统调用的过程}
+	
+	
+	在这里我们依然以我们熟悉的 HelloWorld 程序为例来说明，同时我们假定运行的操作系统是 Linux (其它系统下这个过程依然适用)。在 Linux 下 printf 其实是 C 标准库中的函数，当调用 printf 时最终会调用到一个叫做 write () 的系统调用。
+	
+	
+	
+	include <stdio.h>
+	
+	int main(){
+		printf("Hello World."); //调用系统调用write
+		return 0;
+	}
+
+
+我们的 HelloWorld 程序在被加载到内存后，操作系统把 CPU 的程序计数器指向第一条 HelloWorld 程序指令所在的内存地址，这样我们的程序开始在用户模式下运行，由于 printf 仅仅是一个定义在 C 标准库中的普通的函数，因此当执行到该函数时 CPU 跳转到 C 标准库中去执行命令，此时 CPU 依然工作在用户模式下。由于 C 标准库中的 printf 函数最终会调用 write 系统调用，因此 CPU 最终会执行到 trap 命令，这时 CPU 开始由用户模式转变为内核模式，CPU 跳转到提前定义好的内存地址开始执行操作系统的代码。就好比用户程序向操作系统喊了一句：“Hey，操作系统老兄，帮我执行一下你的 write 函数吧。” 当操作系统在替用户完成任务后，依次返回到 C 标准库中的函数以及用户程序，最终我们的 HelloWorld 程序得以继续运行，如下图所示。
+
+所有的系统调用都是按照这种过程完成的。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{p83.jpg}
+	\captionsetup{font={small}}
+	%\caption{Intel 8086处理器}
+\end{figure}
+
+
+
+我们知道操作系统提供了很多功能，因此有很多系统调用，Windows 中有上千个，Linux 中较有几百个。不知道大家有没有注意到一点，那就是操作系统怎么知道要执行的是 write 系统调用呢？
+
+原来这些系统调用都有一个唯一的编号，这样当 CPU 执行 trap 命令切换的内核模式后，操作系统就能通过系统调用编号知道需要执行什么样的函数啦。
+
+因此你会看到，这里有个通过系统调用编号来查找具体处理函数的过程，这个过程在 Linux 下是由一个被称之为 System Call Handler 的函数来实现的，CPU 在从用户模式切换到内核模式后，跳转的内存地址就是 System Call Hander 所在的位置。System Call Handler 通过系统调用号找到具体的处理代码后开始调用这段 C 代码来处理用户程序的请求：如下图所示，从这里应该也能看出来，普通的函数在被调用 CPU 不会进行模式切换，普通的函数调用只在用户模式下就可以完成。
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{p71}
+	\captionsetup{font={small}}
+	%\caption{Intel 8086处理器}
+\end{figure}
+
+
+	\textcolor{blue}{系统调用类型}
+	
+	由于一个系统的功能都是通过系统调用对外提供的，因此应用程序能够实现的最强大的功能不会超过系统调用提供给应用程序的能力。
+	
+	根据类型系统调用大体可以划分为以下几类：进程控制：一个运行中的进程可以创建另外一个进程去完成某项工作，这样当前进程就有机会去处理自己感兴趣的事情，这类系统调用在 Linux 中是 fork ()，在 Windows 下 CreateProcess ()。当我们创建新的进程后，可能需要等待其运行完成，这时我们需要的系统调用是 Linux 下的 wait () 或者 Windows 下的 WaitForSingleObject ()。至于操作系统如何来管理进程将是后续章节中的重要内容。
+	
+	文件管理：我们通常需要创建文件 create () 来持久化的保存信息，文件创建完毕后，通常在使用前我们要首先打开文件 open ()，然后才能进行读写 read ()、write ()。文件使用完毕后，通常需要关闭文件 close ()。关于文件的这些操作都是通过系统调用来完成的。
+	
+	设备管理：我们的程序在运行过程中需要使用很多系统资源才能完成任务，比如请求分配内存、访问磁盘、通过网卡收发网络数据等等，如果这些资源当前是可用的，那么我们的程序在得到这些资源后可以继续运行，否则只能暂停运行我们的程序直到这些资源可用为止。因此用户程序通常需要首先请求资源 request ()，使用完毕后释放资源 release ()。由于在 Unix/Linux 系统中将这些硬件资源抽象成了文件 (file)，因此我们可以通过对文件的读写 read ()、write () 就能实现操作设备的目的。
+	
+	信息维护：通常情况下我们需要向操作系统请求一些只有操作系统才知道的信息，比如当前的日期 date ()，时间 time ()，或者操作系统的版本信息，当前可用内存大小，剩余磁盘大小等等。另一种比较有用的信息是程序在内存中的运行数据，通过 dump () 进程在内存中的数据以及进程中函数的调用信息 trace ()，我们就可以利用调试器 (比如 Linux 下的 gdb) 来调试有问题的程序。
+	
+	通信：我们的进程可能需要与其它进程通信才能完成某项功能，在这里通常有两种通信模型。一种是消息传递类比如常用的网络通信，在网络通信中我们通过读写 socket 来实现网络数据的接收 recv () 和发送 send ()，本地的进程之间通信会通过比如 Linux 下的 pipe () 这类系统调用来完成。另一种是共享内存。在后续章节中我们会讲解这些进程间通信模型。
+	
+	你会发现其实这些类型基本上涵盖了操作系统的方方面面，如果你能自己写代码实现这些系统调用，那么本质上你已经自己完成了一个操作系统。
+	
+	下图是一张 Windows 和 Linux 下这几类系统调用的示例，注意这里仅仅挑选出一部分进行说明，详细的系统调需要参考具体的操作系统。
+	
+	\textcolor{blue}{系统调用带来的好处}
+	
+	释放了程序员生产力
+	由于系统调用对程序员屏蔽了操作系统对计算机资源管理的细节，因此程序员在进行比如文件读写这样的操作时根本无需关心这些文件放在了磁盘中的什么位置上，这些文件是通过什么样的文件系统来管理的等。再者比如程序员需要进行网络通信，通过系统调用，程序员无需关心这些数据是如何被封装成 TCP/IP 能认识的协议数据的以及是如何通过驱动程序把数据从网卡上发送出去的。同时程序员也无需关心如何从网卡上接收数据、如何进行数据进行 TCP/IP 协议解析并把数据交给用户程序。程序员需要做的仅仅就是调用类似 read (socket)，write (socket) 这样的函数就可以进行网络数据收发就可以了，这些都极大的解放了程序员生产力。
+	
+	
+	
+	提高系统稳定性
+	作为用户程序和操作系统之间的一个屏障，系统调用保护了操作系统不受用户程序的干扰。通过系统调用，操作系统可以对用户请求进行权限以及合法性检查，这就阻止了用户程序随意使用系统资源。同时作为用户程序向操作系统发起请求的唯一合法途径，系统调用起到了类似海关的作用，这些无疑提高了系统稳定性。
+	
+	
+	
+	多任务以及虚拟内存成为可能
+	系统调用的使用，使得操作系统可以不受干扰的控制系统资源，操作系统可以自己决定如何分配这些资源。正是因为系统调用，用户程序完全不需要知道操作系统是如何完成请求的，这种对上层的屏蔽使得多任务，虚拟内存等功能得以实现。
+	
+	如果用户程序可以绕过操作系统随意控制系统资源 (CPU、内存、磁盘，网卡、外设等)，那么整体系统的稳定性将荡然无存。操作系统根本就没有办法实现很酷的多任务、虚拟内存等功能。试想如果我们的音乐播放程序可以一直控制着使用 CPU，那么我们还怎么能一边写代码一边听音乐呢？在这种情况下只要播放音乐，那么其它程序都将不能运行，这显然不是广大程序员们希望的 :) 。
+	
+	
+	
+	
+	\section{函数运行时在内存中是什么样子？}
+	本节的内容所在网址：\href{https://mp.weixin.qq.com/s/IRsLkDN4zi0xfWfk2dr-Ug}{函数运行时在内存中是什么样子？}
+	
+	
+	\section{线程间到底共享了哪些进程资源？}
+	
+	
+	\section{写给大忙人看的进程和线程}
+	
+	\section{进程通信(IPC)方式}
+	
+	
+	\section{进程同步方式}
+
+
+	\section{线程通信方式}
+	\section{线程同步方式}
+	
+	
+	\chapter{高性能计算}
+	
+	我们开始学编程时只要不是显式的并行，写的程序都是串行的，这和计算机发展的历史是分不开的，因为最开始的的计算机都是单核的，且是单任务的，那时候的程序基本上是串行，延续了很多年，所以很多软件都遗传了这一特性。后来限于摩尔定律(个人认为摩尔定律就是扯淡，说白了是出自于摩尔本人的一句豪言壮志，和数学、物理上的定律不是一回事，总之，摩尔定律和数学物理定律没有半毛钱关系，不仅没有关系，且在物理逻辑上是错误的)极限，单核处理器的性能不能进一步提高了，这时出现了多核处理器，这时候如果想充分利用CPU的计算资源，必须转向并行程序。这时候有两种思路：
+	 
+	第一种：程序不变，开发并行编译器完成程序的串行到并行的自动转换。\\ \indent
+	第二种: 改写程序，在程序中加入并行成分，再由编译器编译。
+	
+	第一种的难度太大，是个NP hard问题，于是采用了第二种，这样的话，并行化的任务一部分交给程序员一部分交给编译器，大大降低了编写并行编译器的难道，但是需要程序员去专门的学习并行程序的设计。
+	
+	这章分为CPU并行计算和GPU并行计算，当然GPU并行计算是离不来CPU的，因为GPU计算的数据是需要CPU “喂”给GPU的。在接触到GPU以前，只是听说GPU的运算能力强CPU很多，误以为GPU甚至可以代替CPU在桌面领域的地位，再后来了解到GPU的组成原理和特点后才知道GPU是无法代替CPU的。
+	\section{并行计算机体系结构}
+	
+	并行计算往小了说，可以是笔记本上的并行计算，现代的大多数处理器都是多核的，比如Inter i7-8750h是6核12线程，i7-7700HQ是4核8线程，这就是一个可以跑并行程序的处理器；并行计算往大里说是集群上的大规模并行处理器，可以是对称的也可以是非对称的，可以是集中式的集群也可以是分布式的集群。
+	
+	所以了解并行计算的第一步是了解计算机体系结构，我们先简要介绍并行计算机体系结构(只介绍当今用的最多普适性最好的结构，这样结构下的编程模式是最通用的，也是学习的重点)，在这最普适的结构下再介绍一些编程范式。
+	
+	\textcolor{red}{首先直观的了解串行和并行计算的区别:}
+	\begin{multicols}{2}
+	串行:
+	\begin{itemize}
+		\item 一个问题被分解为一系列离散的指令
+		\item 这些指令被顺序执行
+		\item 所有的指令在同一个处理器上被执行
+		\item 在任何时刻，最多只有一个指令被执行
+	\end{itemize}
+
+
+	并行计算:
+	\begin{itemize}
+		\item 一个问题被分解为一系列可以并发执行的离散部分
+		\item 每个部分可以进一步被分解为一系列的离散指令
+		\item 来自每个部分的指令可以在不同的处理器上同时执行
+	\end{itemize}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{p46}
+	\captionsetup{font={small}}
+	\caption{串行示意图}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{p45}
+		\captionsetup{font={small}}
+		\caption{并行示意图}
+	\end{figure}
+	
+
+	\textcolor{red}{从处理器的指令流和数据流来看，并行计算的分类:}
+	\begin{itemize}
+		\item SISD：1）单指令：在每个时钟周期内CPU只能执行一个指令流；2）单数据：在每个时钟周期内，输入设备只能输入一个数据流。
+		\item SIMD:1）单指令：所有处理单元在任一时钟周期内都执行一条指令；2）多数据：每个处理单元可以处理不同的数据元素。数据并行，类型：阵列处理机
+		\item MISD:没有实际价值.
+		\item MIMD: 1）多指令：不同的处理器可以在同一时刻处理不同的指令流；2)多数据: 不同的处理器可以在同一时刻处理不同的数据；任务并行，MIMD包含SIMD子结构，数据并行。这是目前主流的架构类型：并行向量处理机，对称多处理机，集群，分布式共享存储机。超级计算机，集群，多核PC…
+	\end{itemize}
+
+	\textcolor{red}{从编程来说，并行计算的模式有:}
+	\begin{itemize}
+		\item SPMD：一个程序，不是每个处理器上运行不同的程序，相反，SPMD程序仅包含一段程序，通过条件转移和制导，使得不同处理器处理不同的任务，它既可以是任务并行也可以是数据并行。这是运行在多核系统上最常见的模型。
+		\item MPMD: 任务可以执行多个程序，每个程序使用的数据也不一样，MPMD不常用。
+	\end{itemize}
+	\end{multicols}
+
+	而在MIMD下的内存模型有两种,这两种内存模型直接导致了两种编程范式:共享内存和分布式内存。接下来介绍这两种内存模型。
+	
+	{\Large \textcolor{red}{ 第一种：共享内存：}}
+	所有处理器以全局寻址的方式访问所有的物理内存空间，多个处理器可以独立读取内存，各处理器通过访问共享内存来交换信息，协调任务。在共享内存程序中，将正在执行的任务称为线程，变量可以是共享的也可以是私有的，共享变量可以被所有线程读写，而私有变量只能被单个线程访问，线程间的通信是通过共享变量实现的，所以共享内存的通信是隐式的。
+	
+	而根据CPU访问内存的时间可以把共享内存又分为一致性访问和非一致性访问。
+	\begin{multicols}{2}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{p44}
+	\captionsetup{font={small}}
+	\caption{一致访问（CC-UMA），编程容易。Coherent Cache Uniform Memory Access(CC-UMA)
+	}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3]{p43}
+		\captionsetup{font={small}}
+		\caption{非一致访问(CC-NUMA),易于扩容}
+	\end{figure}
+	\end{multicols}
+
+	共享内存程序的各个线程间的通信代价小,适合于计算密集型任务, OpenMP(CPU)和CUDA(GPU)接口
+	
+		{\Large \textcolor{red}{ 第二种：分布式内存：}}
+	各个处理器有自己的私有内存空间，形成“处理器-内存对”，一个处理器对应的内存地址不会映射到其他处理器上，所以不存在各个处理器所共享的全局地址空间。各个‘对’通过发送消息进行显式的通信，通常，将分布式内存程序中正在执行的任务称为“进程”。
+
+	\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{p47}
+			\captionsetup{font={small}}
+			\caption{可拓展性强，但是需要程序员负责进程间通信相关的细节，MPI(CPU和GPU通用)接口}
+	\end{figure}
+
+	而当今用的最多的是混合架构：分布式共享存储.
+	
+	多个节点，节点内采用共享内存系统，节点之间为分布式内存，也是目前大多数集群的结构。
+	\begin{itemize}
+		\item 节点内OpenMP并发出的多线程完成计算密集型任务。
+		\item 分布在各个节点上的进程之间采用MPI完成数据的通讯。
+	\end{itemize}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.28]{p49}
+	\captionsetup{font={small}}
+	\caption{一般的并行程序设计的大致流程}
+	\end{figure}
+	
+	python并行计算主要实现：Threading（GIL, 伪并行）、parallel python（克服了GIL）、Multiprocessing（基于共享内存的多进程并行，通信繁琐）、Mpi4py（实现了MPI的绝大部分通信功能）
+
+
+	\section{CPU并行计算}
+	
+	\subsection{分布式编程模型\textit{MPI}}
+	
+	Message Passing Interface(MPI)：消息传递接口。MPI是一个跨语言的通讯协议，用于编写并行计算机。支持点对点和广播。MPI是一个信息传递应用程序接口，包括协议和和语义说明，他们指明其如何在各种实现中发挥其特性。MPI的目标是高性能，大规模性，和可移植性。MPI在今天仍为高性能计算的主要模型。
+	
+	MPI分为点对点通信和组通信，具体的：
+	
+	点对点通信：
+	
+	\begin{lstlisting}
+	#include<stdio.h>
+	#include<stdlib.h>
+	#include<mpi.h>
+	int main(int argc, char *argv[])
+	{
+			MPI_Init(&argc, &argv);
+			MPI_Comm_rank(MPI_Comm comm, &rank);
+			MPI_Comm_size(MPI_Comm comm, &size);
+			MPI_Send(void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm);
+			MPI_Recv(void *buf, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Status *status);
+			MPI_Finalize(void);
+			return 0;
+	}
+	
+	\end{lstlisting}
+	
+	组通信：
+	\begin{lstlisting}
+	
+	MPI_Bcast(void *buf, int count, MPI_Datatype datatype, int root, MPI_Comm comm);
+	MPI_Scatter(void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype sendtype, int root, MPI_Comm comm);
+	MPI_Gather(void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype
+	recvtype, int root, MPI_Comm comm);
+	MPI_Allgather(void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm);
+	MPI_Reduce(void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm)
+	MPI_Allreduce(void *sendbuf, void *recvbuf, int recvcount, MPI_Datatype datatype, MPI_Op op, MPI_Comm comm)
+	MPI_Alltoall(void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm )
+	MPI_Barrier(MPI_Comm comm);
+	
+	\end{lstlisting}
+	
+	关于CPU MPI可以参考：
+	
+	\href{https://book.douban.com/subject/1187182/}{$\ll$并行算法实践,陈国良$\gg$}
+	
+	\href{https://book.douban.com/subject/20374756/}{$\ll$并行程序设计导论,作者: Peter Pacheco $\gg$}
+	
+	\href{https://book.douban.com/subject/1244566/}{$\ll$高级能计算并行编程技术--MPI并行程序设计,都志辉$\gg$}
+	
+	其中首先看$\ll$并行程序设计导论,作者: Peter Pacheco $\gg$这本书，写的比较通俗易懂却又不乏深度，对体系结构、硬件、共享变量、缓存一致等介绍的非常到位，首选这本，才两百多页；$\ll$并行算法实践,陈国良$\gg$这本书主要是应用，例子很多，介绍的MPI接口少，且对MPI接口介绍的详细程度也很浅；$\ll$高级能计算并行编程技术--MPI并行程序设计,都志辉$\gg$这本书对MPI中接口的介绍相当全，基本上是工具书，里面有几百种接口，基本上是把MPI的官网文档翻译了。
+	
+	\subsection{共享内存编程模型\textit{OpenMP}}
+	
+	这部分内容直接看：
+	
+	\href{https://book.douban.com/subject/1187182/}{$\ll$并行算法实践,陈国良$\gg$}
+	\href{https://book.douban.com/subject/20374756/}{$\ll$并行程序设计导论,作者: Peter Pacheco $\gg$}
+	
+	只要了解了体系结构，OpenMP还是比较好上手的，其中比较难的是循环依赖、共享变量、私有变量等问题，介意如果依赖关系复杂，就放弃并行化，或者更改并行化的粗细粒度去避开这样的问题。
+	
+	\section{GPU并行计算}
+	\subsection{CUDA}
+	\subsection{OpenACC}
+	\subsection{OpenCL}
+	\subsection{Thrust}
+	\subsection{C++ AMP}
+	
+
+	
+	
+	\part{物理学}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.24]{m3}
+		\captionsetup{font={small}}
+		%\caption{LOGO可以说是相当简洁了}
+		\end{figure}
+
+\part{理想主义和职业}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.16]{m4}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+	{\LARGE 人}为自己而活，这句话不完全是对的。实际上，没什么话是完全对的。人如果为自己而活，那就不会有这么多麻烦了，也就自由自在了，也就活的没意义了。所以说，一定程度上我们都是负重前行。
+	
+	
+\chapter{如果不考虑收入和面子,你最想从事的职业是什么!}
+
+	有$\ll$ 社会动力学 $\gg$这么一门学问,曾想去考究考究. 从名字来看, 这门学问应该是讲述, 我们都是社会的一份子, 形成了社会这个大集体, 人类活动是怎样影响社会演变的, 政治,经济,科技都会影响社会的演变, 改变社会演化的方式, 社会的演变又会反过来影响人类的发展, 这样不断轮回, 直到形成今天的社会, 并且不断演化下去.
+	
+\section{半自由职业者}
+
+\subsection{机关单位}
+\begin{onehalfspace}
+	在所有的职业中,自由自业者是最令我沉迷的.
+\end{onehalfspace}
+
+
+\subsection{事业单位}
+\begin{onehalfspace}
+	在所有的职业中,自由自业者是最令我沉迷的.
+\end{onehalfspace}
+%\begin{multicols}{2}
+
+\section{自由职业者}
+
+\begin{onehalfspace}
+	在所有的职业中,自由自业者是最令我沉迷的.
+\end{onehalfspace}
+
+\subsection{渔民,牧民}
+\begin{onehalfspace}
+	在所有的职业中,自由自业者是最令我沉迷的.
+\end{onehalfspace}
+
+\subsection{作家}
+\begin{onehalfspace}
+	在所有的职业中,自由自业者是最令我沉迷的.
+\end{onehalfspace} 
+
+
+%\end{multicols}
+
+
+\chapter{到了四十岁时,回头看看自己}
+
+
+\chapter{职业}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{m5}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+
+	\indent 男怕入错行, 女怕嫁错郎. 这句话说的一点也没错。关于职业这种东西，我是没经验的，但是根据身边的人的反馈和状态，加上我求职无数次无果后，我觉得还是说点什么。
+	
+	这世上奇怪的东西太多了，其中一项就是：有时候抛去薪酬，一个人不知道为啥要去做一个工作，但是它依然每天去做着，但是薪酬这一个诉求，足够绊倒其他所有的诉求。社会这个系统就是这么自洽，有时候不承认都不行，社会上那么多人做着不喜欢的事，但是天下依然太平，风平浪静地。我们退而求其次，只要不反感就行。
+	
+	我相信很多求职者和在职者在经过多年职场的摸爬打滚后已经身经百战、刀枪不入，或成为了各行各业的精英和代表或继续默默无闻的耕种，即便内心看不到希望，只能也仅仅只能继续着，心中无数次的呐喊，最后只能妥协。职场充斥着勾心斗角、尔虞我诈，不少人在这样的熔炉中或抛弃良知和人性成为了精致的利己主义者或舍己利人的做着普惠一方百姓的伟大事业。“憨厚的农民，朴实的农民，勤劳勇敢的农民”，为什么谚语中不说“憨厚的校长，憨厚的市长，憨厚的某某政治高官或参会议员”，因为农民永远是社会的底层，永远是炮灰，永远是利益链的底层，永远是消费链的底层，是他们活该吗？不是，是因为这个社会的分层制度从没改变，高处不胜寒，高层社会的险恶和黑幕是农民不敢想象的，不管你喜欢与否、承认不承认，这就是事实。我既感兴奋又感厌恶。
+
+
+\section{职业规划}
+
+\section{互联网行业现状和趋势}
+
+\subsection{现状}
+
+\subsection{趋势}
+
+\section{银行业}
+
+\subsection{现状}
+
+\subsection{趋势}
+
+\section{通信,制造业}
+
+\subsection{现状}
+
+\subsection{趋势}
+
+
+
+\part{教育}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.15]{m6}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+    \end{figure}
+
+\begin{quotation}
+	{\huge 写在前面}\\ \\
+	\textcolor{blue}{\indent
+		 我们的教育在一定程度上来说是失败的。为什么这么说呢，是，大家都很积极，很聪明、脑子非常灵活，通过三年高考，可以考取很好的大学，但是也仅仅就是考取了一个好大学，中小学教育虽然提倡素质教育，德智体美劳全面发展，但是我可以说口号非常好听，但是忽略了教育的本质，那就是没有引导学生去思考他们自己想成为什么，梦想是什么，自己最感兴趣的方向是什么，从一点可以看出，高考填志愿，如果学生知道自己想从事什么想干什么，那填志愿还需要家长和老师去指导填什么专业吗，还一点也可以看出，那就是高中生步入大学后普遍的出现迷茫和彷徨，不知道每天干什么，这是致命的，大学本是自由的翱翔在知识海洋的黄金时期，是汲取最感兴趣的知识、接受能力学习能力的顶峰时期，却在迷茫中度过。这是致命的。就从“让学生知道自己想干什么”这一点来说，中小学教育是失败的。但是错不在老师，错在我们的时代就是这样，社会对教育认识的高度就是这样，当然，各个家庭的经济条件也有很大的一部分原因，因为学生找到自己的兴趣、知道自己想干嘛是需要不断尝试、不断接触新事物的，需要通过旅游、需要海量的科普读物、参观各式各样的博物馆，、参加各式各样的活动去拓宽自己的视野，刺激自己的大脑去主动思考这些问题的，这就不得不说：我们国家对教育资源的分配极不均衡，大学每年投的钱是中小学的几百上千倍，一个985高校每年的资金预算甚至可以比一个省的所有中小学的资金预算高，资源的不均衡会导致培养不出好的有思想有想法的少年，没有好的少年，那青年能好吗，把应该部分投资中小学生的资源冗余的投资给青年，会导致一个资源不足，一个资源过剩，对谁都不利，所以说，国家对教育的投资还远远不够，应该从教育的硬件、师资待遇、师资力量上下手，不然优秀的人不愿意去教书，那还能培养出优秀的人吗，真的会像任正非说的那样，表面上看国家兴旺，但是实则倒退的，因为我们的人才跟不上，谁去开拓新的技术和科学，永远只能跟在欧美的屁股后面。教育中有很多地方是隐形的起作用的，有时候一场科技活动、一个外出探险、一次参观就能启发一个学生，改变他的一生，也会改变国家的前途和命运。所以，教育需投资，而是是全位的投资。比如在暑假的时候把部分补课时间改为带领学生去参观公司、学校、企业、工厂、博物馆等，这些时间用在拓宽学生的视野比多写几道题、多补几节课重要的多得多，如果这次参观能带动学生的兴趣，刺激学生好好学习的冲动，那还需要每天监督他们学习吗，保证他们学得比谁都认真，比老师强迫的学的效率和积极性都高得多。但是这部分的经费是需要政府和国家的资助的，因为如果是每个家庭自己出资自己联系工厂高校科技企业的话，时间是非常混乱的，也可能不会被批准，但是学校的领导出面，统一安排就不一样，效率大大提高，安全性、步调一致性都得到保障。再次，教育需投资。}
+\end{quotation}
+
+\chapter{中小学教育的作用}
+
+中小学教育起着承上启下的作用,它是至关重要的基石,中小学教育没办好,大学教育只能是空谈,就像大楼的地基没打好.
+
+\chapter{大学教育应该是怎样的}
+
+大学教育起着厚积薄发,开拓未来,改为未来世界的作用!
+
+\chapter{个人教育历程}
+
+
+
+
+
+\begin{multicols}{2}
+和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集植物\index{调查}和标本采集植物调查和标本采集植物调查和标本采集植物调查和标本采集
+
+\end{multicols}
+
+\part{xxx篇}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.08]{m1}
+	\captionsetup{font={small}}
+	%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+	
+\chapter{xx}
+\chapter{xx}
+\chapter{xx}
+
+\begin{multicols}{2}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in \index{reprehenderit} in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\end{multicols}
+
+\chapter{朋友之间}
+\begin{multicols}{2}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\end{multicols}
+
+%\include{angiosperms}
+
+\part{附录、引用、致谢}
+\appendix
+
+%\addcontentsline{toc}{chapter}{Appendix}
+\begin{appendices}
+	\renewcommand{\thechapter}{\Alph{chapter}.}
+	\chapter{个人桌面版Ubuntu配置}\label{append1}
+		本应从安装Ubuntu开始，但是这一步留给读者完成，建议安装最新版的Ubuntu。笔者现在的版本为:Ubuntu18.04.2，内核为：
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{p54}
+		\captionsetup{font={small}}
+		%\caption{LOGO可以说是相当简洁了}
+	\end{figure}
+	网上有很多资料，如果读者的电脑是双硬盘且是初学者，那安装系统时的磁盘挂载和分区会有点坎坷，没关系，请联系:\textcolor{red}{VX:18800193607}。接下来的教程是假设读者已经完成Ubuntu安装后常用软件的安装及配置。
+	系统安装教程可参考:
+	
+	\url{https://mp.weixin.qq.com/s/LZZwVE9sZ9NcdQ5EGDn9Lg}
+	
+	{\Large 重装系统是代价很大的事情}
+	
+	这里介绍的主要有开箱后以下软件的安装：
+	\begin{itemize}
+		\item 搜狗输入法:\ref{u1}
+		\item 安装微软字体、宋体等:\ref{u2}
+		\item 网易云音乐:\ref{u3}
+		\item WPS:\ref{u4}
+		\item chrome Broswer:\ref{u5}
+		\item PDF阅读器Okular和福熙阅读器:\ref{u6}
+		\item 射手影音SMplayer:\ref{u7}
+		\item 截图:\ref{u8}
+		\item 配置驱动
+		\item 安装NVIDIA驱动(FUCK YOU, Nvidia!!)
+		\item qq、微信、百度网盘、迅雷:\ref{u9}
+		\item vim并打造最强编辑器:\ref{u10}
+		\item 安装游戏平台Steam
+		\item Latex:\ref{u11}
+		\item Lyx:\ref{u12}
+		\item 安装最强shell-zsh:\ref{u13}
+		\item 修改终端提示符颜色:\ref{u14}
+		\item 通过Virtual Box安装Win10虚拟机
+		\item 安装Anaconda
+		\item 安装MATLAB
+		\item 极品飞9、12、14、17
+		\item GCC
+		\item JAVA IDE IntelliJ
+	\end{itemize}
+
+	\section{安装搜狗输入法}\label{u1}
+	\begin{itemize}
+		\item 首选安装fcitx输入框架，可以直接sudo apt-get install fcitx或者去软件商店搜索下载安装
+		\item 进入设置-> 区域和语言 -> 管理已经安装的语言 -> 键盘输入法选为fcitx -> 点击应用整个系统 -> 关闭
+			\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.2]{p63}
+			\captionsetup{font={small}}
+			%\caption{LOGO可以说是相当简洁了}
+			\end{figure}
+		\item 然后点击右上角的配置当前输入法 -> 输入法配置 -> 添加输入法 -> 将搜狗输入法挪到第一个。
+		\item 重启系统，生效。
+	\end{itemize}
+	
+	\section{安装微软字体、宋体等}\label{u2}
+	sudo apt-get install fonts-wqy-microhei\\
+	sudo apt-get install fonts-wqy-zenhei\\
+	
+	第一种：
+		\begin{itemize}
+		\item sudo apt-get update
+		\item sudo apt-get install ttf-mscorefonts-installer
+		\item sudo fc-cache -f -v   \# 更新字体缓存
+
+		\end{itemize}
+
+	第二种：
+		\begin{itemize}
+		\item sudo mkdir /usr/share/fonts/truetype/windows-fonts
+		\item 拷贝字体到windows-fonts目录下
+		\item 修改权限，并更新字体缓存
+		\item cd /usr/share/fonts/truetype/windows-font
+		\item sudo mkfontscale
+		\item sudo mkfontdir
+		\item sudo fc-cache -fv
+		\item 重启
+		\end{itemize}
+
+	\section{网易云音乐}\label{u3}
+	网易云是国内唯一的移植到linux的音乐APP
+	\begin{itemize}
+		\item 首先去网易云下载Linux版本netease-cloud-musi\c\_1.2.1\_amd64\_ubuntu\_20190428.deb安装包到/home/jack/下载/
+		\item cd /home/jack/下载/
+		\item sudo  dpkg  -i  netease-cloud-music\_1.2.1\_amd64\_ubuntu\_20190428.deb
+		\item 结束
+	\end{itemize}
+	
+	\section{WPS}\label{u4}
+	\begin{figure}[H]
+	\centering
+	\subfigure[国际版]{
+		\includegraphics[scale=0.3]{p66}}
+	\subfigure[中文版]{
+		\includegraphics[scale=0.4]{p67}}
+	\captionsetup{font={small}}
+	\caption{\small{WPS}}
+	%\label{fig1}
+	\end{figure}
+		\begin{itemize}
+		\item 首先去WPS官网下载Linux版本wps-office\_11.1.0.8722\_amd64.deb安装包到/home/jack/下载/
+		\item cd /home/jack/下载/
+		\item sudo  dpkg  -i  wps-office\_11.1.0.8722\_amd64.deb
+		\item 结束
+	\end{itemize}
+
+	命令行打开WPS:\\
+	\indent 打开WPS表格程序:/usr/bin/et\\
+	\indent 打开WPS文字程序:/usr/bin/wps\\
+	\indent 打开WPS演示程序:/usr/bin/wpp\\
+	
+	\section{Chrome}\label{u5}
+	
+	\begin{itemize}
+		\item 首先去Goole下载Linux版本Goole安装包:google-chrome-stable\_current\_amd64.deb安装包到/home/jack/下载/
+		\item cd /home/jack/下载/
+		\item sudo  dpkg  -i  google-chrome-stable\_current\_amd64.deb
+		\item 结束
+	\end{itemize}
+	
+	\section{PDF阅读器Okular}\label{u6}
+	WPS套装里面有PDF阅读器，但是好像没有添加注释功能，所以安装Okular.
+	\begin{itemize}
+		\item sudo apt-get update
+		\item sudo apt-get install okular
+		\item 结束
+	\end{itemize}
+
+	\section{射手影音Smplayer}\label{u7}
+	
+	\begin{itemize}
+		\item sudo apt-get update
+		\item sudo apt-get install smplayer
+		\item 结束
+	\end{itemize}
+
+	\section{截图工具}\label{u8}
+
+	\begin{itemize}
+		\item 自带screenshot
+	\end{itemize}
+
+	\section{qq、微信、百度网盘、迅雷}\label{u9}
+	\begin{itemize}
+		\item 首先安装Wine:
+		\begin{itemize}
+			\item cd ~
+			\item git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git
+			\item cd deepin-wine-for-ubuntu
+			\item ./install.sh
+		\end{itemize}
+		\item 去\url{http://mirrors.aliyun.com/deepin/pool/non-free/d/}下载qq、微信、百度云盘、迅雷等软件的.deb安装包至目录/home/jack/下载/
+		\item cd /home/jack/下载/
+		\item sudo dpkg -i xx.deb
+		\item 完成
+		
+	\end{itemize}
+
+	\section{安装vim并将其打造为最强IDE}\label{u10}
+	
+	首先打开终端：ctrl+Alt+T，依次输入以下三条命令安装vim：
+	
+	\begin{itemize}
+		\item sudo apt-get update
+		\item sudo apt-get upgrade
+		\item sudo apt-get install vim
+	\end{itemize}
+
+	接下来安装git:
+	
+	sudo apt-get install git 
+	
+	安装vim包管理器vundle:
+	
+	{\small git  clone  https://github.com/VundleVim/Vundle.vim.git \quad$\sim$/.vim/bundle/Vundle.vim}
+	
+	\begin{itemize}
+		\item cd /home/jack/
+		\item vim .vimrc
+		\item 在vim中添加\url{https://github.com/junjiecjj/configure_file/blob/master/vimrc}中的内容
+		\item 打开vim，进入命令模式，输入:PluginInstall
+	\end{itemize}
+
+    PluginInstall就是vundle的包管理器
+    Plugin常用命令：
+	\begin{itemize}
+		\item PluginInstall:安装插件
+		\item PluginCleqn:移除不要的插件
+		\item PluginUpdate:更新插件
+		\item PluginList:列出说所有的安装插件
+		\item PluginSearch:查找插件
+	\end{itemize}
+
+	接下来进入目录：cd  .vim/bundle
+	然后：
+	\begin{itemize}
+		\item git clone --recursive git://github.com/Valloric/YouCompleteMe\#下载YouCompleteMe源码
+		\item cd ~/.vim/bundle/YouCompleteMe/
+		\item git submodule update --init --recursive
+		\#获取YCM的依赖包
+	\end{itemize}
+	接下来安装以来工具
+	\begin{itemize}
+		\item sudo apt-get install build-essential cmake
+		\item sudo apt-get install python-dev python3-dev
+		\item sudo apt-get install libxml2-dev libxslt-dev
+		\item sduo apt-get install clang
+		\item sudo apt-get install libclang-dev
+	\end{itemize}	
+	此时如果检测完整性,即输入:
+	git submodule update - -init --recursive,不会出现任何
+	返回,因为一开始的 git 加了 recursive 参数。接下来:
+	sudo ./install.py --clang-completer --system-libclang
+	或者: sudo ./install.py
+	\begin{itemize}
+		\item + C＃支持：安装Mono并在调用./install.py时添加--cs-completer。 
+		\item + GO支持：安装Go并在调用./install.py时添加--go-completer。 
+		\item + TypeScript支持：安装Node.js和npm，然后使用npm install -g typescript安装TypeScript SDK。 
+		\item + JavaScript支持：安装Node.js和npm，并在调用./install.py时添加--js-completer。 
+		\item + Rust支持：安装Rust并在调用./install.py时添加--rust-completer。 
+		\item + Java支持：安装JDK8（需要版本8），并在调用./install.py时添加--java-completer。
+	\end{itemize}		
+	
+
+	\section{安装LaTex}\label{u11}
+	\begin{itemize}
+		\item sudo apt-get install texlive-full
+		\item sudo apt-get install texlive-xetex
+		\item sudo apt-get install texlive-lang-chinese
+		\item sudo apt-get install texstudio
+		\item 编译时需要设置编译器为XeLaTeX，TeXstudio中在Options$\longrightarrow$ TeXstudio$\longrightarrow$Build$\longrightarrow$Default Compiler中更改默认编译器为XeLaTeX即可。在配置中可以更改软件界面语言，将Options$\longrightarrow$Configure TeXstudio$\longrightarrow$General$\longrightarrow$Language更改为zh-CN即可将界面设置为中文。
+
+	\end{itemize}
+	\section{安装Lyx}\label{u12}
+	Lyx在ubuntu软件中心就有,直接点击下载.关键是接下来配置Lyx显示、导出中文PDF，以及安装Imagemagick图片转换工具.
+	\begin{itemize}
+		\item 中文界面：Tools$\longrightarrow$ Perfrences$\longrightarrow$用户界面语言$\longrightarrow$简体中文
+		\item sudo apt-get install texlive-full
+		\item 显示中文PDF:文档$\longrightarrow$首选项$\longrightarrow$文档类$\longrightarrow$Document calss$\longrightarrow$chinese Article(CTeX);
+		页边距$\longrightarrow$上下内外边距设置为2cm;语言$\longrightarrow$简体中文;fromats$\longrightarrow$输出格式$\longrightarrow$PDF(XeTeX)
+		\item 重配置，重启
+		\item 现在导出中文PDF没问题，但是Lyx里面的eps图形没法显示，导出PDF可以显示.安装ImageMagick,但是安装Imagemagick之前需要先先安装Ghostscript和freetype
+		
+		\item 安装Ghostscript:
+		\begin{enumerate}
+			\item 首先下载源码包:\url{https://github.com/ArtifexSoftware/ghostpdl-downloads/releases}ghostscript-9.27.tar.gz到/usr/src下，然后解压到/usr/src/ghostscript-0.27/
+			\item cd /usr/src/ghostscript-0.27/
+			\item sudo ./configure -- prefix/usr
+			\item sudo make all
+			\item sudo make install
+			\item 完成ghostscript安装
+		\end{enumerate}
+		\item 安装freetype
+		\begin{enumerate}
+			\item 首先下载源码\url{https://www.freetype.org/download.html}freetype-2.10.1.tar.xz到/usr/src/，解压到/usr/src/freetype-2.10.1/
+			\item cd /usr/src/freetype-2.10.1/
+			\item ./configure --prefix=/usr/local/freetype 
+			\item make
+			\item sudo make install
+			\item 完成
+		\end{enumerate}
+		\item 最后安装imageMagick
+		\begin{enumerate}
+			\item 首先下载源码\url{https://imagemagick.org/script/install-source.php}ImageMagick.tar.gz到/home/jack/下载/，解压到/home/jack/下载/ImageMagick-7.0.8-56/
+			\item cd /home/jack/下载/ImageMagick-7.0.8-56/
+			\item ./configure --with-magick-plus-plus
+			\item make
+			\item sudo make install
+			\item sudo ldconfig /usr/local/lib
+			\item /usr/local/bin/convert logo: logo.gif
+			\item make check
+			\item 如果没有报错，则成功，可以完美的显示eps图像了.
+		\end{enumerate}
+	\end{itemize}	
+	好了，两个宇宙最强文档编辑器Latex+Lyx安装完了
+	\section{安装最强shell-zsh}\label{u13}
+	据说ZSH（管理器为：oh-my-zsh）厉害得不行，那我也用用，但是说真的，一般的/bin/bash就可以了，ZSH真的有点卡。
+	\begin{itemize}
+		\item sudo apt-get install zsh
+		\item {\footnotesize wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh}
+		\item 安装incr
+		\begin{itemize}
+			\item cd .oh-my-zsh/plugins/
+			\item mkdir incr
+			\item cd incr
+			\item wget http://mimosa-pudica.net/src/incr-0.2.zsh 
+		\end{itemize}
+		\item 安装zsh-autosuggestions
+		\begin{itemize}
+			\item {\footnotesize git clone https://github.com/zsh-users/zsh-autosuggestions  \quad$\sim$/.oh-my-zsh/plugins/zsh-autosuggestions}
+		\end{itemize}
+		\item 安装zsh-syntax-highlighting
+		\begin{itemize}
+			\item {\footnotesize git clone https://github.com/zsh-users/zsh-syntax-highlighting.git   \quad$\sim$/.oh-my-zsh/plugins/zsh-syntax-highlighting}
+		\end{itemize}
+		\item 安装zsh-nvm
+		\begin{itemize}
+			\item {\footnotesize git clone https://github.com/lukechilds/zsh-nvm  \quad$\sim$/.oh-my-zsh/custom/plugins/zsh-nvm}
+		\end{itemize}
+		\item 安装autojump
+		\begin{itemize}
+			\item git clone https://github.com/wting/autojump \quad $\sim$/autojump
+			\item cd $\sim$/autojump
+			\item ./install.py
+		\end{itemize}
+		\item 在.zshrc里面加上
+
+		source  $\sim$/.oh-my-zsh/plugins/incr/incr*.zsh\\
+		HIST\_STAMPS=“yyyy-mm-dd” \\
+		DISABLE\_UPDATE\_PROMPT=true \\
+		source $\sim$/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\\
+		 \lbrack\lbrack-s /home/jack/.autojump/etc/profile.d/autojump.sh \rbrack\rbrack \&\& source /home/jack/.autojump/etc/profile.d/autojump.sh\\
+		ZSH\_THEME=“agnoster”\\
+		export NVM\_LAZY\_LOAD=true\\
+		ZSH\_THEME="myys"\\
+		plugins=(\\
+		git\\
+		zsh\_reload\\
+		zsh-autosuggestions\\
+		zsh-syntax-highlighting\\
+		sudo\\
+		cp\\
+		ubuntu\\
+		yum\\
+		pip\\
+		autojump\\
+		docker\\
+		docker-compose\\
+		golang\\
+		npm\\
+		bower\\
+		adb\\
+		)\\
+	\item 将\url{https://github.com/junjiecjj/configure_file}中的myys.zsh-theme下载到.oh-my-zsh/theme/下。
+	\end{itemize}
+	\section{修改终端提示符颜色}
+	将/home/jack/.bashrc中PS1一行换为:\\
+	PS1=‘$\backslash$[$\backslash$033[01;31m$\backslash$][$\backslash$u@$\backslash$h$\backslash$[$\backslash$033[01m$\backslash$]:$\backslash$[$\backslash$033[01;33m$\backslash$]$\backslash$w$\backslash$[$\backslash$033[01;36m$\backslash$]$\backslash$
+	A$\backslash$[$\backslash$e[31;1m$\backslash$]]$\backslash$[$\backslash$033[01;32m$\backslash$]$\backslash$\$’
+	
+	或者去\url{https://github.com/junjiecjj/configure_file/blob/master/README.md}看。
+		
+	\chapter{个人桌面版CentOS安装及配置}\label{append2}
+	详细安装教程：
+
+	\url{https://mp.weixin.qq.com/s/kqh2Mu4FZSrl4wqJAwIfyQ}
+	
+	\chapter{个人桌面版Manjaro安装及配置}\label{append3}
+	
+	Manjaro和Arch真的是生态最好的linux，碾压Readhat和debain几条街，谁用谁知道。光从包的丰富度上来说，是这样。
+	
+	首先说下：如果一个软件，只知道它的中文名字，怎么用命令行启动它呢？可以查：\\
+	find / -name xxx
+	找到所有的可能的文件所在处，然后一个个在终端输入，看看能不能启动，最可能的是/usr/bin/xxx这些结果。
+	其次，往往这些只知道中文名字的软件都有图标启动，而这些图标都在目录:/usr/share/applications下，进去这些目录，这目录都是xxx.desktop文件，打开这些文件，里面会有启动的命令行。
+	
+	接下来介绍基于大名鼎鼎的Linux发行版Arch最优秀的衍生版Manjaro的安装和配置。
+	安装很简单，可以参考：
+	\url{https://mp.weixin.qq.com/s/h6Ojg020etqyE6_7Y9j5qw}
+	
+	首先介绍Manjaro安装软件的常用命令：
+	\begin{itemize}
+		\item 查找软件：sudo pacman -Ss packagename
+		\item 安装软件：sudo pacman -S packagename
+		\item 卸载软件：sudo pacman -R packagename
+		\item 卸载同时移除未被其他软件使用的依赖项：sudo pacman -Rs packagename
+		\item 要删除软件包和所有依赖这个软件包的程序:sudo pacman -Rsc packagename。
+		
+		\textbf{警告: 此操作是递归的，请小心检查，可能会一次删除大量的软件包。}
+		
+		\item 清除未安装软件包的缓存：sudo pacman -Sc
+		
+		警告:仅在确定当前安装的软件包足够稳定且不需要降级时才执行清理。pacman -Sc仅会保留软件包的当前有效版本，旧版本的软件包被清理后，只能从其他地方如 Arch Linux Archive (简体中文)中获取了。 pacman -Scc 可以清理所有缓存，但这样 pacman 在重装软件包时就只能重新下载了。除非空间不足，否则不应这么做。
+		
+		\item 更新已安装软件:sudo pacman -Su
+		\item 让本地的包数据库和远程的软件仓库同步:sudo pacman -Syy
+		\item 同时进行同步软件库并更新系统软件到最新:sudo pacman -Syu
+		\item 更新前强制下载包列表：sudo pacman -Syyu
+	\end{itemize}
+
+	接下来安装在系统安装好后主要的软件的安装和配置
+	
+	\begin{itemize}
+		\item 配置软件源\ref{m1}
+		\item 安装中文输入法,搜狗输入法\ref{m2}
+		\item chrome Broswer\ref{m3}
+		\item 安装vim\ref{m4}
+		\item 安装微软字体、宋体等\ref{m5}
+		\item 网易云音乐\ref{m6}
+		\item WPS\ref{m7}
+
+		\item PDF阅读器Okular和福熙阅读器\ref{m8}
+		\item 射手影音SMplayer\ref{m10}
+		\item 截图\ref{m9}
+		\item 配置驱动
+		\item 安装NVIDIA驱动(FUCK YOU, Nvidia!!)\ref{m11}
+		\item qq、微信、百度网盘、迅雷\ref{m12}
+		\item vim并打造最强编辑器
+		\item 安装游戏平台Steam
+		\item Latex、Lyx\ref{m14}
+		\item 通过Virtual Box安装Win10虚拟机
+		\item 安装Anaconda
+		\item 安装MATLAB
+		\item 极品飞9、12、14、17
+		\item GCC
+		\item JAVA IDE IntelliJ
+	\end{itemize}
+
+	\section{配置软件源}\label{m1}
+	更换为为中科大arch软件源\\
+	sudo vim /etc/pacman.conf，添加以下内容:\\
+	\lbrack archlinuxcn\rbrack \\
+	SigLevel = Optional TrustedOnly\\
+	Server = https://mirrors.ustc.edu.cn/archlinuxcn/\$arch\\
+	更新软件源:\\
+	sudo pacman -Syy  \&\&  sudo pacman -S archlinuxcn-keyring
+	\section{安装中文输入法}\label{m2}
+	
+	安装文泉驿微米黑字体\\
+	\indent sudo pacman -S wqy-microhei
+	
+	接下来安装fcitx输入法和搜狗输入法
+	\begin{itemize}
+		\item sudo pacman -S fcitx-im
+		\item sudo pacman -S fcitx-configtool
+		\item sudo pacman -S fcitx-sogoupinyin
+	\end{itemize}
+
+	添加以下到输入法配置文件 sudo vim \quad $\sim$/.xprofile\\
+	\begin{itemize}
+		\item 	export GTK\_IM\_MODULE=fcitx
+		\item export QT\_IM\_MODULE=fcitx
+		\item export XMODIFIERS=“@im=fcitx”
+		\item export LC\_CTYPE=zh\_CN.UTF
+	\end{itemize}
+
+	添加fcitx \&到/home/jack/.xinitrc
+	重启，如果不行，
+
+	添加输入法配置文件:sudo vim \quad $\sim$/.pam\_environment
+	\begin{itemize}
+		\item GTK\_IM\_MODULE=fcitx
+		\item QT\_IM\_MODULE=fcitx
+		\item XMODIFIERS=@im=fcitx
+	\end{itemize}
+
+	再安装KDE下的输入法管理器：
+	sudo pacman -S kcm-fcitx
+	重启，如果还不行，那就再去搜答案
+	
+	\section{chrome Broswer}\label{m3}
+	
+	sudo pacman -S google-chrome
+	
+	\section{安装vim}\label{m4}
+	
+	sudo pacman -S  vim
+	
+	打造IDE的话基本和ubuntu一样
+	
+	\section{安装微软字体}\label{m5}
+	和ubuntu中安装微软字体中的方法二\ref{u2}一样，方法一不好使。
+	\section{安装网易云}\label{m6}
+	sudo pacman -S netease-cloud-music
+	
+	\section{安装WPS}\label{m7}
+	\indent sudo pacman -S wps-office\\
+	\indent sudo pacman -S ttf-wps-fonts\\
+	\indent 打开WPS表格程序:et\\
+	\indent 打开WPS文字程序:wps\\
+	\indent 打开WPS演示程序:wpp\\
+	
+	\section{安装PDF阅读器okular}\label{m8}
+	sudo pacman -S okular
+	
+	\section{安装截图}\label{m9}
+	sudo pacman -S deepin-screenshot
+	
+	\section{安装视频播放器}\label{m10}
+	
+	sudo pacman -S smplayer\\
+	\indent sudo pacman -S mpv\\
+	\indent 上面两个任何一个都行
+	
+	\section{安装驱动}\label{m11}
+	
+	这是manjaro的一大优点，去系统设置$\longrightarrow$硬件设定里面直接点击下载安装
+	
+	\section{安装qq}\label{m12}
+	首先安装yaourt，这是相当于ubuntu上的添加ppa源安装的第三方软件\\
+	sudo pacman -S yaourt\\
+	yaourt -S deepin-wine-tim\\
+	
+	\section{安装微信}\label{m13}
+	sudo pacman -S electronic-wechat
+
+	\section{安装Latex}\label{m14}
+	\indent sudo pacman -S texlive-most\\
+	\indent sudo pacman -S texlive-core texlive-langchinese texlive-latexextra texlive-publishers
+	
+	其中的texlive-langchinese是latex中ctexart和lyx中文档类chinese Article(CTeX)所必须的。\\
+	\indent 安装IDE: sudo pacman -S texstudio\\
+	\indent 更新texlive: texhash
+	
+	\section{安装Lyx}\label{m15}
+	sudo pacman -S lyx
+	
+	
+	\chapter{个人桌面管理系统FVWM安装及配置}\label{append5}
+	安装这个桌面管理系统是更深入Linux的学习过程。这是我2019.8.7之前接触过的最复杂的软件安装和配置的东西了，但是学会后真的是一劳永逸，一般情况下KDE和Gnome就能满足用户的需求，但是当面对对可定制性非常高或者非常想自己负责自己电脑桌面的每个细节的用户来说，KDE和Gnome可就不行了，因为它们都预装了很多软件且自带了桌面管理系统，所以这时候就需要FVWM上场了，FVW是可定制性最强的桌面管理器，没有之一，FVWM是浮动式桌面环境，除了FVWM，还有很多平铺式的桌面管理器，如：i3、awesome、dwm等非常不错的选择，目前我只配置过FVWM。FVWM的特点是：高度可定制性(现有桌面管理器里面可定制性最强)+强大的虚拟桌面功能。
+	
+	桌面环境和桌面管理器的狸在前面已经介绍过，简单来说就是桌面环境=桌面管理器+预装软件+很多底层库。
+	
+	桌面环境是安装完整图形环境的最简单的方法。但是，如果主流桌面环境并不能满足用户的需求，那么用户也可以通过多种方法来构建和定制他们自己的图形环境。通常，构建一个自定义的环境包括选择一个合适的窗口管理器，一个任务栏、一些应用程序(一个极简的应用程序选择方案至少包括一个终端模拟器(terminal emulator)，文件管理器(file manager)和文本编辑器(text editor))、网络管理器。
+	
+	桌面环境结合X客户端，提供通用图形用户界面元素,如图标、工具栏、壁纸,桌面小部件。 大多数桌面环境包括提供一套整合的应用程序和实用工具。 最重要的是，桌面环境提供他们自己的 window manager, 但是通常被替换为另一个兼容的。
+	
+	用户可以自由搭配不同桌面环境的程序，桌面环境只是提供一个完整的和方便的方法完成这项任务。请注意，用户可以自由地混合和匹配来自多个桌面环境中的应用。 例如，KDE 用户可以安装和运行 GNOME 应用程序如Epiphany web 浏览器，他/她宁愿在 KDE 的 Konqueror web 浏览器。 这种方法的一个缺点是,许多应用程序提供的桌面环境项目严重依赖其DE各自底层库。因此，从一系列桌面环境中安装应用程序将需要安装更多的依赖关系。用户为了节省磁盘空间，通常不会使用这样的混合环境,他们会考虑轻量级替代方案。
+	
+	此外，桌面环境自带的程序，与该桌面环境整合最佳。从表面上看，混合环境中的部件工具包会造成视觉上的差异。(也就是说,接口将使用不同的图标和小部件样式)。 在用户体验方面，混合环境中的行为可能同样可能造成混乱或意外的行为。(例如单点击与双击图标;拖和拖放功能)
+	
+	在安装桌面环境之前，X 服务器安装是必需的。
+	
+	所以，如果需要打造自己的桌面管理器，那么需要装的常用软件最好是不依赖于其他的桌面环境，比如文件管理，就可以安装4、Midnight Commander（一款对用户友好且强大的可视化字符）、Ranger控制台文件管理器、Cfiles快速终端文件管理器、Vifm控制台文件管理器、Nnn终端文件浏览器、Lfm最后一个文件管理器、WCM指挥官等利用终端的文件管理器而不是KDE自带的dolphin或Gnome自带的nautilus。
+	
+	安装fvwm很简单\\
+	在ubuntu下：sudo apt-get install fvwm\\
+	在manjaro下:sudo pacman -S fvwm\\
+	
+	下载后去\url{https://github.com/junjiecjj/configure_file/tree/master/fvwm}下载配置文件放在/home/jack/.fvwm/config即可。配置文件初步写很复杂，里面除了一些基本的命令，其余的都是参数，调节这些参数头大，但是一旦配置成符合自己胃口的桌面后，可以终身使用。
+	
+	其中重要的软件有conky和xcompmgr+transset-df，其中conky是动态壁纸式的系统监控工具，xcompmgr+transset-df可以实现阴影、原生窗口透明（配合transset工具）等特效。
+	manjaro下安装这三个软件都是:\\
+	sudo pacman -S conky\\
+	sudo pacman -S xcompmgr\\
+	sudo pacman -S transset-df\\
+	
+	在ubuntu上安装前两个也是，但是第三个需要编译安装，比较麻烦。
+	
+	安装完后，在/home/jack/.xprofile下添加：\\
+	xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 \&
+	
+	而conky的配置文件在\url{https://github.com/junjiecjj/configure_file/blob/master/fvwm/.conkyrc}，放在/home/jack/.conkyrc下。
+	\chapter{树莓派}\label{append4}
+	\end{appendices}
+	
+	\renewcommand \indexname{索~~引}
+	\printindex
+	\addcontentsline{toc}{chapter}{索~引}
+	
+	\backmatter
+	
+	\addcontentsline{toc}{chapter}{参考文献}
+	
+	\begin{thebibliography}{参考文献}
+	\bibitem[1]{a1} 深入理解计算机系统
+	\bibitem[2]{b} C Prime Plus
+	\bibitem[3]{c} C++ Prime
+	\bibitem[4]{d} 平凡的世界
+	\end{thebibliography}
+	
+	\chapter{后~~记}
+	
+	好了，我要进食去了，未完待续...
+	
+	\begin{flushright}
+	陈俊杰~~~~~
+	
+	2019年12月12日~~~~~
+	\end{flushright}
+	
+	
+	%\addcontentsline{toc}{chapter}{致谢}
+	\chapter{致谢}
+	\begin{onehalfspace}
+		在完成此书的过程中,有太多的朋友需要感谢. 此书是在研究生第二年的时候开始写的, 那是人生的一个小低谷期, 我得感谢我的父母, 他们在背后为我祈祷, 为我操心。如果说：“哪有什么岁月静好，只不过有人替你负重前行”，那替我负重前行的肯定是父母。
+		
+		其次, 我得感谢同组的同窗们, 是他们和我一起度过了这段既难熬又充满希望和自由的日子, 没有他们, 我会孤独。在他们身上我学到了很多，他们身上彰显着不屈不挠、求真务实、技艺精湛、独立人格等优秀品质，很幸运能和他们一起学习。
+		
+	\end{onehalfspace}
+	
+	
+	
+	\end{document}
