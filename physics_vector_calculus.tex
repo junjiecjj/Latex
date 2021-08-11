@@ -1,0 +1,2642 @@
+%\documentclass[a4paper]{article}
+%\usepackage{xeCJK} %调用 xeCJK 宏包
+%\setCJKmainfont{SimSun} %设置 CJK 主字体为 SimSun （宋体）
+\documentclass[UTF8]{ctexart}
+
+\usepackage{fontspec}   %修改字体
+\setCJKmainfont{SimSun}
+%\setmainfont{Times New Roman}
+\usepackage{authblk}
+\usepackage{relsize}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{cases}
+\usepackage{empheq}
+\usepackage{latexsym}
+%\usepackage{CJKpunct}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{stfloats} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage[marginal]{footmisc}
+\renewcommand{\thefootnote}{}
+\usepackage{caption}
+
+%设置纸张大小间距
+\usepackage{geometry}
+%\geometry{papersize={20cm,15cm}}%设置纸张的长宽
+\geometry{a4paper,left = 1.6cm,right = 1.6cm,top = 3cm,bottom = 3cm}%设置页边距
+
+\usepackage{multicol}%分栏宏
+\usepackage{supertabular}
+%
+\usepackage{setspace}
+
+\usepackage[colorlinks = true]{hyperref}
+
+%设置页眉页脚
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\author}
+\chead{核聚变与等离子体物理}
+\rhead{\thepage}
+%\lfoot{}
+%\cfoot{}
+%\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headwidth}{\textwidth}
+\renewcommand{\footrulewidth}{0.2pt}
+
+%首行缩进
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+%然后在需要缩进的文段前添加
+
+
+
+\renewcommand\Authands{,}
+\usepackage{amsmath,amssymb,wasysym,enumerate,xcolor}
+
+%%%%%%%%%% Start TeXmacs macros
+\newcommand{\tmcolor}[2]{{\color{#1}{#2}}}
+\newcommand{\tmmathbf}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextbf}[1]{{\bfseries{#1}}}
+\newenvironment{enumeratealphacap}{\begin{enumerate}[A.] }{\end{enumerate}}
+\newenvironment{enumeratenumeric}{\begin{enumerate}[1.] }{\end{enumerate}}
+\newenvironment{enumerateroman}{\begin{enumerate}[i.] }{\end{enumerate}}
+%%%%%%%%%% End TeXmacs macros
+
+\begin{document}
+
+\title{物理中的矢量运算总结}
+
+\author{陈俊杰}
+
+\date{2020,7,4}
+
+\maketitle
+
+\begin{abstract}
+  文中加粗的为矢量，正常字体为标量。
+\end{abstract}
+
+\section{Latex公式样例、符号大全}
+
+
+
+
+{\Large 行内公式：}
+
+LaTeX进入行内公式最为简单的方式是输入用一个\$包裹的表达式。其实，用  $\backslash$(和$\backslash$) 包裹也会有一样的效果。但其实它们两个都是一种“环境”的简便表达。这个环境就是 math。总的而言，下面这三个表达方式是等价的。
+
+$\frac{x}{y}$
+
+$\sin{x}$
+
+\( \cos{y} \)
+
+\begin{math}
+\tan{z}
+\end{math}
+
+
+{\Large 单行公式：}
+
+最为基础的行间公式的输出方式有三种，分别是用\$\$、 $\backslash$[和$\backslash$]以及 displaymath环境。
+
+这是一个例子：
+
+
+$$\lim\limits_{r\rightarrow{0^{+}}}{\frac{1}{r^{3}}\iiint\limits_{\Omega_{r}}f
+(x,y,z)dxdydz =\frac{4}{3}\pi f(P)}
+$$
+
+$$\lim\nolimits_{r\rightarrow{0^{+}}}{\frac{1}{r^{3}}\iiint\nolimits_{\Omega_{r}}f
+	(x,y,z)dxdydz =\frac{4}{3}\pi f(P)}
+$$
+
+\[
+\forall \epsilon >0, \exists \delta >0, \forall Q \in\Omega_{\delta},\vert{f(Q)-f(P)}\vert<\epsilon
+\]
+
+
+
+\begin{displaymath}
+\frac{4}{3}\pi \delta^{3} (f(P)-\epsilon) < \iiint\limits_{\Omega_{\delta}} f(x,y,z)dxdydz < \frac{4}{3}\pi \delta^{3}(f(P)+\epsilon)
+\end{displaymath}
+
+
+其中，第一种方式不推荐使用。这是plain TeX时代就存在的命令，使用的是固定行距，不利于文章的后期调整。一般而言使用较多的是第二种方法，即用 $\backslash$[和 $\backslash$]来进入行间的数学模式。
+
+当然，除了这种最为基础的行间公式，也存在较为高级的环境。
+
+我们可以使用 amsmath提供的 equation环境来达到为自己的公式编号的目的。这样在交叉引用以及后期编辑的时候都有更大的优势。
+
+{\Large 多行公式：}
+
+有些时候我们需要输入的公式特别长，导致我们不得不手动为他们换行；或者某几个公式是一组，我们需要将他们放在一起；还有些时候我们需要输入分段函数，给公式加上一个在左边的大括号。这些需求都可以通过 amsmath宏包提供的丰富环境达成。（后文中的大量环境都需要 amsmath宏包，大家自己尝试时一定不要忘记使用！）
+
+对于那些特别长的但是不需要对齐的公式，我们可以使用 multiline环境，同时需要注意，这个环境也是默认有编号的。而对于那些需要对齐的公式，我们就需要使用 aligned次环境来达到目的。使用 alinged次环境的时候需要先进入化学环境；另外，在 aligned环境中有着一个特殊的符号 \&，这个符号是用于对齐的，LaTeX会自动地以 \&为标准对齐两边的内容。在 multiline和 aligned这两个环境中，符号 $\backslash$$\backslash$是用来换行的。以下是一个例子。
+
+\begin{multline}
+x =a+b+c + \\
+d+e+f
+\end{multline}
+
+\begin{multline}
+U3 = Q + W \\
+pV = nRT
+\end{multline}
+
+
+使用 aligned / gathered 环境,不须加编号则使用$\backslash$[ $\backslash$]包裹。
+\[
+\begin{aligned}
+	x =&a+b+c\\
+	&d+e+f
+\end{aligned}
+\]
+
+使用 aligned / gathered 环境,不须加编号则使用$\backslash$[ $\backslash$]包裹。
+
+\[
+\begin{aligned}
+U4 &= Q + W \\
+pV &= nRT
+\end{aligned}
+\]
+
+
+有些时候我们需要将几个公式组成一组。这个时候我们可以使用两种环境，分别是 gather和 align。其中， gather环境是不对齐的，而 align环境是对齐的。在默认条件下它们都带有编号。如果不需要编号可在一行的最后加入$\backslash$notag命令，也可以使用 tag\{·\}来自定义改行的公式的编号。下面是一个例子。
+
+\begin{gather}
+U =Q +W \tag{1.1}\\
+pV =nRT
+\end{gather}
+
+\begin{gather}
+U1 = Q + W \\
+pV = nRT
+\end{gather}
+
+
+
+
+
+\begin{align}
+U2 &= Q + W \\
+(p + \frac{a}{{V_m}^2})(V_m + b) &= RT
+\end{align}
+
+\begin{equation}
+n_{\mathrm{e}}^{\mathrm{max}} \propto \frac{B_{\mathrm{T}}}{Rq_{\alpha}}
+\end{equation}
+
+
+
+\textcolor{red}{\Large  分别编号:}\\
+\textcolor{blue}{\large 分别编号，需要对齐:}
+
+
+使用 align 环境，在需要对齐的地方加 \&
+
+\begin{align} 
+a & = b + c \label{eq:eq1}
+\\[3pt]
+& = d + e  \label{eq:eq2}
+\end{align}
+% 分别交叉引用
+式 (\ref{eq:eq1}) 和式 (\ref{eq:eq2}) 采用 align 对齐环境
+
+\begin{subequations}
+	\begin{align}
+	\vec{f}_{t} &= \sigma (W_f \cdot [\vec{h}_{t-1},\vec{x}_t] + \vec{b}_f) \\
+	\vec{i}_{t} &= \sigma (W_i \cdot [\vec{h}_{t-1},\vec{x}_t] + \vec{b}_i) \\
+	\widetilde{\vec{c}}_t &= tanh (W_c \cdot [\vec{h}_{t-1},\vec{x}_t] + \vec{b}_c) \\
+	\vec{c}_t &= \vec{f}_t \circ \vec{c}_{t-1} + \vec{i}_t \circ \widetilde{\vec{c}}_t \\
+	\vec{o}_t &= \sigma (W_o \cdot [\vec{h}_{t-1},\vec{x}_t] + \vec{b}_o) \\
+	\vec{h}_t &= \vec{o}_t \circ tanh(\vec{c}_t)
+	\end{align}
+\end{subequations}
+
+\noindent
+\textcolor{blue}{\large 使用 $\backslash$notag 对某行不编号:}
+\begin{align} 
+a = {}& b + c \\ 
+= {}& d + e + f + g + h + i + j + k + l \notag \\ 
+&{} + m + n + o \\ 
+= {}& p + q + r + s 
+\end{align}
+
+注意: 因为此处在 + (二元运算符)处对齐，所以应该在对齐符号 \& 前后使用一个占位符 {} 来避免不正确的缩进.
+
+\textcolor{blue}{\large 多列对齐,编号:}
+
+
+\begin{align} 
+a &=1 & b &=2 & c &=3 \\ 
+d &=-1 & e &=-2 & f &=-5 
+\end{align}
+
+
+\textcolor{blue}{\large 多列对齐,不编号:}
+
+
+\begin{align*} 
+a &=1 & b &=2 & c &=3 \\ 
+d &=-1 & e &=-2 & f &=-5 
+\end{align*}
+
+\textcolor{blue}{\large 不需要对齐:}
+
+使用 gather 环境:
+
+\begin{gather} 
+a = b + c \\ 
+d = e + f + g \\ 
+h + i = j + k \notag \\ 
+l + m = n 
+\end{gather}
+
+使用 gather* 环境:
+
+\begin{gather*} 
+a = b + c \\ 
+d = e + f + g \\ 
+h + i = j + k \notag \\ 
+l + m = n 
+\end{gather*}
+
+
+使用 align* 环境,不对齐:
+
+\begin{align*} 
+a = b + c \\ 
+d = e + f + g \\ 
+h + i = j + k \notag \\ 
+l + m = n 
+\end{align*}
+
+使用 align* 和\& 环境，对齐:
+\begin{align*} 
+a &= b + c \\ 
+d &= e + f + g \\ 
+h + i &= j + k \notag \\ 
+l + m &= n 
+\end{align*}
+
+\textcolor{purple}{注意: 若不需要编号则使用 align* 或 gather*}
+
+\textcolor{red}{\Large  统一编号:}\\
+
+使用 aligned / gathered 环境，并且依赖 $\backslash$begin\{equation\} $\backslash$end\{equation\}，若不须加编号则使用$\backslash$[  $\backslash$]包裹。\\
+
+使用 aligned 并且使用$\backslash$begin\{equation\} $\backslash$end\{equation\}包裹，并使用\&对齐。
+
+
+\begin{equation}
+\begin{aligned} 
+a &= b + c \\
+d &= e + f + g \\
+h + i &= j + k \\
+l + m &= n
+\end{aligned}
+\end{equation}
+
+
+使用 gathered 并且使用$\backslash$begin\{equation\} $\backslash$end\{equation\}包裹，gathered无法对齐。
+
+\begin{equation}
+\begin{gathered} 
+a = b + c \\
+d = e + f + g \\
+h + i = j + k \\
+l + m = n
+\end{gathered}
+\end{equation}
+
+使用gathered并且使用$\backslash$[  $\backslash$]包裹，不需要编号。
+
+\[
+\begin{gathered}
+a = b + c \\
+d = e + f + g \\
+h + i = j + k \\
+l + m = n
+\end{gathered}
+\]
+
+使用 aligned 并且使用$\backslash$[  $\backslash$]包裹，不需要编号，不对齐。
+
+\[
+\begin{aligned}
+a = b + c \\
+d = e + f + g \\
+h + i = j + k \\
+l + m = n
+\end{aligned}
+\]
+
+
+使用 aligned 并且使用$\backslash$[  $\backslash$]包裹，不需要编号，对齐。
+
+\[
+\begin{aligned}
+a &= b + c \\
+d &= e + f + g \\
+h + i &= j + k \\
+l + m &= n
+\end{aligned}
+\]
+
+
+\textcolor{red}{\Large  添加定界符：}\\
+
+有时需要在多行公式中添加定界符，最常用的就是在公式左端加上花括号 \{，下面介绍 3 种方法实现该功能。
+	
+实际上，除了 cases 环境，其他方法都可以实现其他定界符，尤其是最后一种。
+
+\textcolor{blue}{\large $\backslash$left\{ $\backslash$right :}
+
+
+不对齐带编号:
+\begin{equation}
+\left\{
+\begin{gathered}
+a_{11} x_{1} + a_{12} x_{2} + a_{13} x_{2} = b_{1}
+\\[3pt]
+a_{21} x_{1} + a_{22} x_{3} + a_{23} x_{3} = b_{2}
+\end{gathered}
+\right.
+\end{equation}
+
+对齐不带编号:
+\[
+\left\{
+\begin{aligned}
+a_{11} x_{1} + a_{12} x_{2} + a_{13} x_{2} = b_{1}
+\\[3pt]
+a_{22} x_{3} + a_{23} x_{3} = b_{2}
+\end{aligned}
+\right.
+\]
+
+\textcolor{blue}{\large array 环境:}
+\[
+|x| = \left\{
+\begin{array}{rl}
+-x & \mbox{if } x < 0,\\ 
+0 & \mbox{if } x = 0,\\ 
+x & \mbox{if } x > 0. 
+\end{array} \right.
+\]
+
+\textcolor{blue}{\large cases 环境:}
+分别编号：\\
+
+需要在导言区载入 cases 宏包 $\backslash$usepackage\{cases\}，并且放在 amsmath 之后.
+
+\begin{numcases} {|x| =}
+	-x & \mbox{if } x < 0 \label{eq22},\\
+	0 & \mbox{if } x = 0,\\
+	x & \mbox{if } x > 0.
+\end{numcases}
+
+\begin{subnumcases} {\label{eq24a} |x| =}
+	-x & \mbox{if } x < 0,\\
+	0 & \mbox{if } x = 0\label{eq24b},\\
+	x & \mbox{if } x > 0.
+\end{subnumcases}
+
+式 (\ref{eq22}) 和 式 (\ref{eq24a}) 和 式 (\ref{eq24b})
+
+
+
+统一编号:\\
+
+\begin{equation} |x| =
+\begin{cases}
+-x & \mbox{if } x < 0,\\
+0 & \mbox{if } x = 0,\\
+x & \mbox{if } x > 0.
+\end{cases}
+\end{equation}
+
+\begin{equation}
+f(x) = 
+\begin{cases}
+-x + 1, \quad x \leq 1\\
+x - 1, \quad x > 1
+\end{cases}
+\end{equation}
+
+\begin{equation}
+f(x) = \left\{
+\begin{aligned}
+x, x > 0 \\
+\frac{x}{a}, x \leqslant 0 \\
+\end{aligned}
+\right.
+\end{equation}
+
+注意与 array 环境的区别.
+
+
+无编号:\\
+如果大家需要输入一个分段的函数，下面是一个例子。
+
+\[ f(x)=
+\begin{cases}
+-x +1
+,\quad x \leq 1\\
+x -1,\quad x >1
+\end{cases}
+\]
+
+
+*********************************************** 分割线 ********************************************
+
+
+	\[
+	\iiint\limits_{\Omega_{r}}f(x,y,z)dxdydz
+	\]
+
+\begin{equation} \label{eq1}
+	E = mc^2
+\end{equation}
+
+
+多行公式--带编号
+\begin{gather}
+a + b +c = b + a \\
+1+2 = 2 + 1
+\end{gather}
+
+多行公式--不带编号1
+\begin{gather*}
+a + b = b + a \\
+1+2 = 2 + 1
+\end{gather*}
+
+多行公式--带编号2 $\backslash$notag 阻止编号
+\begin{gather}
+a + b = b + a \notag \\
+1+2 = 2 + 1 \notag
+\end{gather}
+
+按\&号对齐,--带编号
+\begin{align}
+a+b &= b+a \\
+1+2 &=  2+1
+\end{align}
+
+按\&号对齐,--不带编号
+\begin{align*}
+a+b &= b+a \\
+1+2 &=2+1
+\end{align*}
+
+一个公式的多行排版--带编号
+\begin{equation}
+\begin{split}
+\cos 2x &= \cos^2 x - \sin^2x + \cos^2 x - \sin^2x + \\
+&+  \cos^2 x - \sin^2x + \cos^2 x - \sin^2x + \cos^2 x - \\
+&+  \sin^2x + \cos^2 x - \sin^2x + \cos^2 x - \sin^2x + \\
+&+  \cos^2 x - \sin^2x + \cos^2 x - \sin^2x + \\
+&=2\cos^2x-1
+\end{split} 
+\end{equation}
+
+一个公式的多行排版--不带编号
+\begin{equation*}
+\begin{split}
+\cos 2x &= \cos^2 x - \sin^2x \\
+&=2\cos^2x-1
+\end{split} 
+\end{equation*}
+
+case环境, text{}在数学模式中处理中文-带编号
+\begin{equation}
+D(x)=\begin{cases}
+1, & \text{如果} x \in \mathbb{Q};\\
+0, & \text{如果} x \in \mathbb{R}\setminus\mathbb{Q}
+\end{cases}
+\end{equation}
+
+case环境, text{}在数学模式中处理中文-不带编号
+\begin{equation*}
+D(x)=\begin{cases}
+1, & \text{如果} x \in \mathbb{Q};\\
+0, & \text{如果} x \in \mathbb{R}\setminus\mathbb{Q}
+\end{cases}
+\end{equation*}
+
+长公式「被迫」折行
+使用 multline 环境，实现首行局左，中间居中，末行局右，注意: 若不需要编号则使用 multline*
+\begin{multline}
+p = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\ 
++ \sin{x} + \cos{y} + \tan{a} + e^{x+y} \\
+- 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+\end{multline}
+
+
+
+
+
+\subsection{数学符号的输入}
+首先，为了取得输入数学公式时的最佳体验，建议大家在导言区加载 amsmath宏包。正如上一篇推送所说，只要在导言区输入 $\backslash$usepackage{amsmath}就可以了。
+
+
+\subsubsection{向量}
+向量（Vectors）通常用上方有小箭头（arrow symbols）的变量表示。这可由$\backslash$vec 得到。另两个命令$\backslash$overrightarrow 和$\backslash$overleftarrow在定义从A 到B 的向量时非常有用。
+
+
+\begin{displaymath}
+	\vec a  \quad  \overrightarrow{AB}
+\end{displaymath}
+
+
+\subsubsection{分数}
+输入分数的基础命令是 $\backslash$frac{·}{·}，其中前面的花括号内是分子，后面的花括号内是分母。在行间公式和行内公式中， $\backslash$frac命令的输出效果是有不同的。如果想要客制化输出效果，可以用 $\backslash$dfrac命令强制输出行间公式下的分式样式；反之，可以用 $\backslash$tfrac命令强制输出行内公式的分式样式。下面是一个例子。
+
+$$ n=\frac{p}{kT} $$
+
+\[
+\lambda =\frac{kT}{\sqrt{2}\pi d^2p}
+\]
+
+$$ n=\dfrac{p}{kT} $$
+
+\[
+\lambda =\tfrac{kT}{\sqrt{2}\pi d^2p}
+\]
+
+
+\subsubsection{根号和上下标}
+
+上标是通过符号 \^来生成的；下标是用符号 \_生成的。需要注意的是LaTeX只会默认将上下标符号后的第一个字符当作是上下标的内容，需要在上下标内输入很多内容的时候要记得用花括号将内容包裹起来。
+
+根号是用 $\backslash$sqrt{·}来生成的，需要输入n次根式的时候，需要再输入一个用中括号包裹的参数，像这样 $\backslash$sqrt[n]{·}。方根符号的大小是由LaTeX自动调整的，也可以用 $\backslash$surd命令仅仅给出符号。
+
+下面是一个比较综合的例子。
+
+
+\[
+\sqrt[n]{{a_{ij}}^{e\surd{2}}}
+\]
+
+
+\subsubsection{最常用的运算符}
+比较常用的运算符有极限 $\backslash$lim；求和 $\backslash$sum\_{·}\^{·}；连乘 $\backslash$prod\_{·}\^{·}；以及各类积分 $\backslash$int\_{·}\^{·}、 $\backslash$iint、 $\backslash$iiint。它们的上下标在行间公式内默认是写在右侧以适应行高的，我们可以用 $\backslash$limits来强制不压缩上下标；反之可以用 $\backslash$nolimits来压缩上下标。下面是一个例子。
+
+$$ 
+\lim_{x \to 0}{\sin x}=0 
+$$
+
+\[
+ \sum\nolimits_{i=1}^{n} i  \quad  \prod_{i=1}^n
+\]
+
+\[
+\sum\limits_{i=1}^{n} i  \quad  \prod_{i=1}^n
+\]
+
+\[
+\sum\nolimits_{i=1}^{n} i  \quad  \prod_{i=1}^n
+\]
+
+$$ \lim\limits_{r \to {0^{+}}}{\frac{1}{r^{3}}\iiint_{\Omega_{r}}f(x,y,z)dxdydz =\frac{4}{3}\pi f(P)}
+$$
+
+\subsubsection{在表达式上下方画线和括号}
+我们可以用命令 $\backslash$overline和 $\backslash$underline在表达式的上、下方画出水平线；可以用 $\backslash$vec命令来画向量；可以用 $\backslash$overbrace{·}\^{·}和 $\backslash$underbrace{·}\_{·}在表达式的上、下方给出一水平的大括号。下面是一个例子。
+
+\[
+\overline{\alpha +\beta}=\underbrace{\vec{a}+b+...+z}_{26}
+\]
+
+
+\[ \overline{m +n} \qquad  \underline{m+n} \]
+
+
+\[
+\overbrace{1,2,3,4,5,.....}^{123}  \quad
+\underbrace{\vec{a}+b+...+z} \quad
+sin {60}^{\circ}   \quad
+\prod_{i=1}^n x_i  \quad
+\lim_{x \to 0}
+\]
+
+
+\[
+\int_{0}^\infty{fxdx}
+\]
+
+
+\[
+\oint_{C} x^3, dx + 4y^2, dy
+\]
+
+
+\[
+\iint_{D}^{W} , dx,dy
+\]
+
+\[
+\iiint_{E}^{V} , dx,dy,dz
+\]
+
+\[
+\nabla \quad \mathrm{d}x  \quad \partial x \quad \dot x \quad \ddot {XY}
+\]
+
+
+\subsubsection{数学符号}
+
+
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{重音符}
+		\begin{tabular}{cccccccc}
+
+	%\hline 
+	
+	$\hat{a}$ & $\backslash$hat\{a\} & $\check{a}$ & $\backslash$check\{a\}  &  $\tilde{a} $   &  $\backslash$tilde{a}  & $\acute{a}$  &  $\backslash$acute{a}   \\
+	    
+	 $\grave{a}$   &  $\backslash$grave\{a\}  &  $\dot{a}$  & $\backslash$dot\{a\}   &  $\ddot{a}$  &  $\backslash$ddot\{a\}  &  $\breve{a}$  &  $\backslash$breve\{a\} \\
+	   
+	 $\bar{a}$   &  $\backslash$bar\{a\}  &  $\vec{a}$  & $\backslash$vec\{a\}   &  $\widehat{a}$  &  $\backslash$widehat\{a\}  &  $\widetilde{a}$  &  $\backslash$widetilde\{a\} \\
+	 
+	%\hline 
+    \end{tabular}
+\end{center}
+\end{table}
+
+
+
+\begin{table}[H]
+	\caption{小写的希腊字母}
+	\centering{}
+	
+	\begin{tabular}{cccccccc}
+		%\hline 
+		
+		$\alpha$ & $\backslash$alpha & $\theta$ & $\backslash$check  &  $o$   & o  & $\upsilon$  &  $\backslash$upsilon   \\
+		
+		$\beta$  &  $\backslash$beta  &  $\vartheta$  & $\backslash$vartheta  &  $\pi$  & $\backslash$pi  &  $\phi$  &  $\backslash$phi \\
+		
+		$\gamma$ & $\backslash$gamma &  $\iota$  & $\backslash$iota   &  $\varpi$  & $\backslash$varpi &  $\varphi$  &  $\backslash$varphi\\
+		
+		$\delta$ & $\backslash$delta & $\kappa$ & $\backslash$kappa  &  $\rho$   & $\backslash$rho  & $\chi$  &  $\backslash$chi   \\
+
+		$\epsilon$  &  $\backslash$epsilon  &  $\lambda$  & $\backslash$lambda  &  $\varrho$  & $\backslash$varrho  &  $\psi$  &  $\backslash$psi \\
+
+		$\varepsilon$ & $\backslash$varepsilon &  $\mu$  & $\backslash$mu   &  $\sigma$  & $\backslash$sigma &  $\omega$  &  $\backslash$omega\\
+
+		$\zeta$ & $\backslash$zeta &  $\nu$  & $\backslash$nu   &  $\varsigma$  & $\backslash$varsigma &  $\eta$  &  $\backslash$eta\\
+		
+		$\xi$ & $\backslash$xi &  $\tau$  & $\backslash$tau    \\
+		%\hline 
+	\end{tabular}
+\end{table}
+
+
+
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{大写的希腊字母}
+		\begin{tabular}{cccccccc}
+			
+		$\Gamma$ & $\backslash$Gamma & $\Lambda$ & $\backslash$Lambda  &  $\Sigma$   & $\backslash$Sigma  & $\Psi$  &  $\backslash$Psi   \\
+
+		$\Delta$  &  $\backslash$Delta  &  $\Xi$  & $\backslash$Xi  &  $\Upsilon$  & $\backslash$Upsilon  &  $\Omega$  &  $\backslash$Omega \\
+
+		$\Theta$ & $\backslash$Theta &  $\Pi$  & $\backslash$Pi   &  $\Phi$  & $\backslash$Phi 
+
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{二元关系符号}
+		\begin{tabular}{cccccccc}
+			
+			$<$ & < & > & >  &  =   & =  & $\leq$  &  $\backslash$leq 或 $\backslash$le  \\
+			
+			$\geq$  &  $\backslash$geq  &  $\equiv$  & $\backslash$equiv  &  $\ll$  & $\backslash$ll  &  $\gg$  &  $\backslash$gg \\
+			
+			$\doteq$ & $\backslash$doteq &  $\prec$  & $\backslash$prec   &  $\succ$  & $\backslash$succ &  $\sim$ & $\backslash$sim \\
+			
+			
+			$\preceq$  &  $\backslash$preceq  &  $\succeq$  & $\backslash$succeq  &  $\simeq$  & $\backslash$semeq  &  $\subset$  &  $\backslash$subset \\
+			
+			$\supset$ & $\backslash$supset &  $\approx$  & $\backslash$approx   &  $\subseteq$  & $\backslash$subseteq &  $\supseteq$ & $\backslash$supseteq \\
+			
+			$\cong$ & $\backslash$cong &  $\sqsubset$  & $\backslash$sqsubset   &  $\sqsupset$  & $\backslash$sqsupset &  $\Join$ & $\backslash$Join \\	
+			
+			$\sqsubseteq$ & $\backslash$sqsubseteq &  $\sqsupseteq$  & $\backslash$sqsupseteq   &  $\bowtie$  & $\backslash$bowtie &  $\in$ & $\backslash$in \\
+				
+				
+			$\ni$ & $\backslash$ni &  $\propto$  & $\backslash$propto   &  $\vdash$  & $\backslash$vdash &  $\dashv$ & $\backslash$dashv \\	
+
+			$\models$ & $\backslash$models &  $\mid$  & $\backslash$mid   &  $\parallel$  & $\backslash$parallel &  $\perp$ & $\backslash$perp \\
+
+
+			$\smile$ & $\backslash$smile &  $\frown$  & $\backslash$frown   &  $\asymp$  & $\backslash$asymp &  $:$ & : \\	
+
+			$\notin$ & $\backslash$notin &  $\neq$  & $\backslash$neq \\
+
+				
+					
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{二元运算符}
+		\begin{tabular}{cccccccc}
+			
+			$+$ & + & - & -  &  $\pm$   & $\backslash$pm  & $\mp$  &  $\backslash$mp  \\
+			
+			$\triangleleft$  &  $\backslash$triangleleft  &  $\cdot$  & $\backslash$cdot  &  $\cap$  & $\backslash$cap  &  $\ast$  &  $\backslash$ast \\
+			
+			$\sqcup$ & $\backslash$sqcup &  $\sqcap$  & $\backslash$sqcap   &  $\circ$  & $\backslash$circ &  $\vee$ & $\backslash$vee \\
+			
+			
+			$\land$  &  $\backslash$land  &  $\bullet$  & $\backslash$bullet  &  $\oplus$  & $\backslash$oplus  &  $\ominus$  &  $\backslash$ominus \\
+			
+			$\diamond$ & $\backslash$diamond &  $\odot$  & $\backslash$odot   &  $\oslash$  & $\backslash$oslash &  $\uplus$ & $\backslash$uplus \\
+			
+			$\otimes$ & $\backslash$otimes &  $\bigcirc$  & $\backslash$bigcirc   &  $\amalg$  & $\backslash$amalg &  $\bigtriangleup$ & $\backslash$bigtriangleup \\	
+			
+			$\bigtriangledown$ & $\backslash$bigtriangledown &  $\dagger$  & $\backslash$dagger   &  $\lhd$  & $\backslash$lhd &  $\rhd$ & $\backslash$rhd \\
+			
+			
+			$\dagger$ & $\backslash$dagger &  $\lhd$  & $\backslash$lhd   &  $\rhd$  & $\backslash$rhd &  $\ddagger$ & $\backslash$ddagger \\	
+			
+			$\unlhd$ & $\backslash$unlhd &  $\unrhd$  & $\backslash$unrhd   &  $\wr$  & $\backslash$wr  \\
+	
+			
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{大运算符}
+		\begin{tabular}{cccccccc}
+			
+			
+			$\sum$  &  $\backslash$sum  &  $\bigvee$  & $\backslash$bigvee  &  $\bigoplus$  & $\backslash$bigoplus  &  $\prod$  &  $\backslash$prod \\
+			
+			$\bigcap$ & $\backslash$bigcap &  $\bigwedge$  & $\backslash$bigwedge   &  $\bigotimes$  & $\backslash$bigotimes &  $\coprod$ & $\backslash$coprod \\
+			
+			
+			$\bigsqcup$  &  $\backslash$bigsqcup  &  $\bigodot$  & $\backslash$bigodot  &  $\int$  & $\backslash$int  &  $\oint$  &  $\backslash$oint \\
+			
+			$\biguplus$  &  $\backslash$biguplus  \\
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{箭头}
+		\begin{tabular}{cccccccc}
+			
+			
+			$\leftarrow$  &  $\backslash$leftarrow  &  $\longleftarrow$  & $\backslash$longleftarrow  &  $\uparrow$  & $\backslash$uparrow  &  $\rightarrow$  &  $\backslash$rightarrow \\
+			
+			$\longrightarrow$ & $\backslash$longrightarrow &  $\downarrow$  & $\backslash$downarrow   &  $\leftrightarrow$  & $\backslash$leftrightarrow &  $\longleftrightarrow$ & $\backslash$longleftrightarrow \\
+			
+			
+			$\updownarrow$  &  $\backslash$updownarrow  &  $\Leftarrow$  & $\backslash$Leftarrow  &  $\Longleftarrow$  & $\backslash$Longleftarrow  &  $\Uparrow$  &  $\backslash$Uparrow \\
+			
+			$\Rightarrow$ & $\backslash$Rightarrow &  $\Longrightarrow$  & $\backslash$Longrightarrow   &  $\Downarrow$  & $\backslash$Downarrow &  $\Leftrightarrow$ & $\backslash$Leftrightarrow \\
+			
+			$\Longleftrightarrow$ & $\backslash$Longleftrightarrow &  $\Updownarrow$  & $\backslash$Updownarrow   &  $\mapsto$  & $\backslash$mapsto &  $\longmapsto$ & $\backslash$longmapsto \\	
+
+			$\nearrow$ & $\backslash$nearrow &  $\hookleftarrow$  & $\backslash$hookleftarrow   &  $\hookrightarrow$  & $\backslash$hookrightarrow &  $\searrow$ & $\backslash$searrow \\
+
+			$\leftharpoonup$ & $\backslash$leftharpoonup &  $\rightharpoonup$  & $\backslash$rightharpoonup   &  $\swarrow$  & $\backslash$swarrow &  $\leftharpoondown$ & $\backslash$leftharpoondown \\
+
+
+			$\rightharpoondown$ & $\backslash$rightharpoondown &  $\nwarrow$  & $\backslash$nwarrow   &  $\rightleftharpoons$  & $\backslash$rightleftharpoons &  $\iff$ & $\backslash$iff \\
+
+			$\leadsto$ & $\backslash$leadsto \\
+
+			
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{定界符}
+		\begin{tabular}{cccccccc}
+			
+			
+			$($  &  (  &  $)$  & )  &  $\uparrow$  & $\backslash$uparrow  &  $\Uparrow$  &  $\backslash$Uparrow \\
+			
+			$[$ &  [ &  $]$  &  ]   &  $\downarrow$  & $\backslash$downarrow &  $\Downarrow$ & $\backslash$Downarrow \\
+			
+			
+			$\lbrace$  &  $\backslash$lbrace  &  $\rbrace$  & $\backslash$rbrace  &  $\updownarrow$  & $\backslash$updownarrow  &  $\Updownarrow$  &  $\backslash$Updownarrow \\
+			
+			$\langle$ & $\backslash$langle &  $\rangle$  & $\backslash$rangle   &  $\vert$  & $\backslash$vert &  $\Vert$ & $\backslash$Vert \\
+			
+			$\lfloor$ & $\backslash$lfloor &  $\rfloor$  & $\backslash$rfloor   &  $\lceil$  & $\backslash$rceil &  $/$ & / \\	
+			
+			
+			$\lgroup$ & $\backslash$lgroup &  $\rgroup$  & $\backslash$rgroup   &  $\lmoustache$  & $\backslash$lmoustache &  $\rmoustache$ & $\backslash$rmoustache \\
+			
+			$\arrowvert$ & $\backslash$arrowvert &  $\Arrowvert$  & $\backslash$Arrowvert   &  $\bracevert$  & $\backslash$bracevert  \\
+		
+			
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{其他数学符号}
+		\begin{tabular}{cccccccc}
+			
+			
+			$\dots$  &  $\backslash$dots  &  $\cdot$  & $\backslash$cdot  &  $\vdots$  & $\backslash$vdots  &  $\hbar$  &  $\backslash$hbar \\
+			
+			$\imath$ & $\backslash$imath &  $\jmath$  & $\backslash$jmath   &  $\ell$  & $\backslash$ell &  $\Re$ & $\backslash$Re \\
+			
+			
+			$\Im$  &  $\backslash$Im  &  $\aleph$  & $\backslash$aleph  &  $\wp$  & $\backslash$wp  &  $\forall$  &  $\backslash$forall \\
+			
+			$\exists$ & $\backslash$exists &  $\mho$  & $\backslash$mho   &  $\partial$  & $\backslash$partial &  $,$ & , \\
+			
+			$\prime$ & $\backslash$prime &  $\emptyset$  & $\backslash$emptyset   &  $\infty$  & $\backslash$infty &  $\nabla$ & $\backslash$nabla \\	
+
+			$\triangle$ & $\backslash$triangle &  $\Box$  & $\backslash$Box   &  $\Diamond$  & $\backslash$Diamond &  $\bot$ & $\backslash$bot \\	
+
+
+			$\top$ & $\backslash$top &  $\angle$  & $\backslash$angle   &  $\surd$  & $\backslash$surd &  $\diamondsuit$ & $\backslash$diamondsuit \\	
+
+			$\heartsuit$ & $\backslash$heartsuit &  $\clubsuit$  & $\backslash$clubsuit   &  $\spadesuit$  & $\backslash$spadesuit &  $\lnot$ & $\backslash$lnot \\	
+			
+			$\flat$ & $\backslash$flat &  $\natural$  & $\backslash$natural   &  $\sharp$  & $\backslash$sharp  \\				
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{非数学符号}
+		\begin{tabular}{cccccccc}
+			
+			
+			$\dag$  &  $\backslash$dag  &  $\S$  & $\backslash$S  &  $\copyright$  & $\backslash$copyright  &  $\ddag$  &  $\backslash$ddag \\
+			
+			$\P$  &  $\backslash$P  &  $\pounds$  & $\backslash$pounds   \\
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{AMS定界符}
+		\begin{tabular}{cccccccc}
+			
+			
+			$\ulcorner$  &  $\backslash$ulcorner  &  $\urcorner$  & $\backslash$urcorner  &  $\llcorner$  & $\backslash$llcorner  &  $\lrcorner$  &  $\backslash$lrcorner \\
+			
+			$\lvert$ & $\backslash$lvert &  $\rvert$  & $\backslash$rvert   &  $\lVert$  & $\backslash$lVert &  $\rVert$ & $\backslash$rVert \\
+			
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{AMS希伯来字母}
+		\begin{tabular}{cccccccc}
+			
+			$\digamma$  &  $\backslash$digamma  &  $\varkappa$  & $\backslash$varkappa  &  $\beth$  & $\backslash$beth  &  $\daleth$  &  $\backslash$daleth \\
+			
+			$\gimel$ & $\backslash$gimel \\
+			
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{AMS二元关系符}
+		\begin{tabular}{cccccc}
+			
+			
+			$\lessdot$  &  $\backslash$lessdot  &  $\gtrdot$  & $\backslash$gtrdot  &  $\doteqdot$  & $\backslash$doteqdot  \\
+			
+			$\leqslant$  &  $\backslash$leqslant  &  $\geqslant$  & $\backslash$geqslant  &  $\risingdotseq$  & $\backslash$risingdotseq  \\
+			
+			$\leqq$  &  $\backslash$leqq  &  $\geqq$  & $\backslash$geqq  &  $\eqcirc$  & $\backslash$eqcirc  \\
+
+			$\lessdot$  &  $\backslash$lessdot  &  $\gtrdot$  & $\backslash$gtrdot  &  $\doteqdot$  & $\backslash$doteqdot  \\
+
+			$\lll$  &  $\backslash$lll  &  $\ggg$  & $\backslash$ggg  &  $\circeq$  & $\backslash$circeq  \\
+
+			$\lesssim$  &  $\backslash$lesssim  &  $\gtrsim$  & $\backslash$gtrsim  &  $\triangleq$  & $\backslash$triangleq  \\
+
+
+			$\lessapprox$  &  $\backslash$lessapprox  &  $\gtrapprox$  & $\backslash$gtrapprox  &  $\bumpeq$  & $\backslash$bumpeq  \\
+
+			$\lessgtr$  &  $\backslash$lessgtr  &  $\gtrless$  & $\backslash$gtrless  &  $\Bumpeq$  & $\backslash$Bumpeq  \\
+
+			$\lesseqgtr$  &  $\backslash$lesseqgtr  &  $\gtreqless$  & $\backslash$gtreqless  &  $\thicksim$  & $\backslash$thicksim  \\
+
+
+			$\lesseqqgtr$  &  $\backslash$lesseqqgtr  &  $\gtreqqless$  & $\backslash$gtreqqless  &  $\thickapprox$  & $\backslash$thickapprox  \\
+
+			$\preccurlyeq$  &  $\backslash$preccurlyeq  &  $\succcurlyeq$  & $\backslash$succcurlyeq  &  $\approxeq$  & $\backslash$approxeq  \\
+
+			$\curlyeqprec$  &  $\backslash$curlyeqprec  &  $\curlyeqsucc$  & $\backslash$curlyeqsucc  &  $\backsim$  & $\backslash$backsim  \\
+			
+			$\precsim$  &  $\backslash$precsim  &  $\succsim$  & $\backslash$succsim  &  $\backsimeq$  & $\backslash$backsimeq  \\
+
+			$\precapprox$  &  $\backslash$precapprox  &  $\succapprox$  & $\backslash$succapprox  &  $\vDash$  & $\backslash$vDash  \\
+			
+			$\subseteqq$  &  $\backslash$subseteqq  &  $\supseteqq$  & $\backslash$supseteqq  &  $\Vdash$  & $\backslash$Vdash  \\
+
+			$\Subset$  &  $\backslash$Subset  &  $\Supset$  & $\backslash$Supset  &  $\Vvdash$  & $\backslash$Vvdash  \\
+
+			$\sqsubset$  &  $\backslash$sqsubset  &  $\sqsubset$  & $\backslash$sqsubset  &  $\backepsilon$  & $\backslash$backepsilon  \\
+
+			$\therefore$  &  $\backslash$therefore  &  $\because$  & $\backslash$because  &  $\varpropto$  & $\backslash$varproptosim  \\
+
+			$\shortmid$  &  $\backslash$shortmid  &  $\shortparallel$  & $\backslash$shortparallel  &  $\between$  & $\backslash$between  \\
+
+			$\smallsmile$  &  $\backslash$smallsmile  &  $\smallfrown$  & $\backslash$smallfrown  &  $\pitchfork$  & $\backslash$pitchfork  \\
+
+			$\vartriangleleft$  &  $\backslash$vartriangleleft  &  $\vartriangleright$  & $\backslash$vartriangleright  &  $\blacktriangleleft$  & $\backslash$blacktriangleleft  \\
+
+			$\trianglelefteq$  &  $\backslash$trianglelefteq  &  $\trianglerighteq$  & $\backslash$trianglerighteq  &  $\blacktriangleright$  & $\backslash$blacktriangleright  \\
+
+				
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{AMS箭头}
+		\begin{tabular}{cccccc}
+			
+			$\dashleftarrow$  &  $\backslash$dashleftarrow  &  $\dashrightarrow$  & $\backslash$dashrightarrow  &  $\multimap$  & $\backslash$multimap  \\
+
+			$\leftleftarrows$  &  $\backslash$leftleftarrows  &  $\rightrightarrows$  & $\backslash$rightrightarrows  &  $\upuparrows$  & $\backslash$upuparrows  \\
+
+			$\leftrightarrows$  &  $\backslash$leftrightarrows  &  $\rightleftarrows$  & $\backslash$rightleftarrows  &  $\downdownarrows$  & $\backslash$downdownarrows  \\
+
+			$\Lleftarrow$  &  $\backslash$Lleftarrow  &  $\Rrightarrow$  & $\backslash$Rrightarrow  &  $\upharpoonleft$  & $\backslash$upharpoonleft  \\
+
+			$\twoheadleftarrow$  &  $\backslash$twoheadleftarrow  &  $\twoheadrightarrow$  & $\backslash$twoheadrightarrow  &  $\upharpoonright$  & $\backslash$upharpoonright  \\
+
+			$\leftarrowtail$  &  $\backslash$leftarrowtail  &  $\rightarrowtail$  & $\backslash$rightarrowtail  &  $\downharpoonright$  & $\backslash$downharpoonright  \\
+			
+			$\Lsh$  &  $\backslash$Lsh  &  $\Rsh$  & $\backslash$Rsh  &  $\rightsquigarrow$  & $\backslash$rightsquigarrow  \\
+
+			$\looparrowleft$  &  $\backslash$looparrowleft  &  $\looparrowright$  & $\backslash$looparrowright  &  $\leftrightsquigarrow$  & $\backslash$leftrightsquigarrow  \\
+
+			$\curvearrowleft$  &  $\backslash$curvearrowleft  &  $\curvearrowright$  & $\backslash$curvearrowright  &     &    \\
+
+			$\circlearrowleft$  &  $\backslash$circlearrowleft  &  $\circlearrowright$  & $\backslash$circlearrowright  &    &    \\			
+			
+			
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{AMS二元否定关系符和箭头}
+		\begin{tabular}{cccccc}
+			
+			$\nless$  &  $\backslash$nless  &  $\ngtr$  & $\backslash$ngtr  &  $\varsubsetneqq$  & $\backslash$varsubsetneqq  \\
+
+			$\lneq$  &  $\backslash$lneq  &  $\gneq$  & $\backslash$gneq  &  $\varsupsetneqq$  & $\backslash$varsupsetneqq  \\
+
+			$\nleq$  &  $\backslash$nleq  &  $\ngeq$  & $\backslash$ngeq  &  $\nsubseteqq$  & $\backslash$nsubseteqq  \\
+
+			$\nleqslant$  &  $\backslash$nleqslant  &  $\ngeqslant$  & $\backslash$ngeqslant  &  $\nsupseteqq$  & $\backslash$nsupseteqq  \\
+
+			$\lneqq$  &  $\backslash$lneqq  &  $\gneqq$  & $\backslash$gneqq  &  $\nmid$  & $\backslash$nmid  \\
+
+			$\lvertneqq$  &  $\backslash$lvertneqq  &  $\gvertneqq$  & $\backslash$gvertneqq  &  $\nparallel$  & $\backslash$nparallel  \\
+
+			$\nleqq$  &  $\backslash$nleqq  &  $\ngeqq$  & $\backslash$ngeqq  &  $\nshortparallel$  & $\backslash$nshortparallel  \\
+
+			$\lnapprox$  &  $\backslash$lnapprox  &  $\gnapprox$  & $\backslash$gnapprox  &  $\nsim$  & $\backslash$nsim  \\
+
+			$\nprec$  &  $\backslash$nprec  &  $\nsucc$  & $\backslash$nsucc  &  $\ncong$   &  $\backslash$ncong  \\
+
+			$\npreceq$  &  $\backslash$npreceq  &  $\nsucceq$  & $\backslash$nsucceq  &  $\nvdash$   &  $\backslash$nvdash  \\			
+			
+			$\precneqq$  &  $\backslash$precneqq  &  $\succneqq$  & $\backslash$succneqq  &  $\nvDash$  & $\backslash$nvDash  \\
+
+			$\precnapprox$  &  $\backslash$precnapprox  &  $\succnapprox$  & $\backslash$succnapprox  &  $\nVDash$  & $\backslash$nVDash  \\
+
+			$\subsetneq$  &  $\backslash$subsetneq  &  $\supsetneq$  & $\backslash$supsetneq  &  $\ntriangleleft$  & $\backslash$ntriangleleft  \\
+
+
+			$\varsubsetneq$  &  $\backslash$varsubsetneq  &  $\varsupsetneq$  & $\backslash$varsupsetneq  &  $\ntriangleright$  & $\backslash$ntriangleright  \\
+
+			$\nsubseteq$  &  $\backslash$nsubseteq  &  $\nsupseteq$  & $\backslash$nsupseteq  &  $\ntrianglelefteq$  & $\backslash$ntrianglelefteq  \\
+
+			$\subsetneqq$  &  $\backslash$subsetneqq  &  $\supsetneqq$  & $\backslash$supsetneqq  &  $\ntrianglerighteq$  & $\backslash$ntrianglerighteq  \\
+
+			$\nleftarrow$  &  $\backslash$nleftarrow  &  $\nrightarrow$  & $\backslash$nrightarrow  &  $\nleftrightarrow$  & $\backslash$nleftrightarrow  \\
+
+			$\nLeftarrow$  &  $\backslash$nLeftarrow  &  $\nRightarrow$  & $\backslash$nRightarrow  &  $\nLeftrightarrow$  & $\backslash$nLeftrightarrow  \\
+
+						%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{AMS二元运算符}
+		\begin{tabular}{cccccccc}
+			
+			$\dotplus$  &  $\backslash$dotplus  &  $\centerdot$  & $\backslash$centerdot  &  $\intercal$  & $\backslash$intercal  \\
+
+			$\ltimes$  &  $\backslash$ltimes  &  $\rtimes$  & $\backslash$rtimes  &  $\divideontimes$   &  $\backslash$divideontime  \\
+
+			$\Cup$  &  $\backslash$Cup  &  $\Cap$  & $\backslash$Cap  &  $\smallsetminus$   &  $\backslash$smallsetminus  \\			
+
+			$\veebar$  &  $\backslash$veebar  &  $\barwedge$  & $\backslash$barwedge  &  $\doublebarwedge$  & $\backslash$doublebarwedge  \\
+
+			$\boxplus$  &  $\backslash$boxplus  &  $\boxminus$  & $\backslash$boxminus  &  $\circleddash$  & $\backslash$circleddash  \\
+
+			$\boxtimes$  &  $\backslash$boxtimes  &  $\boxdot$  & $\backslash$boxdot  &  $\circledcirc$  & $\backslash$circledcirc  \\
+
+
+			$\leftthreetimes$  &  $\backslash$leftthreetimes  &  $\rightthreetimes$  & $\backslash$rightthreetimes  &  $\circledast$  & $\backslash$circledast  \\
+
+
+
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{center}
+		\caption{AMS其他符号}
+		\begin{tabular}{cccccc}
+			
+			$\hbar$  &  $\backslash$hbar  &  $\hslash$  & $\backslash$hslash  &  $\Bbbk$  & $\backslash$Bbbk  \\
+
+			$\square$  &  $\backslash$square  &  $\blacksquare$  & $\backslash$blacksquare  &  $\circledS$   &  $\backslash$circledS  \\
+
+			$\vartriangle$  &  $\backslash$vartriangle  &  $\blacktriangledown$  & $\backslash$blacktriangledown  &  $\Game$   &  $\backslash$Game  \\			
+
+			$\lozenge$  &  $\backslash$lozenge  &  $\blacklozenge$  & $\backslash$blacklozenge  &  $\bigstar$  & $\backslash$bigstar  \\
+
+			$\angle$  &  $\backslash$angle  &  $\measuredangle$  & $\backslash$measuredangle  &  $\sphericalangle$  & $\backslash$sphericalangle  \\
+
+			$\diagup$  &  $\backslash$diagup  &  $\diagdown$  & $\backslash$diagdown  &  $\backprime$  & $\backslash$backprime  \\
+
+
+			$\nexists$  &  $\backslash$nexists  &  $\Finv$  & $\backslash$Finv  &  $\varnothing$  & $\backslash$varnothing  \\
+
+			$\eth$  &  $\backslash$eth  &  $\mho$  & $\backslash$mho \\
+
+
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{数学字体说明}
+		\begin{tabular}{c c  c}
+		\hline 
+		例子 & 命令 & 所需宏包                   \\%\tabularnewline
+		\hline 	
+		$\mathrm{ABCdef}$   &  $\backslash$mathrm\{ABCdef\}   &    \\
+		
+		$\mathit{ABCdef}$   &  $\backslash$mathit\{ABCdef\}   &    \\
+		
+		$\mathnormal{ABCdef}$   &  $\backslash$mathnormal\{ABCdef\}   &    \\
+		
+		$\mathcal{ABCdef}$   &  $\backslash$mathcal\{ABCdef\}   &    \\
+
+
+		$\mathfrak{ABCdef}$   &  $\backslash$mathfrak\{ABCdef\}   &    \\
+		
+		$\mathbb{ABCdef}$   &  $\backslash$mathbb\{ABCdef\}   &    \\
+
+			%\hline 
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\subsection{微积分}
+$$
+\oiint{(x-y)dxdy}
+$$
+
+
+$$
+\oiint{(x-y)dxdy}
+$$
+
+
+$$
+\iiint{(x-y)dxdy}
+$$
+
+$$
+\iiint_{x=0,y}^{x=12,y=13}{(x-y)dxdy}
+$$
+
+$$
+\oint_{\Sigma}{(x-y)dxdy}
+$$
+
+
+
+\[
+\displaystyle \oiint_{x=0,y=0}^{x=12,y=22}{(x-y)dxdy}
+\]
+
+
+
+\[
+\displaystyle \oiint_{0}^{\infty}{(x^2+y^2+z^2) \mathrm dx \mathrm{dy} \mathit{dz}}
+\]
+
+
+
+\[
+\int_{a}^{b} x^2 dx
+\]
+
+\[
+\iint_V \mu(u,v) \,du\,dv
+\]
+
+$$\iiint_V \mu(u,v,w) \,du\,dv\,dw$$
+
+$$\iiiint_V \mu(t,u,v,w) \,dt\,du\,dv\,dw$$
+
+$$\idotsint_V \mu(u_1,\dots,u_k) \,du_1 \dots du_k$$
+
+Sum $\sum_{n=1}^{\infty} 2^{-n} = 1$ inside text
+
+$$\sum_{n=1}^{\infty} 2^{-n} = 1$$
+
+Product $\prod_{i=a}^{b} f(i)$ inside text
+
+$$\prod_{i=a}^{b} f(i)$$
+
+Limit $\lim_{x\to\infty} f(x)$ inside text
+
+
+
+$$\lim_{x\to\infty} f(x)$$
+
+Integral $\int_{a}^{b} x^2 dx$ inside text
+
+Integral $\int\nolimits_{a}^{b} x^2 dx$ inside text
+
+Improved integral $\int\limits_{a}^{b} x^2 dx$ inside text
+
+Sum $\sum_{n=1}^{\infty} 2^{-n} = 1$ inside text
+
+Sum $\sum\nolimits_{n=1}^{\infty} 2^{-n} = 1$ inside text
+
+
+Improved sum $\sum\limits_{n=1}^{\infty} 2^{-n} = 1$ inside text
+
+$\int\frac{1}{2}dx - \mathlarger{ \int\frac{1}{2}dx}$
+
+
+\[
+V = \iiint \limits_{V} \mathrm{d} V
+\]
+
+\subsection{矩阵的排版}
+\subsubsection{矩阵的括号}
+无括号
+\[
+\begin{matrix}
+0 & 1 \\
+1 & 0 
+\end{matrix}
+\]
+
+小括号
+\[
+\begin{pmatrix}
+0 & 1 \\
+1 & 0 
+\end{pmatrix}
+\]
+
+中括号
+\[
+\begin{bmatrix}
+0 & 1 \\
+1 & 0 
+\end{bmatrix}
+\]
+
+大括号
+\[
+\begin{Bmatrix}
+0 & 1 \\
+1 & 0 
+\end{Bmatrix}
+\]
+
+ 单竖线
+\[
+\begin{vmatrix}
+0 & 1 \\
+1 & 0 
+\end{vmatrix}
+\]
+
+双竖线
+\[
+\begin{Vmatrix}
+0 & 1 \\
+1 & 0 
+\end{Vmatrix}
+\]
+
+\subsubsection{矩阵的省略号}
+$\backslash$dots 横向省略号,
+$\backslash$vdots 竖向省略号,
+$\backslash$ddots 斜向省略号.
+\[
+A = \begin{bmatrix}
+a_{11} & \dots & a_{1n}\\
+\vdots & \ddots & \vdots \\
+0 & \dots & a_{nn}
+\end{bmatrix}_{n \times n}
+\]
+
+
+$$\begin{bmatrix}
+{a_{11}}&{a_{12}}&{\cdots}&{a_{1n}}\\
+{a_{21}}&{a_{22}}&{\cdots}&{a_{2n}}\\
+{\vdots}&{\vdots}&{\ddots}&{\vdots}\\
+{a_{m1}}&{a_{m2}}&{\cdots}&{a_{mn}}\\
+\end{bmatrix}
+$$
+
+
+$$\begin{bmatrix}
+0  &  \cdots &  12\\
+\vdots &  \ddots &  \vdots\\
+0 &  \cdots  &  0\\
+
+\end{bmatrix}
+$$
+
+\subsubsection{行内小矩阵}
+复数可用矩阵
+\begin{math}
+\left(
+\begin{smallmatrix}
+x & y \\ -y & x
+\end{smallmatrix}
+\right)
+\end{math}
+来表示
+
+\subsubsection{array环境}
+
+
+\[
+\begin{array}{c|c}
+1 & 2\\
+\hline
+0　& 1
+\end{array}
+\]
+
+\section{常用的矢量计算}
+
+下面式子标号为1.1，1.2，1.3$\cdots$
+\begin{enumerate}
+  
+  \item $\nabla (\varphi \psi)$=$\varphi \nabla \psi$+$\psi \nabla \varphi$
+  
+  \item $\nabla \cdot (\varphi \tmmathbf{f})$=($\nabla \varphi$)$\cdot
+  \tmmathbf{f}$+$\varphi \nabla \cdot \tmmathbf{f}$
+  
+  \item $\nabla \times (\varphi \tmmathbf{f})$=($\nabla \varphi$)$\times
+  \tmmathbf{f}$+$\varphi \nabla \times \tmmathbf{f}$
+  
+  \item ($\nabla \varphi$)$\times \tmmathbf{f}$=(\tmtextbf{$\tmmathbf{f
+  \cdot}$}$\nabla$)$\varphi$
+  
+  \item $\nabla \times (\varphi \tmmathbf{f})$=(\tmtextbf{$\tmmathbf{f
+  \cdot}$}$\nabla$)$\varphi$+$\varphi \nabla \times \tmmathbf{f}$
+  
+  \item $\nabla \tmmathbf{\cdot} (\tmmathbf{f \times g}) = (\nabla \times
+  \tmmathbf{f}) \tmmathbf{\cdot} \tmmathbf{g} - \tmmathbf{f \cdot} (\nabla
+  \times \tmmathbf{g})$
+  
+  \item $\nabla \times (\tmmathbf{f \times} \tmmathbf{g}) = (\tmmathbf{g
+  \cdot} \nabla) \tmmathbf{f} + (\nabla \cdot \tmmathbf{g}) \tmmathbf{f} -
+  (\tmmathbf{f \cdot} \nabla) \tmmathbf{g} - (\nabla \cdot \tmmathbf{f})
+  \tmmathbf{g}$
+  
+  \item $\nabla (\tmmathbf{f \cdot} \tmmathbf{g}) = \tmmathbf{f} \times
+  (\nabla \times \tmmathbf{g})$+$(\tmmathbf{f \cdot} \nabla)
+  \tmmathbf{g}$+\tmtextbf{$\tmmathbf{g \times}$}($\nabla \times
+  \tmmathbf{f}$)+($\tmmathbf{g \cdot} \nabla$)$\tmmathbf{f}$
+  
+  \item $\nabla \times (\nabla \times \tmmathbf{f})$=$\nabla (\nabla \cdot
+  \tmmathbf{f}) - \nabla^2 \tmmathbf{f}$
+  
+  \item $\nabla \cdot \nabla \varphi \equiv \nabla^2 \varphi$=$\Delta
+  \varphi$，拉普拉斯算符
+  
+  \item $\nabla$($f + g$)=$\nabla f$+$\nabla g$
+  
+  \item $\nabla \cdot (\tmmathbf{f +} \tmmathbf{g}) = \nabla \cdot
+  \tmmathbf{f}$+$\nabla \cdot \tmmathbf{g}$
+  
+  \item $\nabla \cdot (\nabla \times \tmmathbf{f})$=0
+  
+  \item $\nabla \times (\nabla f)$=0
+  
+  \item (\tmtextbf{$\tmmathbf{u}
+  \tmmathbf{\cdot}$}$\nabla$)$\tmmathbf{u}$=$\frac{1}{2} \nabla
+  (\tmmathbf{u^2}) - \tmmathbf{u \times} (\nabla \times \tmmathbf{u})$
+  
+  \item $\nabla
+  \tmmathbf{\cdot}$(\tmtextbf{B}\tmtextbf{B})=\tmtextbf{B}($\nabla
+  \tmmathbf{\cdot}
+  \tmmathbf{B}$)+(\tmtextbf{B$\cdot$}$\nabla$)$\tmmathbf{B}$，其中\tmtextbf{B}\tmtextbf{B}为并矢
+  
+  \item $\tmmathbf{A \times} (\tmmathbf{B} \times \tmmathbf{C}) = \tmmathbf{B
+  (\tmmathbf{A \cdot C})} - \tmmathbf{C (\tmmathbf{A \cdot} B)}$
+  
+  \item \tmtextbf{A$\cdot (\tmmathbf{B \times} C)$=$\tmmathbf{C \cdot
+  (\tmmathbf{A \times} B)}$=}$\tmmathbf{B \cdot (\tmmathbf{A} \times
+  \tmmathbf{C})}$
+\end{enumerate}
+
+
+在直角坐标系下的证明：
+\begin{enumeratenumeric}
+  \item
+  
+  \item
+  
+  \item
+  
+  \item  第四式的证明：($\nabla \varphi$)$\times
+  \tmmathbf{f}$=(\tmtextbf{$\tmmathbf{f \cdot}$}$\nabla$)$\varphi$
+  \begin{eqnarray*}
+    (\tmmathbf{f} \cdot \nabla) \varphi & = & \left[ (\tmmathbf{e_{}}_x f_x +
+    \tmmathbf{e_{}}_y f_y + \tmmathbf{e_{}}_y f_z) \cdot \left( \tmmathbf{e}_x
+    \tmmathbf{} \frac{\partial}{\partial x} + \tmmathbf{e_{}}_y
+    \frac{\partial}{\partial y} + \tmmathbf{e_{}}_z \frac{\partial}{\partial
+    z} \right) \right] \varphi\\
+    & = & \left( f_x \tmmathbf{} \tmmathbf{} \frac{\partial}{\partial x} +
+    f_y \frac{\partial}{\partial y} + f_z \frac{\partial}{\partial z} \right)
+    \varphi\\
+    & = & f_x \tmmathbf{} \tmmathbf{} \frac{\partial \varphi}{\partial x} +
+    f_y \frac{\partial \varphi}{\partial y} + f_z \frac{\partial
+    \varphi}{\partial z}\\
+    (\nabla \varphi) \times \tmmathbf{f} & = & \left( \tmmathbf{e}_x
+    \tmmathbf{} \frac{\partial \varphi}{\partial x} + \tmmathbf{e_{}}_y
+    \frac{\partial \varphi}{\partial y} + \tmmathbf{e_{}}_z \frac{\partial
+    \varphi}{\partial z} \right) \times (\tmmathbf{e_{}}_x f_x +
+    \tmmathbf{e_{}}_y f_y + \tmmathbf{e_{}}_y f_z)\\
+    & = & f_x \tmmathbf{} \tmmathbf{} \frac{\partial \varphi}{\partial x} +
+    f_y \frac{\partial \varphi}{\partial y} + f_z \frac{\partial
+    \varphi}{\partial z}
+  \end{eqnarray*}
+  得证
+  
+  \item 由3,4两式即可得5式
+  
+  \item
+  
+  \item
+  
+  \item
+  
+  \item
+  
+  \item
+  
+  \item
+  
+  \item
+  
+  \item
+  
+  \item
+  
+  \item 证明：(\tmtextbf{$\tmmathbf{u}
+  \tmmathbf{\cdot}$}$\nabla$)$\tmmathbf{u}$=$\frac{1}{2} \nabla
+  (\tmmathbf{u^2}) - \tmmathbf{u \times} (\nabla \times \tmmathbf{u})$
+\end{enumeratenumeric}
+
+\section{直角、圆柱、球坐标系下的散度、梯度、旋度}
+
+\subsection{直角坐标系下的散度、梯度、旋度}
+
+\
+
+直角坐标：$(x, y, z)$
+\begin{equation}
+  \nabla = \tmmathbf{e}_x \tmmathbf{} \frac{\partial}{\partial x} +
+  \tmmathbf{e_{}}_y \frac{\partial}{\partial y} + \tmmathbf{e_{}}_z
+  \frac{\partial}{\partial z}
+\end{equation}
+\begin{equation}
+  \left(\begin{array}{ccc}
+    \frac{\partial \tmmathbf{e_x}}{\partial x} = 0 & \frac{\partial
+    \tmmathbf{e_y}}{\partial x} = 0 & \frac{\partial \tmmathbf{e_z}}{\partial
+    x} = 0\\
+    \frac{\partial \tmmathbf{e_x}}{\partial y} = 0 & \frac{\partial
+    \tmmathbf{e_y}}{\partial y} = 0 & \frac{\partial \tmmathbf{e_z}}{\partial
+    y} = 0\\
+    \frac{\partial \tmmathbf{e_x}}{\partial z} = 0 & \frac{\partial
+    \tmmathbf{e_y}}{\partial z} = 0 & \frac{\partial \tmmathbf{e_z}}{\partial
+    z} = 0
+  \end{array}\right)
+\end{equation}
+\begin{enumerateroman}
+  
+  \item 散度：
+  \begin{eqnarray}
+    \tmop{div} \tmmathbf{f} & = & \nabla \tmmathbf{\cdot} \tmmathbf{f} \\
+    & = & \left( \tmmathbf{e}_x \tmmathbf{} \frac{\partial}{\partial x} +
+    \tmmathbf{e_{}}_y \frac{\partial}{\partial y} + \tmmathbf{e_{}}_z
+    \frac{\partial}{\partial z} \right) \cdot (\tmmathbf{e_{}}_x f_x +
+    \tmmathbf{e_{}}_y f_y + \tmmathbf{e_{}}_y f_z) \\
+    & = & \frac{\partial f_x}{\partial x} + \frac{\partial f_y}{\partial y} +
+    \frac{\partial f_z}{\partial z} 
+  \end{eqnarray}
+  \item 旋度：
+  \begin{eqnarray}
+    \tmop{rot} \tmmathbf{f} & = & \nabla \times \tmmathbf{f} \\
+    & = & \left( \tmmathbf{e}_x \tmmathbf{} \frac{\partial}{\partial x} +
+    \tmmathbf{e_{}}_y \frac{\partial}{\partial y} + \tmmathbf{e_{}}_z
+    \frac{\partial}{\partial z} \right) \times (\tmmathbf{e_{}}_x f_x +
+    \tmmathbf{e_{}}_y f_y + \tmmathbf{e_{}}_y f_z) \\
+    & = & \left|\begin{array}{ccc}
+      \tmmathbf{e_x} & \tmmathbf{e_y} & \tmmathbf{e_z}\\
+      \frac{\partial}{\partial x} & \frac{\partial}{\partial y} &
+      \frac{\partial}{\partial z}\\
+      f_x & f_y & f_z
+    \end{array}\right| 能写成这样是因为： \left(\begin{array}{ccc}
+      \frac{\partial \tmmathbf{e_x}}{\partial x} = 0 & \frac{\partial
+      \tmmathbf{e_y}}{\partial x} = 0 & \frac{\partial
+      \tmmathbf{e_z}}{\partial x} = 0\\
+      \frac{\partial \tmmathbf{e_x}}{\partial y} = 0 & \frac{\partial
+      \tmmathbf{e_y}}{\partial y} = 0 & \frac{\partial
+      \tmmathbf{e_z}}{\partial y} = 0\\
+      \frac{\partial \tmmathbf{e_x}}{\partial z} = 0 & \frac{\partial
+      \tmmathbf{e_y}}{\partial z} = 0 & \frac{\partial
+      \tmmathbf{e_z}}{\partial z} = 0
+    \end{array}\right) 成立 \nonumber\\
+    & = & \left( \frac{\partial f_z}{\partial y} - \frac{\partial
+    f_y}{\partial z} \right) \tmmathbf{e_x} + \left( \frac{\partial
+    f_x}{\partial z} - \frac{\partial f_z}{\partial x} \right) \tmmathbf{e_y}
+    + \left( \frac{\partial f_y}{\partial x} - \frac{\partial f_x}{\partial y}
+    \right) \tmmathbf{e_z} 
+  \end{eqnarray}
+  \item 梯度：
+  \begin{eqnarray}
+    \tmop{grad} \varphi & = & \nabla \varphi \nonumber\\
+    & = & \left( \tmmathbf{e_x} \frac{\partial}{\partial x} + \tmmathbf{e_x}
+    \frac{\partial}{\partial y} + \tmmathbf{e_z} \frac{\partial}{\partial z}
+    \right) \varphi \nonumber\\
+    & = & \tmmathbf{e_x} \frac{\partial \varphi}{\partial x} + \tmmathbf{e_y}
+    \frac{\partial \varphi}{\partial y} \tmmathbf{+} \tmmathbf{e_z}
+    \frac{\partial \varphi}{\partial z} 
+  \end{eqnarray}
+  \item 拉普拉斯算符：
+  \begin{equation}
+    \nabla^2 \varphi = \frac{\partial^2 \varphi}{\partial x^2} +
+    \frac{\partial^2 \varphi}{\partial y^2} + \frac{\partial^2
+    \varphi}{\partial z^2}
+  \end{equation}
+\end{enumerateroman}
+
+\subsection{柱坐标系下的散度、梯度、旋度}
+
+\
+
+圆柱坐标：($R$，$\phi$，$z$)
+\begin{equation}
+  \nabla = \tmmathbf{e_R} \frac{\partial}{\partial R} + \tmmathbf{e_{\phi}}
+  \frac{1}{R} \frac{\partial}{\partial \phi} + \tmmathbf{e_z}
+  \frac{\partial}{\partial z}
+\end{equation}
+
+
+圆柱坐标($R$，$\phi$，$z$)和直角坐标($x, y,
+z$)的变换关系为：
+\[ \left(\begin{array}{c}
+     \tmmathbf{e_R} = \cos \phi \tmmathbf{e_x} + \sin \phi \tmmathbf{e_y}\\
+     \tmmathbf{e_{\phi}} = - \sin \phi \tmmathbf{e_x} + \cos \tmmathbf{e_y}\\
+     \tmmathbf{e_z} = \tmmathbf{e_z}
+   \end{array}\right) \Longrightarrow \left(\begin{array}{c}
+     \tmmathbf{e_x} = \cos \phi \tmmathbf{e_R} - \sin \phi
+     \tmmathbf{e_{\phi}}\\
+     \tmmathbf{e_y} = \sin \phi \tmmathbf{e_R} + \cos \phi
+     \tmmathbf{e_{\phi}}\\
+     \tmmathbf{e_z} = \tmmathbf{e_z}
+   \end{array}\right) \]
+\begin{eqnarray*}
+  \frac{\partial \tmmathbf{e_{}}_R}{\partial \phi} & = & \frac{\partial (\cos
+  \phi \tmmathbf{e_x} + \sin \phi \tmmathbf{e_y})}{\partial \phi}\\
+  & = & - \sin \phi \tmmathbf{e_x} + \cos \phi \tmmathbf{e_y}\\
+  & = & - \sin \phi (\cos \phi \tmmathbf{e_R} - \sin \phi
+  \tmmathbf{e_{\phi}}) + \cos \phi (\sin \phi \tmmathbf{e_R} + \cos \phi
+  \tmmathbf{e_{\phi}})\\
+  & = & \tmmathbf{e_{\phi}}
+\end{eqnarray*}
+
+
+同理，可得如下矩阵：
+\begin{equation}\label{eq:eq46}
+  \left|\begin{array}{ccc}
+    \frac{\partial \tmmathbf{e_{}}_R}{\partial R} = 0 \quad
+    \tmcolor{red}{\checked} & \frac{\partial \tmmathbf{e_{}}_{\phi}}{\partial
+    R} = 0 \quad \tmcolor{red}{\checked} & \frac{\partial
+    \tmmathbf{e_z}}{\partial R} = 0 \quad \tmcolor{red}{\checked}\\
+    \frac{\partial \tmmathbf{e_{}}_R}{\partial \phi} = \tmmathbf{e_{\phi}}
+    \quad \tmcolor{red}{\checked} & \frac{\partial
+    \tmmathbf{e_{}}_{\phi}}{\partial \phi} = - \tmmathbf{e_R} \quad
+    \tmcolor{red}{\checked} & \frac{\partial \tmmathbf{e_z}}{\partial \phi} =
+    0 \quad \tmcolor{red}{\checked}\\
+    \frac{\partial \tmmathbf{e_{}}_R}{\partial z} = 0 \quad \tmcolor{red}{}
+    \tmcolor{red}{\checked} & \frac{\partial \tmmathbf{e_{}}_{\phi}}{\partial
+    z} = 0 \quad \tmcolor{red}{\checked} & \frac{\partial
+    \tmmathbf{e_z}}{\partial z} = 0 \quad \tmcolor{red}{\checked}
+  \end{array}\right|
+\end{equation}
+
+\begin{enumerateroman}
+  \item 梯度：
+  \begin{eqnarray}
+    \tmop{grad} \varphi & = & \nabla \varphi \nonumber\\
+    & = & \frac{\partial \varphi}{\partial R} \tmmathbf{e_R} + \frac{1}{R}
+    \frac{\partial \varphi}{\partial \phi} \tmmathbf{e_{\phi}} +
+    \frac{\partial \varphi}{\partial z} \tmmathbf{e_z} 
+  \end{eqnarray}
+  
+  \item 散度：
+  \begin{subequations}
+  \begin{align} 
+    \tmop{div} \tmmathbf{f} & =  \nabla \cdot \tmmathbf{f} \nonumber\\
+& =  \left( \tmmathbf{e_R} \frac{\partial}{\partial R} +
+\tmmathbf{e_{\phi}} \frac{1}{R} \frac{\partial}{\partial \phi} +
+\tmmathbf{e_z} \frac{\partial}{\partial z} \right) \cdot (f_R
+\tmmathbf{e_R} + f_{\phi} \tmmathbf{e_{\phi}} + f_z \tmmathbf{e_z})
+\nonumber\\
+& =  \tmcolor{magenta}{(\tmmathbf{e_R} \cdot \tmmathbf{e_R}) \cdot
+	\frac{\partial f_R}{\partial R} + \left( \tmmathbf{e_R} \cdot
+	\frac{\partial \tmmathbf{e_R}}{\partial R} \right) \cdot f_R +
+	(\tmmathbf{e_R} \cdot \tmmathbf{e_{\phi}}) \frac{\partial
+		f_{\phi}}{\partial R} + \left( \tmmathbf{e_R} \cdot \frac{\partial
+		\tmmathbf{e_{\phi}}}{\partial R} \right) \cdot f_{\phi} + (\tmmathbf{e_R}
+	\cdot \tmmathbf{e_z}) \frac{\partial f_z}{\partial R} + \left(
+	\tmmathbf{e_R} \cdot \frac{\partial \tmmathbf{e_z}}{\partial R} \right)
+	\cdot f_z}  \\
+& +  \tmcolor{blue}{\frac{1}{R} (\tmmathbf{e_{\phi}} \cdot
+	\tmmathbf{e_R}) \frac{\partial f_R}{\partial \phi} + \frac{1}{R} \left(
+	\tmmathbf{e_{\phi}} \cdot \frac{\partial \tmmathbf{e_R}}{\partial \phi}
+	\right) f_R   + \frac{1}{R} (\tmmathbf{e_{\phi}} \cdot \tmmathbf{e_{\phi}})
+	\frac{\partial f_{\phi}}{\partial \phi}}  \\
+&   \tmcolor{blue}{ + \frac{1}{R} \left(
+	\tmmathbf{e_{\phi}} \cdot \frac{\partial \tmmathbf{e_{\phi}}}{\partial
+		\phi} \right) f_{\phi} +  \frac{1}{R} (\tmmathbf{e_{\phi}} \cdot
+	\tmmathbf{e_z}) \frac{\partial f_z}{\partial \phi} + \frac{1}{R} \left(
+	\tmmathbf{e_{\phi}} \cdot \frac{\partial \tmmathbf{e_z}}{\partial \phi}
+	\right) f_z}  \\
+& +  \tmcolor{red}{(\tmmathbf{e_z} \cdot \tmmathbf{e_R}) \cdot  \label{eq51d}
+	\frac{\partial f_R}{\partial z} + \left( \tmmathbf{e_z} \cdot
+	\frac{\partial \tmmathbf{e_R}}{\partial z} \right) \cdot f_R +
+	(\tmmathbf{e_z} \cdot \tmmathbf{e_{\phi}}) \cdot \frac{\partial
+		f_{\phi}}{\partial z} + \left( \tmmathbf{e_z} \cdot \frac{\partial
+		\tmmathbf{e_{\phi}}}{\partial z} \right) \cdot f_{\phi} + (\tmmathbf{e_z}
+	\cdot \tmmathbf{e_z}) \cdot \frac{\partial f_z}{\partial z} + \left(
+	\tmmathbf{e_z} \cdot \frac{\partial \tmmathbf{e_z}}{\partial z} \right)
+	\cdot f_z}  \\
+& =  \tmcolor{magenta}{\frac{\partial f_R}{\partial R}} +  \label{eq51e}
+\tmcolor{blue}{\frac{f_R}{R} + \frac{1}{R} \frac{\partial
+		f_{\phi}}{\partial \phi}} + \tmcolor{red}{\frac{\partial f_z}{\partial z}} \\   
+& =  \frac{1}{R} \frac{\partial (\tmop{Rf}_R)}{\partial R} + \frac{1}{R}
+\frac{\partial f_{\phi}}{\partial \phi} + \frac{\partial f_z}{\partial z} 
+  \end{align}
+\end{subequations}
+  式 (\ref{eq51d})到式 (\ref{eq51e})的化简用到了式 (\ref{eq:eq46})
+
+  \item 旋度：
+  \begin{eqnarray}
+    \tmop{rot} \tmmathbf{f} & = & \nabla \times \tmmathbf{f} \nonumber\\
+    & = & \left( \tmmathbf{e_R} \frac{\partial}{\partial R} +
+    \tmmathbf{e_{\phi}} \frac{1}{R} \frac{\partial}{\partial \phi} +
+    \tmmathbf{e_z} \frac{\partial}{\partial z} \right) \times (f_R
+    \tmmathbf{e_R} + f_{\phi} \tmmathbf{e_{\phi}} + f_z \tmmathbf{e_z})
+    \nonumber\\
+    & = & \tmcolor{red}{\tmmathbf{e_R} \frac{\partial}{\partial R} \times
+    (f_R \tmmathbf{e_R}) + \tmmathbf{e_R} \frac{\partial}{\partial R} \times
+    (f_{\phi} \tmmathbf{e_{\phi}}) + \tmmathbf{e_R} \frac{\partial}{\partial
+    R} \times (f_z \tmmathbf{e_z})} \nonumber\\
+    & + & \tmcolor{brown}{{\color[HTML]{00AA00}\tmmathbf{e_{\phi}}
+    \frac{1}{R} \frac{\partial}{\partial \phi} \times (f_R \tmmathbf{e_R}) +
+    \tmmathbf{e_{\phi}} \frac{1}{R} \frac{\partial}{\partial \phi} \times
+    (f_{\phi} \tmmathbf{e_{\phi}}) + \tmmathbf{e_{\phi}} \frac{1}{R}
+    \frac{\partial}{\partial \phi} \times (f_z \tmmathbf{e_z})}} \nonumber\\
+    & + & \tmcolor{blue}{\tmmathbf{e_z} \frac{\partial}{\partial z} \times
+    (f_R \tmmathbf{e_R}) + \tmmathbf{e_z} \frac{\partial}{\partial z} \times
+    (f_{\phi} \tmmathbf{e_{\phi}}) + \tmmathbf{e_z} \frac{\partial}{\partial
+    z} \times (f_z \tmmathbf{e_z})} \nonumber\\
+    &  &
+    注意，这里的叉乘不能和直角坐标系一样写成行列式求解，因为（49）式
+    \nonumber\\
+    & = & \tmcolor{red}{(\tmmathbf{e_R} \times \tmmathbf{e_R}) \frac{\partial
+    f_R}{\partial R} + \left( \tmmathbf{e_R} \times \frac{\partial
+    \tmmathbf{e_R}}{\partial R} \right) f_R + (\tmmathbf{e_R} \times
+    \tmmathbf{e_{\phi}}) \frac{\partial f_{\phi}}{\partial R}} \nonumber\\ 
+    & + &  \tmcolor{red}{\left(
+    \tmmathbf{e_R} \times \frac{\partial \tmmathbf{e_{\phi}}}{\partial R}
+    \right) f_{\phi} + (\tmmathbf{e_R} \times \tmmathbf{e_z}) \frac{\partial
+    f_z}{\partial R} + \left( \tmmathbf{e_R} \times \frac{\partial
+    \tmmathbf{e_z}}{\partial R} \right) f_z} \nonumber\\
+    & + & {\color[HTML]{00AA00}\frac{1}{R} (\tmmathbf{e_{\phi}} \times
+    \tmmathbf{e_R}) \frac{\partial f_R}{\partial \phi} + \frac{1}{R} \left(
+    \tmmathbf{e_{\phi}} \times \frac{\partial \tmmathbf{e_R}}{\partial \phi}
+    \right) f_R + \frac{1}{R} (\tmmathbf{e_{\phi}} \times \tmmathbf{e_{\phi}})
+    \frac{\partial f_{\phi}}{\partial \phi}}  \nonumber\\
+    & + & {\color[HTML]{00AA00}\frac{1}{R} \left(
+    \tmmathbf{e_{\phi}} \times \frac{\partial \tmmathbf{e_{\phi}}}{\partial
+    \phi} \right) f_{\phi} + \frac{1}{R} (\tmmathbf{e_{\phi}} \times
+    \tmmathbf{e_z}) \frac{\partial f_z}{\partial \phi} + \frac{1}{R} \left(
+    \tmmathbf{e_{\phi}} \times \frac{\partial \tmmathbf{e_z}}{\partial \phi}
+    \right) f_z} \nonumber\\
+    & + & \tmcolor{blue}{(\tmmathbf{e_z} \times \tmmathbf{e_R})
+    \frac{\partial f_R}{\partial z} + \left( \tmmathbf{e_z} \times
+    \frac{\partial \tmmathbf{e_R}}{\partial z} \right) f_R + (\tmmathbf{e_z}
+    \times \tmmathbf{e_{\phi}}) \frac{\partial f_{\phi}}{\partial z}}  \nonumber\\
+	& + & \tmcolor{blue}{\left(
+    \tmmathbf{e_z} \times \frac{\partial \tmmathbf{e_{\phi}}}{\partial z}
+    \right) f_{\phi} + (\tmmathbf{e_z} \times \tmmathbf{e_z}) \frac{\partial
+    f_z}{\partial z} + \left( \tmmathbf{e_z} \times \frac{\partial
+    \tmmathbf{e_z}}{\partial z} \right) f_z} \nonumber\\
+    &  &  \nonumber\\
+    & = & \tmcolor{red}{\frac{\partial f_{\phi}}{\partial R} \tmmathbf{e_z} -
+    \frac{\partial f_z}{\partial R} \tmmathbf{e_{\phi}}}
+    {\color[HTML]{00AA00}- \frac{1}{R} \frac{\partial f_R}{\partial \phi}
+    \tmmathbf{e_z} + \frac{f_{\phi}}{R} \tmmathbf{e_z} + \frac{1}{R}
+    \frac{\partial f_z}{\partial \phi} \tmmathbf{e_R}} +
+    \tmcolor{blue}{\frac{\partial f_R}{\partial z} \tmmathbf{e_{\phi}} -
+    \frac{\partial f_{\phi}}{\partial z} \tmmathbf{e_R}} \nonumber\\
+    & = & \left( \frac{1}{R} \frac{\partial f_z}{\partial \phi} -
+    \frac{\partial f_{\phi}}{\partial z} \right) \tmmathbf{e_R} + \left(
+    \frac{\partial f_R}{\partial z} - \frac{\partial f_z}{\partial R} \right)
+    \tmmathbf{e_{\phi}} + \left( \frac{1}{R} \frac{\partial
+    (\tmop{Rf}_{\phi})}{\partial R} - \frac{1}{R} \frac{\partial f_R}{\partial
+    \phi} \right) \tmmathbf{e_z} 
+  \end{eqnarray}
+  \item 拉普拉斯算符：
+  \begin{eqnarray}
+    \Delta \varphi & = & \nabla^2 \varphi \nonumber\\
+    & = & \nabla \cdot (\nabla \varphi) \nonumber\\
+    & = & \left( \tmmathbf{e_R} \frac{\partial}{\partial R} +
+    \tmmathbf{e_{\phi}} \frac{1}{R} \frac{\partial}{\partial \phi} +
+    \tmmathbf{e_z} \frac{\partial}{\partial z} \right) \cdot \left(
+    \frac{\partial \varphi}{\partial R} \tmmathbf{e_R} + \frac{1}{R}
+    \frac{\partial \varphi}{\partial \phi} \tmmathbf{e_{\phi}} +
+    \frac{\partial \varphi}{\partial z} \tmmathbf{e_z} \right) \nonumber\\
+    & = & \tmcolor{red}{\tmmathbf{e_R} \frac{\partial}{\partial R} \cdot
+    \left( \frac{\partial \varphi}{\partial R} \tmmathbf{e_R} \right) +
+    \tmmathbf{e_R} \frac{\partial}{\partial R} \cdot \left( \frac{1}{R}
+    \frac{\partial \varphi}{\partial \phi} \tmmathbf{e_{\phi}} \right) +
+    \tmmathbf{e_R} \frac{\partial}{\partial R} \cdot \left( \frac{\partial
+    \varphi}{\partial z} \tmmathbf{e_z} \right)} \nonumber\\
+    & + & \tmcolor{blue}{\tmmathbf{e_{\phi}} \frac{1}{R}
+    \frac{\partial}{\partial \phi} \cdot \left( \frac{\partial
+    \varphi}{\partial R} \tmmathbf{e_R} \right) + \tmmathbf{e_{\phi}}
+    \frac{1}{R} \frac{\partial}{\partial \phi} \cdot \left( \frac{1}{R}
+    \frac{\partial \varphi}{\partial \phi} \tmmathbf{e_{\phi}} \right) +
+    \tmmathbf{e_{\phi}} \frac{1}{R} \frac{\partial}{\partial \phi} \cdot
+    \left( \frac{\partial \varphi}{\partial z} \tmmathbf{e_z} \right)}
+    \nonumber\\
+    & + & \tmmathbf{e_z} \frac{\partial}{\partial z} \cdot \left(
+    \frac{\partial \varphi}{\partial R} \tmmathbf{e_R} \right) +
+    \tmmathbf{e_z} \frac{\partial}{\partial z} \cdot \left( \frac{1}{R}
+    \frac{\partial \varphi}{\partial \phi} \tmmathbf{e_{\phi}} \right) +
+    \tmmathbf{e_z} \frac{\partial}{\partial z} \cdot \left( \frac{\partial
+    \varphi}{\partial z} \tmmathbf{e_z} \right) \nonumber\\
+    &  &  \nonumber\\
+    & = & \tmcolor{red}{(\tmmathbf{e_R} \cdot \tmmathbf{e_R})
+    \frac{\partial^2 \varphi}{\partial R^2} + \left( \tmmathbf{e_R} \cdot
+    \frac{\partial e_R}{\partial R} \right) \frac{\partial \varphi}{\partial
+    R} + (\tmmathbf{e_R} \cdot \tmmathbf{e_{\phi}}) \frac{1}{R}
+    \frac{\partial^2 \varphi}{\partial R \partial \phi} + \left(
+    \tmmathbf{e_R} \cdot \frac{\partial \tmmathbf{e_{\varphi}}}{\partial R}
+    \right) \frac{1}{R} \frac{\partial \varphi}{\partial \phi}}  \nonumber\\
+	& + &   \tmcolor{red}{(\tmmathbf{e_R} \cdot \tmmathbf{e_{\phi}}) \frac{\partial
+    \varphi}{\partial \phi} \frac{\partial}{\partial R} \left( \frac{1}{R}
+    \right) + (\tmmathbf{e_R} \cdot \tmmathbf{e_z}) \frac{\partial^2
+    \varphi}{\partial R \partial z} + \left( \tmmathbf{e_R} \cdot
+    \frac{\partial \tmmathbf{e_z}}{\partial R} \right) \frac{\partial
+    \varphi}{\partial z}} \nonumber\\
+    & + & \tmcolor{blue}{(\tmmathbf{e_{\phi}} \cdot \tmmathbf{e_R})
+    \frac{1}{R} \frac{\partial^2 \varphi}{\partial \phi \partial R} + \left(
+    \tmmathbf{e_{\phi}} \cdot \frac{\partial \tmmathbf{e_R}}{\partial \phi}
+    \right) \frac{1}{R} \frac{\partial \varphi}{\partial R} +
+    (\tmmathbf{e_{\phi}} \cdot \tmmathbf{e_{\phi}}) \frac{1}{R^2}
+    \frac{\partial^2 \varphi}{\partial \phi^2} + \left( \tmmathbf{e_{\phi}}
+    \cdot \frac{\partial \tmmathbf{e_{\phi}}}{\partial \phi} \right)
+    \frac{1}{R^2} \frac{\partial \varphi}{\partial \phi}} \nonumber\\
+  	& + & \tmcolor{blue}{(\tmmathbf{e_{\phi}} \cdot \tmmathbf{e_{\phi}}) \frac{1}{R} \frac{\partial
+    \varphi}{\partial \phi} \frac{\partial}{\partial \phi} \left( \frac{1}{R}
+    \right) + (\tmmathbf{e_{\phi}} \cdot \tmmathbf{e_z}) \frac{1}{R}
+    \frac{\partial^2 \varphi}{\partial \phi \partial z} + \left(
+    \tmmathbf{e_{\phi}} \cdot \frac{\partial \tmmathbf{e_z}}{\partial \phi}
+    \right) \frac{1}{R} \frac{\partial \varphi}{\partial z}} \nonumber\\
+    & + & (\tmmathbf{e_z} \cdot \tmmathbf{e_R}) \frac{\partial^2
+    \varphi}{\partial z \partial R} + \left( \tmmathbf{e_z} \cdot
+    \frac{\partial \tmmathbf{e_R}}{\partial z} \right) \frac{\partial
+    \varphi}{\partial R} + (\tmmathbf{e_z} \cdot \tmmathbf{e_{\phi}})
+    \frac{1}{R} \frac{\partial^2 \varphi}{\partial z \partial \phi} + \left(
+    \tmmathbf{e_z} \cdot \frac{\partial \tmmathbf{e_{\phi}}}{\partial z}
+    \right) \frac{1}{R} \frac{\partial \varphi}{\partial \phi} \nonumber\\
+    & + & (\tmmathbf{e_z} \cdot \tmmathbf{e_{\phi}}) \frac{\partial
+    \varphi}{\partial \phi} \frac{\partial}{\partial z} \left( \frac{1}{R}
+    \right) + (\tmmathbf{e_z} \cdot \tmmathbf{e_z}) \frac{\partial^2
+    \varphi}{\partial z^2} + \left( \tmmathbf{e_z} \cdot \frac{\partial
+    \tmmathbf{e_z}}{\partial z} \right) \frac{\partial^{} \varphi}{\partial z}
+    \nonumber\\
+    &  &  \nonumber\\
+    & = & \frac{\partial^2 \varphi}{\partial R^2} + \frac{1}{R}
+    \frac{\partial \varphi}{\partial R} + \frac{1}{R^2} \frac{\partial^2
+    \varphi}{\partial \phi^2} + \frac{\partial^2 \varphi}{\partial z^2}
+    \nonumber\\
+    & = & \frac{1}{R} \frac{\partial}{\partial R} \left( R \frac{\partial
+    \varphi}{\partial R} \right) + \frac{1}{R^2} \frac{\partial^2
+    \varphi}{\partial \phi^2} + \frac{\partial^2 \varphi}{\partial z^2} 
+  \end{eqnarray}
+\end{enumerateroman}
+
+\subsection{球坐标系下的散度、梯度、旋度}
+
+\
+
+球坐标：($r, \theta, \phi$)
+\begin{equation}
+  \nabla = \tmmathbf{e_r} \frac{\partial}{\partial r} + \tmmathbf{e_{\theta}}
+  \frac{1}{r} \frac{\partial}{\partial \theta} + \tmmathbf{e_{\phi}}
+  \frac{1}{\tmop{rsin} \theta} \frac{\partial}{\partial \phi}
+\end{equation}
+
+
+球坐标($r, \theta, \phi$)和直角坐标($x, y, z$)的变换关系为：
+\[ \begin{array}{c}
+     \tmmathbf{e_r} = \sin \theta \cos \phi \tmmathbf{e_x} + \sin \theta \sin
+     \phi \tmmathbf{e_y} + \cos \theta \tmmathbf{e_z}\\
+     \tmmathbf{e_{\theta}} = \cos \theta \cos \phi \tmmathbf{e_x} + \cos
+     \theta \sin \phi \tmmathbf{e_y} - \sin \theta \tmmathbf{e_z}\\
+     \tmmathbf{e_{\phi}} = - \sin \phi \tmmathbf{e_x} + \cos \phi
+     \tmmathbf{e_y}
+   \end{array} \]
+\begin{eqnarray*}
+  \left(\begin{array}{c}
+    \tmmathbf{e_x} = \sin \theta \cos \phi \tmmathbf{e_r} + \cos \theta \cos
+    \phi \tmmathbf{e_{\theta}} - \sin \phi \tmmathbf{e_{\phi}}\\
+    \tmmathbf{e_y} = \sin \theta \sin \phi \tmmathbf{e_r} + \cos \theta \sin
+    \phi \tmmathbf{e_{\theta}} + \cos \phi \tmmathbf{e_{\phi}}\\
+    \tmmathbf{e_z} = \cos \theta \tmmathbf{e_r} - \sin \theta
+    \tmmathbf{e_{\theta}}
+  \end{array}\right) &  & 
+\end{eqnarray*}
+
+
+由上述两组变换关系可得：
+\begin{equation} \label{eq55}
+  \begin{array}{ccc}
+    \frac{\partial \tmmathbf{e_r}}{\partial r} = 0 & \frac{\partial
+    \tmmathbf{e_r}}{\partial \theta} = \tmmathbf{e_{\theta}} & \frac{\partial
+    \tmmathbf{e_r}}{\partial \phi} = \sin \theta \tmmathbf{e_{\phi}}\\
+    \frac{\partial \tmmathbf{e_{\theta}}}{\partial r} = 0 & \frac{\partial
+    \tmmathbf{e_{\theta}}}{\partial \theta} = - \tmmathbf{e_r} &
+    \frac{\partial \tmmathbf{e_{\theta}}}{\partial \phi} = \cos \theta
+    \tmmathbf{e_{\phi}}\\
+    \frac{\partial \tmmathbf{e_{\phi}}}{\partial r} = 0 & \frac{\partial
+    \tmmathbf{e_{\phi}}}{\partial \theta} = 0 & \frac{\partial
+    \tmmathbf{e_{\phi}}}{\partial \phi} = - \sin \theta \tmmathbf{e_r} - \cos
+    \theta \tmmathbf{e_{\theta}}
+  \end{array}
+\end{equation}
+\begin{enumerateroman}
+  \item 梯度：
+  \begin{eqnarray}
+    \tmop{grad} \varphi & = & \nabla \varphi \nonumber\\
+    & = & \tmmathbf{e_r} \frac{\partial \varphi}{\partial r} +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial \varphi}{\partial \theta}
+    + \tmmathbf{e_{\phi}} \frac{1}{\tmop{rsin} \theta} \frac{\partial
+    \varphi}{\partial \phi} 
+  \end{eqnarray}
+  \item 散度：
+  \begin{subequations}
+  \begin{eqnarray}
+    \tmop{div} \tmmathbf{f} & = & \nabla \cdot \tmmathbf{f} \nonumber\\
+    & = & \left( \tmmathbf{e_r} \frac{\partial}{\partial r} +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta} +
+    \tmmathbf{e_{\phi}} \frac{1}{\tmop{rsin} \theta} \frac{\partial}{\partial
+    \phi} \right) \cdot (\tmmathbf{e_r} f_r + \tmmathbf{e_{\theta}} f_{\theta}
+    + \tmmathbf{e_{\phi}} f_{\phi})  \\
+    & = & \tmmathbf{e_r} \frac{\partial}{\partial r} \cdot (\tmmathbf{e_r}  \label{eq57a}
+    f_r) + \tmmathbf{e_r} \frac{\partial}{\partial r} \cdot
+    (\tmmathbf{e_{\theta}} f_{\theta}) + \tmmathbf{e_r}
+    \frac{\partial}{\partial r} \cdot (\tmmathbf{e_{\phi}} f_{\phi})
+     \nonumber \\
+    & + & \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta}
+    \cdot (\tmmathbf{e_r} f_r) + \tmmathbf{e_{\theta}} \frac{1}{r}
+    \frac{\partial}{\partial \theta} \cdot (\tmmathbf{e_{\theta}} f_{\theta})
+    + \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta} \cdot
+    (\tmmathbf{e_{\phi}} f_{\phi}) \nonumber \\
+    & + & \tmmathbf{e_{\phi}} \frac{1}{\tmop{rsin} \theta}
+    \frac{\partial}{\partial \phi} \cdot (\tmmathbf{e_r} f_r) +
+    \tmmathbf{e_{\phi}} \frac{1}{\tmop{rsin} \theta} \frac{\partial}{\partial
+    \phi} \cdot (\tmmathbf{e_{\theta}} f_{\theta}) + \tmmathbf{e_{\phi}}
+    \frac{1}{\tmop{rsin} \theta} \frac{\partial}{\partial \phi} \cdot  
+    (\tmmathbf{e_{\phi}} f_{\phi}) \nonumber \\
+    & = & \frac{1}{r^2} \frac{\partial (r^2 f_r)}{\partial r} +
+    \frac{1}{\tmop{rsin} \theta} \frac{\partial (f_{\theta} \cdot \sin
+    \theta)}{\partial \theta} + \frac{1}{\tmop{rsin} \theta} \frac{\partial
+    f_{\phi}}{\partial \phi}   \label{eq57b}
+  \end{eqnarray}
+\end{subequations}
+式(\ref{eq57a})到式(\ref{eq57b})的化简利用了式(\ref{eq55})
+
+  \item 旋度：
+  \begin{eqnarray}
+    \tmop{rot} \tmmathbf{f} & = & \nabla \times \tmmathbf{f} \nonumber\\
+    \nonumber\\
+    & = & \frac{1}{\tmop{rsin} \theta} \left( \frac{\partial (f_{\phi} \sin
+    \theta)}{\partial \theta} - \frac{\partial f_{\theta}}{\partial \phi}
+    \right) \tmmathbf{e_r} + \frac{1}{r} \left( \frac{1}{\sin \theta}
+    \frac{\partial f_r}{\partial \phi} - \frac{\partial
+    (\tmop{rf}_{\phi})}{\partial r} \right) \tmmathbf{e_{\theta}} +
+    \frac{1}{r} \left( \frac{\partial (\tmop{rf}_{\theta})}{\partial r} -
+    \frac{\partial f_r}{\partial \theta} \right) \tmmathbf{e_{\phi}} 
+  \end{eqnarray}
+  化简利用了式(\ref{eq55})
+  
+  \item 拉普拉斯算符：
+  \begin{eqnarray}
+    \Delta \varphi & = & \nabla^2 \varphi \nonumber\\
+    & = & \nabla \cdot (\nabla \varphi) \nonumber\\
+    & = & \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial
+    \varphi}{\partial r} \right) + \frac{1}{r^2 \sin \theta}
+    \frac{\partial}{\partial \theta} \left( \sin \theta \frac{\partial
+    \varphi}{\partial \theta} \right) + \frac{1}{r^2 \sin^2 \theta}
+    \frac{\partial^2 \varphi}{\partial \phi^2} 
+  \end{eqnarray}
+\end{enumerateroman}
+
+\subsection{环坐标系下的散度、梯度、旋度}
+
+\
+
+环坐标系：$(r, \theta, \varphi) ，单位基失 (\tmmathbf{e_r},
+\tmmathbf{e_{\theta}}, \tmmathbf{e_{\varphi}})$，$\tmmathbf{e_{\varphi}} =
+\tmmathbf{e_r } \times \tmmathbf{e_{\theta}}$
+\begin{equation}
+  \nabla = \tmmathbf{e_r} \frac{\partial}{\partial r} + \tmmathbf{e_{\theta}}
+  \frac{1}{r} \frac{\partial}{\partial \theta} + \tmmathbf{e_{\varphi}}
+  \frac{1}{R_0} \frac{\partial}{\partial \varphi} ，其中R_0 为
+  \tmop{Tokamak} 大半径
+\end{equation}
+
+
+环坐标系$(r, \theta,
+\varphi)$和柱坐标系($R$，$\phi$，$z$)的坐标基失变换关系为：
+\begin{equation}
+  \left|\begin{array}{c}
+    \tmmathbf{e_R} = \cos \theta \tmmathbf{e_r} - \sin \theta \tmmathbf{}
+    \tmmathbf{e_{\theta}}\\
+    \tmmathbf{e_z} = \sin \theta \tmmathbf{e_r} + \cos \theta
+    \tmmathbf{e_{\theta}}\\
+    \tmmathbf{e_{\phi}} = - \tmmathbf{e_{\varphi}}
+  \end{array}\right| \Longrightarrow \left(\begin{array}{c}
+    \tmmathbf{e_r} = \cos \theta \tmmathbf{e_R} + \sin \theta \tmmathbf{e_z}\\
+    \tmmathbf{e_{\theta}} = - \sin \theta \tmmathbf{e_R} + \cos \theta
+    \tmmathbf{e_z}\\
+    \tmmathbf{e_{\varphi}} = - \tmmathbf{e_{\phi}}
+  \end{array}\right)
+\end{equation}
+
+
+由（23）可以得：
+\begin{eqnarray*}
+  \frac{\partial \tmmathbf{e_{}}_r}{\partial \theta} & = & \frac{\partial
+  (\cos \theta \tmmathbf{e_R} + \sin \theta \tmmathbf{e_z})}{\partial
+  \theta}\\
+  & = & - \sin \theta \tmmathbf{e_R} + \cos \theta \tmmathbf{e_z}\\
+  & = & - \sin \theta (\cos \theta \tmmathbf{e_r} - \sin \theta \tmmathbf{}
+  \tmmathbf{e_{\theta}}) + \cos \theta (\sin \theta \tmmathbf{e_r} + \cos
+  \theta \tmmathbf{e_{\theta}})\\
+  & = & \tmmathbf{e_{\theta}}
+\end{eqnarray*}
+
+
+同理可得如下矩阵：
+\begin{equation}\label{eq62}
+  \left(\begin{array}{ccc}
+    \frac{\partial \tmmathbf{e} \tmmathbf{_{}}_r}{\partial r} = 0 \quad
+    \tmcolor{red}{\checked} & \frac{\partial
+    \tmmathbf{e_{}}_{\theta}}{\partial r} = 0 \quad \tmcolor{red}{\checked} &
+    \frac{\partial \tmmathbf{e_{\varphi}} \tmmathbf{_{}}}{\partial r} = 0
+    \quad \tmcolor{red}{\checked}\\
+    \frac{\partial \tmmathbf{e_{}}_r}{\partial \theta} = \tmmathbf{e_{\theta}}
+    \quad \tmcolor{red}{\checked} & \frac{\partial
+    \tmmathbf{e_{}}_{\theta}}{\partial \theta} = - \tmmathbf{e_r} \quad
+    \tmcolor{red}{\checked} & \frac{\partial \tmmathbf{e_{\varphi}}
+    \tmmathbf{_{}}}{\partial \theta} = 0 \quad \tmcolor{red}{\checked}\\
+    \frac{\partial \tmmathbf{e_{}}_r}{\partial \varphi} = \cos \theta \cdot
+    \tmmathbf{e_{\varphi}} \quad \tmcolor{red}{\checked} & \frac{\partial
+    \tmmathbf{e_{}}_{\theta}}{\partial \varphi} = - \sin \theta \cdot
+    \tmmathbf{e_{\varphi}} \quad \tmcolor{red}{\checked} & \frac{\partial
+    \tmmathbf{e_{\varphi}} \tmmathbf{_{}}}{\partial \varphi} = \sin \theta
+    \cdot \tmmathbf{e_{\theta}} - \cos \theta \cdot \tmmathbf{e_r} \quad
+    \tmcolor{red}{\checked}
+  \end{array}\right)
+\end{equation}
+
+\begin{enumerateroman}
+  \item 梯度：
+  \begin{eqnarray}
+    \tmop{grad} \psi & = & \nabla \psi \nonumber\\
+    & = & \left( \tmmathbf{e_r} \frac{\partial}{\partial r} +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta} +
+    \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial}{\partial \varphi}
+    \right) \psi \nonumber\\
+    & = & \tmmathbf{e_r} \frac{\partial \psi}{\partial r} +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial \psi}{\partial \theta} +
+    \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial \psi}{\partial
+    \varphi} 
+  \end{eqnarray}
+  \item 散度：
+  \begin{subequations}
+  \begin{eqnarray}
+    \tmop{div} \tmmathbf{f} & = & \nabla \cdot \tmmathbf{f} \nonumber\\
+    & = & \left( \tmmathbf{e_r} \frac{\partial}{\partial r} +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta} +
+    \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial}{\partial \varphi}
+    \right) \cdot (f_r \tmmathbf{e_r} + f_{\theta} \tmmathbf{e_{\theta}} +
+    f_{\varphi} \tmmathbf{e_{\varphi}}) \nonumber\\
+    & = & \tmcolor{red}{\tmmathbf{e_r} \frac{\partial}{\partial r} \cdot (f_r
+    \tmmathbf{e_r}) + \tmmathbf{e_r} \frac{\partial}{\partial r} \cdot
+    (f_{\theta} \tmmathbf{e_{\theta}}) + \tmmathbf{e_r}
+    \frac{\partial}{\partial r} \cdot (f_{\varphi} \tmmathbf{e_{\varphi}})}
+    \nonumber\\
+    & + & \tmcolor{blue}{\tmmathbf{e_{\theta}} \frac{1}{r}
+    \frac{\partial}{\partial \theta} \cdot (f_r \tmmathbf{e_r}) +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta} \cdot
+    (f_{\theta} \tmmathbf{e_{\theta}}) + \tmmathbf{e_{\theta}} \frac{1}{r}
+    \frac{\partial}{\partial \theta} \cdot (f_{\varphi}
+    \tmmathbf{e_{\varphi}})} \nonumber\\
+    & + & {\color[HTML]{00AA00}\tmmathbf{e_{\varphi}} \frac{1}{R_0}
+    \frac{\partial}{\partial \varphi} \cdot (f_r \tmmathbf{e_r}) +
+    \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial}{\partial \varphi}
+    \cdot (f_{\theta} \tmmathbf{e_{\theta}}) + \tmmathbf{e_{\varphi}}
+    \frac{1}{R_0} \frac{\partial}{\partial \varphi} \cdot (f_{\varphi}
+    \tmmathbf{e_{\varphi}})} \nonumber\\
+    &  &  \nonumber\\
+    & = & \tmcolor{red}{(\tmmathbf{e_r} \cdot \tmmathbf{e_r}) \frac{\partial  \label{eq64a}
+    f_r}{\partial r} + \left( \tmmathbf{e_r} \cdot \frac{\partial
+    \tmmathbf{e_r}}{\partial r} \right) f_r + (\tmmathbf{e_r} \cdot
+    \tmmathbf{e_{\theta}}) \frac{\partial f_{\theta}}{\partial r} + \left(
+    \tmmathbf{e_r} \cdot \frac{\partial \tmmathbf{e_{\theta}}}{\partial r}
+    \right) f_{\theta} + (\tmmathbf{e_r} \cdot \tmmathbf{e_{\varphi}})
+    \frac{\partial f_{\varphi}}{\partial r} + \left( \tmmathbf{e_r} \cdot
+    \frac{\partial \tmmathbf{e_{\varphi}}}{\partial r} \right) f_{\varphi}}
+     \\
+    & + & \tmcolor{blue}{(\tmmathbf{e_{\theta}} \cdot \tmmathbf{e_r})
+    \frac{1}{r} \frac{\partial f_r}{\partial \theta} + \left(
+    \tmmathbf{e_{\theta}} \cdot \frac{\partial \tmmathbf{e_r}}{\partial
+    \theta} \right) \frac{1}{r} f_r + (\tmmathbf{e_{\theta}} \cdot
+    \tmmathbf{e_{\theta}}) \frac{1}{r} \frac{\partial f_{\theta}}{\partial
+    \theta} + \left( \tmmathbf{e_{\theta}} \cdot \frac{\partial
+    \tmmathbf{e_{\theta}}}{\partial \theta} \right) \frac{1}{r} f_{\theta} +
+    (\tmmathbf{e_{\theta}} \cdot \tmmathbf{e_{\varphi}}) \frac{1}{r}
+    \frac{\partial f_{\varphi}}{\partial \theta} + \left(
+    \tmmathbf{e_{\theta}} \cdot \frac{\partial
+    \tmmathbf{e_{\varphi}}}{\partial \theta} \right) \frac{1}{r} f_{\varphi}}
+    \nonumber\\
+    & + & {\color[HTML]{00AA00}(\tmmathbf{e_{\varphi}} \cdot \tmmathbf{e_r})
+    \frac{1}{R_0} \frac{\partial f_r}{\partial \varphi} + \left(
+    \tmmathbf{e_{\varphi}} \cdot \frac{\partial \tmmathbf{e_r}}{\partial
+    \varphi} \right) \frac{1}{R_0} f_r + (\tmmathbf{e_{\varphi}} \cdot
+    \tmmathbf{e_{\theta}}) \frac{1}{R_0} \frac{\partial f_{\theta}}{\partial
+    \varphi}} \nonumber\\
+ 	& + & {\color[HTML]{00AA00}\left( \tmmathbf{e_{\varphi}} \cdot \frac{\partial
+    \tmmathbf{e_{\theta}}}{\partial \varphi} \right) \frac{1}{R_0} f_{\theta}
+    + (\tmmathbf{e_{\varphi}} \cdot \tmmathbf{e_{\varphi}}) \frac{1}{R_0}
+    \frac{\partial f_{\varphi}}{\partial \varphi} + \left(
+    \tmmathbf{e_{\varphi}} \cdot \frac{\partial
+    \tmmathbf{e_{\varphi}}}{\partial \varphi} \right) \frac{1}{R_0}
+    f_{\varphi}} \nonumber\\
+    & = & \tmcolor{red}{\frac{\partial f_r}{\partial r}} +
+    \tmcolor{blue}{\frac{f_r}{r} + \frac{1}{r} \frac{\partial
+    f_{\theta}}{\partial \theta}} + {\color[HTML]{00AA00}\frac{1}{R_0} f_r
+    \cos \theta - \frac{1}{R_0} f_{\theta} \sin \theta + \frac{1}{R_0}
+    \frac{\partial f_{\varphi}}{\partial \varphi}} \\  \label{eq64b}
+    & = & \frac{1}{r} \frac{\partial (\tmop{rf}_r)}{\partial r} + \frac{1}{r}
+    \frac{\partial f_{\theta}}{\partial \theta} + \frac{1}{R_0} \frac{\partial
+    f_{\varphi}}{\partial \varphi} + \frac{f_r}{R_0} \cos \theta -
+    \frac{f_{\theta}}{R_0} \sin \theta 
+  \end{eqnarray}
+\end{subequations}
+式(\ref{eq64a})到式(\ref{eq64b})的化简利用了式(\ref{eq62})
+
+  \item 旋度：
+  \begin{subequations}
+  \begin{eqnarray}
+    \tmop{rot} \tmmathbf{f} & = & \nabla \times \tmmathbf{f} \nonumber\\
+    & = & \left( \tmmathbf{e_r} \frac{\partial}{\partial r} +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta} +
+    \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial}{\partial \varphi}
+    \right) \times (f_r \tmmathbf{e_r} + f_{\theta} \tmmathbf{e_{\theta}} +
+    f_{\varphi} \tmmathbf{e_{\varphi}}) \nonumber\\
+    & = & \tmcolor{red}{\tmmathbf{e_r} \frac{\partial}{\partial r} \times
+    (f_r \tmmathbf{e_r}) + \tmmathbf{e_r} \frac{\partial}{\partial r} \times
+    (f_{\theta} \tmmathbf{e_{\theta}}) + \tmmathbf{e_r}
+    \frac{\partial}{\partial r} \times (f_{\varphi} \tmmathbf{e_{\varphi}})}
+    \nonumber\\
+    & + & \tmcolor{blue}{\tmmathbf{e_{\theta}} \frac{1}{r}
+    \frac{\partial}{\partial \theta} \times (f_r \tmmathbf{e_r}) +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta} \times
+    (f_{\theta} \tmmathbf{e_{\theta}}) + \tmmathbf{e_{\theta}} \frac{1}{r}
+    \frac{\partial}{\partial \theta} \times (f_{\varphi}
+    \tmmathbf{e_{\varphi}})} \nonumber\\
+    & + & \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial}{\partial
+    \varphi} \times (f_r \tmmathbf{e_r}) + \tmmathbf{e_{\varphi}}
+    \frac{1}{R_0} \frac{\partial}{\partial \varphi} \times (f_{\theta}
+    \tmmathbf{e_{\theta}}) + \tmmathbf{e_{\varphi}} \frac{1}{R_0}
+    \frac{\partial}{\partial \varphi} \times (f_{\varphi}
+    \tmmathbf{e_{\varphi}}) \nonumber\\
+    &  &  \nonumber\\
+    & = & \tmcolor{red}{(\tmmathbf{e_r \times} \tmmathbf{e_r}) \frac{\partial  
+    f_r}{\partial r} + \left( \tmmathbf{e_r \times} \frac{\partial
+    \tmmathbf{e_r}}{\partial r} \right) f_r + (\tmmathbf{e_r \times}
+    \tmmathbf{e_{\theta}}) \frac{\partial f_{\theta}}{\partial r} + \left(
+    \tmmathbf{e_r \times} \frac{\partial \tmmathbf{e_{\theta}}}{\partial r}
+    \right) f_{\theta}}  \\ \label{eq65a}
+ 	&+& \tmcolor{red}{(\tmmathbf{e_r \times} \tmmathbf{e_{\varphi}})
+    \frac{\partial f_{\varphi}}{\partial r} + \left( \tmmathbf{e_r \times}
+    \frac{\partial \tmmathbf{e_{\varphi}}}{\partial r} \right) f_{\varphi}}
+     \nonumber \\
+    & + & \tmcolor{blue}{(\tmmathbf{e_{\theta} \times} \tmmathbf{e_r})
+    \frac{1}{r} \frac{\partial f_r}{\partial \theta} + \left(
+    \tmmathbf{e_{\theta} \times} \frac{\partial \tmmathbf{e_r}}{\partial
+    \theta} \right) \frac{1}{r} f_r + (\tmmathbf{e_{\theta} \times}
+    \tmmathbf{e_{\theta}}) \frac{1}{r} \frac{\partial f_{\theta}}{\partial
+    \theta}}  \nonumber\\
+ 	& + & \tmcolor{blue}{\left( \tmmathbf{e_{\theta} \times} \frac{\partial
+    \tmmathbf{e_{\theta}}}{\partial \theta} \right) \frac{1}{r} f_{\theta} +
+    (\tmmathbf{e_{\theta} \times} \tmmathbf{e_{\varphi}}) \frac{1}{r}
+    \frac{\partial f_{\varphi}}{\partial \theta} + \left( \tmmathbf{e_{\theta}
+    \times} \frac{\partial \tmmathbf{e_{\varphi}}}{\partial \theta} \right)
+    \frac{1}{r} f_{\varphi}} \nonumber\\
+    & + & (\tmmathbf{e_{\varphi} \times} \tmmathbf{e_r}) \frac{1}{R_0}
+    \frac{\partial f_r}{\partial \varphi} + \left( \tmmathbf{e_{\varphi}
+    \times} \frac{\partial \tmmathbf{e_r}}{\partial \varphi} \right)
+    \frac{f_r}{R_0} + (\tmmathbf{e_{\varphi} \times} \tmmathbf{e_{\theta}})
+    \frac{1}{R_0} \frac{\partial f_{\theta}}{\partial \varphi} \nonumber\\
+     & + & \left(
+    \tmmathbf{e_{\varphi} \times} \frac{\partial
+    \tmmathbf{e_{\theta}}}{\partial \varphi} \right) \frac{f_{\theta}}{R_0} +
+    (\tmmathbf{e_{\varphi} \times} \tmmathbf{e_{\varphi}}) \frac{1}{R_0}
+    \frac{\partial f_{\varphi}}{\partial \varphi} + \left(
+    \tmmathbf{e_{\varphi} \times} \frac{\partial
+    \tmmathbf{e_{\varphi}}}{\partial \varphi} \right) \frac{f_{\varphi}}{R_0}
+    \nonumber\\
+    & = & \tmcolor{red}{\frac{\partial f_{\theta}}{\partial r}  
+    \tmmathbf{e_{\varphi}} - \frac{\partial f_{\varphi}}{\partial r}
+    \tmmathbf{e_{\theta}}} \tmcolor{blue}{- \frac{\partial f_r}{\partial
+    \theta} \frac{e_{\varphi}}{r} + \frac{f_{\theta}}{r}
+    \tmmathbf{e_{\varphi}} + \frac{\partial f_{\varphi}}{\partial \theta}
+    \frac{\tmmathbf{e_r}}{r}} \nonumber\\
+	&+& \frac{\partial f_r}{\partial \varphi}
+    \frac{\tmmathbf{e_{\theta}}}{R_0} - \frac{\partial f_{\theta}}{\partial
+    \varphi} \frac{e_r}{R_0} + \frac{f_{\varphi}}{R_0} (- \sin \theta
+    \tmmathbf{e_r} - \cos \theta \tmmathbf{e_{\theta}})  \\ \label{eq65b}
+    & = & \left( \frac{1}{r} \frac{\partial f_{\varphi}}{\partial \theta} -
+    \frac{1}{R_0} \frac{\partial f_{\theta}}{\partial \varphi} \right)
+    \tmmathbf{e_r} + \left( \frac{1}{R_0} \frac{\partial f_r}{\partial
+    \varphi} - \frac{\partial f_{\varphi}}{\partial r} \right)
+    \tmmathbf{e_{\theta}} +\left( \frac{1}{r} \frac{\partial
+    (\tmop{rf}_{\theta})}{\partial r}  - \frac{1}{r} \frac{\partial
+    f_r}{\partial \theta} \right) \tmmathbf{e_z} - \frac{B_{\varphi}}{R_0}
+    \sin \theta \tmmathbf{e_r} \nonumber\\ 
+    &-& \cos \theta \frac{B_{\varphi}}{R_0}
+    \tmmathbf{e_{\theta}} 
+  \end{eqnarray}
+\end{subequations}
+式(\ref{eq65a})到式(\ref{eq65b})的化简利用了式(\ref{eq62})
+
+  \item 拉普拉斯算符：
+  \begin{eqnarray}
+    \Delta \varphi & = & \nabla^2 \varphi \nonumber\\
+    & = & \nabla \cdot (\nabla \varphi) \nonumber\\
+    & = & \left( \tmmathbf{e_r} \frac{\partial}{\partial r} +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial \theta} +
+    \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial}{\partial \varphi}
+    \right) \cdot \left( \tmmathbf{e_r} \frac{\partial \psi}{\partial r} +
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial \psi}{\partial \theta} +
+    \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial \psi}{\partial
+    \varphi} \right) \nonumber\\
+    & = & \tmcolor{red}{\tmmathbf{e_r} \frac{\partial}{\partial r} \cdot
+    \left( \tmmathbf{e_r} \frac{\partial \psi}{\partial r} \right) +
+    \tmmathbf{e_r} \frac{\partial}{\partial r} \cdot \left(
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial \psi}{\partial \theta}
+    \right) + \tmmathbf{e_r} \frac{\partial}{\partial r} \cdot \left(
+    \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial \psi}{\partial
+    \varphi} \right)} \nonumber\\
+    & + & \tmcolor{blue}{\tmmathbf{e_{\theta}} \frac{1}{r}
+    \frac{\partial}{\partial \theta} \cdot \left( \tmmathbf{e_r}
+    \frac{\partial \psi}{\partial r} \right) + \tmmathbf{e_{\theta}}
+    \frac{1}{r} \frac{\partial}{\partial \theta} \cdot \left(
+    \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial \psi}{\partial \theta}
+    \right) + \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial}{\partial
+    \theta} \cdot \left( \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial
+    \psi}{\partial \varphi} \right)} \nonumber\\
+    & + & \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial}{\partial
+    \varphi} \cdot \left( \tmmathbf{e_r} \frac{\partial \psi}{\partial r}
+    \right) + \tmmathbf{e_{\varphi}} \frac{1}{R_0} \frac{\partial}{\partial
+    \varphi} \cdot \left( \tmmathbf{e_{\theta}} \frac{1}{r} \frac{\partial
+    \psi}{\partial \theta} \right) + \tmmathbf{e_{\varphi}} \frac{1}{R_0}
+    \frac{\partial}{\partial \varphi} \cdot \left( \tmmathbf{e_{\varphi}}
+    \frac{1}{R_0} \frac{\partial \psi}{\partial \varphi} \right) \nonumber\\
+    &  &  \nonumber\\
+    & = & \tmcolor{red}{(\tmmathbf{e_r \cdot} \tmmathbf{e_r})
+    \frac{\partial^2 \psi}{\partial r^2} + \left( \tmmathbf{e_r \cdot}
+    \frac{\partial \tmmathbf{e_r}}{\partial r} \right) \frac{\partial
+    \psi}{\partial r} + (\tmmathbf{e_r \cdot} \tmmathbf{e_{\theta}})
+    \frac{\partial^2 \psi}{\partial r \partial \theta} \frac{1}{r} + \left(
+    e_r \cdot \frac{\partial e_{\theta}}{\partial r} \right) \frac{1}{r}
+    \frac{\partial \psi}{\partial \theta}} \nonumber\\
+     &+& \tmcolor{red}{(\tmmathbf{e_r \cdot}
+    \tmmathbf{e_{\theta}}) \frac{\partial \psi}{\partial \theta}
+    \frac{\partial}{\partial r} \left( \frac{1}{r} \right) + (\tmmathbf{e_r
+    \cdot} \tmmathbf{e_{\varphi}}) \frac{1}{R_0} \frac{\partial^2
+    \psi}{\partial r \partial \varphi} + \left( \tmmathbf{e_r} \cdot
+    \frac{\partial \tmmathbf{e_{\varphi}}}{\partial r} \right) \frac{1}{R_0}
+    \frac{\partial \psi}{\partial \varphi}} \nonumber\\
+    & + & \tmcolor{blue}{(\tmmathbf{e_{\theta} \cdot} \tmmathbf{e_r})
+    \frac{1}{r} \frac{\partial^2 \psi}{\partial \theta \partial r} + \left(
+    \tmmathbf{e_{\theta} \cdot} \frac{\partial \tmmathbf{e_r}}{\partial
+    \theta} \right) \frac{1}{r} \frac{\partial \psi}{\partial r} +
+    (\tmmathbf{e_{\theta} \cdot} \tmmathbf{e_{\theta}}) \frac{\partial^2
+    \psi}{\partial \theta^2} \frac{1}{r^2}} \nonumber\\
+ 	& + & \tmcolor{blue}{ \left( \tmmathbf{e_{\theta}}
+    \cdot \frac{\partial \tmmathbf{e_{\theta}}}{\partial \theta} \right)
+    \frac{1}{r^2} \frac{\partial \psi}{\partial \theta} +
+    (\tmmathbf{e_{\theta} \cdot} \tmmathbf{e_{\theta}}) \frac{\partial
+    \psi}{\partial \theta} \frac{1}{r} \frac{\partial}{\partial \theta} \left(
+    \frac{1}{r} \right) + (\tmmathbf{e_{\theta} \cdot} \tmmathbf{e_{\varphi}})
+    \frac{1}{r} \frac{1}{R_0} \frac{\partial^2 \psi}{\partial \theta \partial
+    \varphi} + \left( \tmmathbf{e_{\theta}} \cdot \frac{\partial
+    \tmmathbf{e_{\varphi}}}{\partial \theta} \right) \frac{1}{r} \frac{1}{R_0}
+    \frac{\partial \psi}{\partial \varphi}} \nonumber\\
+    & + & (\tmmathbf{e_{\varphi} \cdot} \tmmathbf{e_r}) \frac{1}{R_0}
+    \frac{\partial^2 \psi}{\partial \varphi \partial r} + \left(
+    \tmmathbf{e_{\varphi} \cdot} \frac{\partial \tmmathbf{e_r}}{\partial
+    \varphi} \right) \frac{1}{R_0} \frac{\partial \psi}{\partial r} +
+    (\tmmathbf{e_{\varphi} \cdot} \tmmathbf{e_{\theta}}) \frac{1}{R_0}
+    \frac{1}{r} \frac{\partial^2 \psi}{\partial \varphi \partial \theta} +
+    \left( \tmmathbf{e_{\varphi} \cdot} \frac{\partial
+    \tmmathbf{e_{\theta}}}{\partial \varphi} \right) \frac{1}{R_0} \frac{1}{r}
+    \frac{\partial \psi}{\partial \theta} \nonumber\\
+    &+& (\tmmathbf{e_{\varphi} \cdot}
+    \tmmathbf{e_{\theta}}) \frac{1}{R_0} \frac{\partial \psi}{\partial \theta}
+    \frac{\partial}{\partial \varphi} \left( \frac{1}{r} \right) +
+    (\tmmathbf{e_{\varphi} \cdot} \tmmathbf{e_{\varphi}}) \frac{1}{R_0^2}
+    \frac{\partial^2 \psi}{\partial \varphi^2} + \left( \tmmathbf{e_{\varphi}
+    \cdot} \frac{\partial \tmmathbf{e_{\varphi}}}{\partial \varphi} \right)
+    \frac{1}{R_0^2} \frac{\partial \psi}{\partial \varphi} \nonumber\\
+    &  &  \nonumber\\
+    & = & \frac{\partial^2 \psi}{\partial r^2} + \frac{1}{r} \frac{\partial
+    \psi}{\partial r} + \frac{\partial^2 \psi}{\partial \theta^2}
+    \frac{1}{r^2} + \frac{\cos \theta}{R_0} \frac{\partial \psi}{\partial r} -
+    \frac{\sin \theta}{R_0 r} \frac{\partial \psi}{\partial \theta} +
+    \frac{1}{R_0^2} \frac{\partial^2 \psi}{\partial \varphi^2} \nonumber\\
+    & = & \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial
+    \psi}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2 \psi}{\partial
+    \theta^2} + \frac{1}{R_0^2} \frac{\partial^2 \psi}{\partial \varphi^2} +
+    \frac{\cos \theta}{R_0} \frac{\partial \psi}{\partial r} - \frac{\sin
+    \theta}{R_0 r} \frac{\partial \psi}{\partial \theta} 
+  \end{eqnarray}
+\end{enumerateroman}
+
+\subsection{上述的2.1-2.4推导的源头}
+
+\
+
+上述直角坐标($x, y, z$)，圆柱坐标($R, \phi, z$)，球坐标($r,
+\theta, \phi$)，环坐标($r, \theta,
+\varphi$)的推导也可以作如下的理解 。
+
+首先，给出最一般的梯度、散度、旋度的计算公式：
+\begin{eqnarray}
+  \tmop{grad} \psi & = & \nabla \psi \nonumber\\
+  & = & \tmmathbf{e_1} \frac{1}{h_1} \frac{\partial \psi}{\partial q_1} +
+  \tmmathbf{e_2} \frac{1}{h_2} \frac{\partial \psi}{\partial q_2} +
+  \tmmathbf{e_3} \frac{1}{h_3} \frac{\partial \psi}{\partial q_3} 
+\end{eqnarray}
+\begin{eqnarray}
+  \tmop{div} \tmmathbf{f} & = & \nabla \cdot \tmmathbf{f} \nonumber\\
+  & = & \frac{1}{h_1 h_2 h_3} \left[ \frac{\partial (f_1 h_2 h_3)}{\partial
+  q_1} + \frac{\partial (f_2 h_1 h_3)}{\partial q_2} + \frac{\partial (f_3 h_1
+  h_2)}{\partial q_3} \right] 
+\end{eqnarray}
+\begin{eqnarray*}
+  \tmop{rot} \tmmathbf{f} & = & \nabla \times \tmmathbf{f}\\
+  & = & \frac{\tmmathbf{e_1}}{h_2 h_3} \left[ \frac{\partial}{\partial q_2}
+  (h_3 f_3) - \frac{\partial}{\partial q_3} (h_2 f_2) \right] +
+  \frac{\tmmathbf{e_2}}{h_1 h_3} \left[ \frac{\partial}{\partial q_3} (h_1
+  f_1) - \frac{\partial}{\partial q_1} (h_3 f_3) \right] +
+  \frac{\tmmathbf{e_3}}{h_1 h_2} \left[ \frac{\partial}{\partial q_1} (h_2
+  f_2) - \frac{\partial}{\partial q_2} (h_1 f_1) \right]
+\end{eqnarray*}
+\begin{eqnarray*}
+  \Delta \psi & = & \nabla^2 \psi\\
+  & = & \frac{1}{h_1 h_2 h_3} \left[ \frac{\partial}{\partial q_1} \left(
+  \frac{h_2 h_3}{h_1} \frac{\partial \psi}{\partial q_1} \right) +
+  \frac{\partial}{\partial q_2} \left( \frac{h_1 h_3}{h_2} \frac{\partial
+  \psi}{\partial q_2} \right) + \frac{\partial}{\partial q_3} \left( \frac{h_1
+  h_2}{h_3} \frac{\partial \psi}{\partial q_3} \right) \right]
+\end{eqnarray*}
+
+
+上式中的$h_1 ，h_2
+，h_3$分别为相应坐标系下的拉梅因子，$q_1 ，q_2
+，q_3$分别为相应坐标系下的坐标，$\tmmathbf{e_1} ，
+\tmmathbf{e_2} ，
+\tmmathbf{e_3}$为相应坐标系下的坐标基矢。下面说明这三个公式怎么来的，再说明相应的拉梅因子是怎么确定的。
+
+（一）上面四个公式的由来：
+
+曲线正交坐标系($q_1 ，q_2
+，q_3$)，每一点的单位正交基失($\tmmathbf{e_1} ， \tmmathbf{e_2}
+， \tmmathbf{e_3}$)构成右手系。
+
+空间中任一点M在直角坐标系中是由($x, y,
+z$)决定的，此时矢量r的表达式是：
+\[ \tmmathbf{r =} x \tmmathbf{i} + y \tmmathbf{j} + z \tmmathbf{k} \]
+
+
+但是我们也可以用另外三个数($q_1 ，q_2
+，q_3$)唯一决定M点，$q_1 ，q_2
+，q_3$称为曲线坐标。此时矢量$r$在曲线坐标系中的表达式为：
+\[ d \tmmathbf{r} = \frac{\partial \tmmathbf{r}}{\partial q_1} \tmop{dq}_1 +
+   \frac{\partial \tmmathbf{r}}{\partial q_2} \tmop{dq}_2 + \frac{\partial
+   \tmmathbf{r}}{\partial q_3} \tmop{dq}_3 \]
+
+
+$\frac{\partial \tmmathbf{r}}{\partial q_i}$的大小是：
+\begin{eqnarray*}
+  \left| \frac{\partial \tmmathbf{r}}{\partial q_1} \right| & = & \sqrt{\left(
+  \frac{\partial x}{\partial q_1} \right)^2 + \left( \frac{\partial
+  y}{\partial q_1} \right)^2 + \left( \frac{\partial z}{\partial q_1}
+  \right)^2} = h_1\\
+  \left| \frac{\partial \tmmathbf{r}}{\partial q_2} \right| & = & \sqrt{\left(
+  \frac{\partial x}{\partial q_2} \right)^2 + \left( \frac{\partial
+  y}{\partial q_2} \right)^2 + \left( \frac{\partial z}{\partial q_2}
+  \right)^2} = h_2\\
+  \left| \frac{\partial \tmmathbf{r}}{\partial q_3} \right| & = & \sqrt{\left(
+  \frac{\partial x}{\partial q_3} \right)^2 + \left( \frac{\partial
+  y}{\partial q_3} \right)^2 + \left( \frac{\partial z}{\partial q_3}
+  \right)^2} = h_3
+\end{eqnarray*}
+
+
+$h_1 ，h_2
+，h_3$分别为相应坐标系下的拉梅系数。考虑到$\frac{\partial
+\tmmathbf{r}}{\partial q_i}$的方向后，可得：
+\[ d \tmmathbf{r} = h_1 \tmop{dq}_1 \tmmathbf{e_1} + h_2 \tmop{dq}_2
+   \tmmathbf{e_2} + h_3 \tmop{dq}_3 \tmmathbf{e_3} \]
+
+
+这是弧元素矢量在曲线坐标系中的表达式，它们在坐标轴上的投影分别是：
+\begin{eqnarray*}
+  \tmop{ds}_1 & = & h_1 \tmop{dq}_1\\
+  \tmop{ds}_2 & = & h_2 \tmop{dq}_2\\
+  \tmop{ds}_3 & = & h_3 \tmop{dq}_3
+\end{eqnarray*}
+
+
+各面的侧面积元为：
+\begin{eqnarray*}
+  d \sigma_1 & = & h_2 h_3 \tmop{dq}_2 \tmop{dq}_3\\
+  d \sigma_2 & = & h_1 h_3 \tmop{dq}_1 \tmop{dq}_3\\
+  d \sigma_3 & = & h_1 h_2 \tmop{dq}_1 \tmop{dq}_2
+\end{eqnarray*}
+
+
+体积元为：
+\[ \tmop{dv} = h_1 h_2 h_3 \tmop{dq}_1 \tmop{dq}_2 \tmop{dq}_3 \]
+
+
+下面分别求梯度、散度、旋度
+\begin{itemize}
+
+  \item
+  梯度：由梯度的定义，梯度等于各个方向的方向导数乘以该方向的单位矢量。
+  \begin{equation}
+    \nabla \psi = \tmop{grad} \psi = \frac{1}{h_1} \frac{\partial
+    \psi}{\partial q_1} \tmmathbf{e_1} + \frac{1}{h_2} \frac{\partial
+    \psi}{\partial q_2} \tmmathbf{e_2} + \frac{1}{h_3} \frac{\partial
+    \psi}{\partial q_3} \tmmathbf{e_3}
+  \end{equation}
+  \item 散度：先证明散度的定义：
+  
+  在直角坐标系下的高斯公式为：
+% \[ \bigiiint_v (\nabla \cdot \tmmathbf{f}) \tmop{dV} = \bigoiint_s     \tmmathbf{f} \cdot d \tmmathbf{S} \]
+
+\[\iint_{D}f(x,y)dxdy 
+\
+ \iiint_{\Omega}f(x,y,z)dxdydz  \]
+
+\begin{equation}
+\oiint \limits_{S} \mathbf{A} \cdot \mathrm{d}\mathbf{S} = 
+\iiint \limits_{V} \nabla\cdot \mathbf{A} \mathrm{d}V
+\end{equation}
+
+
+\begin{equation}
+\iint_{D} 2xy\mathrm{d}x\mathrm{d}y
+\end{equation}
+
+
+  换成曲线坐标系下可得：
+  
+
+\end{itemize}
+
+
+（二）拉梅系数的求解：有两种，第一种是由微分几何中的度规来求，第二中是利用弧长等价来求，实际上，第二种属于第一种。只是现在我不知道什么是度规，所以先用第二种来求。
+\begin{enumeratealphacap}
+  \item 柱坐标系（$\rho, \theta, z$）下的拉梅系数：
+  
+  柱坐标系（$\rho, \theta, z$）与直角坐标系（$x, y,
+  z$）的变换为：
+  \begin{eqnarray*}
+    x & = & \rho \cos \theta\\
+    y & = & \rho \sin \theta\\
+    z & = & z
+  \end{eqnarray*}
+  直角坐标的全微分为：
+  \begin{eqnarray*}
+    \tmop{dx} & = & \cos \theta d \rho - \tmop{psin} \theta d \theta\\
+    \tmop{dy} & = & \sin \theta d \rho + \rho \cos \theta d \theta\\
+    \tmop{dz} & = & \tmop{dz}
+  \end{eqnarray*}
+  微元弧长：
+  \begin{eqnarray*}
+    (\tmop{ds})^2 & = & (\tmop{dx})^2 + (\tmop{dy})^2 + (\tmop{dz})^2\\
+    & = & (\cos \theta d \rho - \tmop{psin} \theta d \theta)^2 + (\sin \theta
+    d \rho + \rho \cos \theta d \theta)^2 + (\tmop{dz})^2\\
+    & = & (d \rho)^2 + (\rho d \theta)^2 + (\tmop{dz})^2
+  \end{eqnarray*}
+  所以:
+  \begin{eqnarray*}
+    h_1 & = & 1\\
+    h_2 & = & \rho\\
+    h_3 & = & 1
+  \end{eqnarray*}
+  \item 求坐标系($r, \theta, \phi$)下的拉梅系数
+  
+  柱坐标系($r, \theta, \phi$)与直角坐标系（$x, y,
+  z$）的变换为：
+  \begin{eqnarray*}
+    x & = & \tmop{rsin} \theta \cos \phi\\
+    y & = & \tmop{rsin} \theta \sin \phi\\
+    z & = & \tmop{rcos} \theta
+  \end{eqnarray*}
+  直角坐标的全微分为：
+  \begin{eqnarray*}
+    \tmop{dx} & = & \sin \theta \cos \phi \tmop{dr} + \tmop{rcos} \theta \cos
+    \phi d \theta - \tmop{rsin} \theta \sin \phi d \phi\\
+    \tmop{dy} & = & \sin \theta \sin \phi \tmop{dr} + \tmop{rcos} \theta \sin
+    \phi d \theta + \tmop{rsin} \theta \cos \phi d \phi\\
+    \tmop{dz} & = & \cos \theta \tmop{dr} - \tmop{rsin} \theta d \theta
+  \end{eqnarray*}
+  微元弧长：
+  \begin{eqnarray*}
+    (\tmop{ds})^2 & = & (\tmop{dx})^2 + (\tmop{dy})^2 + (\tmop{dz})^2\\
+    & = & (\sin \theta \cos \phi \tmop{dr} + \tmop{rcos} \theta \cos \phi d
+    \theta - \tmop{rsin} \theta \sin \phi d \phi)^2 + (\sin \theta \sin \phi
+    \tmop{dr} + \tmop{rcos} \theta \sin \phi d \theta + \tmop{rsin} \theta
+    \cos \phi d \phi)^2 + (\cos \theta \tmop{dr} - \tmop{rsin} \theta d
+    \theta)^2\\
+    & = & (\tmop{dr})^2 + (\tmop{rd} \theta)^2 + (\tmop{rsin} \theta d
+    \phi)^2
+  \end{eqnarray*}
+  以:
+  \begin{eqnarray*}
+    h_1 & = & 1\\
+    h_2 & = & r\\
+    h_3 & = & \tmop{rsin} \theta
+  \end{eqnarray*}
+\end{enumeratealphacap}
+
+\section{张量及其分析}
+
+
+\begin{enumeratenumeric}
+  \item 矢量与张量点乘，结果为矢量
+  \begin{eqnarray*}
+    \left( \tmmathbf{f \cdot \overset{\longleftrightarrow \text{}}{T}}
+    \right)_j & = & f_i T_{\tmop{ij}}\\
+    \left( \tmmathbf{\overset{\longleftrightarrow \text{}}{T} \cdot f}
+    \right)_j & = & T_{\tmop{ji}} f_i
+  \end{eqnarray*}
+  矢量与张量点乘不具有互换性，即一般
+  \[ \tmmathbf{f \cdot \overset{\longleftrightarrow \text{}}{T}} \neq
+     \tmmathbf{\overset{\longleftrightarrow \text{}}{T} \cdot f} \]
+  但是当$\overset{\longleftrightarrow
+  \text{}}{\tmmathbf{T}}$为对称张量时，$\tmmathbf{f \cdot
+  \overset{\longleftrightarrow \text{}}{T}} =
+  \tmmathbf{\overset{\longleftrightarrow \text{}}{T} \cdot
+  f}$成立，特别地，任何矢量与单位张量$\overset{\longleftrightarrow}{\tmmathbf{I}}$之间的点乘等于矢量本身：$\tmmathbf{f
+  \cdot \overset{\longleftrightarrow \text{}}{I}} =
+  \tmmathbf{\overset{\longleftrightarrow \text{}}{I} \cdot
+  f}$=\tmtextbf{$\tmmathbf{f}$}。作为矢量与张量点乘的特例，矢量与并矢点乘结果也为矢量，即：
+  \[ \tmmathbf{f \cdot (\tmop{gh}) = (f \cdot g) h} \]
+  \[ \tmmathbf{(\tmop{gh}) \cdot f} = \tmmathbf{g (h \cdot f)} \]
+  注意，矢量\tmtextbf{$\tmmathbf{f}$}总是与并矢中与之相邻的矢量点乘，交换参与点乘的矢量和并矢的顺序，一般将导致不同的结果。一般情况下并矢的两个矢量交换位置后的结果不同：
+  \[ \tmmathbf{\tmop{gh} \neq \tmop{hg}} \]
+  \item 张量（或并矢）之间的点乘，结果为张量，即：
+  \begin{eqnarray*}
+    \left( \overset{\longleftrightarrow}{\tmmathbf{S}} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\tmmathbf{T}} \right)_{\tmop{ij}} & = &
+    S_{\tmop{ik}} T_{\tmop{kj}}\\
+    \left( \overset{\longleftrightarrow}{\tmmathbf{T}} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\tmmathbf{S}} \right)_{\tmop{ij}} & = &
+    T_{\tmop{ik}} S_{\tmop{kj}}\\
+    (\tmmathbf{\tmop{fg}}) \tmmathbf{\cdot (\tmop{pq})} & = & (\tmmathbf{g
+    \cdot p}) \tmmathbf{\tmop{fq}}\\
+    (\tmmathbf{\tmop{pq}}) \tmmathbf{\cdot} (\tmmathbf{\tmop{fg}}) & = &
+    (\tmmathbf{q \cdot f}) \tmmathbf{\tmop{pg}}
+  \end{eqnarray*}
+  规则如下：前导张量的第二指标（列标）与后随张量的第一指标（行标）为求和指标，前导并矢的第二个矢量和后随并矢的第一矢量之间实施点乘，张量点乘不具有交换性除非其中一个为单位张量：
+  \begin{eqnarray*}
+    \overset{\longleftrightarrow}{\tmmathbf{S}} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\tmmathbf{T}} & \neq &
+    \overset{\longleftrightarrow}{\tmmathbf{T}} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\tmmathbf{S}}\\
+    \overset{\longleftrightarrow}{\tmmathbf{S}} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\tmmathbf{I}} & = &
+    \overset{\longleftrightarrow}{\tmmathbf{I}} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\tmmathbf{S}} =
+    \overset{\longleftrightarrow}{\tmmathbf{S}}
+  \end{eqnarray*}
+  \item 张量与张量双点乘，结果为标量，即：
+  \begin{eqnarray*}
+    \overset{\longleftrightarrow}{\tmmathbf{S}} ：
+    \overset{\longleftrightarrow}{\tmmathbf{T}} & = &
+    \overset{\longleftrightarrow}{\tmmathbf{T}} ：
+    \overset{\longleftrightarrow}{\tmmathbf{S}} = S_{\tmop{ij}} T_{\tmop{ji}}
+  \end{eqnarray*}
+  双点乘具有交换性。任何张量与单位张量$\overset{\longleftrightarrow}{\tmmathbf{I}}$之间的双点乘等于张量的迹（张量对角元素之和）：
+  \[ \overset{\longleftrightarrow}{\tmmathbf{T}} \tmmathbf{:}
+     \overset{\longleftrightarrow}{\tmmathbf{I}} =
+     \overset{\longleftrightarrow}{\tmmathbf{I}} \tmmathbf{:}
+     \overset{\longleftrightarrow}{\tmmathbf{T}} = \tmop{Tr} \left(
+     \overset{\longleftrightarrow}{\tmmathbf{T}} \right) \]
+  两单位张量的双点乘等于3，两并矢的双点乘为：
+  \[ \begin{array}{lll}
+       (\tmmathbf{\tmop{fg}}) \tmmathbf{:} (\tmmathbf{\tmop{pq}}) & = &
+       (\tmmathbf{g \cdot p}) (\tmmathbf{f \cdot q})
+     \end{array} \]
+  \item 矢量与张量的叉乘和张量与矢量的叉乘，结果为张量
+  \begin{eqnarray*}
+    \overset{\longleftrightarrow}{\tmmathbf{S}} & = & \tmmathbf{f \times}
+    \overset{\longleftrightarrow}{\tmmathbf{T}}\\
+    S_{\tmop{ij}} & = & \varepsilon_{\tmop{imn}} f_m T_{\tmop{nj}}\\
+    \overset{\longleftrightarrow}{\tmmathbf{R}} & = &
+    \overset{\longleftrightarrow}{\tmmathbf{T}} \times \tmmathbf{f}\\
+    R_{\tmop{ij}} & = & \varepsilon_{\tmop{jmn}} T_{\tmop{im}} f_n
+  \end{eqnarray*}
+  上述运算不具有交换性，即一般$\overset{\longleftrightarrow}{\tmmathbf{R}}
+  \neq
+  \overset{\longleftrightarrow}{\tmmathbf{S}}$，除非$\overset{\longleftrightarrow}{\tmmathbf{T}}$为单位张量，此时有：
+  \begin{eqnarray*}
+    \tmmathbf{f \times} \overset{\longleftrightarrow}{\tmmathbf{I}} & = &
+    \overset{\longleftrightarrow}{\tmmathbf{I}} \times \tmmathbf{f}\\
+    & = & \left(\begin{array}{ccc}
+      0 & - f_3 & f_2\\
+      f_3 & 0 & - f_1\\
+      - f_2 & f_1 & 0
+    \end{array}\right)
+  \end{eqnarray*}
+  张量为并矢的特殊情况，掌握就近叉乘的法则：
+  \begin{eqnarray*}
+    \tmmathbf{f \times (\tmop{gh})} & = & (\tmmathbf{f \times g})
+    \tmmathbf{h}\\
+    (\tmmathbf{\tmop{gh}}) \times \tmmathbf{f} & = & \tmmathbf{g (h \times f)}
+  \end{eqnarray*}
+  结果为并矢。
+  
+  \item
+  算符$\nabla$作用在张量或并矢上，只要注意$\nabla$算符的矢量特性和微分运算特性，可以得出：
+  \begin{eqnarray*}
+    \nabla \tmmathbf{\cdot} (\tmmathbf{\tmop{fg}}) & = & (\nabla
+    \tmmathbf{\cdot f} \tmmathbf{}) \tmmathbf{g} + (\tmmathbf{f} \cdot \nabla)
+    \tmmathbf{g}\\
+    \nabla \tmmathbf{\cdot} \overset{\longleftrightarrow}{\mathfrak{I}} & = &
+    \frac{\partial}{\partial x} \left( \tmmathbf{e_x} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\mathfrak{I}} \right) +
+    \frac{\partial}{\partial y} \left( \tmmathbf{e_y} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\mathfrak{I}} \right) +
+    \frac{\partial}{\partial z} \left( \tmmathbf{e_z} \tmmathbf{\cdot}
+    \overset{\longleftrightarrow}{\mathfrak{I}} \right)
+  \end{eqnarray*}
+  上述两式的结果都是矢量。
+\end{enumeratenumeric}
+
+\section{高斯公式和斯托克斯}
+
+\
+
+1.高斯公式：
+
+\begin{equation}
+	\oiint_{s} \tmmathbf{A \cdot} d \tmmathbf{S} = \oiint_{v} \nabla
+	\tmmathbf{\cdot} \tmmathbf{A} \tmop{dV} 
+\end{equation} 
+
+
+式中，$v$为封闭曲面$s$所维的体积。
+
+\
+
+2.斯托克斯公式
+\begin{equation}
+\oint_{L} \tmmathbf{A \cdot} d \tmmathbf{l} = \iint_s (\nabla \times
+\tmmathbf{A}) \tmmathbf{\cdot} d \tmmathbf{S} 
+\end{equation} 
+
+式中，$S$为以$L$闭曲线为边界的曲面，且L的正向与$S$曲面的法线方向(即$d
+\tmmathbf{S}$的方向)遵循右手定则。
+
+\
+
+
+\end{document}
